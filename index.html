@@ -651,6 +651,17 @@ footer .dua{border:0!important;margin-top:10px!important}
 .sh-i svg{width:17px;height:17px;stroke:#0a84ff;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 .ios-arrow{position:fixed;bottom:8px;left:50%;transform:translateX(-50%);font-size:34px;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.5);animation:bob 1s ease-in-out infinite;pointer-events:none}
 @keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,10px)}}
+/* ===== compact ratings strip ===== */
+.rstrip{display:flex;align-items:center;gap:8px;width:100%;margin-top:8px;padding:6px;border-radius:14px;border:1px solid color-mix(in srgb,#f5a400 30%,var(--line));background:linear-gradient(90deg,color-mix(in srgb,#f5bf47 12%,var(--card)),var(--card));box-shadow:var(--sh);font-family:inherit;color:var(--ink);cursor:pointer;text-align:start;min-height:44px}
+.rs-avg{flex:none;display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:46px;padding:3px 6px;border-radius:10px;background:linear-gradient(145deg,#f5bf47,#e08e00);color:#fff;line-height:1.1}
+.rs-avg b{font-size:15px}.rs-avg b::before{content:"★ ";font-size:11px}.rs-avg small{font-size:9.5px;font-weight:500;opacity:.95}
+.rs-body{flex:1;min-width:0;position:relative;height:34px}
+.rs-item{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;opacity:0;transform:translateY(8px);transition:opacity .45s,transform .45s;font-size:12.5px;font-weight:700;overflow:hidden}
+.rs-item.on{opacity:1;transform:none}
+.rs-item q{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;quotes:"«" "»"}
+.rs-item small{display:flex;align-items:center;gap:5px;font-size:10.5px;color:var(--mute);font-weight:500}
+.rs-item .stars svg{width:10px;height:10px}
+.rs-go{flex:none;padding:7px 12px;border-radius:10px;background:var(--soft);color:#c98a08;font-size:12px;font-weight:700}
 </style>
 </head>
 <body>
@@ -734,6 +745,7 @@ footer .dua{border:0!important;margin-top:10px!important}
     <button data-qa="install" style="--q1:#2bb58a;--q2:#0a7a59"><span><svg><use href="#i-dl"/></svg></span>ثبّت</button>
     <a data-qa="ig" href="https://www.instagram.com/eng.furqan_kazem" target="_blank" rel="noopener" style="--q1:#f58529;--q2:#8134af"><span><svg><use href="#i-ig"/></svg></span>تابعني</a>
   </div>
+  <button class="rstrip" id="rstrip" aria-label="تقييمات المستخدمين"><span class="rs-avg"><b id="rsAvg">—</b><small id="rsCnt">تقييم</small></span><span class="rs-body" id="rsBody"><span class="rs-item on">⭐ قيّم «موظف الصحة» وشاركنا رأيك</span></span><span class="rs-go">قيّم</span></button>
 
   <div class="view" id="v-salary">
 
@@ -1807,6 +1819,21 @@ function drawTicker(c){c=c||{};const t=c.ticker||{};const bar=$('topbar');
 }
 drawTicker(CFG);
 {const _ac2=applyCfg;applyCfg=function(c){_ac2(c);try{drawTicker(c)}catch(_){}}}
+
+
+/* ===== compact ratings strip ===== */
+let RS_T=null,RS_I=0;
+function drawRStrip(){if(!RT)return;const tot=RT.count||0;
+  $('rsAvg').textContent=tot?(+RT.avg).toFixed(1):'—';$('rsCnt').textContent=tot?`${fmt(tot)} تقييم`:'جديد';
+  const items=(RT.latest||[]).filter(r=>r.comment&&r.comment.trim()).slice(0,8);
+  const short=s=>{s=s.trim().replace(/\s+/g,' ');return s.length>70?s.slice(0,68)+'…':s};
+  $('rsBody').innerHTML=items.length?items.map((r,i)=>`<span class="rs-item${i?'':' on'}"><q>${esc(short(r.comment))}</q><small>${starsH(r.stars)}${esc(r.name||'مستخدم')} · ${ago(r.updated_at)}</small></span>`).join(''):`<span class="rs-item on">${tot?`⭐ ${fmt(tot)} شخص قيّم التطبيق — شاركنا رأيك`:'⭐ كن أول من يقيّم «موظف الصحة»'}</span>`;
+  clearInterval(RS_T);RS_I=0;if(items.length>1&&!reduce)RS_T=setInterval(()=>{const a=$('rsBody').children;if(!a.length)return;a[RS_I%a.length].classList.remove('on');RS_I++;a[RS_I%a.length].classList.add('on')},4200);
+}
+$('rstrip').onclick=()=>openRC();
+{const _dr=drawRatings;drawRatings=function(){_dr();try{drawRStrip()}catch(_){}}}
+drawRStrip();
+{const _ac3=applyCfg;applyCfg=function(c){_ac3(c);$('rstrip').classList.toggle('cfg-off',!!((c||{}).hide||{}).rate)}}applyCfg(CFG);
 
 let deferred=window.__bip||null;
 const standalone=matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
