@@ -889,6 +889,7 @@ html.adm-only .adm-head div{flex:1;min-width:0}html.adm-only .adm-head b{display
 html.adm-only .adm-head .btn{flex:none;text-decoration:none;min-height:36px;font-size:12px;background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.25)}
 html.adm-only #topbar,html.adm-only header,html.adm-only #nav,html.adm-only #strip,html.adm-only #bnr,html.adm-only #qa,html.adm-only #rstrip,html.adm-only .dock,html.adm-only footer,html.adm-only #fabInst,html.adm-only #banner,html.adm-only #camp,html.adm-only #custom,html.adm-only #tour,html.adm-only .splash,html.adm-only #splash,html.adm-only .inst-tip,html.adm-only #dueCard{display:none!important}
 html.adm-only body{padding-bottom:30px!important}
+.rn-warn{margin:10px 0 8px;padding:8px 10px;border-radius:10px;background:color-mix(in srgb,#f5bf47 18%,var(--card));color:var(--ink);font-size:12.5px;line-height:1.7;text-align:start}
 </style>
 </head>
 <body>
@@ -1342,6 +1343,10 @@ html.adm-only body{padding-bottom:30px!important}
   <div class="cal-g" id="calG"></div>
   <div class="cal-today" id="calToday"></div>
   <button class="btn" id="calNow" style="width:100%;justify-content:center;margin-top:8px">رجوع لليوم</button></div></div>
+<div class="ov" id="rnOv"><div class="isheet rcsheet"><div style="text-align:center"><span class="wn-tag">📛 الاسم الجديد</span><h3 style="margin:4px 0;color:var(--ink)">صار اسمنا «موظف الصحة»</h3><p class="hint" style="margin:6px 0 0">إذا أيقونة التطبيق على شاشتك مكتوب تحتها «رواتب الصحة»، غيّرها بخطوتين:</p><p class="rn-warn">⚠️ قبل الحذف: سجّل دخولك بحسابك (رقم الهاتف والرمز) حتى ترجع بياناتك بعد التثبيت الجديد.</p><button class="btn" id="rnAcct" style="width:100%;justify-content:center">👤 حسابي — احفظ بياناتي أولاً</button></div>
+  <ul class="wn-l"><li><i>1</i><div><b>احذف الأيقونة القديمة</b><span>اضغط عليها مطولاً ← «إزالة التطبيق» ← «حذف من الشاشة الرئيسية»</span></div></li><li><i>2</i><div><b>ثبّته من جديد من Safari</b><span>افتح الرابط ← زر المشاركة ⬆️ ← «إضافة إلى الشاشة الرئيسية» ← تأكد الاسم «موظف الصحة» ← «إضافة»</span></div></li></ul>
+  <button class="btn pri" id="rnCopy" style="width:100%;justify-content:center">📋 انسخ رابط التطبيق</button>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px"><button class="btn" id="rnOk">اسم أيقونتي صحيح ✓</button><button class="btn" id="rnLater">ذكّرني لاحقاً</button></div></div></div>
 <div class="ov" id="wnOv"><div class="isheet rcsheet"><button class="xbtn" id="wnX">✕</button><div style="text-align:center"><span class="wn-tag">✨ تحديث جديد</span><h3 style="margin:4px 0">شنو الجديد بـ«موظف الصحة»</h3></div><ul class="wn-l" id="wnL"></ul><button class="btn pri" id="wnOk" style="width:100%;justify-content:center;margin-top:8px">تمام، خلّيني أجرب 🚀</button></div></div>
 <div class="ov" id="rcOv" role="dialog" aria-label="التقييمات"><div class="isheet rcsheet" id="rcBox"><button class="xbtn" id="rcClose" aria-label="إغلاق">✕</button></div></div>
 <div class="ov" id="donOv" role="dialog" aria-label="التبرع">
@@ -1550,7 +1555,7 @@ $('toSlip').onclick=()=>$('slip').scrollIntoView({behavior:reduce?'auto':'smooth
 $('theme').onclick=()=>{const dark=document.documentElement.getAttribute('data-theme')==='dark'||(!st.theme&&matchMedia('(prefers-color-scheme: dark)').matches);setTheme(dark?'light':'dark');save()};
 $('reset').onclick=()=>{try{localStorage.removeItem('moh-sal-v3')}catch(_){}const th=st.theme;st={g:0,s:0,grade:6,step:3,married:false,kids:0,u:{risk:'p',ret:'p'},done:{},cmp:'6-0',theme:th};scale=JSON.parse(JSON.stringify(DEF));for(const id of ADV){const e=$(id);if(e.type==='checkbox')e.checked=id==='taxOn';else e.value=e.defaultValue}applySpec(true);drawScale();drawCmpSel();full();window.scrollTo({top:0,behavior:reduce?'auto':'smooth'})};
 const credit='إعداد وتصميم المهندس فرقان كاظم — العراق، الديوانية';
-const SITE=(/^https?:/.test(location.protocol)&&!/claude|anthropic|localhost|127\.0/.test(location.host))?location.origin+location.pathname.replace(/index\.html$/,''):'https://rawatib-alseha-eng-furqan.netlify.app/';
+const SITE=(/^https?:/.test(location.protocol)&&!/claude|anthropic|localhost|127\.0/.test(location.host))?location.origin+location.pathname.replace(/index\.html$/,'').replace(/admin\/?$/,''):'https://rawatib-alseha-eng-furqan.netlify.app/';
 const SITE_SHORT=SITE.replace(/^https?:\/\//,'').replace(/\/$/,'');
 $('copy').onclick=async()=>{if(!last)return;const t=[`تفاصيل الراتب — ${last.spec} — الدرجة ${last.grade} المرحلة ${last.step}`,'',...last.cr.map(x=>`${x[0]}: ${fmt(x[1])}`),`الإجمالي: ${fmt(last.gross)}`,'',...last.db.map(x=>`${x[0]}: ${fmt(x[1])}`),`مجموع الاستقطاعات: ${fmt(last.ded)}`,'',`الصافي التقديري: ${fmt(last.net)} د.ع`,'','احسب راتبك أنت من هنا 👇',SITE,'',credit].join('\n');try{await navigator.clipboard.writeText(t);$('msg').textContent='تم النسخ ✓'}catch(_){$('msg').textContent='تعذّر النسخ في هذا المتصفح'}};
 
@@ -3366,6 +3371,17 @@ for(const[k,id]of SVC){const el=$(id);if(el)el.querySelector('summary').addEvent
 {const _la2=loadAdmin;loadAdmin=async function(){await _la2();applyLocks()}}
 $('admOut').addEventListener('click',()=>setTimeout(applyLocks,50));
 applyLocks();
+/* --- iOS: ask old installs to re-add icon with new name --- */
+(function(){const ios=/iphone|ipad|ipod/i.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+  const sa=matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
+  const close=()=>$('rnOv').classList.remove('on');
+  $('rnOk').onclick=()=>{ls('rw-rename','ok');close()};
+  $('rnAcct').onclick=()=>{close();setTimeout(()=>$('acctBtn').click(),200)};
+  $('rnLater').onclick=()=>{ls('rw-rename-later',String(Date.now()));close()};
+  $('rnCopy').onclick=async()=>{const u=SITE;try{await navigator.clipboard.writeText(u);toast('تم نسخ الرابط ✓ — الصقه بـ Safari')}catch(_){prompt('انسخ الرابط:',u)}};
+  const later=+ls('rw-rename-later')||0;
+  if(ios&&sa&&ls('rw-rename')!=='ok'&&Date.now()-later>3*864e5&&!window.ADMONLY)setTimeout(()=>{if(!document.querySelector('.ov.on')&&$('tour').hidden)$('rnOv').classList.add('on')},3500)})();
+
 if(ADM&&!$('v-admin').hidden)loadAdmin();
 let deferred=window.__bip||null;
 const standalone=matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
