@@ -890,6 +890,43 @@ html.adm-only .adm-head .btn{flex:none;text-decoration:none;min-height:36px;font
 html.adm-only #topbar,html.adm-only header,html.adm-only #nav,html.adm-only #strip,html.adm-only #bnr,html.adm-only #qa,html.adm-only #rstrip,html.adm-only .dock,html.adm-only footer,html.adm-only #fabInst,html.adm-only #banner,html.adm-only #camp,html.adm-only #custom,html.adm-only #tour,html.adm-only .splash,html.adm-only #splash,html.adm-only .inst-tip,html.adm-only #dueCard{display:none!important}
 html.adm-only body{padding-bottom:30px!important}
 .rn-warn{margin:10px 0 8px;padding:8px 10px;border-radius:10px;background:color-mix(in srgb,#f5bf47 18%,var(--card));color:var(--ink);font-size:12.5px;line-height:1.7;text-align:start}
+/* ===== health / protect / family ===== */
+.hero-ill{position:relative;margin:4px 0 12px;border-radius:22px;overflow:hidden;box-shadow:var(--sh);background:#fff}
+.hero-ill img{display:block;width:100%;height:auto;aspect-ratio:2/1}
+.hero-ill figcaption{position:absolute;right:0;left:0;bottom:0;padding:22px 16px 12px;background:linear-gradient(transparent,rgba(0,0,0,.55));color:#fff}
+.hero-ill b{display:block;font-size:20px}.hero-ill span{font-size:12.5px;opacity:.95}
+details.tool summary .ic.emo{font-size:20px}
+.tb.hc{padding:2px 16px 14px;font-size:14px;line-height:1.85;color:var(--ink)}
+.tb.hc ul,.tb.hc ol{margin:4px 0;padding-inline-start:20px}.tb.hc li{margin:3px 0}
+.tb.hc h5{margin:10px 0 2px;font-size:14px;color:var(--acc)}
+.tb.hc .src{margin:8px 0 0;font-size:11.5px;color:var(--mute)}
+.tb.hc .note{margin:8px 0 0;padding:8px 10px;border-radius:10px;background:var(--bg);font-size:13px}
+.steps li{margin:6px 0!important}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}.two>div{padding:8px 10px;border-radius:12px;background:var(--bg)}
+.sos{margin-top:12px;padding:14px;border-radius:20px;background:var(--card);border:1px solid var(--line);box-shadow:var(--sh)}
+.sos h4{margin:0 0 10px;font-size:15px}
+.sos-g{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.sos-g a{display:flex;flex-direction:column;align-items:center;padding:12px 4px;border-radius:16px;color:#fff;text-decoration:none;box-shadow:0 8px 16px -10px rgba(0,0,0,.4)}
+.sos-g b{font-size:24px;letter-spacing:1px}.sos-g span{font-size:12px;font-weight:700}
+.sos-g .s1{background:linear-gradient(145deg,#ef5b6a,#c42e3c)}.sos-g .s2{background:linear-gradient(145deg,#5aa9f0,#2463c7)}.sos-g .s3{background:linear-gradient(145deg,#f59e6b,#d9541e)}
+.disc{margin:14px 4px 0;font-size:12px;color:var(--mute);text-align:center}
+.soon-c{display:flex;align-items:center;gap:12px;padding:10px;border-radius:18px;background:linear-gradient(135deg,color-mix(in srgb,#f5bf47 16%,var(--card)),var(--card));border:1px dashed color-mix(in srgb,#c98a08 45%,var(--line))}
+.soon-c img{flex:none;width:110px;border-radius:12px;background:#fff}
+.soon-c b{display:block;font-size:14px}.soon-c span{font-size:12.5px;color:var(--mute);line-height:1.6}
+.tip-day{display:flex;align-items:center;gap:10px;margin:0 0 12px;padding:10px 12px;border-radius:16px;background:linear-gradient(135deg,color-mix(in srgb,#2bb58a 14%,var(--card)),var(--card));border:1px solid color-mix(in srgb,#0a7a59 25%,var(--line));color:var(--ink);cursor:pointer;width:100%;text-align:start;font-family:inherit}
+.tip-day .ti{flex:none;width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-size:20px;background:#fff;box-shadow:0 4px 10px -6px rgba(0,0,0,.3)}
+.tip-day b{display:block;font-size:12px;color:var(--acc)}.tip-day span{display:block;font-size:13.5px;line-height:1.6;font-weight:600}
+.tip-day .tgo{flex:none;font-size:12px;color:var(--acc);font-weight:800}
+.tip-day.big{cursor:default}
+/* 8-icon nav: 2 rows, compact single row when scrolled */
+.nav{grid-template-columns:repeat(4,minmax(0,1fr))!important;grid-auto-flow:row!important;row-gap:6px!important;transition:padding .25s}
+.nav.compact{grid-template-columns:repeat(8,minmax(0,1fr))!important;padding:5px 4px 6px!important;row-gap:0!important}
+.nav.compact button{min-height:46px!important;font-size:9px!important;gap:2px!important}
+.nav.compact .ic{width:30px!important;height:30px!important;border-radius:10px!important}
+.nav.compact svg{width:16px!important;height:16px!important}
+.nav.compact .nv-sal .ic{width:34px!important;height:34px!important;margin-top:0}.nav.compact .nv-sal svg{width:18px!important;height:18px!important}
+.nav.compact .coin,.nav.compact .nv-new{display:none}
+.nav .ic.emo2 svg{display:none}
 </style>
 </head>
 <body>
@@ -917,6 +954,10 @@ html.adm-only body{padding-bottom:30px!important}
  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 21s-8-4.5-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 6.5-8 11-8 11z"/></symbol>
  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"/><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"/><path d="M21 3v5h-5M3 21v-5h5"/></symbol>
  <symbol id="i-card" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M2 10h20M6 15h4"/></symbol>
+ <symbol id="i-heart2" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/><path d="M5.5 12h3l1.5-2.5 2 5 1.5-2.5h5"/></symbol>
+ <symbol id="i-family" viewBox="0 0 24 24"><circle cx="8" cy="6" r="2.5"/><circle cx="16" cy="6" r="2.5"/><circle cx="12" cy="12.5" r="1.8"/><path d="M3.5 20v-4.5a4.5 4.5 0 0 1 7-3.7M20.5 20v-4.5a4.5 4.5 0 0 0-7-3.7M9 20v-2a3 3 0 0 1 6 0v2"/></symbol>
+ <symbol id="i-shield2" viewBox="0 0 24 24"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.2-7.5 9.5-4.3-1.3-7.5-4.9-7.5-9.5V6z"/><path d="M12 8.5v6M9 11.5h6"/></symbol>
+ <symbol id="i-cal2" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/><path d="M8.5 14.5l2 2 4-4"/></symbol>
  <symbol id="i-cash" viewBox="0 0 24 24"><path d="M5.5 9V3.2h13V9"/><circle cx="12" cy="6" r="1.4"/><path d="M8 4.8v2.4M16 4.8v2.4"/><path d="M2.8 10.4A1.4 1.4 0 0 1 4.2 9h15.6a1.4 1.4 0 0 1 1.4 1.4v8.8a1.4 1.4 0 0 1-1.4 1.4H4.2a1.4 1.4 0 0 1-1.4-1.4z"/><path d="M21.2 12.6h-3.9a1.8 1.8 0 0 0 0 3.6h3.9"/></symbol>
  <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M20 7H5a2 2 0 0 1 0-4h13v4"/><path d="M3 5v14a2 2 0 0 0 2 2h15V7"/><circle cx="16" cy="14" r="1.5"/></symbol>
  <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l3 3M15 8l2 2"/></symbol>
@@ -951,7 +992,7 @@ html.adm-only body{padding-bottom:30px!important}
     <div class="me"><img id="avatar" alt="المهندس فرقان كاظم" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAcFBQYFBAcGBgYIBwcICxILCwoKCxYPEA0SGhYbGhkWGRgcICgiHB4mHhgZIzAkJiorLS4tGyIyNTEsNSgsLSz/2wBDAQcICAsJCxULCxUsHRkdLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCz/wAARCADIAMgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDv1hluYzI7FVFcF4ylVIZFB46V6LfXUVvB5e4A46V5T41lJDehNeXX1kke5g9ISkcbpUct34itIQT5fmAkV9H2Cra6XEDgYWvA/B0Qk8SQMedvIr3KVmWBd5+XA4rq2SOCWsmx80xuo2+banTNXtJ0i1s4vNiQbm5zisSeCeS3XB8qPdkn2rVvNdtdN0hBE3nTbeEXkk0LzIfkHiDUEsolfG9l6KO9YAXUNcnS4uAYLQH7nrU2j6df6nd/b9THlqeViznArf1AJFAo4RBT3ASOCNYVWNQqqKwfEHiAWyfZbT97dvwiinXepXOoy/YdNB44aTsKlt9FhsmieUCS47saBGboXhyWSf7fq7Ca6bovZfYVaZAfFaAKAI16Ct5mWAmV2CoO5rjJpLzU/FMosJQIwuGb0NAFnxhqCy24hDAnPOKwpxs0rj0qx4jsk09oYt5kkcjcxqtqTBNOx/s1tDYxlueZ6kTJr9so7yr/ADrr9UuknvRHG4Zo4RnHauJvLee/12O3tj++ZvlPp71u2Wlz6TJem6nMs23kntxSe41sd58MdKR9LM1zIZdzFgp6Dmjxyqv4p0tUYFFmXgduau+AEMfhuJxwCOa5vxrcPNqUYsfmnEgC4PfNZrc0ex6df+I7LTLVBLKDIFAVBySa828Yz37rLdXgCLIh8tfQe9afhjwzqDamb7XGV3IGwZyFFVfiIUuXeGNyxCbQB2oi9bsclpoanhCEwfD+JwAN0WSRVGwfNioxnqaboXibSbXwzHo8t0I7pItpR+DnFTQR/ZbJckN8vaufEbHrZUv3j9DkfER6471i+FLG21DxlZrdJ5sYOdh6GtbxFJlWAqv4AtnbxpCzqQAhIqcOa5q7SSPYrB1M9z5KhIoz5aqBjFFU9OuoraO7knnRI/NJyTjFFdCPFK0VldXKtfXpK+iZrgfGkmSQD1NesarKr2hVMACvHvGKyNPhRkZ7VyVFeoj1MO7UXcZ8PozLr4IG7Ar3eCzMqhpeg7V5F8K7A/2lJLIpXGBzxXs11eQ2FmZJWAUV2Hltmb4jeO30h+OMYAFZPhLw4kCC9uHeZ3ORvOcVdurn+1LUHbmInINaKTpaafGqAFscKKXUC5LIkILyEKg6VzuqR3Ot5CO0Nup5I7ilga61K9k+0nZEv3V9a0biWO3tdrEIicn2FPcWxY0uyisrZAigMRyfWqmuTR2M0c08ixp23HGe/euB8b/E64iiaz8Nb0SMhJNREQdckdI88cf3iD7DvXlF5eXFzczPcy3d87NseSWQyPuwTtCk8Me/THfHStFG5DlY9V1b4h6NfSFJNTVYIm5jhUvJJ9B0x75rGh+KemaHem5ttFv5racDbuZUc+uBzn2rzW5Ij8jbexjK722rk4I+72+bnGahFzBNfLcTXJULJhFJHzY4yOm0e5/WnyIXMz1TVfiHoWt30Eqi7tVX732iLG0+hwTU2qaja3dpIlrcxTeWMMI3DbeM84rx3WJDGVRv3m9QSBlQM+xqmXuYirQhkUAKHU/N9M1a0Jep22jtIvi1ZUGfLUmtu8umnsL+5bgsTXG6Rqz210AWXzWTaSx6ema6e0guf+EbZpyG85x06YJqOtx9D0jwPDdX3h22jAMEG0ZJ6kVieIbaG18WWkFup2iZSze9d9ocYg0m2QDaFQdPpXmXjbXbay1x5N7KUcEkDOMVlc1tfQ9Xnnjs4EeUgIVHJrxrxjf3yXV1PBIixK2V4yTU8fj2TxDei2hfzNi/KnYn3rK8TJdRaLIb1kMzNyE6AelOMU3qKUnFaHMWd3dX+pGa/tSyuAA23ivZYSiWEa9hGMV5OuuPfLZ2cEaooZQxxyea9TI8uzjHfaK5MQ9Ue/k8bqbOL8QNtZs1k+G/EP8AYviISiNp5GGxY15JJ9K0fEbEyH0qP4e2UB8bCZow7hTgnnFXQ2OfM5XnY9B07wpP4hX7XrUTWsLPvFuH+99cfyortoTvjOTz/Kitkjymc9rolDERPtTua8q1y4uItVQM4dd3evXvECLDBhckAda8V8UzMbtivUHiuf7Z3K3skdv4du7mV4lslAZuuO1eqJYLcaakd38xxyK89+EOmsdN+1z8sxJ5r1GQjHFdFjhuZGoWZ/s4W9qRGegx2qbTdLNraIbhzLIBkZp0gWW8Qb+narGoahBYQF5HH0pruDMyMpbzzTSuBnpmvGfiP8SBfyNa2QP2SFipXP8AryGxk47cHAP1Pau58eXXk+HJtRe6aCM/IirwzsQcAfz/AAr5l+0yTSop/hI4Hargr6kTdjabX7sIAGKySOGIXhVwdwAHQAED8qpK4Z9stxK+wM7eXz5jHPr9etQLZ3N9LiJWZgMfXntXRaX4PvLwKFid1Y7W+XJFW5Jbkxg5bHNpdmZVjMe5nIGSSAoFXoY5rFvtCRq8p5Eu3cV/3QeBXqmi/CGdp1Ji81QMBj8o/Oupi+EkBjIuZFDEYAUZH41zyxCWx1wwkpLU+frqdQ4n4LnBZyp3Fvqev4cUizq8e1ncKfmY4A/AV7fqXwot41LKnnEfjWC/g62hJie2UfVan61Et4Ga6nk8l4ZZHYfIp4+g9BXZ+C/FEWnq1reSbrIqWj3jJWTjjPoa1dW8A289i0luvlToCRjvXnckMtnK0bsQFbkE1tGaqLQ5alOVJ6nu3h/4kxpBL9vUrj/VKozuFct4g1JNYLXN7aG2tpJOQfvEVk2+pW1vpltqEYEsgQAjspHBqO8vLrV9KVlVpZJ5MIij36CiKsTJ3GX2pWljO0+jW4iVVxvHUn1q7P5174at2mYtJMRkk9zRL4A1DStPS91BwiSf8s89Kn1GAvZadZQts82RUDDtk9aqJMhTokWmalp8UX7yRyGbaM4r0STDW7ksAVXpWjpPhex0TSWlYefcFATI/JrMvHAiLADmuCvuj6PKU+SVjz/xGxUlT1zWj8L4PN8RSSn+Faz/ABTMZ5ckDI9KZ8PJdam1eeLSYBkgh5X4CitaOxy5k/fR7feanZ6XbeZI25z92NeWY+woqj4U0eOwV7q9l+23rHmRuQvsPSitVqeW9GVNbu3kt2yuMV45rsgl1Ig9zXsfiplhgZUwFANeK3hE+tIO5fFc8dZnfPSkj3f4ewJZ+GoSeMqK6SSV5nCIOPWsfwzalNFhU9MCtyR0txk/lXQcJkay09lDvtRvmPaqljpVxOqT6mxdmOQnatYSm7uuU4B71LcSxxgNI4UL60gPIfjdqc1vJY6bHEywvAXBHILbsdPYD9R6V534b8FXOsXkVssBaSQBmx2HvXb/ABL8Ri+8bLaFcW0EaIhPOQcMxx9SB+FeqeDfDttoWhweWgM8iK8jkc7iOac58kdC6NL2krvoZPh34U6bbRRm8BfZjao4AHpXoVjomn6dbmK1tIYUPJCr1+pqBJwlTC8LjC5ya54zXU7ZU39nYs3GxYxgKNo4rOklUA4qxtd0OfqcVB9lPOQeaJXY6aUVZsy7l+DgVkT2MdyT5qA+h7iunmtVQEnrWfNAcHYM1yyi0zsjNNHH6hpAhBCMSCD1rxnxFpBGozZXAJJHFfQGo2svlbgORXnmtaP5kkk4GUIORjpWtGfI9TmxNL2kdDye2t5Sk0JYhVG7b+lei+CrZYtR0qLap2ksd30rnbnS0t7yKZ8Bd4VyP7pOD+lejaXocFp42tLRMkRRFjXoc10eQ48r1O11/TLfxBaus/MUK5Cr615NcQKPEOlQ4wBcDA9ga9lumS10q42DACmvHmmjbxhpRIZsSFsKMk9aIaJinq0etakpTSnI/ugVxt8T5WD6V02pS30lkHKiC3Jxtb7zVy2p52se1cNd+8j6fKV+7b8zgfEBBm4rpfhPIEj1KVsgBMZFcvrbfvz7V0/w/ZLbwrqc28LI/C881vR+E8zMX+9sep2KotpGsakBhRXPWusanei3sNNs5A+0eZcSD5E/xNFaI89lHxXdLJbyMOBivKrKMXHie3TrukFeleMplWGRMYxwK858PxSXHi62Cf365qOsmz0cTpTSPofT3Wz06GMctjpV1IvNYSSflVW0tSkEJI3HArRbg88V0I85mJe63DYah9nCbpGztUVTlsbq7b7TduUjzwtasGnW8l+10VDsO9Sau4SwZj25xTsK5438VtBS18SaVq8QCwXaLE+DzvRh291I/KvZtNuEn02KSM/KyAj8q858bw3et+FYrn7OVh0+ZZz64+6f5j8q2fBusGewS3JIK8BTWNd6JnZhdJNHaIhkbBPFalpbIFyRWbblVj852CIBkkngVzOv/FbQNDBiW489x3B2r/30etZUo9TprS6XPQZGiiU/MMis+41KCFCT25ry2y+K6alOd0DQwHpIfun8auX+uSXmkSXNrFJMhypb7qj8TVzqNaWJpUYtXvcm8U/E+y0l2iijNxP0AzgE/wCe1cBc/FPxbcyfuoLawibp5qYbH0PzfpXN6trNxFevLbLHDMrY85OXGOwbsPpXOyakkbF5m3EnljyTWsIq12tTmqTd7J2R6DH8RfEfmlvtiS5GCrRDb/jU0fjWaW4iW8srcCZghkWXy0BPdsg4FcDaaxCwIAc8/wDPL/A1pNKt1ZOFTJxnaR3HP9KJQXVBCpLozo9Xg06QSxtqdosef4mOcHp25611/hu4S58V208k0Z/0KPLo4ZWwMZB7jisDXNLM9jHfKuMKGI9iM1c0PTHtNOJjKh3U7OANuSWx+ZJrJVVGNzV4Z1J2udzrupM+kXMdlCZcAhn7CvMdABk+I2noBnajGutsdbm/4RLUNLuXzPEw2uRgsp7H6Vz3hSHd8SkK9I4Tz6ciuilLnhzHHiKTpVORnpfiQl7aLe23DVxWq8xH5s10/iG9gnligWQNKpyQO1crqSgROTXHWd5n0eVq1G/med64T50uOwre+F2gNrTPLfzMtvCQRCDgMfesDWmI85gMHFeh/CG2LaTPI56tj9K6aXwnjY53qnpdsVgg2RgBQMACinRJtQjbtUdPeitDhPKPG0zFGY8ZrmPAieZ4tjOMkc1ueNZNwIz3qH4XWyy+IJHxnGBXLQ2bPSxfRHutvxEueMCmyEOGPbFNnkEUO4nAFUmnmuLdhEuMiug88ItRt4Y3jjO+TPT0qr9nmnk8+6chc8LUumWCWwMjLukJ61PeuqQF5GAANMRFqdkt/o01gFCx3MTRHHYEYrzvwnIdMvJDeSpGbdHEjOdoUqcHk9q9CW8k1BRHaqVVR9415D40UWPjWCBrgzQvcb5ojGQqvlTyT97rn0H1qKi5lY2oy5ZXNXxf40XW3/s7T55/IUAJ5a7BIccuS3OOwwPevOr62FhM0qW8byLw0m3zWX6s2QPwxW5rSCwnu7oE+Y3THJye9cvdw3V4FF1IYYUOUhB4A9/U+ppQemmxpUjd66sjbW3klUGWVmHfzN2P1r0rwVof/CaQTRXhvr4Wp+W0ilEEMa4HzMx7k9ABnjk15npuhy3t+kVpAH54ZuQPevoH4Nwpph1y2Ulx9rSLeR97EQz+pNKXK3Y0pqai5WPHPE3hy60nWp9IkieA5823DsG3x9xuHBIx/wDWrlpdPkjm2yQMTnkPX0h8QfC1tq6t9ql+zyod0EwGWjf+o9RXmluv2a8a01q0JlX7rxx7klH94dxUqrbRmrw/M7rZnHWcLom1LcJW9ZW0i27ySRsw2nnHtXa2Gn2lyyrbWEMYH/LS4IQD8Blj+VdFp2l2FnKs0jm7mQgqFTy4lI6ELySR2LH8BUOomarDWM2O126TFay5ysKxuD6hQDWfJcy2VvaBY1dQ5jk3ZwMDj866rUpYp/mRQGHtXLm4XzdRhf5o1UOQR22//WFc250L3WiWeO3laS9TB/dlZFHc9Qf0rn/C9pd6t44uPsk/kIifvCOpHpWzbW5tIWZz/wAfCZC4OFAHOarfDTLeKNTmTpgLXdhvgaPNzDWpF+R1ur2dvYJCkKYbHzOerVy2qEFO57113icgzQjuF5rj9Xb9z17VzVfjPdy5f7Mn6nn+tSfLNk8npXpnwyvbLS/Cc1ze3CR7Xzya8t1tWkV40IDE8E13HhrwFZXHhOK81S5uJpLhgI4o22qPwrrp/AfP4zWsegjVNW8SGJNNgNrZE/NdSd1/2RRWvaxG10yGCM/KihcelFWkch434wkzPt7Vt/CGJDPPJjJ3VzXiuT/SGzXoPwhtFTRDMVALkmueh8J6GMfvHczo87dcLU/lAWu1RjiiZ0iBOefSs++kuZLVjGdgPFb7HANudVgsINu7zJT0Udayfs+oahOk1wxjgJyErT0fQbeIC5lJllbnLc1avriKGcB2CqKdhFmKNIIFWMBRiuB8b6bpni3S/wDiWzRnU7GR2+YFWI24Zf8Ax1SPdfetybWbvVbn7HYRMkfQyEVj3ujLpN3e3MssgKrG8RQdXOc/yrGtNxSa2O3B0oVXJS36HP6fax6nZRS3EPz/AHZY2H3XHUH8f5in3PgK1vphJs2Z5IU10ulaOusW8N/HPJp91IoST92HSYDhWKnHOBgMCOBg5xV+XSvszFJ9Tu7jH3kiCwL+JALfrXOn1uego3922pykWkWPh238uKItM/Cxg5aQ/wBB79BXX/DfTLiz0aW5uNoNzdSSkjv0GR7ZBx7CuX1yeMstpaxRwo7ZbZyXx/eY8n8TUeoeLdX0nRbSGPyYreICMyNnBx9O9SppyNZ0nyaux6B4oksbqTM0nCHNcvrviHQpLM6bMIZG2cKwBZfQj0NcjN4xt9Qhdvti+YRggN90/jXm2q+LJ/tzxWUYiRGPXksfXPetFGVRvoYSq06EVrc9Os7W4jjWSKQAgfga0bbW2ilENwPKc9M9D9DXndh4g10acVBzuYgbl7gZwf5VSfxdqCkC7h4ZuVYcVDoO+jK+uK2qPXXnyN2cD1rJSRV1uYDe29MfKuSMc549BmqlleSHRAzlmBbahPXaeRn8DirOh6glh4s0y7mfy1DhXyeNpBU/zqacb6MmtU5dUX9QkRNMlKyh2ZSox6msv4XPHBLqlzcSrHGJMc+wrX8Z6xb6hMEtIyI4lJ3BcA1l/Dbw9aahp099c733TH5M/LwfSvRhDkhY8ivW9tUva1jf1HVbfVLt2tySkfy5I61zGsthDXYa4sCXoighWNVXoorj9bxtI21wVPjZ9Vg7Rw0fQ8/1ggTKByN1et+HZhP4a0iOOVQVbpmvH9abDjHBLV3Xg2+sPIsgXAmgJOS3euyPwHzWId6zPXM7IBuO0+p6UVwlzb+MfF9y1vEq6bp6Hmcnll9hRV3OZnBeKJTJcPjtXpvwwlkPheNY1Ocda8p1x91zJ35r2f4bxCLwzAoHO0VjSXunbi37500cJ3AyHLVV8QTtBYqI8Ak1qbcNk1n6rZrqGyE5255rU4xsOopHZxpF+8k2jgdKYmky3twLm6OB1C1qWmm29nGNiDcBjNSXDrDayMzAYFUl3Jb7GbBFHE7CNQqj0qC8Wyvv9EupFVX4zn7p7GsqHUL+4MsVtCRubAdv51padogsx51zIZp25JPaplHmVi6c3TkpIW6tf7KtLJPMXb5YhDr0bupHvn+dc/qWpPPuI4fv710OqTafBakTrvlUbYYEH8WMDC+ua43ULiezug08GGjOJoxyU45zXnzi9j26dRK0u5zs2pJb3MlxPkqGMcY/vHuf6VR8QeI01PTjY21t5yxqGCAZycckep5P5VF8SdJnNpY3NgxNuxbcVGdu45zXPWekeJXvLdLWCN7XgkAn5h7nqK1pRilfqZVpznJx6FjQfBvmSCSeCS4mlzthDfKv1PrXXr4FtEsmvbq3tbJbc85XJAHU5rd0nTdRe0VrjU7TTETDAJEWLMBz+dZt89vHPK1zffawTzJIxRSfoabbk7tm0aLirJJLzMXVrayks5bXTkkmJJUTliFwRwR64NZVr4EFpYKrs0szHc7Mck+1dRpk9vcSEwfvlU43KPkU1rgByR/d5NQ520Q3Ti9dzKu0VNOij24UEMR9P/1ViNcLJeROTuCOCVPQgEH+Va15ewSB1jlViCUOOoOP0rEsIzNeGIc5O3J596VO61Oes03ZHffEUxWxjggRVRUYgAdqn+GMCp4PgbpvdmP5msbx7dLOPOByfsqn8SKi8IeLVtfC1nYWFrNd3ajDBV4X3Jr0vso8W3vM6jVkDaw+eE4ziuP1mJlkkkCEopPWthZ9RnlnnvZUUN91E6j6muc1m9hsrCVXEskjngg5xXA0nM+op1Jww6lbSxwOuWj3aMySeXIJOFx1r1j4a+B9GstDt9UvIzc3bnIZzwPoK8sutWkVTAUVhL/ERyK9x8DzRT+ELMqCQgwfrXYtIpHz1R3qNnVtcfL5a/KpGAoHAoqLHylwcZHU9qKZmfOWqb3vtu04Z/SvoDwdbpa+H4PmA+Ud/avAJJpZtXih4w8gH617xY6W/wDwj0KpMynA6VlBWijoxDbqO50a4dsg5FHK3AzjaKjsIjFaIrHc2OSa53xFLfzapDZ2MuwufmPoK0Odm1qfiCCxykX76Xsq1UihutSVZ7tzGjc7Kng0O30+w3uPNmPVm55oSUrGCxwPemIkdVieKKFQq1Pe3VtZR755VRQO5rm9V1mU3CR6cnnyg4OOgp0fhiTUZludXnaXPIiz8o/Ci4WM97/UdS13ztNi/cDgSt/SjX9Lu7SManJKZg2EuB2Udj9O35V1TRQ2jxwwIEQDoKr6zIo0S6DgFGjKkHuDUyhzKzKhNwakjglaP7P9n4kgYfL7D0rpPDenwxWhcR/N90HtivN/7SNlhfN81DjGD09vrXc+FPGFmmbGdwHXBBPoe1cMqTTPXhXjKJY1nQtTvg62ExUtxgD+tckvwe1mfUBLqmpRxw/eXBLux78eleqzeJdMtYXcSKzBcjB6muO1zxzbzSsAxwnykZ4q4e4gnL2j12Il8NjSgEjkWQZxgcEfhVSe+trC1m8xcS85GaytX8fM2SjK2wEYHcmuE1HxHNPcbUZnkckY61UaXNqZ1MRyqyNKK9Rry5cMoDEnB+hq74dhP2wzkEKfuj0rA0zT5iVM+flGNo/rXaaPbeVEBjp60qkktETRi5WbKvimaRba5ZjlSgC+wxXo/gq1jtvCtgY4ERmjBYgcnivO/F4jTT0eRXaNzsYpjj0q/wCEvHurXt9a6TbWsCWkCfvG2kkIB1J9ScCvQoUpVoLlPNxDVKpK50OpiMX8oQBQD0Hc1x+sSRRyO8sIlXH3c11moAG6lkP8RzXEa9Jw+M8+teW7xqNM+vjGLw0bbWRx+qy2zXAeCIxovYnNezeB9Us/+EZt7bT1e6mC5ZUHAPua8TmtEubtfMY4/ug19A+Ckt7LwhaCytlt1YDOBya7/so+TqL94zVl0iS8t421C4kjPUwQtgfQmipwzF92TnvRQQfPukJ5/i21j6/vM19HWqBdPiQcfKK+efCEX2jxvDx93Jr6LQKkC57AVEdkbVXebJox8gx2rGtYvN8VO7c4Fa6OCvy9K4W/utbTxQ0WmxqY2U7pG/hNWZHYa3rFtp1q4kcFz91Rya4uO08Qa/G7NJ9it+duOWI/pXV2mhRmBJr8+fcdTn1qxOyw2xxhV6UCKeiaTFp1isYG5+7nqa1iFjXcxAHvWLceILSxhRVfzZT0ReSax7mHxB4ngk8uX+z4Mcf3jTuIu6n4qs49TW1tla5nP8KDOPrWZrVpqJ0i5vbu4MUZXIiFX/DXh6PQbUKT585PzStySfWneN3LeH3QnJcgCmtRPRFfRPDuk3HhVLW4so5o7hR5gYck+ueoPvXlvivQJ9H1N1t5TLDFJlJMYKg9Afp+tez6cBaaNCHYKFTvXDSRm+1e8HLqxJ4GcAdz7VMtro0p7qL6nmVxquqvGAZPNA6c4YfhSLLdXCEzSxRBecs+TnvxXc3Xh6DztoQKG4xis+Xw55cnyrx7DmuZ1l2O6OHb6nJxWBuFwm+Vj/G3yIB9OprUsdFgtMSKuZQOWP8AT0roI9NigGAOcelK6KMZxWLquRvHDxjqyvY2mCGJPXJzW1FiNSMYHpVKJlRc8CpYBNfymOH5UHDyHov+Jp0qU60lCCu2XOpCjHmk7IS+jbVB9hRBIH+/noo9Sa1dD0W10KzFvbZYk7pJH+9IfU/0FTW9vFaQeXEuB1JPVj6mp1bmvtsBgFhYe9q2fI43GfWJ6bIlvF862LKMug/MV59rzYJJNdve6tbaXbNNczJEo/ic8CvJfEXiOPUdYkbTxLHaDgLIQdx7nGOAfTmuHHZU6tX2lNpX3PUwOdKhQdGqm7bEGN17gV774Vif/hHbR84XYML+FeA29xH56yScE9hzXpOm+Jta1zSo7HQbV1ltQFYjGDXn1sLVoJc6MY4mnWk3Bno15qFrpkBe7njiXGfmPNFcvofw+vb/AFBdQ8U3huNg3C3U/Ln39aK5dTY8/wDhuPN8ZlsdF/rXv6qWHzdK+bvAuo/YfEvm54J2mvom0uvtFkrg9RU2tY0k7tstR7gCoFVLCLbdSuwG496upxBnPOK5Vb7Vbm/nt4IikecCT1pkHRahqtvYoTNIox2zWHdSX/iC3aK0jMETcbz1qzH4egZo3vXM83XB6Ct6NFto8KMKo6CnuLY5fRPC9rps3mODNcYwXbk1r385tbVscZ44om1G3t0eaSRUA9TXPXOsT65cGy063dweTMR8o/GjYDf+1W0FjE80qoMZOTXEeLPEcOoRpbaefNkEgA9Cc1uQ+CxJIr6ndST7TkRZwo/CqfiqztIrvTILWBYiZRkgelNEsvW2i3d7ZRy6ldFVVOI04FcL4wnm0PwvE1iGQ3l0zlx3WMjav0LAk/QV6fcyfZ9PYseiYrlPEmjLqngeyjOA7WzSIT2beSD+tdmEp+0k15GVWfLYrxSR32nwXceNtxGsqH2YZpjqqr868dawfhzePqXhOTT5htutLuJINrddudwH4ZP5V0MsnylSK8KrHlk49j6GlLnipIw7liZW2/drMuJsVs3QKgt90CqNuumwatBBqRMckx/dxsMIGPQN6E9h09a3wmFniZ8kCMViYYeHNINO0+a/AkkLRW3r0L/T/GugRY4IliiUIi8AClmfDbRxjgiqN7qNrp1u1xdzLFEvUsf85r7nCYKnhI2jv1Z8disZPEyvLbsX93Ga5rxB43sNF3QxMLq7H/LNDwp/2j2+nWuQ8ReP7nUA1tpu62t+hfOJHH/sorjwNx5NbTrW0icyh3NPVtbvddvDPdylj0VBwqD0AqGBAvUjI9aSK1JHzHGfzq2kSoOFxVU6cpPmkZznFKyEU4PCsfc1as7u4spxNbTSW8oOQ8blWH4ioRTgtdahpZnM2dxpHxV8RWGEuZY9Ri7i4X5v++hg/nmiuJVaK5ZZdh5u7iarF1oqykTeGV33xftmvdvBuqi4tDbu/wAy8V4X4bYI/oa9A0S+ayvI5N2FJANfESR9Unqew7v3DBfSksotkJOOSetQRXSNpXnjkbc1kLr95cssFnatgkgue1ZlmzNdwW115k8gRR6msy/8VCXMNhA8xbjeBwPxpR4a+2t5l/MXPXaDWkYYNPtPLhiVR0HFMRjWPhpLr/SL92kLHdsJ4FblvHFY5WGNY19hSREhNpOM96zdT8QWNjKsDybpD2XmmI1twbLjk1wvi3VILLxNp0l02yCMlmOOnFZ2qfEx7OWSKzgDMDgFzx+Nee6trN7rd411eTtLIfwAHoB2Fe1gsqqV/fqe7H8WeTi8xhS92nq/wOu8X/EebVVe00lWtLTGGkb/AFkn/wASP1rS8D65d63rraDe3IFnHpaNYQhBlmTHmc9Scbjj2PpXl7HCY9TzRdX8traiS3uZLa8tJVntZY871PfBHTkA/ia+hng6dGjakrWPIpYmc6vNUd7nYsz+E/iTLkhbPWVADdAJl4/UH9a7W5smurcXcIOSMso7+9cVp+uWXxL0ZdLv3eHXY/n81gMNIOkikfqPQmvSfCiXFxodqL+BoZ5E2uGHVhxkHuD1yK+JzPCuE1Vjsz7bLcSpwdN7o5a8vF0xEaNc3bKG3kZ8oHoFH97HOe2Rj1rjtUEZMks5Dk5O5v8AE11Wu2N+b29nMDJbo7fv2UhcA4HWvL9f12NiYbdjK4zl26D6CvqsNh6eGoq3/Ds+bxNedeq2zpB4+trbRA8xM18hMWzu+Ojk+mK4LVdavdZujNdyluflUfdQewrPbc7Esc570qgnhfzqZ1ZT06ERgo6jgcdeTVy1t97bm6CktrPfyche5rSRQg2qMAV1UKF/ekc9Wr0QgQU4CnAfjTgvPSvRUTibGbMdakVeMUoGTk9KeBiqsQ5DQMGind80VVibkuiWzQX8kcgIaNipH0rqg+CvNFFfm59r1PQ/DOspLp4tJWBPT6111pHHHGFVAvHpRRWXU1WxYU7S2TWB4g1JYRGIg0z5+6nPNFFD2EirHLc3YeS/mWwtoxuJZtvHqTXn3i/xlb3TNZaKnlWy/K9yRiSb6f3V/U0UV9HkuFp1b1Jq7R4Wa4ipC1OLsmcO77j1oUfhRRX1p890EkXPIqtMnmx44JHb1FFFRNX0Lg7amfHDLbTNLBK8UwO5HQlWUj0I6V1Ph/4l+MdN8uNtTNxaw4VYJ4lcEDtnGR9c0UV5k6EG0mj0oVZpNpjdf8W6n4jiUXNxKEK5Me75c+wHb9a5RrFC+ST9KKK0lCLSuiFOV3qRfYZHb/ZqeGx2n5+3aiinToQWopVpbF5UAAGOlOCYOKKK7EkczZKE4zgUoHFFFVYzuKB0oJyOooopgNJooopMpH//2Q=="><span>م. فرقان كاظم</span></div>
     <div class="hbtns"><button class="ib" id="acctBtn" aria-label="حسابي"><svg><use href="#i-user"/></svg></button><button class="ib" id="theme" aria-label="الوضع الليلي"><svg><use href="#i-moon"/></svg></button><button class="ib upd-ib" id="updTop" aria-label="تحديث البرنامج"><svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 4v5h-5"/></svg><span>حدّث</span></button><button class="ib" id="tourBtn" aria-label="دليل الاستخدام"><b style="font-size:17px">؟</b></button></div>
     <h1>موظف الصحة</h1>
-    <p class="sub">حاسبة الراتب · العلاوة والترفيع · الإجازات والطلبات</p>
+    <p class="sub">رفيقك الوظيفي والصحي والعائلي</p>
     <div class="hchips"><button class="proof" id="proof" hidden></button><button class="ichip" id="install" aria-label="ثبّت التطبيق على شاشتك"><svg><use href="#i-dl"/></svg><span>ثبّت كتطبيق</span></button></div>
     <div class="prog" id="prog"><i></i><i></i><i></i><i></i><i></i></div>
   </header>
@@ -959,10 +1000,12 @@ html.adm-only body{padding-bottom:30px!important}
   <a class="banner" id="banner" hidden></a>
   <nav class="nav" id="nav" aria-label="أقسام البرنامج">
     <button data-v="salary" class="nv-sal" style="--c1:#2bb58a;--c2:#0a7a59"><span class="ic"><svg><use href="#i-cash"/></svg><i class="coin">د.ع</i></span>الراتب</button>
-    <button data-v="me" style="--c1:#5aa9f0;--c2:#2463c7"><span class="ic"><svg><use href="#i-user"/></svg></span>ملفي</button>
-    <button data-v="tools" style="--c1:#9b8cf2;--c2:#5b45c9"><span class="ic"><svg><use href="#i-tools"/></svg></span>أدوات</button>
+    <button data-v="health" style="--c1:#ef5b6a;--c2:#c42e3c"><span class="ic"><svg><use href="#i-heart2"/></svg></span>صحتي</button>
+    <button data-v="family" style="--c1:#f5bf47;--c2:#d18a00"><span class="ic"><svg><use href="#i-family"/></svg></span>عائلتي</button>
+    <button data-v="protect" style="--c1:#5aa9f0;--c2:#2463c7"><span class="ic"><svg><use href="#i-shield2"/></svg></span>حمايتي</button>
+    <button data-v="me" style="--c1:#9b8cf2;--c2:#5b45c9"><span class="ic"><svg><use href="#i-cal2"/></svg></span>مواعيدي</button>
+    <button data-v="guide" style="--c1:#3cc3c9;--c2:#13838a"><span class="ic"><svg><use href="#i-book"/></svg></span>دليلي</button>
     <button data-v="forms" style="--c1:#f59e6b;--c2:#d9541e"><span class="ic"><svg><use href="#i-file"/></svg></span>نماذج</button>
-    <button data-v="guide" style="--c1:#3cc3c9;--c2:#13838a"><span class="ic"><svg><use href="#i-book"/></svg></span>الدليل</button>
     <button data-v="news" style="--c1:#f27aa0;--c2:#c42e63"><span class="ic"><svg><use href="#i-bell"/></svg></span>الأخبار<i class="ndot" id="ndot"></i></button>
   </nav>
 
@@ -980,6 +1023,7 @@ html.adm-only body{padding-bottom:30px!important}
 
   <div class="view" id="v-salary">
     <div class="due-c" id="dueCard"></div>
+    <button class="tip-day" id="tipDay"></button>
 
   <section class="step" id="st1"><div class="sh"><i>1</i>اختر مجموعتك</div><div class="tiles" id="groups"></div></section>
   <section class="step" id="st2"><div class="sh"><i>2</i>اختر اختصاصك <small id="specCount"></small></div><button class="dd" id="ddBtn" aria-expanded="false"><span id="ddTxt"></span><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button><div class="specs" id="specs" hidden></div></section>
@@ -1205,6 +1249,67 @@ html.adm-only body{padding-bottom:30px!important}
   </div>
 
   <!-- ===== الدليل ===== -->
+  <div class="view" id="v-health" hidden>
+    <figure class="hero-ill"><img src="ill/health.svg" alt="" loading="lazy"><figcaption><b>صحتي</b><span>عادات بسيطة يومية تحميك وتحمي عائلتك</span></figcaption></figure>
+    <div class="tip-day big" id="tipBig"></div>
+    <details class="tool" style="--c1:#2bb58a;--c2:#0a7a59"><summary><span class="ic emo">🏃</span><span><b>النشاط البدني</b><small>كم أحتاج حركة بالأسبوع؟</small></span></summary><div class="tb hc">
+      <ul><li>البالغون: <b>150–300 دقيقة</b> بالأسبوع من نشاط معتدل مثل المشي السريع، أو 75–150 دقيقة من نشاط شديد.</li><li>تمارين تقوية العضلات <b>مرتين أو أكثر</b> بالأسبوع.</li><li>أي حركة أفضل من لا شيء — حتى صعود الدرج والمشي بين الأقسام بالدوام تنحسب.</li><li>الأطفال والمراهقون (5–17 سنة): معدل <b>60 دقيقة يومياً</b>.</li></ul>
+      <p class="src">المصدر: منظمة الصحة العالمية</p></div></details>
+    <details class="tool" style="--c1:#f5bf47;--c2:#c98a08"><summary><span class="ic emo">🥗</span><span><b>التغذية</b><small>الملح والسكر والخضار</small></span></summary><div class="tb hc">
+      <ul><li>الملح أقل من <b>5 غرام يومياً</b> — تقريباً ملعقة صغيرة واحدة لكل اليوم، ومنها الملح المخفي بالأكل الجاهز.</li><li>على الأقل <b>5 حصص</b> (400 غرام) خضار وفواكه يومياً.</li><li>قلل السكر المضاف والمشروبات الغازية والعصائر المحلّاة.</li><li>بالدوام الطويل: جهّز وجبة من البيت بدل الأكل السريع.</li></ul>
+      <p class="src">المصدر: منظمة الصحة العالمية</p></div></details>
+    <details class="tool" style="--c1:#9b8cf2;--c2:#5b45c9"><summary><span class="ic emo">😴</span><span><b>النوم والخفارات</b><small>نوم أفضل رغم الدوام الليلي</small></span></summary><div class="tb hc">
+      <ul><li>البالغون يحتاجون عادةً <b>7 ساعات أو أكثر</b> من النوم.</li><li>بعد الخفارة الليلية: نم بغرفة مظلمة وهادئة، وأطفئ الموبايل.</li><li>تجنب الشاي والقهوة بالساعات الأخيرة قبل النوم.</li><li>قيلولة قصيرة قبل الخفارة تساعد على التركيز.</li><li>لا تسوق وانت نعسان بعد خفارة طويلة.</li></ul></div></details>
+    <details class="tool" style="--c1:#ef5b6a;--c2:#c42e3c"><summary><span class="ic emo">❤️</span><span><b>الضغط والسكري</b><small>الوقاية والمتابعة</small></span></summary><div class="tb hc">
+      <ul><li>قِس ضغطك وسكرك <b>بشكل دوري</b> حتى لو ما عندك أعراض — كثير من الحالات تبدأ بصمت.</li><li>قلّل الملح والسكر، وتحرّك، وحافظ على وزن صحي، وابتعد عن التدخين.</li><li>إذا عندك علاج: <b>لا توقفه أو تغيّر جرعته</b> بدون طبيبك.</li><li>صداع شديد مفاجئ، ألم صدر، ضعف بجهة من الجسم أو صعوبة كلام: <b>اتصل 122 فوراً</b>.</li></ul></div></details>
+    <details class="tool" style="--c1:#5aa9f0;--c2:#2463c7"><summary><span class="ic emo">🌡️</span><span><b>الأمراض الموسمية والحر</b><small>الإنفلونزا والإجهاد الحراري</small></span></summary><div class="tb hc">
+      <h5>الشتاء والإنفلونزا</h5><ul><li>اغسل يديك بالماء والصابون، وغطِّ فمك عند العطاس.</li><li>لقاح الإنفلونزا السنوي مهم خاصة للكوادر الصحية لأنهم أكثر تعرضاً.</li><li>إذا عندك حرارة وأعراض: ارتاح بالبيت حتى ما تنقل العدوى لزملائك ومرضاك.</li></ul>
+      <h5>الصيف والحر</h5><ul><li>اشرب ماء <b>قبل ما تعطش</b>، وعلى فترات منتظمة.</li><li>علامات الإجهاد الحراري: صداع، دوخة، غثيان، ضعف، تعرّق شديد ← انتقل لمكان بارد، واشرب ماء، وبرّد جسمك.</li><li>ارتباك أو إغماء أو جلد حار جاف = <b>ضربة شمس: حالة طارئة</b> ← برّد الشخص فوراً واتصل 122.</li></ul>
+      <p class="src">المصادر: منظمة الصحة العالمية، CDC/NIOSH</p></div></details>
+    <details class="tool" style="--c1:#f59e6b;--c2:#d9541e"><summary><span class="ic emo">🩹</span><span><b>الإسعافات الأولية</b><small>أول دقائق تفرق</small></span></summary><div class="tb hc">
+      <ul><li><b>الحروق:</b> برّد الحرق بماء جاري فاتر <b>20 دقيقة</b>. لا ثلج، ولا معجون أسنان، ولا زيوت. اخلع الخواتم والإكسسوارات قبل ما يتورم.</li><li><b>النزيف:</b> اضغط مباشرة بقطعة قماش نظيفة واستمر بالضغط.</li><li><b>الإغماء:</b> مدّد الشخص على ظهره وارفع رجليه، وتأكد من التنفس.</li><li><b>الاختناق عند البالغ:</b> شجّعه على الكحة، وإذا ما يگدر يتنفس اطلب المساعدة واتصل 122.</li></ul>
+      <p class="note">⚠️ هذه إرشادات أولية — اتصل بالإسعاف بالحالات الخطرة.</p></div></details>
+    <section class="sos">
+      <h4>📞 أرقام الطوارئ بالعراق</h4>
+      <div class="sos-g"><a href="tel:122" class="s1"><b>122</b><span>الإسعاف</span></a><a href="tel:104" class="s2"><b>104</b><span>الشرطة</span></a><a href="tel:115" class="s3"><b>115</b><span>الدفاع المدني</span></a></div>
+      <p class="hint">اضغط على الرقم للاتصال مباشرة. قد تختلف بعض الأرقام في إقليم كوردستان.</p>
+    </section>
+    <p class="disc">ℹ️ المحتوى الصحي للتوعية العامة ولا يغني عن مراجعة الطبيب.</p>
+  </div>
+
+  <div class="view" id="v-protect" hidden>
+    <figure class="hero-ill"><img src="ill/ppe.svg" alt="" loading="lazy"><figcaption><b>حمايتي</b><span>سلامتك بالعمل أولاً — احمِ نفسك حتى تحمي مرضاك</span></figcaption></figure>
+    <details class="tool" open style="--c1:#e5484d;--c2:#b42318"><summary><span class="ic emo">💉</span><span><b>وخز إبرة أو تعرّض لدم</b><small>شنو أسوي بالضبط؟ خطوة بخطوة</small></span></summary><div class="tb hc">
+      <ol class="steps"><li><b>فوراً:</b> اغسل مكان الوخز أو الجرح بالماء الجاري والصابون. لا تفرك بقوة ولا تمصّ الجرح.</li><li>إذا وصل الدم أو السوائل للعين أو الفم أو الأنف: اغسل بماء وفير.</li><li><b>بلّغ مسؤولك</b> أو وحدة السيطرة على العدوى فوراً، وسجّل الحادثة رسمياً.</li><li><b>راجع الطبيب أو الطوارئ بأسرع وقت</b> — العلاج الوقائي إن احتجته يكون أفضل خلال أول ساعات.</li><li>دوّن معلومات المريض المصدر إن أمكن، والوقت، ونوع الأداة.</li></ol>
+      <p class="note">⚠️ لا تؤجل المراجعة لنهاية الدوام — الوقت مهم.</p><p class="src">المصادر: إرشادات الصحة المهنية الدولية</p></div></details>
+    <details class="tool" style="--c1:#5aa9f0;--c2:#2463c7"><summary><span class="ic emo">🧤</span><span><b>معدات الوقاية الشخصية</b><small>ترتيب اللبس والخلع</small></span></summary><div class="tb hc">
+      <div class="two"><div><h5>اللبس ⬇</h5><ol><li>الرداء</li><li>الكمامة</li><li>واقي العين أو الوجه</li><li>الكفوف</li></ol></div><div><h5>الخلع ⬆</h5><ol><li>الكفوف</li><li>واقي العين أو الوجه</li><li>الرداء</li><li>الكمامة</li></ol></div></div>
+      <p class="note">🧼 نظّف يديك قبل اللبس، وبعد الخلع مباشرة. وأغلب التلوث يصير وقت الخلع — اخلع بهدوء.</p></div></details>
+    <details class="tool" style="--c1:#2bb58a;--c2:#0a7a59"><summary><span class="ic emo">🧼</span><span><b>نظافة اليدين</b><small>اللحظات الخمس</small></span></summary><div class="tb hc">
+      <ol><li>قبل لمس المريض.</li><li>قبل أي إجراء نظيف أو معقّم.</li><li>بعد التعرّض لسوائل الجسم.</li><li>بعد لمس المريض.</li><li>بعد لمس محيط المريض.</li></ol><p class="src">المصدر: منظمة الصحة العالمية</p></div></details>
+    <details class="tool" style="--c1:#9b8cf2;--c2:#5b45c9"><summary><span class="ic emo">🛡️</span><span><b>اللقاحات للكادر الصحي</b><small>التهاب الكبد B والإنفلونزا</small></span></summary><div class="tb hc">
+      <ul><li>تأكد إنك مكمّل لقاح <b>التهاب الكبد الفيروسي B</b> — مهم جداً لكل من يتعامل مع الدم والأدوات الحادة.</li><li>لقاح <b>الإنفلونزا</b> كل سنة يحميك ويحمي مرضاك.</li><li>راجع وحدة الصحة المهنية أو السيطرة على العدوى بمؤسستك للتطعيم.</li></ul></div></details>
+    <details class="tool" style="--c1:#f59e6b;--c2:#d9541e"><summary><span class="ic emo">📋</span><span><b>إصابة العمل</b><small>الإجراءات الإدارية</small></span></summary><div class="tb hc">
+      <ol><li>بلّغ مسؤولك المباشر بنفس اليوم.</li><li>احصل على تقرير طبي يوثّق الإصابة وتاريخها.</li><li>قدّم طلباً تحريرياً لاعتبارها <b>إصابة عمل</b> عن طريق الموارد البشرية.</li><li>احتفظ بنسخ من كل الأوراق والتقارير.</li></ol>
+      <p class="note">💡 راجع شعبة الموارد البشرية بدائرتك لمعرفة الاستمارات المعتمدة عندكم.</p></div></details>
+    <details class="tool" style="--c1:#3cc3c9;--c2:#13838a"><summary><span class="ic emo">🤝</span><span><b>الاعتداء على الكادر والضغط النفسي</b><small>لا تسكت ولا تتحمّل وحدك</small></span></summary><div class="tb hc">
+      <ul><li>عند أي اعتداء أو تهديد: ابتعد لمكان آمن، وبلّغ أمن المستشفى والإدارة، أو اتصل <b>104</b>.</li><li>وثّق الحادثة بالوقت والشهود.</li><li>الإرهاق بعد الخفارات الطويلة طبيعي — خذ استراحاتك، واحچي مع زميل تثق بيه، ولا تتردد تطلب دعم مختص.</li></ul></div></details>
+    <p class="disc">ℹ️ إرشادات عامة للتوعية — اتبع دائماً تعليمات السيطرة على العدوى والصحة المهنية بمؤسستك.</p>
+  </div>
+
+  <div class="view" id="v-family" hidden>
+    <figure class="hero-ill"><img src="ill/family.svg" alt="" loading="lazy"><figcaption><b>عائلتي</b><span>صحة أطفالك وعائلتك بين إيدك</span></figcaption></figure>
+    <div class="soon-c"><img src="ill/vaccine.svg" alt="" loading="lazy"><div><b>🗓️ جدول تطعيمات أطفالك — قريباً</b><span>تضيف أطفالك مرة وحدة، ويذكّرك التطبيق بموعد كل لقاح حسب جدول وزارة الصحة. بياناتهم تبقى على جهازك فقط.</span></div></div>
+    <details class="tool" style="--c1:#ef5b6a;--c2:#c42e3c"><summary><span class="ic emo">🌡️</span><span><b>الحمى عند الأطفال</b><small>متى أراجع الطبيب فوراً؟</small></span></summary><div class="tb hc">
+      <h5>راجع الطبيب أو الطوارئ فوراً إذا:</h5><ul><li>الطفل <b>أقل من 3 أشهر</b> وحرارته 38° أو أكثر.</li><li>صعوبة تنفس، أو تشنّج، أو خمول شديد وصعوبة بإيقاظه.</li><li>طفح جلدي ما يختفي عند الضغط عليه بكأس زجاجي.</li><li>علامات جفاف: قلة البول، جفاف الفم، بكاء بدون دموع.</li></ul>
+      <h5>بالبيت:</h5><ul><li>أكثر السوائل والرضاعة، ولبّسه ملابس خفيفة.</li><li>خافض الحرارة بالجرعة حسب العمر والوزن المكتوبة على العبوة أو حسب الطبيب.</li></ul></div></details>
+    <details class="tool" style="--c1:#5aa9f0;--c2:#2463c7"><summary><span class="ic emo">🦷</span><span><b>أسنان الأطفال</b><small>عادات من أول سن</small></span></summary><div class="tb hc">
+      <ul><li>نظّف الأسنان <b>مرتين يومياً</b> بمعجون فيه فلورايد، بكمية صغيرة جداً للأطفال الصغار.</li><li>قلّل الحلويات والعصائر المحلّاة، خصوصاً قبل النوم.</li><li>زيارة طبيب الأسنان بشكل دوري.</li></ul></div></details>
+    <details class="tool" style="--c1:#f5bf47;--c2:#c98a08"><summary><span class="ic emo">🤱</span><span><b>صحة الأم والطفل</b><small>الخدمات المجانية</small></span></summary><div class="tb hc">
+      <ul><li><b>التطعيمات ورعاية الحمل وبعد الولادة مجانية</b> بمراكز الرعاية الصحية الأولية.</li><li>إذا عندك طفل أقل من 5 سنوات أو زوجتك حامل: راجعوا أقرب مركز صحي.</li><li>حافظوا على بطاقة التلقيح وجيبوها بكل مراجعة.</li></ul></div></details>
+    <p class="disc">ℹ️ للتوعية العامة ولا يغني عن مراجعة طبيب الأطفال.</p>
+  </div>
+
   <div class="view" id="v-guide" hidden>
     <section class="card" style="--c1:#3cc3c9;--c2:#13838a">
       <h2><span class="ic"><svg><use href="#i-book"/></svg></span>دليل حقوق الموظف</h2>
@@ -1903,12 +2008,13 @@ try{const m=sessionStorage.getItem('rw-toast');if(m){sessionStorage.removeItem('
 drawAcctBtn();loadRatings();loadNews();
 
 /* ---- views / routing ---- */
-const VIEWS=['salary','me','tools','forms','guide','news','admin'];
+const VIEWS=['salary','health','family','protect','me','tools','forms','guide','news','admin'];
 function show(v){if(window.ADMONLY)v='admin';if(!VIEWS.includes(v))v='salary';
-  for(const x of VIEWS)$('v-'+x).hidden=x!==v;
+  if(v==='tools')v='me';
+  for(const x of VIEWS)$('v-'+x).hidden=!(x===v||(v==='me'&&x==='tools'));
   document.querySelectorAll('#nav button').forEach(b=>b.setAttribute('aria-current',b.dataset.v===v?'page':'false'));
   document.querySelector('.dock').classList.toggle('mini',v!=='salary');
-  if(v==='me')renderMe();if(v==='tools'){renderLv();renderSh();renderLn();renderPension()}if(v==='forms')drawFT();if(v==='guide')renderFaq();
+  if(v==='me'){renderMe();renderLv();renderSh();renderLn();renderPension()}if(v==='forms')drawFT();if(v==='guide')renderFaq();
   document.body.classList.toggle('adm',v==='admin');if(v==='admin')loadAdmin();
   if(v==='news'){renderPay();renderNews();X.seen=(NEWS[0]||{}).t||'';saveX();$('ndot').style.display='none'}
 }
@@ -1956,7 +2062,7 @@ window.doUpdate=doUpdate;$('updBtn').onclick=doUpdate;$('updTop').onclick=doUpda
 try{const u=new URL(location.href);if(u.searchParams.has('u')){u.searchParams.delete('u');history.replaceState(null,'',u.toString())}}catch(_){}
 /* ================= remote config (admin-controlled) ================= */
 const FAQ0=FAQ.slice(),DEF0=JSON.parse(JSON.stringify(DEF)),DON0=DON.map(d=>d.slice());
-const HIDEABLE=[['me','قسم «ملفي»'],['tools','قسم «أدوات»'],['forms','قسم «نماذج»'],['guide','قسم «الدليل»'],['news','قسم «الأخبار»'],['rate','بطاقة التقييمات'],['share','زر «شارك مع زملائك»'],['donate','زر التبرع'],['ask','بطاقة «ملاحظة»'],['upd','بطاقة «حدّث النظام»'],['install','زر «ثبّت التطبيق» الجانبي'],['proof','شريط النجوم تحت العنوان'],['intro','رسالة الإرشاد أعلى الصفحة']];
+const HIDEABLE=[['health','قسم «صحتي»'],['family','قسم «عائلتي»'],['protect','قسم «حمايتي»'],['me','قسم «مواعيدي»'],['tools','أدوات داخل «مواعيدي»'],['forms','قسم «نماذج»'],['guide','قسم «الدليل»'],['news','قسم «الأخبار»'],['rate','بطاقة التقييمات'],['share','زر «شارك مع زملائك»'],['donate','زر التبرع'],['ask','بطاقة «ملاحظة»'],['upd','بطاقة «حدّث النظام»'],['install','زر «ثبّت التطبيق» الجانبي'],['proof','شريط النجوم تحت العنوان'],['intro','رسالة الإرشاد أعلى الصفحة']];
 let CFG={};try{CFG=JSON.parse(ls('rw-cfg')||'{}')||{}}catch(_){CFG={}}
 const H1=document.querySelector('header h1'),SUB=document.querySelector('header .sub'),H1_0=H1.textContent,SUB_0=SUB.textContent;
 function applyCfg(c){c=c||{};const hd=c.hide||{};
@@ -2178,7 +2284,7 @@ const TOUR=[
  {s:'#sadaqa',ic:'🤲',t:'صدقة من راتبك',d:'إذا تحب، تبرّع بـ<b>1%</b> من راتبك لرعاية الأيتام — المبلغ محسوب لك جاهز.'},
  {s:'#fcSeg',ic:'📈',t:'مستقبل راتبك والمقارنة',d:'شوف راتبك بعد العلاوة والترفيع القادم، أو <b>قارنه</b> باختصاص ثاني.'},
  {s:'.dock',ic:'📌',t:'الصافي دائماً أمامك',d:'الشريط السفلي يبين صافي راتبك وين ما تكون بالصفحة، وزر «التفاصيل» يرجعك لورقة الراتب.'},
- {s:'#nav [data-v="tools"]',ic:'🧰',t:'خدمات جديدة',d:'بالأدوات: رصيد الإجازات والخفارات والقروض والتقاعد، وخدمات جديدة <b>سوف تفتح قريباً</b>. وبالدليل: <b>مساعد</b> يجاوب على أسئلتك.'},
+ {s:'#nav',ic:'❤️',t:'صحتي وعائلتي وحمايتي',d:'أقسام جديدة: نصائح صحية، صحة أطفالك، السلامة المهنية ووخز الإبر، وأرقام الطوارئ — كلها بضغطة.'},
  {s:'#acctBtn',ic:'👤',t:'حسابك',d:'سجّل برقم هاتفك ورمز سري حتى <b>تُحفظ بياناتك</b> وترجعها من أي جهاز.'},
  {s:'#tourBtn',ic:'📘',t:'ترجع للدليل متى ما تريد',d:'من علامة <b>؟</b> فوق، أو من «دليل الاستخدام» أسفل الصفحة.'},
  {ic:'🚀',t:'جاهز!',d:'ابدأ اختار مجموعتك واحسب راتبك. ولا تنسى <b>تثبّت التطبيق</b> وتشاركه مع زملائك — في سبيل الله 🤍',last:1}
@@ -3106,7 +3212,7 @@ if(!CanvasRenderingContext2D.prototype.roundRect)CanvasRenderingContext2D.protot
 (function(){const bs=[...document.querySelectorAll('#nav button')];bs.forEach((b,i)=>b.style.setProperty('--i',i));
   $('nav').classList.add('nv-in');
   $('nav').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;b.classList.remove('tap');void b.offsetWidth;b.classList.add('tap');setTimeout(()=>b.classList.remove('tap'),500);try{burst(b.querySelector('.ic'),[getComputedStyle(b).getPropertyValue('--c1'),getComputedStyle(b).getPropertyValue('--c2'),'#fff'],8)}catch(_){}});
-  const tb=document.querySelector('#nav [data-v="tools"]');if(tb&&!ls('rw-new-tools')){tb.insertAdjacentHTML('beforeend','<i class="nv-new">جديد</i>');tb.addEventListener('click',()=>{ls('rw-new-tools','1');const n=tb.querySelector('.nv-new');if(n)n.remove()},{once:true})}
+  for(const v of ['health','family','protect']){const tb=document.querySelector(`#nav [data-v="${v}"]`);if(tb&&!ls('rw-new-'+v)){tb.insertAdjacentHTML('beforeend','<i class="nv-new">جديد</i>');tb.addEventListener('click',()=>{ls('rw-new-'+v,'1');const n=tb.querySelector('.nv-new');if(n)n.remove()},{once:true})}}
 })();
 
 /* --- approved badge --- */
@@ -3224,6 +3330,17 @@ $('admTk').addEventListener('click',async e=>{const b=e.target.closest('[data-ts
 {const _la=loadAdmin;loadAdmin=async function(){await _la();loadInsights();loadAdmTk()}}
 
 window.openTicket=openTicket;
+/* ===== daily tip + compact nav ===== */
+(function(){
+const TIPS=[['💧','اشرب ماء على فترات خلال الدوام — لا تنتظر العطش.','health'],['🧼','نظّف يديك قبل لمس المريض وبعده — أبسط حماية لك وله.','protect'],['🚶','10 دقائق مشي بعد الغداء تحسّن السكر والمزاج.','health'],['🧂','الملح أقل من ملعقة صغيرة باليوم — انتبه للملح المخفي بالأكل الجاهز.','health'],['😴','بعد الخفارة الليلية: غرفة مظلمة وهادئة، والموبايل بعيد.','health'],['💉','وخز إبرة؟ اغسل بالماء والصابون فوراً وبلّغ مسؤولك وراجع الطبيب بنفس الساعة.','protect'],['🧤','عند خلع معدات الوقاية: الكفوف أولاً، ونظّف يديك بعد الخلع.','protect'],['❤️','قِس ضغطك بشكل دوري حتى لو ما عندك أعراض.','health'],['🥗','خلي نص صحنك خضار وفواكه.','health'],['🌡️','طفل أقل من 3 أشهر بحرارة 38° أو أكثر؟ راجع الطبيب فوراً.','family'],['🦷','فرشاة أسنان مرتين يومياً بمعجون فلورايد — للكبار والصغار.','family'],['🛡️','تأكد إنك مكمّل لقاح التهاب الكبد B — حماية أساسية للكادر الصحي.','protect'],['☕','قلّل الشاي والقهوة قبل النوم بساعات.','health'],['🤝','الإرهاق بعد الخفارات الطويلة طبيعي — خذ استراحتك واحچي مع زميل.','protect'],['🏃','150 دقيقة حركة بالأسبوع = 30 دقيقة × 5 أيام.','health'],['📞','الإسعاف 122 — احفظ الرقم وعلّمه لأطفالك.','health'],['🔥','الحرق: ماء جاري فاتر 20 دقيقة — لا ثلج ولا معجون.','health'],['🤱','التطعيمات ورعاية الحمل مجانية بمراكز الرعاية الأولية.','family'],['🧘','دقيقتين تنفس عميق بين المرضى تخفف التوتر.','health'],['🍬','قلّل العصائر المحلّاة والمشروبات الغازية للأطفال.','family']];
+const d=new Date(),k=Math.floor((d-new Date(d.getFullYear(),0,0))/864e5)%TIPS.length,[ic,t,go]=TIPS[k];
+$('tipDay').innerHTML=`<span class="ti">${ic}</span><div style="flex:1;min-width:0"><b>💡 نصيحة اليوم</b><span>${t}</span></div><span class="tgo">المزيد ←</span>`;
+$('tipDay').onclick=()=>{location.hash=go};
+$('tipBig').innerHTML=`<span class="ti">${ic}</span><div><b>💡 نصيحة اليوم</b><span>${t}</span></div>`;
+const nav=$('nav');let lastC=false,navTop=0;const mt=()=>{if(!nav.classList.contains('compact')){const r=nav.getBoundingClientRect();navTop=r.top+scrollY}};mt();addEventListener('resize',mt);
+addEventListener('scroll',()=>{const c=scrollY>navTop+80;if(c!==lastC){lastC=c;nav.classList.toggle('compact',c)}},{passive:true});
+})();
+
 /* ===== image banner carousel (admin managed) ===== */
 (function(){
 let BN=[];try{BN=JSON.parse(ls('rw-bnr')||'[]')}catch(_){}
@@ -3338,10 +3455,11 @@ new MutationObserver(ms=>{for(const m of ms)for(const n of m.addedNodes)if(n.nod
 if(!ls('rw-s5'))$('s5new').hidden=false;
 $('s5sum').addEventListener('click',e=>{const c=e.target.closest('[data-f]');ls('rw-s5','1');$('s5new').hidden=true;if(!c)return;setTimeout(()=>{const inp=$(c.dataset.f);if(!inp)return;const vc=inp.closest('.vc');if(vc){vc.classList.remove('hl');void vc.offsetWidth;vc.classList.add('hl');vc.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'})}setTimeout(()=>{try{inp.focus({preventScroll:true});inp.select()}catch(_){}},350)},90)});
 document.querySelector('#st5 .edit').addEventListener('click',()=>{ls('rw-s5','1');$('s5new').hidden=true});
-const WN_V='2026-11-20c',WN=[
+const WN_V='2026-11-21a',WN=[
  ['🧭','شريط أقسام جديد','أيقونات ملوّنة وتفاعلية لكل الأقسام'],
  ['🔔','تنبيه استحقاقك','موعد علاوتك وترفيعك، وطلبك جاهز بضغطة، وتذكير بتقويم موبايلك'],
  ['🤖','المساعد','اسأله عن حقوقك بكلامك (قسم الدليل)'],
+ ['❤️','صحتي · عائلتي · حمايتي','أقسام صحية جديدة برسومات، ونصيحة اليوم، وأرقام الطوارئ'],
  ['🖼️','بنر إعلاني','آخر الإعلانات والصور بأعلى الواجهة'],
  ['🗓️','تقويم ميلادي وهجري','اضغط «التقويم» تحت الساعة'],
  ['🔄','زر التحديث','«حدّث» بأعلى الصفحة يحدّث البرنامج فوراً'],
