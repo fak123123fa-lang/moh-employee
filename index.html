@@ -13,6 +13,7 @@
 <meta property="og:url" content="https://rawatib-alseha-eng-furqan.netlify.app/">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="manifest" href="manifest.webmanifest">
+<script>window.__bip=null;addEventListener('beforeinstallprompt',function(e){e.preventDefault();window.__bip=e;document.documentElement.classList.add('can-inst')});if('serviceWorker' in navigator&&location.protocol==='https:'){navigator.serviceWorker.register('sw.js').catch(function(){})}</script>
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <link rel="shortcut icon" href="favicon.ico">
 <link rel="apple-touch-icon" href="icon-192.png">
@@ -565,7 +566,7 @@ footer .dua{margin:14px auto 0;max-width:520px;padding:12px 16px;border-top:1px 
 }
 /* ===== v5 polish ===== */
 .ichip{display:none!important}
-.qa{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;margin-top:10px}
+.qa{display:flex;gap:6px;margin-top:10px}.qa>*{flex:1 1 0;min-width:0}
 .qa>*{display:flex;flex-direction:column;align-items:center;gap:5px;padding:8px 2px 7px;border-radius:16px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:700 12px inherit;font-family:inherit;text-decoration:none;cursor:pointer;box-shadow:var(--sh);transition:transform .15s}
 .qa>*:active{transform:scale(.93)}
 .qa span{width:36px;height:36px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(145deg,var(--q1),var(--q2));box-shadow:0 5px 12px -5px var(--q2)}
@@ -638,6 +639,18 @@ footer .dua{border:0!important;margin-top:10px!important}
 @media(prefers-reduced-motion:reduce){.tk{animation-duration:calc(var(--dur,30s)*2)}}
 .topbar[hidden]{display:none}
 .topbar.notick .tick{display:none}.topbar.notick .clk{flex:1;flex-direction:row;gap:10px;min-height:40px}
+/* ===== one-tap install ===== */
+.fab-inst{position:fixed;z-index:45;left:12px;bottom:calc(86px + env(safe-area-inset-bottom));display:flex;align-items:center;gap:8px;padding:6px 8px 6px 14px;border:0;border-radius:999px;background:linear-gradient(135deg,#1fb07f,#0a6e51);color:#fff;font-family:inherit;font-size:14px;cursor:pointer;box-shadow:0 10px 24px -8px rgba(10,110,81,.7);animation:up .5s both,fabp 2.6s ease-in-out 1s infinite}
+.fab-inst[hidden]{display:none}
+.fab-inst .fi{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.22)}
+.fab-inst .fi svg{width:17px;height:17px;stroke:#fff;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.fab-inst .fx{font-style:normal;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:11px;background:rgba(0,0,0,.18);margin-inline-start:2px}
+@keyframes fabp{0%,100%{box-shadow:0 10px 24px -8px rgba(10,110,81,.7),0 0 0 0 rgba(31,176,127,.45)}50%{box-shadow:0 10px 24px -8px rgba(10,110,81,.7),0 0 0 10px rgba(31,176,127,0)}}
+.iosol li{display:flex;align-items:center;gap:8px;margin:6px 0}
+.sh-i{flex:none;width:28px;height:28px;border-radius:8px;display:grid;place-items:center;background:var(--soft);color:#0a84ff;font-weight:700}
+.sh-i svg{width:17px;height:17px;stroke:#0a84ff;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.ios-arrow{position:fixed;bottom:8px;left:50%;transform:translateX(-50%);font-size:34px;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.5);animation:bob 1s ease-in-out infinite;pointer-events:none}
+@keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,10px)}}
 </style>
 </head>
 <body>
@@ -1001,14 +1014,17 @@ footer .dua{border:0!important;margin-top:10px!important}
   </footer>
 </div>
 
+<button class="fab-inst" id="fabInst" hidden aria-label="ثبّت التطبيق على جهازك"><span class="fi"><svg><use href="#i-dl"/></svg></span><b>ثبّت التطبيق</b><i class="fx" id="fabX" aria-label="إخفاء">✕</i></button>
 <div class="ov" id="instOv" role="dialog" aria-label="تثبيت الحاسبة">
   <div class="isheet">
     <img src="icon-192.png" alt="" class="iapp" onerror="this.style.display='none'">
-    <h3>ثبّت الحاسبة على شاشتك</h3>
+    <h3>ثبّت «موظف الصحة» على شاشتك</h3>
     <p class="isub">ترجع لها بضغطة وحدة متى ما احتجتها — حتى بدون إنترنت.</p>
     <div class="ist" id="istAnd"><b>أندرويد (Chrome)</b><ol><li>اضغط النقاط الثلاث <b>⋮</b> أعلى المتصفح</li><li>اختر <b>«تثبيت التطبيق»</b> أو <b>«إضافة إلى الشاشة الرئيسية»</b></li><li>اضغط <b>تثبيت</b></li></ol></div>
-    <div class="ist" id="istIos"><b>آيفون (Safari)</b><ol><li>اضغط زر المشاركة <b>⬆︎</b> أسفل الشاشة</li><li>اختر <b>«إضافة إلى الشاشة الرئيسية»</b></li><li>اضغط <b>إضافة</b></li></ol></div>
+    <div class="ist" id="istIos"><b>آيفون — 3 ضغطات بس</b><ol class="iosol"><li><span class="sh-i"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 8l5-5 5 5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg></span>اضغط زر <b>المشاركة</b> أسفل الشاشة</li><li><span class="sh-i">＋</span>اختر <b>«إضافة إلى الشاشة الرئيسية»</b></li><li><span class="sh-i">✓</span>اضغط <b>«إضافة»</b> فوق</li></ol></div>
+    <div class="ist" id="istApp"><b>افتح الرابط بالمتصفح أولاً</b><ol><li>اضغط النقاط <b>•••</b> أو <b>⋮</b> أعلى الشاشة</li><li>اختر <b id="istBr">«فتح في Safari»</b></li><li>بعدها اضغط زر «ثبّت التطبيق»</li></ol></div>
     <p class="isub" id="istNote"></p>
+    <div class="ios-arrow" id="iosArrow" aria-hidden="true">⬇︎</div>
     <button class="btn pri" id="instClose" style="width:100%;justify-content:center">تمام</button>
   </div>
 </div>
@@ -1792,22 +1808,31 @@ function drawTicker(c){c=c||{};const t=c.ticker||{};const bar=$('topbar');
 drawTicker(CFG);
 {const _ac2=applyCfg;applyCfg=function(c){_ac2(c);try{drawTicker(c)}catch(_){}}}
 
-let deferred=null;
+let deferred=window.__bip||null;
 const standalone=matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
-if(standalone)$('install').classList.add('hide');
-addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferred=e});
-const inApp=/FBAN|FBAV|Instagram|Line\/|Telegram|WhatsApp|; wv\)|MicroMessenger|Snapchat/i.test(navigator.userAgent),android=/android/i.test(navigator.userAgent);
-$('install').onclick=async()=>{
+const UA=navigator.userAgent,inApp=/FBAN|FBAV|Instagram|Line\/|Telegram|WhatsApp|; wv\)|MicroMessenger|Snapchat|TikTok/i.test(UA),android=/android/i.test(UA),ios=/iphone|ipad|ipod/i.test(UA)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+function instDone(){$('install').classList.add('hide');$('fabInst').hidden=true;document.querySelectorAll('[data-qa=install]').forEach(e=>e.classList.add('cfg-off'));}
+function showFab(){if(standalone||ls('rw-fab-x'))return;$('fabInst').hidden=false;$('fabInst').querySelector('b').textContent=deferred?'ثبّت بضغطة 📲':'ثبّت التطبيق';}
+if(standalone)instDone();else setTimeout(showFab,1500);
+addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferred=e;showFab()});
+async function doInstall(){
+  if(standalone){toast('التطبيق مثبّت عندك ✓');return}
+  deferred=deferred||window.__bip;
+  if(deferred){try{deferred.prompt();const c=await deferred.userChoice;if(c&&c.outcome==='accepted'){instDone();try{burst($('fabInst'),null,24)}catch(_){}toast('تم التثبيت 🎉 تلگاه على شاشتك الرئيسية')}}catch(_){}deferred=null;window.__bip=null;return}
   if(android&&inApp&&location.protocol==='https:'){location.href='intent://'+location.host+location.pathname+'#Intent;scheme=https;package=com.android.chrome;end';return}
-  if(deferred){deferred.prompt();try{const c=await deferred.userChoice;if(c&&c.outcome==='accepted')$('install').classList.add('hide')}catch(_){}deferred=null;return}
-  const ios=/iphone|ipad|ipod/i.test(navigator.userAgent);
-  $('istIos').style.display=ios?'':'none';$('istAnd').style.display=ios?'none':'';
-  $('istNote').textContent=location.protocol!=='https:'?'ملاحظة: التثبيت يعمل عند فتح الحاسبة من رابط الموقع.':'';
+  const app=inApp;
+  $('istIos').style.display=(ios&&!app)?'':'none';
+  $('istAnd').style.display=(!ios&&!app)?'':'none';
+  $('istApp').style.display=app?'':'none';$('istBr').textContent=ios?'«فتح في Safari»':'«فتح في Chrome»';
+  $('iosArrow').style.display=(ios&&!app&&/Safari/i.test(UA)&&!/CriOS|FxiOS/i.test(UA))?'':'none';
+  $('istNote').textContent=location.protocol!=='https:'?'ملاحظة: التثبيت يعمل عند فتح التطبيق من رابط الموقع.':'';
   $('instOv').classList.add('on');
-};
+}
+$('install').onclick=doInstall;
+$('fabInst').addEventListener('click',e=>{if(e.target.closest('#fabX')){e.stopPropagation();ls('rw-fab-x','1');$('fabInst').hidden=true;return}doInstall()});
 $('instClose').onclick=()=>$('instOv').classList.remove('on');
 $('instOv').addEventListener('click',e=>{if(e.target===$('instOv'))$('instOv').classList.remove('on')});
-addEventListener('appinstalled',()=>$('install').classList.add('hide'));
+addEventListener('appinstalled',()=>{instDone();toast('تم التثبيت 🎉')});
 if('serviceWorker' in navigator&&location.protocol==='https:'){navigator.serviceWorker.register('sw.js').catch(()=>{})}
 }
 </script>
