@@ -798,6 +798,32 @@ details.tool.locked>summary::after{content:"🔒";margin-inline-start:auto;font-
 .wn-tag{display:inline-block;padding:3px 10px;border-radius:999px;background:linear-gradient(135deg,#ffd76a,#e09a00);color:#5a3a00;font-size:11.5px;font-weight:800;margin-bottom:6px}
 #wnOv h3{color:var(--ink)}
 #st5 .sh{flex-wrap:nowrap;white-space:nowrap}#st5 .sh .edit{white-space:nowrap;flex:none}
+/* ===== wheel date picker ===== */
+input.wh-hid{position:absolute!important;opacity:0!important;pointer-events:none!important;width:1px!important;height:1px!important}
+.wh-btn{display:flex;align-items:center;gap:8px;width:100%;min-height:46px;padding:0 12px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:600 15px inherit;font-family:inherit;cursor:pointer;text-align:start;transition:border-color .15s}
+.wh-btn:active{border-color:var(--acc)}
+.wh-btn svg{flex:none;width:18px;height:18px;stroke:var(--acc);fill:none;stroke-width:2;stroke-linecap:round}
+.wh-btn .ph{color:var(--mute);font-weight:500;font-size:13.5px}
+.wh-ov{align-items:flex-end!important}
+.wh-sh{width:100%;max-width:480px;margin:0 auto;background:var(--card);border-radius:22px 22px 0 0;padding:6px 14px calc(14px + env(safe-area-inset-bottom));box-shadow:0 -10px 30px rgba(0,0,0,.25);animation:whUp .28s cubic-bezier(.2,.9,.3,1) both}
+@keyframes whUp{from{transform:translateY(100%)}to{transform:none}}
+.wh-top{display:flex;align-items:center;justify-content:space-between;padding:8px 2px}
+.wh-top b{font-size:15px;color:var(--ink)}
+.wh-top button{border:0;background:none;font:700 15px inherit;font-family:inherit;cursor:pointer;padding:8px 6px}
+.wh-x{color:var(--mute)}.wh-ok{color:#fff!important;background:linear-gradient(135deg,var(--acc2),var(--acc))!important;border-radius:999px;padding:7px 18px!important;box-shadow:0 4px 10px -4px var(--acc)}
+.wh-prev{text-align:center;font-size:20px;font-weight:800;color:var(--acc);margin:2px 0 8px}
+.wh-cols{position:relative;display:grid;grid-template-columns:.8fr 1.5fr 1fr;gap:6px;height:220px}
+.wh-band{position:absolute;left:0;right:0;top:88px;height:44px;border-radius:12px;background:color-mix(in srgb,var(--acc) 12%,transparent);border:1px solid color-mix(in srgb,var(--acc) 30%,transparent);pointer-events:none}
+.wh-col{position:relative;height:220px;overflow-y:auto;scroll-snap-type:y mandatory;overscroll-behavior:contain;scrollbar-width:none;-webkit-mask-image:linear-gradient(transparent,#000 30%,#000 70%,transparent);mask-image:linear-gradient(transparent,#000 30%,#000 70%,transparent)}
+.wh-col::-webkit-scrollbar{display:none}
+.wh-sp{height:88px}
+.wh-i{height:44px;display:flex;align-items:center;justify-content:center;gap:5px;scroll-snap-align:center;font-size:16px;color:var(--mute);cursor:pointer;transition:color .15s,transform .15s;font-variant-numeric:tabular-nums;white-space:nowrap}
+.wh-i small{font-size:11px;opacity:.7}
+.wh-i.on{color:var(--ink);font-weight:800;font-size:18px}
+.wh-lbl{display:grid;grid-template-columns:.8fr 1.5fr 1fr;gap:6px;text-align:center;font-size:11.5px;color:var(--mute);margin-top:4px}
+.wh-bt{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.wh-bt .btn{justify-content:center;min-height:42px}
+.wh-bt .btn[hidden]{display:none}
+.wh-bt:has(#whClear[hidden]){grid-template-columns:1fr}
 </style>
 </head>
 <body>
@@ -3102,6 +3128,48 @@ $('admTk').addEventListener('click',async e=>{const b=e.target.closest('[data-ts
 {const _la=loadAdmin;loadAdmin=async function(){await _la();loadInsights();loadAdmTk()}}
 
 window.openTicket=openTicket;
+/* ===== wheel date picker (day / month / year) ===== */
+(function(){
+const MN=['كانون الثاني','شباط','آذار','نيسان','أيار','حزيران','تموز','آب','أيلول','تشرين الأول','تشرين الثاني','كانون الأول'];
+const IH=44,Y0=1940,Y1=new Date().getFullYear()+10;
+const desc=Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value');
+const DEF={mBirth:'1990-01-01',mHire:'2015-01-01'};
+const fmtD=v=>{if(!v)return '';const[a,b,c]=v.split('-').map(Number);return `${c} ${MN[b-1]} ${a}`};
+document.body.insertAdjacentHTML('beforeend',`<div class="ov wh-ov" id="whOv"><div class="wh-sh" role="dialog" aria-label="اختيار التاريخ"><div class="wh-top"><button class="wh-x" id="whCancel">إلغاء</button><b id="whT">اختر التاريخ</b><button class="wh-ok" id="whOk">تم</button></div><div class="wh-prev" id="whPrev"></div><div class="wh-cols"><div class="wh-band"></div><div class="wh-col" data-c="d"></div><div class="wh-col" data-c="m"></div><div class="wh-col" data-c="y"></div></div><div class="wh-lbl"><span>اليوم</span><span>الشهر</span><span>السنة</span></div><div class="wh-bt"><button class="btn" id="whToday">اليوم</button><button class="btn" id="whClear">مسح</button></div></div></div>`);
+const ov=$('whOv'),cols={d:ov.querySelector('[data-c=d]'),m:ov.querySelector('[data-c=m]'),y:ov.querySelector('[data-c=y]')};
+let cur=null,sel={d:1,m:1,y:2000},lastI={};
+const pad=n=>String(n).padStart(2,'0'),dim=(y,m)=>new Date(y,m,0).getDate();
+function fill(c,items){cols[c].innerHTML='<div class="wh-sp"></div>'+items.map(([v,t])=>`<div class="wh-i" data-v="${v}">${t}</div>`).join('')+'<div class="wh-sp"></div>'}
+fill('m',MN.map((n,i)=>[i+1,`<small>${i+1}</small> ${n}`]));
+fill('y',Array.from({length:Y1-Y0+1},(_,i)=>[Y1-i,Y1-i]));
+function days(){const n=dim(sel.y,sel.m);if(cols.d.children.length-2!==n){fill('d',Array.from({length:n},(_,i)=>[i+1,i+1]));if(sel.d>n)sel.d=n;scrollTo_('d',false)}}
+function idx(c){return [...cols[c].querySelectorAll('.wh-i')].findIndex(e=>+e.dataset.v===sel[c])}
+function scrollTo_(c,smooth){const i=idx(c);if(i<0)return;cols[c].scrollTo({top:i*IH,behavior:smooth&&!reduce?'smooth':'auto'});mark(c,i)}
+function mark(c,i){cols[c].querySelectorAll('.wh-i').forEach((e,k)=>e.classList.toggle('on',k===i))}
+function prev(){$('whPrev').textContent=`${sel.d} ${MN[sel.m-1]} ${sel.y}`}
+for(const c of ['d','m','y']){let t;cols[c].addEventListener('scroll',()=>{const i=Math.round(cols[c].scrollTop/IH),its=cols[c].querySelectorAll('.wh-i');const it=its[Math.max(0,Math.min(its.length-1,i))];if(!it)return;
+    if(lastI[c]!==i){lastI[c]=i;mark(c,i);try{navigator.vibrate&&navigator.vibrate(4)}catch(_){}}
+    sel[c]=+it.dataset.v;prev();clearTimeout(t);t=setTimeout(()=>{if(c!=='d')days();prev()},90)},{passive:true});
+  cols[c].addEventListener('click',e=>{const it=e.target.closest('.wh-i');if(!it)return;sel[c]=+it.dataset.v;scrollTo_(c,true);if(c!=='d')days();prev()})}
+function open(inp){cur=inp;const v=desc.get.call(inp)||DEF[inp.id]||iso(today());const[a,b,c]=v.split('-').map(Number);sel={y:Math.min(Y1,Math.max(Y0,a)),m:b,d:c};
+  const lab=document.querySelector(`label[for="${inp.id}"]`);$('whT').textContent=lab?lab.textContent:'اختر التاريخ';
+  $('whClear').hidden=!/^m/.test(inp.id);
+  ov.classList.add('on');days();requestAnimationFrame(()=>{for(const c of ['d','m','y']){lastI[c]=idx(c);scrollTo_(c,false)}prev()})}
+function setVal(inp,v){desc.set.call(inp,v);inp._wb&&upd(inp);inp.dispatchEvent(new Event('input',{bubbles:true}));inp.dispatchEvent(new Event('change',{bubbles:true}))}
+const close=()=>{ov.classList.remove('on');cur=null};
+$('whOk').onclick=()=>{if(cur){sel.d=Math.min(sel.d,dim(sel.y,sel.m));setVal(cur,`${sel.y}-${pad(sel.m)}-${pad(sel.d)}`);try{burst(cur._wb,['#2bb58a','#f5bf47'],8)}catch(_){}}close()};
+$('whCancel').onclick=close;ov.addEventListener('click',e=>{if(e.target===ov)close()});
+$('whToday').onclick=()=>{const t=today();sel={y:t.getFullYear(),m:t.getMonth()+1,d:t.getDate()};days();for(const c of ['d','m','y'])scrollTo_(c,true);prev()};
+$('whClear').onclick=()=>{if(cur)setVal(cur,'');close()};
+function upd(inp){const v=desc.get.call(inp);inp._wb.innerHTML=v?`<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span>${fmtD(v)}</span>`:`<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span class="ph">اضغط لاختيار التاريخ</span>`}
+function enhance(inp){if(inp._wb)return;const b=document.createElement('button');b.type='button';b.className='wh-btn';inp._wb=b;inp.after(b);inp.classList.add('wh-hid');inp.tabIndex=-1;
+  Object.defineProperty(inp,'value',{configurable:true,get(){return desc.get.call(this)},set(v){desc.set.call(this,v);upd(this)}});
+  b.addEventListener('click',()=>open(inp));upd(inp);
+  const lab=document.querySelector(`label[for="${inp.id}"]`);if(lab)lab.addEventListener('click',e=>{e.preventDefault();open(inp)})}
+document.querySelectorAll('input[type=date]').forEach(enhance);
+new MutationObserver(ms=>{for(const m of ms)for(const n of m.addedNodes)if(n.nodeType===1){if(n.matches&&n.matches('input[type=date]'))enhance(n);n.querySelectorAll&&n.querySelectorAll('input[type=date]').forEach(enhance)}}).observe(document.body,{childList:true,subtree:true});
+})();
+
 /* --- prominent allowances + what's new --- */
 if(!ls('rw-s5'))$('s5new').hidden=false;
 $('s5sum').addEventListener('click',e=>{const c=e.target.closest('[data-f]');ls('rw-s5','1');$('s5new').hidden=true;if(!c)return;setTimeout(()=>{const inp=$(c.dataset.f);if(!inp)return;const vc=inp.closest('.vc');if(vc){vc.classList.remove('hl');void vc.offsetWidth;vc.classList.add('hl');vc.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'})}setTimeout(()=>{try{inp.focus({preventScroll:true});inp.select()}catch(_){}},350)},90)});
@@ -3110,6 +3178,7 @@ const WN_V='2026-11-20b',WN=[
  ['🧭','شريط أقسام جديد','أيقونات ملوّنة وتفاعلية لكل الأقسام'],
  ['🔔','تنبيه استحقاقك','موعد علاوتك وترفيعك، وطلبك جاهز بضغطة، وتذكير بتقويم موبايلك'],
  ['🤖','المساعد','اسأله عن حقوقك بكلامك (قسم الدليل)'],
+ ['📅','اختيار التاريخ أسهل','قوائم يوم · شهر · سنة تمررها بإصبعك بدل التقويم'],
  ['🧾','المخصصات أوضح','مربعات ملوّنة — اضغط أي وحدة وتفتح لتعديلها مباشرة'],
  ['🕐','الوقت والتاريخ','ميلادي وهجري بتوقيت بغداد مع شريط الإعلانات'],
  ['⭐','تقييمات الزملاء','آراء الموظفين ظاهرة بأعلى الصفحة'],
