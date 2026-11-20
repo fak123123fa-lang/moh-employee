@@ -856,6 +856,31 @@ input.wh-hid{position:absolute!important;opacity:0!important;pointer-events:none
 .cal-today{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 10px;margin-top:10px;padding:10px;border-radius:12px;background:var(--bg);font-size:13px;color:var(--ink)}
 .cal-today b{width:100%;text-align:center;font-size:14.5px}.cal-today .hj{color:var(--acc);font-weight:700}
 .cal-nav{display:grid;place-items:center}.cal-nav svg{width:20px;height:20px;stroke:var(--ink);fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+/* ===== image banner carousel ===== */
+.bnr{position:relative;margin:0 0 12px}
+.bnr[hidden]{display:none}
+.bnr-tr{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;border-radius:18px;box-shadow:0 10px 24px -12px rgba(0,0,0,.35)}
+.bnr-tr::-webkit-scrollbar{display:none}
+.bnr-s{position:relative;flex:0 0 100%;scroll-snap-align:start;aspect-ratio:16/7;overflow:hidden;display:block;text-decoration:none;color:#fff;background:#0f1714}
+.bnr-s img{width:100%;height:100%;object-fit:cover;display:block}
+.bnr-s.txt{background:radial-gradient(circle at 15% 120%,rgba(255,255,255,.25),transparent 45%),linear-gradient(135deg,color-mix(in srgb,var(--bc) 70%,#fff),var(--bc));display:flex;align-items:center}
+.bnr-tx{padding:14px 18px;position:relative;z-index:1}
+.bnr-tx b{display:block;font-size:18px;line-height:1.35;text-shadow:0 2px 8px rgba(0,0,0,.25)}
+.bnr-tx small{display:block;margin-top:4px;font-size:13px;opacity:.95;line-height:1.6}
+.bnr-tx.bov{position:absolute;left:0;right:0;bottom:0;padding:26px 14px 12px;background:linear-gradient(transparent,rgba(0,0,0,.7))}
+.bnr-tx.bov b{font-size:16px}
+.bnr-dots{position:absolute;bottom:8px;right:14px;display:flex;gap:4px;z-index:2}
+.bnr-dots i{width:6px;height:6px;border-radius:3px;background:rgba(255,255,255,.55);cursor:pointer;transition:width .3s}
+.bnr-dots i.on{width:18px;background:#fff}
+/* admin banners */
+.ab-i{display:flex;align-items:center;gap:10px;padding:8px;margin-top:6px;border-radius:12px;border:1px solid var(--line);background:var(--bg)}
+.ab-i.off{opacity:.5}
+.ab-i img,.ab-c{flex:none;width:78px;height:34px;border-radius:8px;object-fit:cover;display:grid;place-items:center;color:#fff;font-size:11px;font-weight:700}
+.ab-i>div{flex:1;min-width:0}.ab-i b{display:block;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ab-i small{font-size:11px;color:var(--mute);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ab-i{flex-wrap:wrap}.ab-i .lbtn{width:100%;justify-content:flex-start;gap:4px}.ab-i .lbtn button{padding:4px 10px;font-size:12px}
+#abPrev img{width:100%;border-radius:12px;margin-top:8px;aspect-ratio:16/7;object-fit:cover}
+.ab-file{display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;border:2px dashed var(--line);border-radius:12px;color:var(--acc);font-weight:700;cursor:pointer}
+.ab-file input{display:none}
 </style>
 </head>
 <body>
@@ -917,7 +942,7 @@ input.wh-hid{position:absolute!important;opacity:0!important;pointer-events:none
     <div class="hbtns"><button class="ib" id="acctBtn" aria-label="حسابي"><svg><use href="#i-user"/></svg></button><button class="ib" id="theme" aria-label="الوضع الليلي"><svg><use href="#i-moon"/></svg></button><button class="ib upd-ib" id="updTop" aria-label="تحديث البرنامج"><svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 4v5h-5"/></svg><span>حدّث</span></button><button class="ib" id="tourBtn" aria-label="دليل الاستخدام"><b style="font-size:17px">؟</b></button></div>
     <h1>موظف الصحة</h1>
     <p class="sub">حاسبة الراتب · العلاوة والترفيع · الإجازات والطلبات</p>
-    <div class="hchips"><button class="proof" id="proof" hidden></button><button class="ichip" id="install" aria-label="ثبّت الحاسبة على شاشتك"><svg><use href="#i-dl"/></svg><span>ثبّت كتطبيق</span></button></div>
+    <div class="hchips"><button class="proof" id="proof" hidden></button><button class="ichip" id="install" aria-label="ثبّت التطبيق على شاشتك"><svg><use href="#i-dl"/></svg><span>ثبّت كتطبيق</span></button></div>
     <div class="prog" id="prog"><i></i><i></i><i></i><i></i><i></i></div>
   </header>
 
@@ -932,6 +957,7 @@ input.wh-hid{position:absolute!important;opacity:0!important;pointer-events:none
   </nav>
 
   <div class="strip" id="strip"></div>
+  <div class="bnr" id="bnr" hidden><div class="bnr-tr" id="bnrTr"></div><div class="bnr-dots" id="bnrDots"></div></div>
   <div id="custom"></div>
   <div class="qa" id="qa"><div class="inst-tip" id="instTip" hidden><b>ثبّت التطبيق من هنا</b><i class="it-arr">⬇</i></div>
     <button data-qa="rate" style="--q1:#f5bf47;--q2:#c98a08"><span><svg><use href="#i-star"/></svg></span>قيّم</button>
@@ -1195,7 +1221,7 @@ input.wh-hid{position:absolute!important;opacity:0!important;pointer-events:none
     </section>
   </div>
 
-  <button class="sharebig" id="shareApp"><svg><use href="#i-share"/></svg><span><b>شارك الحاسبة مع زملائك</b><small>خلّي الكل يستفيد — والأجر لك ولوالدك</small></span></button>
+  <button class="sharebig" id="shareApp"><svg><use href="#i-share"/></svg><span><b>شارك التطبيق مع زملائك</b><small>خلّي الكل يستفيد — والأجر لك ولوالدك</small></span></button>
 
   <!-- ===== التقييمات ===== -->
   <section class="card rate" id="rateCard" style="--c1:#f5bf47;--c2:#c98a08">
@@ -1222,6 +1248,17 @@ input.wh-hid{position:absolute!important;opacity:0!important;pointer-events:none
         <div class="kpis" id="admKpi"></div>
         <h4>الزيارات خلال 14 يوماً</h4>
         <div class="vbars" id="admBars"></div>
+        <h4>🖼️ البنر الإعلاني (صور وإعلانات أعلى الواجهة)</h4>
+        <div id="admBnr"></div>
+        <div class="fg" style="margin-top:10px">
+          <div class="full"><label class="ab-file">📷 اختر صورة الإعلان<input type="file" id="abFile" accept="image/*"></label><div id="abPrev"></div></div>
+          <div class="full"><label for="abT">العنوان (اختياري مع الصورة)</label><input id="abT" maxlength="120" placeholder="مثلاً: صدرت زيادة جديدة"></div>
+          <div class="full"><label for="abS">نص صغير (اختياري)</label><input id="abS" maxlength="200"></div>
+          <div><label for="abL">رابط عند الضغط (اختياري)</label><input id="abL" dir="ltr" placeholder="https:// أو #tools"></div>
+          <div><label for="abC">لون (للإعلان بدون صورة)</label><select id="abC"><option value="#0a7a59">أخضر</option><option value="#c98a08">ذهبي</option><option value="#2463c7">أزرق</option><option value="#c42e63">وردي</option><option value="#5b45c9">بنفسجي</option><option value="#b42318">أحمر</option></select></div>
+        </div>
+        <button class="btn pri" id="abAdd" style="width:100%;justify-content:center">📢 نشر الإعلان للجميع</button>
+        <p class="hint">الصورة تُصغَّر تلقائياً. الأنسب صورة عرضية (مثل 1200×525). تتبدل الإعلانات كل 5 ثواني.</p>
         <h4>📊 مؤشرات الكادر (بدون أسماء)</h4>
         <div id="admIns"></div>
         <h4>📨 المقترحات والشكاوى</h4>
@@ -1237,7 +1274,7 @@ input.wh-hid{position:absolute!important;opacity:0!important;pointer-events:none
         <div class="lst" id="admNews"></div>
         <h4>التقييمات</h4>
         <div class="lst" id="admRates"></div>
-        <h4 style="font-size:18px;margin-top:22px">⚙️ التحكم بمحتوى الحاسبة</h4>
+        <h4 style="font-size:18px;margin-top:22px">⚙️ التحكم بمحتوى التطبيق</h4>
         <div id="admCfg"></div>
         <h4>تغيير رمز الإدارة</h4>
         <div class="fg"><div><input id="admNew" type="password" inputmode="numeric" placeholder="رمز جديد (6–12 رقم)"></div><div><button class="btn" id="admChg" style="width:100%;justify-content:center">تغيير</button></div></div>
@@ -1275,7 +1312,7 @@ input.wh-hid{position:absolute!important;opacity:0!important;pointer-events:none
 
 <div class="tour" id="tour" hidden><div class="tr-hole" id="trHole"></div><div class="tr-tip" id="trTip" role="dialog" aria-live="polite"><div class="tr-top"><span class="tr-ic" id="trIc"></span><span class="tr-n" id="trN"></span><button class="tr-skip" id="trSkip">تخطي ✕</button></div><h4 id="trT"></h4><p id="trD"></p><div class="tr-dots" id="trDots"></div><div class="tr-btns"><button class="btn pri" id="trNext">التالي ←</button><button class="btn" id="trPrev">→ السابق</button></div></div></div>
 <button class="fab-inst" id="fabInst" hidden aria-label="ثبّت التطبيق على جهازك"><span class="fi"><svg><use href="#i-dl"/></svg></span><b>ثبّت التطبيق</b><i class="fx" id="fabX" aria-label="إخفاء">✕</i></button>
-<div class="ov" id="instOv" role="dialog" aria-label="تثبيت الحاسبة">
+<div class="ov" id="instOv" role="dialog" aria-label="تثبيت التطبيق">
   <div class="isheet">
     <img src="icon-192.png" alt="" class="iapp" onerror="this.style.display='none'">
     <h3>ثبّت «موظف الصحة» على شاشتك</h3>
@@ -1316,10 +1353,10 @@ input.wh-hid{position:absolute!important;opacity:0!important;pointer-events:none
 <div class="ov" id="acctOv" role="dialog" aria-label="حسابي">
   <div class="isheet" id="acctBox"></div>
 </div>
-<div class="ov" id="rateOv" role="dialog" aria-label="تقييم الحاسبة">
+<div class="ov" id="rateOv" role="dialog" aria-label="تقييم التطبيق">
   <div class="isheet">
     <span class="dic big" style="background:linear-gradient(135deg,#f5bf47,#c98a08)"><svg><use href="#i-star"/></svg></span>
-    <h3 id="rTitle">شكد عجبتك الحاسبة؟</h3>
+    <h3 id="rTitle">شكد عجبك «موظف الصحة»؟</h3>
     <p class="isub">تقييمك يظهر للجميع ويساعدنا نطوّرها</p>
     <div class="pick" id="pick"></div>
     <p class="plbl" id="plbl">اضغط على النجوم</p>
@@ -1333,12 +1370,12 @@ input.wh-hid{position:absolute!important;opacity:0!important;pointer-events:none
   </div>
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<div class="offline" id="offline">أنت غير متصل بالإنترنت — الحاسبة تعمل، والمزامنة تتم عند عودة الاتصال</div>
-<div class="dock"><div class="dnet"><span>الصافي</span><br><b id="dockNet">0</b></div><div class="dact"><button class="da" id="dRate" aria-label="قيّم الحاسبة"><svg><use href="#i-star"/></svg><small>قيّم</small></button><button class="da" id="dShare" aria-label="شارك الحاسبة"><svg><use href="#i-share"/></svg><small>شارك</small></button><a class="da" href="https://www.instagram.com/eng.furqan_kazem" target="_blank" rel="noopener" aria-label="الإنستغرام"><svg><use href="#i-ig"/></svg><small>تابعني</small></a><button id="toSlip">التفاصيل</button></div></div>
+<div class="offline" id="offline">أنت غير متصل بالإنترنت — التطبيق يعمل، والمزامنة تتم عند عودة الاتصال</div>
+<div class="dock"><div class="dnet"><span>الصافي</span><br><b id="dockNet">0</b></div><div class="dact"><button class="da" id="dRate" aria-label="قيّم التطبيق"><svg><use href="#i-star"/></svg><small>قيّم</small></button><button class="da" id="dShare" aria-label="شارك التطبيق"><svg><use href="#i-share"/></svg><small>شارك</small></button><a class="da" href="https://www.instagram.com/eng.furqan_kazem" target="_blank" rel="noopener" aria-label="الإنستغرام"><svg><use href="#i-ig"/></svg><small>تابعني</small></a><button id="toSlip">التفاصيل</button></div></div>
 
 <div class="ov" id="ov" role="dialog" aria-label="صورة ورقة الراتب">
   <img id="ovImg" alt="ورقة الراتب">
-  <p id="ovTip">الصورة تحمل رابط الحاسبة ورمز QR — ومع المشاركة يُرسل الرابط تلقائياً</p>
+  <p id="ovTip">الصورة تحمل رابط التطبيق ورمز QR — ومع المشاركة يُرسل الرابط تلقائياً</p>
   <div class="acts">
     <button class="btn pri" id="ovShare"><svg><use href="#i-share"/></svg>مشاركة</button>
     <button class="btn" id="ovLink"><svg><use href="#i-share"/></svg>إرسال الرابط</button>
@@ -1680,7 +1717,7 @@ function drawLetter(){
   $('letter').innerHTML=`<div class="lt-d">التاريخ: ${d}</div><p class="lt-to">إلى/ ${esc(v.to)}</p><p class="lt-s">م/ ${t.s}</p><p>تحية طيبة…</p><p class="lt-b">${esc(t.b(v))}</p><p>ولكم فائق الشكر والتقدير.</p><div class="lt-sig"><p>مقدّم الطلب</p><p>الاسم: ${esc(m.name)||'..............................'}</p><p>العنوان الوظيفي: ${esc(m.title)||'..............................'}</p><p>التوقيع: ..............................</p></div>`;
   letterText=[`التاريخ: ${d}`,`إلى/ ${v.to}`,`م/ ${t.s}`,'تحية طيبة…',t.b(v),'ولكم فائق الشكر والتقدير.','',`مقدّم الطلب`,`الاسم: ${m.name||''}`,`العنوان الوظيفي: ${m.title||''}`,'التوقيع:'].join('\n');
 }
-$('fPrint').onclick=()=>{try{window.print()}catch(_){}setTimeout(()=>{$('fMsg').textContent='إذا لم تظهر الطباعة، افتح الحاسبة من رابط الموقع أو الملف ثم اطبع.'},400)};
+$('fPrint').onclick=()=>{try{window.print()}catch(_){}setTimeout(()=>{$('fMsg').textContent='إذا لم تظهر الطباعة، افتح التطبيق من رابط الموقع أو الملف ثم اطبع.'},400)};
 $('fCopy').onclick=async()=>{try{await navigator.clipboard.writeText(letterText);$('fMsg').textContent='تم نسخ نص الطلب ✓'}catch(_){$('fMsg').textContent='تعذّر النسخ في هذا المتصفح'}};
 
 /* ---- guide ---- */
@@ -1697,8 +1734,8 @@ const FAQ=[
  ['ما هي المخصصات ذات الطبيعة الخاصة؟','نسبة تصل إلى 50% من الراتب يقرّها مجلس الوزراء لفئات معينة لمعالجة ظروف خاصة.'],
  ['كم إجازتي الاعتيادية؟','تتراكم الإجازة الاعتيادية بمعدل 3 أيام عن كل شهر خدمة (36 يوماً في السنة)، وأعلى رصيد لها 180 يوماً، ولا تُمنح أكثر من 120 يوماً براتب تام في المرة الواحدة. تابع رصيدك من «أدوات».'],
  ['كم تُستقطع التوقيفات التقاعدية؟','10% من الراتب الاسمي شهرياً لصندوق التقاعد.'],
- ['كيف يُحسب راتبي التقاعدي تقريبياً؟','بطريقة تقديرية: معدل راتبك لآخر 3 سنوات × 2.5% × سنوات الخدمة، بحد أعلى 80%. جرّب الحاسبة في «أدوات».'],
- ['كيف تُحسب ضريبة الدخل على الراتب؟','تُطرح السماحات السنوية (2,500,000 للأعزب، 4,500,000 للمتزوج، و200,000 لكل طفل)، ثم تُطبّق الشرائح 3% و5% و10% و15% على الباقي. الحاسبة تحسبها تلقائياً بشكل تقديري.'],
+ ['كيف يُحسب راتبي التقاعدي تقريبياً؟','بطريقة تقديرية: معدل راتبك لآخر 3 سنوات × 2.5% × سنوات الخدمة، بحد أعلى 80%. جرّب التطبيق في «أدوات».'],
+ ['كيف تُحسب ضريبة الدخل على الراتب؟','تُطرح السماحات السنوية (2,500,000 للأعزب، 4,500,000 للمتزوج، و200,000 لكل طفل)، ثم تُطبّق الشرائح 3% و5% و10% و15% على الباقي. التطبيق يحسبها تلقائياً بشكل تقديري.'],
  ['هل تؤثر العقوبات على العلاوة والترفيع؟','نعم، عقوبات قانون انضباط موظفي الدولة رقم 14 لسنة 1991 تؤخّر العلاوة أو الترفيع حسب نوعها (لفت النظر، الإنذار، قطع الراتب، التوبيخ…). راجع الموارد البشرية لمعرفة أثر عقوبتك بالضبط.'],
  ['هل الإجازة بدون راتب تُحسب خدمة؟','لا، الإجازة بدون راتب لا تُحتسب خدمة فعلية لأغراض العلاوة والترفيع والتقاعد، فتؤخّر مواعيدك بمقدارها.']
 ];
@@ -1708,7 +1745,7 @@ $('gq').addEventListener('input',renderFaq);
 /* ---- news ---- */
 let NEWS=[
  {d:'2026-11-20',t:'إطلاق «ملفي» والأدوات والنماذج',b:'أصبح بإمكانك معرفة موعد علاوتك وترفيعك، وتتبّع إجازاتك وخفاراتك، وحساب السلف والتقاعد، وطباعة طلباتك الرسمية — كلها في مكان واحد.'},
- {d:'2026-11-20',t:'أهلاً بكم في «موظف الصحة»',b:'حاسبة مجانية لكل منتسبي وزارة الصحة. شاركوها مع زملائكم، ولا تنسونا من دعائكم لوالدي الشهيد كاظم.'}
+ {d:'2026-11-20',t:'أهلاً بكم في «موظف الصحة»',b:'تطبيق مجاني لكل منتسبي وزارة الصحة. شاركوه مع زملائكم، ولا تنسونا من دعائكم لوالدي الشهيد كاظم.'}
 ];
 function renderNews(){$('news').innerHTML=NEWS.map(n=>`<article class="nw"><time>${n.d?dl(pd(n.d)):''}</time><b>${esc(n.t)}</b><p>${esc(n.b)}</p>${n.link?`<a href="${esc(n.link)}" target="_blank" rel="noopener">التفاصيل ←</a>`:''}</article>`).join('');const top=(NEWS[0]||{}).t||'';$('ndot').style.display=top&&top!==X.seen?'':'none'}
 if(location.protocol.startsWith('http')){fetch('news.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(j=>{if(Array.isArray(j)&&j.length){NEWS=j;renderNews()}}).catch(()=>{})}
@@ -1790,7 +1827,7 @@ const _rs2=renderStrip;renderStrip=function(){_rs2();try{const p=payInfo();if((p
 /* ---- ratings ---- */
 let RT=null,pickN=5,rMode='new';
 const lastR=()=>{try{return JSON.parse(ls('rw-last')||'null')}catch(_){return null}};
-async function loadRatings(){try{RT=await rpc('rw_get_ratings');drawRatings()}catch(e){$('rCount').textContent='التقييمات تظهر عند فتح الحاسبة من رابط الموقع';$('rStars').innerHTML=starsH(0)}drawQuick()}
+async function loadRatings(){try{RT=await rpc('rw_get_ratings');drawRatings()}catch(e){$('rCount').textContent='التقييمات تظهر عند فتح التطبيق من رابط الموقع';$('rStars').innerHTML=starsH(0)}drawQuick()}
 function drawRatings(){if(!RT)return;const tot=RT.count||0;
   $('rAvg').textContent=tot?(+RT.avg).toFixed(1):'—';$('rStars').innerHTML=starsH(RT.avg);$('rCount').textContent=tot?`${fmt(tot)} تقييم`:'كن أول من يقيّم';
   $('rDist').innerHTML=[5,4,3,2,1].map((s,i)=>{const n=(RT.dist||[])[i]||0;return `<div class="rd"><span>${s}</span><div class="t"><div class="f" style="width:${tot?n/tot*100:0}%"></div></div><span>${fmt(n)}</span></div>`}).join('');
@@ -1847,7 +1884,7 @@ let taps=0,tapT;document.querySelector('footer').addEventListener('click',()=>{t
 const net=()=>$('offline').classList.toggle('on',navigator.onLine===false);addEventListener('online',()=>{net();queueSync();loadRatings()});addEventListener('offline',net);net();
 const todayK=iso(today());if(ls('rw-ping')!==todayK){rpc('rw_ping',{p_device:DEV}).then(()=>ls('rw-ping',todayK)).catch(()=>{})}
 ls('rw-opens',String((+ls('rw-opens')||0)+1));
-if(!ls('rw-rated')&&(+ls('rw-opens')||0)>=3){setTimeout(()=>toast('عجبتك الحاسبة؟ قيّمها بنجمة ⭐','قيّم',()=>openRC()),45000)}
+if(!ls('rw-rated')&&(+ls('rw-opens')||0)>=3){setTimeout(()=>toast('عجبك «موظف الصحة»؟ قيّمه بنجمة ⭐','قيّم',()=>openRC()),45000)}
 try{const m=sessionStorage.getItem('rw-toast');if(m){sessionStorage.removeItem('rw-toast');setTimeout(()=>toast(m),1300)}}catch(_){}
 drawAcctBtn();loadRatings();loadNews();
 
@@ -1905,7 +1942,7 @@ window.doUpdate=doUpdate;$('updBtn').onclick=doUpdate;$('updTop').onclick=doUpda
 try{const u=new URL(location.href);if(u.searchParams.has('u')){u.searchParams.delete('u');history.replaceState(null,'',u.toString())}}catch(_){}
 /* ================= remote config (admin-controlled) ================= */
 const FAQ0=FAQ.slice(),DEF0=JSON.parse(JSON.stringify(DEF)),DON0=DON.map(d=>d.slice());
-const HIDEABLE=[['me','قسم «ملفي»'],['tools','قسم «أدوات»'],['forms','قسم «نماذج»'],['guide','قسم «الدليل»'],['news','قسم «الأخبار»'],['rate','بطاقة التقييمات'],['share','زر «شارك مع زملائك»'],['donate','زر التبرع'],['ask','بطاقة «ملاحظة»'],['upd','بطاقة «حدّث النظام»'],['install','زر «ثبّت الحاسبة» الجانبي'],['proof','شريط النجوم تحت العنوان'],['intro','رسالة الإرشاد أعلى الصفحة']];
+const HIDEABLE=[['me','قسم «ملفي»'],['tools','قسم «أدوات»'],['forms','قسم «نماذج»'],['guide','قسم «الدليل»'],['news','قسم «الأخبار»'],['rate','بطاقة التقييمات'],['share','زر «شارك مع زملائك»'],['donate','زر التبرع'],['ask','بطاقة «ملاحظة»'],['upd','بطاقة «حدّث النظام»'],['install','زر «ثبّت التطبيق» الجانبي'],['proof','شريط النجوم تحت العنوان'],['intro','رسالة الإرشاد أعلى الصفحة']];
 let CFG={};try{CFG=JSON.parse(ls('rw-cfg')||'{}')||{}}catch(_){CFG={}}
 const H1=document.querySelector('header h1'),SUB=document.querySelector('header .sub'),H1_0=H1.textContent,SUB_0=SUB.textContent;
 function applyCfg(c){c=c||{};const hd=c.hide||{};
@@ -1938,7 +1975,7 @@ let ED=null;
 function drawEditor(){ED=JSON.parse(JSON.stringify(CFG||{}));ED.hide=ED.hide||{};ED.custom=ED.custom||[];ED.faq=ED.faq||[];ED.texts=ED.texts||{};ED.banner=ED.banner||{};ED.don=ED.don||{};
   const sc=ED.scale||DEF0;
   $('admCfg').innerHTML=`
-  <h4>📢 إعلان أعلى الحاسبة</h4>
+  <h4>📢 إعلان أعلى التطبيق</h4>
   <label class="ck"><input type="checkbox" id="eBon" ${ED.banner.on?'checked':''}>إظهار الإعلان للجميع</label>
   <div class="fg"><div class="full"><label for="eBt">نص الإعلان</label><input id="eBt" value="${esc(ED.banner.text||'')}" placeholder="مثلاً: صدرت زيادة جديدة — اقرأ التفاصيل"></div>
   <div><label for="eBl">رابط (اختياري)</label><input id="eBl" dir="ltr" value="${esc(ED.banner.link||'')}" placeholder="https://"></div>
@@ -1959,14 +1996,14 @@ function drawEditor(){ED=JSON.parse(JSON.stringify(CFG||{}));ED.hide=ED.hide||{}
   <label class="ck"><input type="checkbox" id="eApr" ${(ED.approved||{}).on?'checked':''}>إظهار شارة الاعتماد تحت العنوان (فعّلها فقط بعد موافقة رسمية)</label>
   <div class="fg"><div class="full"><label for="eAprT">نص الشارة</label><input id="eAprT" value="${esc((ED.approved||{}).text||'')}" placeholder="معتمد من وزارة الصحة"></div></div>
 
-  <h4>✏️ عنوان الحاسبة</h4>
+  <h4>✏️ عنوان التطبيق</h4>
   <div class="fg"><div class="full"><label for="eT1">العنوان الرئيسي</label><input id="eT1" value="${esc(ED.texts.title||'')}" placeholder="${esc(H1_0)}"></div>
   <div class="full"><label for="eT2">السطر تحت العنوان</label><input id="eT2" value="${esc(ED.texts.sub||'')}" placeholder="${esc(SUB_0)}"></div></div>
 
   <h4>👁️ إظهار وإخفاء الأقسام</h4>
   <div class="tgl">${HIDEABLE.map(([k,n])=>`<label class="ck"><input type="checkbox" data-hide="${k}" ${ED.hide[k]?'':'checked'}>${n}</label>`).join('')}</div>
 
-  <h4>🧩 أقسام مخصّصة (تظهر للجميع أعلى الحاسبة)</h4>
+  <h4>🧩 أقسام مخصّصة (تظهر للجميع أعلى التطبيق)</h4>
   <div class="lst" id="eCust"></div>
   <div class="fg" style="margin-top:8px"><div class="full"><label for="eCt">العنوان</label><input id="eCt" maxlength="80"></div>
   <div class="full"><label for="eCb">المحتوى</label><textarea id="eCb" rows="3"></textarea></div>
@@ -3173,6 +3210,44 @@ $('admTk').addEventListener('click',async e=>{const b=e.target.closest('[data-ts
 {const _la=loadAdmin;loadAdmin=async function(){await _la();loadInsights();loadAdmTk()}}
 
 window.openTicket=openTicket;
+/* ===== image banner carousel (admin managed) ===== */
+(function(){
+let BN=[];try{BN=JSON.parse(ls('rw-bnr')||'[]')}catch(_){}
+let bi=0,bt=null,paused=false;
+function draw(){const w=$('bnr');if(!w)return;w.hidden=!BN.length;if(!BN.length)return;
+  $('bnrTr').innerHTML=BN.map((b,i)=>{const inner=`${b.img?`<img src="${b.img}" alt="${esc(b.title||'إعلان')}" loading="${i?'lazy':'eager'}">`:''}${b.title||b.sub?`<div class="bnr-tx${b.img?' bov':''}"><b>${esc(b.title||'')}</b>${b.sub?`<small>${esc(b.sub)}</small>`:''}</div>`:''}`;
+    const st=b.img?'':`style="--bc:${esc(b.color||'#0a7a59')}"`;return b.link?`<a class="bnr-s${b.img?'':' txt'}" ${st} href="${esc(b.link)}" ${/^https?:/.test(b.link)?'target="_blank" rel="noopener"':''}>${inner}</a>`:`<div class="bnr-s${b.img?'':' txt'}" ${st}>${inner}</div>`}).join('');
+  $('bnrDots').innerHTML=BN.length>1?BN.map((_,i)=>`<i class="${i===bi?'on':''}"></i>`).join(''):'';bi=Math.min(bi,BN.length-1);go(bi,false);auto()}
+function go(i,sm){const tr=$('bnrTr');if(!tr||!BN.length)return;bi=(i+BN.length)%BN.length;const w=tr.clientWidth;tr.scrollTo({left:-bi*w*(getComputedStyle(tr).direction==='rtl'?1:-1),behavior:sm&&!reduce?'smooth':'auto'});dots()}
+function dots(){[...$('bnrDots').children].forEach((d,k)=>d.classList.toggle('on',k===bi))}
+function auto(){clearInterval(bt);if(BN.length>1&&!reduce)bt=setInterval(()=>{if(!paused&&!document.hidden)go(bi+1,true)},5000)}
+const tr=$('bnrTr');let st;tr.addEventListener('scroll',()=>{clearTimeout(st);st=setTimeout(()=>{const w=tr.clientWidth||1;const i=Math.round(Math.abs(tr.scrollLeft)/w);if(i!==bi){bi=i;dots()}},80)},{passive:true});
+tr.addEventListener('pointerdown',()=>{paused=true});tr.addEventListener('pointerup',()=>{setTimeout(()=>paused=false,4000)});
+$('bnrDots').addEventListener('click',e=>{const d=e.target.closest('i');if(d)go([...$('bnrDots').children].indexOf(d),true)});
+addEventListener('resize',()=>go(bi,false));
+async function load(){try{const r=await rpc('rw_get_banners');if(Array.isArray(r)){BN=r;try{ls('rw-bnr',JSON.stringify(r))}catch(_){ls('rw-bnr',JSON.stringify(r.map(b=>({...b,img:null}))))}draw()}}catch(_){}}
+draw();load();window.reloadBanners=load;
+/* admin */
+async function admDraw(){if(!ADM||!$('admBnr'))return;try{const l=await rpc('rw_admin_banners',{p_pin:ADM});
+  $('admBnr').innerHTML=(l||[]).length?l.map((b,i)=>`<div class="ab-i ${b.active?'':'off'}">${b.img?`<img src="${b.img}">`:`<span class="ab-c" style="background:${esc(b.color||'#0a7a59')}">نص</span>`}<div><b>${esc(b.title||'(بدون عنوان)')}</b><small>${esc(b.sub||'')}${b.link?' · 🔗':''}</small></div><span class="lbtn"><button data-bm="${b.id}" data-d="-1" ${i?'':'disabled'}>▲</button><button data-bm="${b.id}" data-d="1" ${i<l.length-1?'':'disabled'}>▼</button><button data-bh="${b.id}" data-a="${!b.active}">${b.active?'إخفاء':'إظهار'}</button><button class="del" data-bd="${b.id}">حذف</button></span></div>`).join(''):'<p class="hint">لا توجد إعلانات — أضف أول صورة.</p>';
+  admDraw.list=l||[]}catch(_){}}
+function resize(file){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const W=Math.min(1200,im.width),H=Math.round(im.height*W/im.width),c=document.createElement('canvas');c.width=W;c.height=H;c.getContext('2d').drawImage(im,0,0,W,H);let q=.85,d=c.toDataURL('image/jpeg',q);while(d.length>650000&&q>.4){q-=.1;d=c.toDataURL('image/jpeg',q)}res(d)};im.onerror=rej;im.src=r.result};r.onerror=rej;r.readAsDataURL(file)})}
+let PIMG=null;
+document.addEventListener('change',async e=>{if(e.target.id!=='abFile')return;const f=e.target.files[0];if(!f)return;try{PIMG=await resize(f);$('abPrev').innerHTML=`<img src="${PIMG}">`;}catch(_){toast('تعذّر قراءة الصورة')}});
+document.addEventListener('click',async e=>{
+  if(e.target.closest('#abAdd')){if(!PIMG&&!$('abT').value.trim()){toast('اختر صورة أو اكتب عنواناً');return}
+    try{await rpc('rw_admin_banner_save',{p_pin:ADM,p_id:null,p_img:PIMG||'',p_title:$('abT').value,p_sub:$('abS').value,p_link:$('abL').value,p_color:$('abC').value,p_active:true,p_sort:null});PIMG=null;$('abPrev').innerHTML='';['abT','abS','abL'].forEach(i=>$(i).value='');$('abFile').value='';toast('تم نشر الإعلان للجميع ✓');admDraw();load()}catch(err){toast(err.message==='BIG'?'الصورة كبيرة جداً':em(err))}return}
+  const h=e.target.closest('[data-bh]'),d=e.target.closest('[data-bd]'),m=e.target.closest('[data-bm]');
+  if(h){const b=admDraw.list.find(x=>x.id==h.dataset.bh);await rpc('rw_admin_banner_save',{p_pin:ADM,p_id:b.id,p_img:'',p_title:b.title,p_sub:b.sub,p_link:b.link,p_color:b.color,p_active:h.dataset.a==='true',p_sort:b.sort});admDraw();load()}
+  if(d){if(!d.dataset.c){d.dataset.c=1;d.textContent='تأكيد';return}await rpc('rw_admin_banner_del',{p_pin:ADM,p_id:+d.dataset.bd});toast('تم الحذف');admDraw();load()}
+  if(m){const L=admDraw.list,i=L.findIndex(x=>x.id==m.dataset.bm),j=i+(+m.dataset.d);if(j<0||j>=L.length)return;const a=L[i],b=L[j];
+    await rpc('rw_admin_banner_save',{p_pin:ADM,p_id:a.id,p_img:'',p_title:a.title,p_sub:a.sub,p_link:a.link,p_color:a.color,p_active:a.active,p_sort:j});
+    await rpc('rw_admin_banner_save',{p_pin:ADM,p_id:b.id,p_img:'',p_title:b.title,p_sub:b.sub,p_link:b.link,p_color:b.color,p_active:b.active,p_sort:i});
+    L.forEach((x,k)=>{if(x!==a&&x!==b)rpc('rw_admin_banner_save',{p_pin:ADM,p_id:x.id,p_img:'',p_title:x.title,p_sub:x.sub,p_link:x.link,p_color:x.color,p_active:x.active,p_sort:k}).catch(()=>{})});
+    admDraw();load()}});
+{const _la3=loadAdmin;loadAdmin=async function(){await _la3();admDraw()}}
+})();
+
 /* ===== Gregorian + Hijri calendar ===== */
 (function(){
 const GM=['كانون الثاني','شباط','آذار','نيسان','أيار','حزيران','تموز','آب','أيلول','تشرين الأول','تشرين الثاني','كانون الأول'];
@@ -3253,6 +3328,7 @@ const WN_V='2026-11-20c',WN=[
  ['🧭','شريط أقسام جديد','أيقونات ملوّنة وتفاعلية لكل الأقسام'],
  ['🔔','تنبيه استحقاقك','موعد علاوتك وترفيعك، وطلبك جاهز بضغطة، وتذكير بتقويم موبايلك'],
  ['🤖','المساعد','اسأله عن حقوقك بكلامك (قسم الدليل)'],
+ ['🖼️','بنر إعلاني','آخر الإعلانات والصور بأعلى الواجهة'],
  ['🗓️','تقويم ميلادي وهجري','اضغط «التقويم» تحت الساعة'],
  ['🔄','زر التحديث','«حدّث» بأعلى الصفحة يحدّث البرنامج فوراً'],
  ['📅','اختيار التاريخ أسهل','قوائم يوم · شهر · سنة تمررها بإصبعك بدل التقويم'],
@@ -3281,6 +3357,7 @@ for(const[k,id]of SVC){const el=$(id);if(el)el.querySelector('summary').addEvent
 {const _la2=loadAdmin;loadAdmin=async function(){await _la2();applyLocks()}}
 $('admOut').addEventListener('click',()=>setTimeout(applyLocks,50));
 applyLocks();
+if(ADM&&!$('v-admin').hidden)loadAdmin();
 let deferred=window.__bip||null;
 const standalone=matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
 const UA=navigator.userAgent,inApp=/FBAN|FBAV|Instagram|Line\/|Telegram|WhatsApp|; wv\)|MicroMessenger|Snapchat|TikTok/i.test(UA),android=/android/i.test(UA),ios=/iphone|ipad|ipod/i.test(UA)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
