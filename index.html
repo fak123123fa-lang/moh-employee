@@ -1852,7 +1852,7 @@ addEventListener('beforeinstallprompt',()=>{if(ls('rw-inst-ask'))return;setTimeo
   tick();setInterval(tick,1000);
   document.addEventListener('visibilitychange',()=>{if(!document.hidden)tick()});
 })();
-const TK_DEF=['🤲 «موظف الصحة» مجاني للجميع في سبيل الله — شاركه مع زملائك','📲 ثبّت التطبيق على شاشتك ليصلك كل جديد','💝 صدقة من راتبك لرعاية الأيتام — اضغط «تبرّع»','⭐ قيّم التطبيق وساعدنا نطوّره','📷 تابع المهندس فرقان كاظم على إنستغرام @eng.furqan_kazem'];
+const TK_DEF=['🌹 شكراً لجميع الإخوة الداعمين والمساهمين في نجاح هذا العمل','🤲 «موظف الصحة» مجاني للجميع في سبيل الله — شاركه مع زملائك','📲 ثبّت التطبيق على شاشتك ليصلك كل جديد','💝 صدقة من راتبك لرعاية الأيتام — اضغط «تبرّع»','⭐ قيّم التطبيق وساعدنا نطوّره','📷 تابع المهندس فرقان كاظم على إنستغرام @eng.furqan_kazem'];
 function drawTicker(c){c=c||{};const t=c.ticker||{};const bar=$('topbar');
   bar.classList.toggle('notick',!!t.off);
   const items=(t.items&&t.items.length?t.items:TK_DEF).filter(Boolean);
