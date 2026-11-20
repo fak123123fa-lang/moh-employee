@@ -4,3 +4,15 @@
   for = "/sw.js"
   [headers.values]
     Cache-Control = "no-cache"
+[[redirects]]
+  from = "/admin"
+  to = "/index.html"
+  status = 200
+[[redirects]]
+  from = "/admin/*"
+  to = "/index.html"
+  status = 200
+[[headers]]
+  for = "/admin"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
