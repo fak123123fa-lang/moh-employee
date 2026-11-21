@@ -3413,7 +3413,7 @@ const tr=$('bnrTr');let st;tr.addEventListener('scroll',()=>{clearTimeout(st);st
 tr.addEventListener('pointerdown',()=>{paused=true});tr.addEventListener('pointerup',()=>{setTimeout(()=>paused=false,4000)});
 $('bnrDots').addEventListener('click',e=>{const d=e.target.closest('i');if(d)go([...$('bnrDots').children].indexOf(d),true)});
 addEventListener('resize',()=>go(bi,false));
-async function load(){try{const r=await rpc('rw_get_banners');if(Array.isArray(r)){BN=r;try{ls('rw-bnr',JSON.stringify(r))}catch(_){ls('rw-bnr',JSON.stringify(r.map(b=>({...b,img:null}))))}draw()}}catch(_){}}
+async function load(){try{const r=await rpc('rw_get_banners');if(Array.isArray(r)){BN=r.filter(b=>!(b.link&&b.link.indexOf(location.host)>-1&&location.host));try{ls('rw-bnr',JSON.stringify(r))}catch(_){ls('rw-bnr',JSON.stringify(r.map(b=>({...b,img:null}))))}draw()}}catch(_){}}
 draw();load();window.reloadBanners=load;
 /* admin */
 async function admDraw(){if(!ADM||!$('admBnr'))return;try{const l=await rpc('rw_admin_banners',{p_pin:ADM});
