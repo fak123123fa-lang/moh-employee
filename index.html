@@ -2084,7 +2084,7 @@ function applyCfg(c){c=c||{};const hd=c.hide||{};
   // texts
   H1.textContent=(c.texts&&c.texts.title)||H1_0;SUB.textContent=(c.texts&&c.texts.sub)||SUB_0;
   // banner
-  const bn=$('banner'),b=c.banner||{};bn.hidden=!(b.on&&b.text);if(!bn.hidden){bn.innerHTML=`<span>${esc(b.text)}</span>${b.link?'<b>←</b>':''}`;bn.style.background=b.color||'';if(b.link){bn.href=b.link;bn.target='_blank'}else{bn.removeAttribute('href')}}
+  const bn=$('banner'),b=c.banner||{};bn.hidden=!(b.on&&b.text)||!!(b.link&&location.host&&b.link.indexOf(location.host)>-1);if(!bn.hidden){bn.innerHTML=`<span>${esc(b.text)}</span>${b.link?'<b>←</b>':''}`;bn.style.background=b.color||'';if(b.link){bn.href=b.link;bn.target='_blank'}else{bn.removeAttribute('href')}}
   // visibility
   for(const v of ['me','tools','forms','guide','news']){const nb=document.querySelector(`#nav [data-v="${v}"]`);if(nb)nb.hidden=!!hd[v]}
   const vis=(sel,k)=>document.querySelectorAll(sel).forEach(e=>e.classList.toggle('cfg-off',!!hd[k]));
