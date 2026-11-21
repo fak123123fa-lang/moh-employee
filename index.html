@@ -1074,6 +1074,25 @@ html.adm-only .help-bub{display:none}
 .qa [data-qa=give]{background:linear-gradient(160deg,#f27aa0,#c42e63)!important;color:#fff!important;border:0!important;box-shadow:0 10px 20px -10px #c42e63!important}
 .qa [data-qa=give] span{background:rgba(255,255,255,.22)!important;box-shadow:none!important}
 #v-profile .me-hero{margin-top:4px}
+/* ===== leave view + nav 4 cols ===== */
+.nav{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:10px 6px!important}
+.nav .nv-don .ic{animation:beat 2s ease-in-out infinite}
+.lv-hero{padding:16px;border-radius:24px;background:radial-gradient(circle at 10% 0%,rgba(255,255,255,.2),transparent 40%),linear-gradient(135deg,#3cc3c9,#0f7d86);color:#fff;box-shadow:0 14px 30px -14px #0f7d86}
+.lv-h{display:flex;align-items:center;gap:12px}.lv-ic{flex:none;width:50px;height:50px;border-radius:16px;display:grid;place-items:center;font-size:26px;background:rgba(255,255,255,.2)}
+.lv-h b{display:block;font-size:17px}.lv-h small{font-size:12.5px;opacity:.92}
+.lv-in{margin-top:12px}.lv-in label{color:#fff!important;opacity:.95}
+.lv-in input,.lv-in .wh-btn{background:rgba(255,255,255,.95)!important;color:#0f1714!important;border:0!important}
+.lv-empty{margin:12px 0 0;padding:12px;border-radius:14px;background:rgba(255,255,255,.15);text-align:center;font-weight:700}
+.lv-svc{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:12px;padding:10px 12px;border-radius:14px;background:rgba(0,0,0,.15);font-size:13px}.lv-svc b{font-size:14px}
+.lv-g{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.lv-c{display:flex;flex-direction:column;align-items:center;padding:12px 4px;border-radius:16px;background:#fff;color:#0f1714}
+.lv-c small{font-size:11.5px;color:#4d5b56;font-weight:700}.lv-c b{font-size:26px;line-height:1.2}.lv-c span{font-size:11px;color:#4d5b56}
+.lv-c.e b{color:#0f7d86}.lv-c.t b{color:#c98a08}.lv-c.r{background:linear-gradient(145deg,#ffd76a,#f5bf47)}.lv-c.r b{color:#0a5e45;font-size:30px}
+.lv-bar{height:10px;border-radius:5px;background:rgba(255,255,255,.25);margin-top:12px;overflow:hidden}.lv-bar i{display:block;height:100%;background:#ffd76a;border-radius:5px}
+.lv-n{margin:8px 0 0;font-size:12.5px;line-height:1.7}
+.lv-rules{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.lv-rules div{padding:10px;border-radius:16px;background:var(--card);border:1px solid var(--line);box-shadow:var(--sh)}
+.lv-rules i{font-style:normal;font-size:20px}.lv-rules b{display:block;font-size:15px;color:var(--acc);margin-top:2px}.lv-rules span{font-size:12px;color:var(--mute);line-height:1.6}
 </style>
 </head>
 <body>
@@ -1150,6 +1169,8 @@ html.adm-only .help-bub{display:none}
     <button data-v="health" style="--c1:#ef5b6a;--c2:#c42e3c"><span class="ic"><svg><use href="#i-heart2"/></svg></span>صحتي</button>
     <button data-v="family" style="--c1:#f5bf47;--c2:#d18a00"><span class="ic"><svg><use href="#i-family"/></svg></span>عائلتي</button>
     <button data-v="protect" style="--c1:#5aa9f0;--c2:#2463c7"><span class="ic"><svg><use href="#i-shield2"/></svg></span>حمايتي</button>
+    <button data-v="leave" style="--c1:#3cc3c9;--c2:#0f7d86"><span class="ic"><svg viewBox="0 0 24 24"><path d="M4 20h16"/><path d="M12 20V9"/><path d="M12 9c-4 0-7 2-8 5 3-1 5-1 8 0 3-1 5-1 8 0-1-3-4-5-8-5z"/><circle cx="18" cy="5" r="2.2"/></svg></span>إجازاتي</button>
+    <button data-v="donate" class="nv-don" style="--c1:#f27aa0;--c2:#c42e63"><span class="ic"><svg><use href="#i-heart"/></svg></span>تبرّع</button>
     <button data-v="profile" style="--c1:#5aa9f0;--c2:#1f5fb8"><span class="ic"><svg><use href="#i-user"/></svg></span>ملفي</button>
     <button data-v="me" style="--c1:#9b8cf2;--c2:#5b45c9"><span class="ic"><svg><use href="#i-cal2"/></svg></span>مواعيدي</button>
     <button data-v="guide" style="--c1:#3cc3c9;--c2:#13838a"><span class="ic"><svg><use href="#i-book"/></svg></span>دليلي</button>
@@ -1265,6 +1286,23 @@ html.adm-only .help-bub{display:none}
 
   <!-- ===== ملفي ===== -->
   <div class="view" id="v-profile" hidden></div>
+  <div class="view" id="v-leave" hidden>
+    <section class="lv-hero">
+      <div class="lv-h"><span class="lv-ic">🏖️</span><div><b>رصيد إجازاتي الاعتيادية</b><small>يُحسب من تاريخ تعيينك لليوم · 36 يوماً عن كل سنة خدمة</small></div></div>
+      <div class="fg lv-in">
+        <div><label for="lHire">تاريخ التعيين</label><input id="lHire" type="date"></div>
+        <div><label for="lTaken">الإجازات الاعتيادية المأخوذة (يوم)</label><input id="lTaken" type="number" inputmode="numeric" min="0" placeholder="اكتب مجموع ما أخذته"></div>
+      </div>
+      <div id="lvOut"></div>
+    </section>
+    <div class="lv-rules">
+      <div><i>📅</i><b>36 يوماً</b><span>إجازة اعتيادية عن كل سنة خدمة (3 أيام لكل شهر)</span></div>
+      <div><i>📦</i><b>180 يوماً</b><span>أعلى رصيد يتراكم — ما يزيد عليه لا يُحتسب</span></div>
+      <div><i>⏱️</i><b>120 يوماً</b><span>أقصى مدة تُمنح براتب تام في المرة الواحدة</span></div>
+      <div><i>🏥</i><b>المرضية</b><span>180 يوماً براتب تام و180 بنصف راتب خلال 5 سنوات</span></div>
+    </div>
+    <p class="disc">ℹ️ الحساب تقديري حسب قانون الخدمة المدنية رقم 24 لسنة 1960 — الرصيد الرسمي لدى الموارد البشرية في دائرتك.</p>
+  </div>
   <div class="view" id="v-me" hidden>
     <div class="me-hero" id="meHero"></div>
     <section class="card me-form" id="meForm" style="--c1:#5aa9f0;--c2:#2463c7">
@@ -1333,7 +1371,7 @@ html.adm-only .help-bub{display:none}
         <button class="btn" id="cmShare" style="width:100%;justify-content:center;margin-top:8px">مشاركة / نسخ السجل</button>
       </div>
     </details>
-    <details class="tool" open style="--c1:#5aa9f0;--c2:#2463c7">
+    <details class="tool" id="lvTool" open style="--c1:#5aa9f0;--c2:#2463c7">
       <summary><span class="ic"><svg><use href="#i-cal"/></svg></span><span><b>رصيد الإجازات</b><small>سجّل إجازاتك واعرف رصيدك</small></span></summary>
       <div class="tb">
         <div class="fg">
@@ -2183,13 +2221,14 @@ try{const m=sessionStorage.getItem('rw-toast');if(m){sessionStorage.removeItem('
 drawAcctBtn();loadRatings();loadNews();
 
 /* ---- views / routing ---- */
-const VIEWS=['salary','profile','health','family','protect','me','tools','forms','guide','news','admin'];
+const VIEWS=['salary','profile','leave','health','family','protect','me','tools','forms','guide','news','admin'];
 function show(v){if(window.ADMONLY)v='admin';if(!VIEWS.includes(v))v='salary';
   if(v==='tools')v='me';
   for(const x of VIEWS)$('v-'+x).hidden=!(x===v||(v==='me'&&x==='tools'));
   document.querySelectorAll('#nav button').forEach(b=>b.setAttribute('aria-current',b.dataset.v===v?'page':'false'));
   document.querySelector('.dock').classList.toggle('mini',v!=='salary');
   if(v==='profile')renderMe();
+  if(v==='leave'){try{drawLeave()}catch(_){}}
   if(v==='me'){renderMe();renderLv();renderSh();renderLn();renderPension()}if(v==='forms')drawFT();if(v==='guide')renderFaq();
   document.body.classList.toggle('adm',v==='admin');if(v==='admin')loadAdmin();
   if(v==='news'){renderPay();renderNews();X.seen=(NEWS[0]||{}).t||'';saveX();$('ndot').style.display='none'}
@@ -3507,9 +3546,29 @@ $('admTk').addEventListener('click',async e=>{const b=e.target.closest('[data-ts
 
 window.openTicket=openTicket;
 
+/* ===== leave balance view ===== */
+$('v-leave').appendChild($('lvTool'));
+X.lv=X.lv||{};
+function svcYMD(a,b){let y=b.getFullYear()-a.getFullYear(),m=b.getMonth()-a.getMonth(),d=b.getDate()-a.getDate();if(d<0){m--;d+=new Date(b.getFullYear(),b.getMonth(),0).getDate()}if(m<0){y--;m+=12}return{y,m,d}}
+function drawLeave(){const hire=X.me.hire;if($('lHire').value!==(hire||''))$('lHire').value=hire||'';if(document.activeElement!==$('lTaken'))$('lTaken').value=X.lv.taken??'';
+  if(!hire){$('lvOut').innerHTML='<p class="lv-empty">👆 أدخل تاريخ تعيينك ويطلع رصيدك فوراً</p>';return}
+  const T=today(),s=svcYMD(pd(hire),T);if(pd(hire)>T){$('lvOut').innerHTML='<p class="lv-empty">تاريخ التعيين بالمستقبل؟ تأكد منه</p>';return}
+  const months=s.y*12+s.m,earned=Math.floor(months*3+Math.floor(s.d/10)),taken=Math.max(0,+X.lv.taken||0),raw=earned-taken,rem=Math.max(0,Math.min(180,raw)),lost=Math.max(0,raw-180);
+  const pct=Math.min(100,rem/180*100);
+  $('lvOut').innerHTML=`<div class="lv-svc"><span>⏳ مدة خدمتك</span><b>${s.y} سنة · ${s.m} شهر · ${s.d} يوم</b></div>
+   <div class="lv-g"><div class="lv-c e"><small>المستحق الكلي</small><b>${fmt(earned)}</b><span>يوم</span></div><div class="lv-c t"><small>المأخوذ</small><b>${fmt(taken)}</b><span>يوم</span></div><div class="lv-c r"><small>المتبقي</small><b>${fmt(rem)}</b><span>يوم</span></div></div>
+   <div class="lv-bar"><i style="width:${pct}%"></i></div><p class="lv-n">${raw<0?'⚠️ المأخوذ أكثر من المستحق — راجع الرقم':lost>0?`📦 رصيدك المحسوب ${fmt(raw)} يوم، والمحتسب منه 180 يوماً فقط (الحد الأعلى للتراكم)`:`رصيدك ${fmt(rem)} يوم من أصل الحد الأعلى 180 يوماً`}</p>
+   <p class="lv-n">${rem>120?'💡 تگدر تاخذ لحد 120 يوماً براتب تام بالمرة الوحدة':'✅ تگدر تاخذ كامل رصيدك براتب تام'}</p>`}
+$('lHire').addEventListener('change',()=>{X.me.hire=$('lHire').value;try{$('mHire').value=X.me.hire}catch(_){}saveX();drawLeave();try{renderMe()}catch(_){}});
+$('lTaken').addEventListener('input',()=>{X.lv.taken=$('lTaken').value===''?null:+$('lTaken').value;saveX();drawLeave()});
+$('mHire').addEventListener('change',()=>drawLeave());
+drawLeave();
+/* donate as nav icon */
+$('nav').addEventListener('click',e=>{const b=e.target.closest('[data-v="donate"]');if(!b)return;e.stopImmediatePropagation();e.preventDefault();openDon();try{burst(b.querySelector('.ic'),['#f27aa0','#c42e63','#ffd1e1'],12)}catch(_){}},true);
+
 /* profile as its own section */
 $('v-profile').append($('meHero'),$('meForm'));$('meForm').classList.remove('closed');
-{const nav=$('nav'),ord=['salary','profile','me','health','family','protect','guide','forms','news'];ord.forEach(v=>{const b=nav.querySelector(`[data-v="${v}"]`);if(b)nav.appendChild(b)});[...nav.querySelectorAll('button')].forEach((b,i)=>b.style.setProperty('--i',i))}
+{const nav=$('nav'),ord=['salary','profile','me','leave','health','family','protect','guide','forms','news','donate'];ord.forEach(v=>{const b=nav.querySelector(`[data-v="${v}"]`);if(b)nav.appendChild(b)});[...nav.querySelectorAll('button')].forEach((b,i)=>b.style.setProperty('--i',i))}
 {const _mh=$('mhEdit');}
 /* ================= batch 7 ================= */
 /* --- governorates & directorates --- */
@@ -3676,7 +3735,7 @@ const T={
 'المهندس فرقان كاظم':['Eng. Furqan Kadhim','ئەندازیار فورقان کازم'],'إعداد وتصميم · العراق - الديوانية':['Designed by · Iraq - Diwaniyah','ئامادەکردن و دیزاین · عێراق - دیوانیە'],'راسلني':['Message me','نامەم بۆ بنێرە'],'شارك التطبيق مع زملائك':['Share the app with colleagues','ئەپەکە لەگەڵ هاوکارانت هاوبەش بکە'],
 'دليل حقوق الموظف':['Employee rights guide','ڕێبەری مافەکانی فەرمانبەر'],'اسأل المساعد':['Ask the assistant','پرسیار لە یاریدەدەر بکە'],'آخر الأخبار والقرارات':['Latest news & decisions','دوایین هەواڵ و بڕیارەکان'],
 'العلاوة السنوية القادمة':['Next annual increment','زیادکردنی ساڵانەی داهاتوو'],'الترفيع القادم':['Next promotion','بەرزکردنەوەی داهاتوو'],'تاريخ الميلاد':['Date of birth','ڕێکەوتی لەدایکبوون'],'تاريخ التعيين':['Hiring date','ڕێکەوتی دامەزراندن'],'الاسم':['Name','ناو'],'العنوان الوظيفي':['Job title','ناونیشانی کار'],'الدائرة / القسم':['Department','فەرمانگە / بەش'],
-'رصيد الإجازات':['Leave balance','باڵانسی مۆڵەت'],'الخفارات':['Shifts','نۆبەتەکان'],'حاسبة السلف والقروض':['Loan calculator','ژمێرەری قەرز'],'الراتب التقاعدي التقديري':['Estimated pension','مووچەی خانەنشینی خەمڵێنراو'],
+'رصيد الإجازات':['Leave balance','باڵانسی مۆڵەت'],'إجازاتي':['My Leave','مۆڵەتەکانم'],'تبرّع':['Donate','بەخشین'],'ملفي':['Profile','پرۆفایل'],'الخفارات':['Shifts','نۆبەتەکان'],'حاسبة السلف والقروض':['Loan calculator','ژمێرەری قەرز'],'الراتب التقاعدي التقديري':['Estimated pension','مووچەی خانەنشینی خەمڵێنراو'],
 'اضغط لاختيار التاريخ':['Tap to pick a date','کلیک بکە بۆ هەڵبژاردنی ڕێکەوت'],'تم':['Done','تەواو'],'إلغاء':['Cancel','پاشگەزبوونەوە'],'اليوم':['Today','ئەمڕۆ'],'مسح':['Clear','سڕینەوە'],
 'ℹ️ المحتوى الصحي للتوعية العامة ولا يغني عن مراجعة الطبيب.':['ℹ️ Health content is for general awareness and does not replace a doctor.','ℹ️ ناوەڕۆکی تەندروستی تەنها بۆ هۆشیارییە و جێگەی پزیشک ناگرێتەوە.']
 };
@@ -3824,10 +3883,11 @@ new MutationObserver(ms=>{for(const m of ms)for(const n of m.addedNodes)if(n.nod
 if(!ls('rw-s5'))$('s5new').hidden=false;
 $('s5sum').addEventListener('click',e=>{const c=e.target.closest('[data-f]');ls('rw-s5','1');$('s5new').hidden=true;if(!c)return;setTimeout(()=>{const inp=$(c.dataset.f);if(!inp)return;const vc=inp.closest('.vc');if(vc){vc.classList.remove('hl');void vc.offsetWidth;vc.classList.add('hl');vc.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'})}setTimeout(()=>{try{inp.focus({preventScroll:true});inp.select()}catch(_){}},350)},90)});
 document.querySelector('#st5 .edit').addEventListener('click',()=>{ls('rw-s5','1');$('s5new').hidden=true});
-const WN_V='2026-11-21b',WN=[
+const WN_V='2026-11-21c',WN=[
  ['🧭','شريط أقسام جديد','أيقونات ملوّنة وتفاعلية لكل الأقسام'],
  ['🔔','تنبيه استحقاقك','موعد علاوتك وترفيعك، وطلبك جاهز بضغطة، وتذكير بتقويم موبايلك'],
  ['🤖','المساعد','اسأله عن حقوقك بكلامك (قسم الدليل)'],
+ ['🏖️','إجازاتي','رصيد إجازاتك يُحسب من تاريخ تعيينك: المستحق والمأخوذ والمتبقي'],
  ['📍','المحافظة ومكان العمل','اختارها بـ«مواعيدي» حتى يصير ملفك أوضح'],
  ['🔥','الأيام المتتالية والإنجازات','افتح التطبيق كل يوم وكمّل إنجازاتك'],
  ['🧮','حاسبة سريعة','حاسبة علمية صغيرة أسفل الصفحة'],
