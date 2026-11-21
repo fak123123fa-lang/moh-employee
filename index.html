@@ -2257,7 +2257,7 @@ addEventListener('beforeinstallprompt',()=>{if(ls('rw-inst-ask'))return;setTimeo
 const TK_DEF=['🌹 شكراً لجميع الإخوة الداعمين والمساهمين في نجاح هذا العمل','🤲 «موظف الصحة» مجاني للجميع في سبيل الله — شاركه مع زملائك','📲 ثبّت التطبيق على شاشتك ليصلك كل جديد','💝 صدقة من راتبك لرعاية الأيتام — اضغط «تبرّع»','⭐ قيّم التطبيق وساعدنا نطوّره','📷 تابع المهندس فرقان كاظم على إنستغرام @eng.furqan_kazem'];
 function drawTicker(c){c=c||{};const t=c.ticker||{};const bar=$('topbar');
   bar.classList.toggle('notick',!!t.off);
-  const items=(t.items&&t.items.length?t.items:TK_DEF).filter(Boolean);
+  const items=(t.items&&t.items.length?t.items:TK_DEF).filter(s=>s&&!(location.host&&s.indexOf(location.host)>-1));
   const one=items.map(s=>{const m=s.match(/^(.*?)\s*\|\s*(https?:\/\/\S+)$/);return m?`<span><a href="${esc(m[2])}" target="_blank" rel="noopener">${esc(m[1])}</a></span>`:`<span>${esc(s)}</span>`}).join('');
   const tk=$('tk');tk.innerHTML=one+one;
   $('tick').style.setProperty('--tkbg',t.color?`color-mix(in srgb,${t.color} 12%,var(--card))`:'transparent');
