@@ -940,6 +940,26 @@ details.tool summary .ic.emo{font-size:20px}
 .lg-sh button{display:flex;align-items:center;gap:12px;width:100%;margin-top:8px;padding:12px 16px;border-radius:14px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);font:700 16px inherit;font-family:inherit;cursor:pointer}
 .lg-sh button span{font-size:22px}.lg-sh button[aria-pressed=true]{border-color:var(--acc);background:color-mix(in srgb,var(--acc) 10%,var(--card))}
 html.lang-en body{font-family:"IBM Plex Sans Arabic",system-ui,-apple-system,"Segoe UI",sans-serif}
+/* ===== admin people + notices ===== */
+.pp-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;padding:3px;border-radius:12px;background:var(--bg);margin:6px 0 8px}
+.pp-tabs button{min-height:36px;border:0;border-radius:9px;background:transparent;color:var(--mute);font:700 12.5px inherit;font-family:inherit;cursor:pointer}
+.pp-tabs button[aria-pressed=true]{background:linear-gradient(135deg,var(--acc2),var(--acc));color:#fff}
+.pp-bar{display:flex;gap:6px;align-items:center;margin-bottom:8px}.pp-bar input{flex:1}.pp-bar small{color:var(--mute);white-space:nowrap}
+.pp-ex{display:grid;grid-template-columns:1fr 1fr auto;gap:6px;margin-bottom:8px}.pp-ex .btn{justify-content:center;min-height:40px;font-size:13px}
+#ppTbl{overflow:auto;max-height:420px;border:1px solid var(--line);border-radius:12px}
+.pp-t{border-collapse:collapse;width:100%;font-size:12px;white-space:nowrap}
+.pp-t th{position:sticky;top:0;background:var(--acc);color:#fff;padding:6px 8px;text-align:start;font-weight:700}
+.pp-t td{padding:6px 8px;border-top:1px solid var(--line);color:var(--ink)}
+.pp-t tr:nth-child(even) td{background:var(--bg)}
+.pp-t td:nth-child(5){white-space:normal;min-width:120px}
+.pp-del{padding:3px 8px;border-radius:8px;border:1px solid #e5484d;background:transparent;color:#e5484d;font:700 11px inherit;font-family:inherit;cursor:pointer}
+.ntf{position:fixed;z-index:95;top:calc(10px + env(safe-area-inset-top));left:10px;right:10px;max-width:460px;margin:auto;display:flex;align-items:center;gap:10px;padding:12px 12px 12px 10px;border-radius:18px;background:var(--card);color:var(--ink);border:1px solid color-mix(in srgb,var(--acc) 30%,var(--line));box-shadow:0 18px 40px -12px rgba(0,0,0,.45);transform:translateY(-140%);transition:transform .45s cubic-bezier(.2,1.3,.4,1);cursor:pointer}
+.ntf.in{transform:none}
+.ntf[hidden]{display:none}
+.ntf-i{flex:none;width:42px;height:42px;border-radius:13px;display:grid;place-items:center;font-size:21px;background:linear-gradient(145deg,var(--acc2),var(--acc));animation:ntfR 1.2s ease-in-out 2}
+@keyframes ntfR{0%,100%{transform:rotate(0)}20%{transform:rotate(-14deg)}40%{transform:rotate(12deg)}60%{transform:rotate(-8deg)}80%{transform:rotate(5deg)}}
+.ntf div{flex:1;min-width:0}.ntf b{display:block;font-size:14.5px}.ntf small{display:block;font-size:12.5px;color:var(--mute);line-height:1.5}
+.ntf button{flex:none;width:30px;height:30px;border-radius:50%;border:0;background:var(--bg);color:var(--mute);cursor:pointer}
 </style>
 </head>
 <body>
@@ -1377,6 +1397,18 @@ html.lang-en body{font-family:"IBM Plex Sans Arabic",system-ui,-apple-system,"Se
         <div class="kpis" id="admKpi"></div>
         <h4>الزيارات خلال 14 يوماً</h4>
         <div class="vbars" id="admBars"></div>
+        <h4>📣 إرسال إشعار للجميع</h4>
+        <p class="hint">يطلع فوراً بأعلى شاشة كل من يفتح التطبيق، مع صوت تنبيه لطيف.</p>
+        <div class="fg"><div class="full"><label for="ntT">عنوان الإشعار</label><input id="ntT" maxlength="80" placeholder="مثلاً: صدرت زيادة جديدة بالرواتب"></div>
+        <div class="full"><label for="ntB">التفاصيل (اختياري)</label><input id="ntB" maxlength="160"></div>
+        <div class="full"><label for="ntL">عند الضغط يفتح (اختياري)</label><input id="ntL" dir="ltr" placeholder="#news أو https://..."></div></div>
+        <button class="btn pri" id="ntSend" style="width:100%;justify-content:center">🔔 إرسال الإشعار الآن</button>
+        <h4>👥 المستخدمون</h4>
+        <div class="pp-tabs" id="ppTabs"><button data-pt="accounts" aria-pressed="true">المسجّلون</button><button data-pt="raters">المقيّمون</button><button data-pt="visitors">الزوار</button></div>
+        <div class="pp-bar"><input id="ppQ" type="search" placeholder="بحث بالاسم أو الرقم…"><small id="ppCnt"></small></div>
+        <div class="pp-ex"><button class="btn" id="ppXls">📊 تنزيل Excel</button><button class="btn" id="ppDoc">📄 تنزيل Word</button><button class="btn" id="ppRe" aria-label="تحديث">🔄</button></div>
+        <div id="ppTbl"></div>
+        <p class="hint">🔒 هذه البيانات سرّية — لا تنشرها. الزوار مجهولو الهوية (بدون أسماء أو أرقام).</p>
         <h4>🖼️ البنر الإعلاني (صور وإعلانات أعلى الواجهة)</h4>
         <div id="admBnr"></div>
         <div class="fg" style="margin-top:10px">
@@ -1940,7 +1972,7 @@ function drawAcct(msg='',ok=false){
     </div>
     <button class="btn pri" id="aGo" style="width:100%;justify-content:center">${reg?'إنشاء الحساب':'دخول'}</button>
     <p class="err ${ok?'ok':''}">${esc(msg)}</p>
-    <p class="isub" style="font-size:12px">${reg?'احفظ رمزك السري جيداً — لا يمكن استرجاعه. بياناتك خاصة بك ولا يطّلع عليها أحد.':'بعد الدخول تُسترجع بياناتك المحفوظة تلقائياً.'}</p>
+    <p class="isub" style="font-size:12px">${reg?'احفظ رمزك السري جيداً — لا يمكن استرجاعه. حساباتك (الراتب والملف) خاصة بك، واسمك ورقمك يطّلع عليهما مدير التطبيق فقط لإدارة الحسابات ولا يُشاركان مع أي جهة.':'بعد الدخول تُسترجع بياناتك المحفوظة تلقائياً.'}</p>
     <button class="btn" id="aClose" style="width:100%;justify-content:center">إغلاق</button>`;
     b.querySelectorAll('[data-m]').forEach(x=>x.onclick=()=>{acctMode=x.dataset.m;drawAcct()});
     $('aGo').onclick=async()=>{const g=$('aGo');g.disabled=true;g.textContent='لحظة…';const ph=$('aPhone').value.replace(/\D/g,''),pin=$('aPin').value;ls('rw-phone',ph);
@@ -3345,6 +3377,59 @@ $('admTk').addEventListener('click',async e=>{const b=e.target.closest('[data-ts
 {const _la=loadAdmin;loadAdmin=async function(){await _la();loadInsights();loadAdmTk()}}
 
 window.openTicket=openTicket;
+/* ===== admin: people lists + export ===== */
+(function(){
+let PP=null,tab='accounts';
+const fmtD=s=>s?new Date(s).toLocaleDateString('en-GB'):'—';
+const COLS={
+ accounts:[['name','الاسم'],['phone','رقم الهاتف'],['created_at','تاريخ التسجيل',fmtD],['last_seen','آخر دخول',fmtD],['ratings','عدد التقييمات'],['last_stars','آخر تقييم',v=>v?'★'.repeat(v):'—'],['has_data','بيانات محفوظة',v=>v?'نعم':'لا']],
+ raters:[['name','الاسم بالتقييم',v=>v||'—'],['phone','الرقم (إن كان مسجلاً)',v=>v||'—'],['stars','النجوم',v=>'★'.repeat(v)],['comment','التعليق',v=>v||''],['at','التاريخ',fmtD],['hidden','الحالة',v=>v?'مخفي':'ظاهر']],
+ visitors:[['dev','رمز الجهاز'],['first_day','أول زيارة'],['last_day','آخر زيارة'],['days','أيام الاستخدام'],['grp','المجموعة',v=>v||'—'],['spec','الاختصاص',v=>v||'—'],['grade','الدرجة',v=>v||'—']]};
+const TITLES={accounts:'المسجّلون',raters:'المقيّمون',visitors:'الزوار (بدون أسماء)'};
+function rows(){const q=($('ppQ').value||'').trim();const L=(PP&&PP[tab])||[];return q?L.filter(r=>Object.values(r).some(v=>String(v??'').includes(q))):L}
+function draw(){if(!PP)return;const C=COLS[tab],R=rows();
+  $('ppTabs').querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.pt===tab));
+  $('ppCnt').textContent=`${R.length} من ${(PP[tab]||[]).length}`;
+  $('ppTbl').innerHTML=`<table class="pp-t"><thead><tr><th>#</th>${C.map(c=>`<th>${c[1]}</th>`).join('')}${tab==='accounts'?'<th></th>':''}</tr></thead><tbody>${R.slice(0,300).map((r,i)=>`<tr><td>${i+1}</td>${C.map(c=>`<td>${esc(String(c[2]?c[2](r[c[0]]):(r[c[0]]??'—')))}</td>`).join('')}${tab==='accounts'?`<td><button class="pp-del" data-acc="${r.id}">حذف</button></td>`:''}</tr>`).join('')}</tbody></table>${R.length>300?'<p class="hint">يظهر أول 300 — التنزيل يشمل الكل</p>':''}`}
+async function load(){if(!ADM)return;$('ppTbl').innerHTML='<p class="hint">جارِ التحميل…</p>';try{PP=await rpc('rw_admin_people',{p_pin:ADM});draw()}catch(e){$('ppTbl').innerHTML=`<p class="hint">${esc(em(e))}</p>`}}
+function save(name,blob){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},2000)}
+const stamp=()=>new Date().toISOString().slice(0,10);
+function excel(){const C=COLS[tab],R=rows();const q=v=>'"'+String(v??'').replace(/"/g,'""')+'"';
+  const csv='﻿'+[C.map(c=>q(c[1])).join(','),...R.map(r=>C.map(c=>q(c[2]?c[2](r[c[0]]):(r[c[0]]??''))).join(','))].join('\r\n');
+  save(`موظف-الصحة-${TITLES[tab]}-${stamp()}.csv`,new Blob([csv],{type:'text/csv;charset=utf-8'}));toast('تم التنزيل — يفتح بـ Excel ✓')}
+function word(){const C=COLS[tab],R=rows();
+  const html=`<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word"><head><meta charset="utf-8"><title>${TITLES[tab]}</title><style>body{font-family:Arial;direction:rtl}table{border-collapse:collapse;width:100%}th,td{border:1px solid #999;padding:4px 6px;font-size:11pt;text-align:right}th{background:#0a7a59;color:#fff}</style></head><body dir="rtl"><h2>«موظف الصحة» — ${TITLES[tab]}</h2><p>تاريخ الاستخراج: ${stamp()} · العدد: ${R.length} · سرّي — للمدير فقط</p><table><tr><th>#</th>${C.map(c=>`<th>${c[1]}</th>`).join('')}</tr>${R.map((r,i)=>`<tr><td>${i+1}</td>${C.map(c=>`<td>${esc(String(c[2]?c[2](r[c[0]]):(r[c[0]]??'')))}</td>`).join('')}</tr>`).join('')}</table></body></html>`;
+  save(`موظف-الصحة-${TITLES[tab]}-${stamp()}.doc`,new Blob(['﻿'+html],{type:'application/msword'}));toast('تم التنزيل — يفتح بـ Word ✓')}
+document.addEventListener('click',async e=>{const t=e.target;
+  const b=t.closest('[data-pt]');if(b){tab=b.dataset.pt;draw();return}
+  if(t.closest('#ppXls'))excel();if(t.closest('#ppDoc'))word();if(t.closest('#ppRe'))load();
+  const d=t.closest('[data-acc]');if(d){if(!d.dataset.c){d.dataset.c=1;d.textContent='تأكيد الحذف';return}try{await rpc('rw_admin_del_account',{p_pin:ADM,p_id:d.dataset.acc});toast('تم حذف الحساب');load()}catch(err){toast(em(err))}}});
+document.addEventListener('input',e=>{if(e.target.id==='ppQ')draw()});
+{const _la=loadAdmin;loadAdmin=async function(){await _la();load()}}
+})();
+
+/* ===== live notices (admin → everyone) with chime ===== */
+(function(){
+let AC=null;const unlock=()=>{try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();if(AC.state==='suspended')AC.resume()}catch(_){}};
+['pointerdown','touchstart','keydown'].forEach(ev=>addEventListener(ev,unlock,{passive:true}));
+function chime(){try{if(!AC)return;if(AC.state==='suspended')AC.resume();const t0=AC.currentTime+.02;[[784,0],[988,.12],[1175,.24],[1568,.38]].forEach(([f,d])=>{const o=AC.createOscillator(),g=AC.createGain();o.type='sine';o.frequency.value=f;g.gain.setValueAtTime(0,t0+d);g.gain.linearRampToValueAtTime(.18,t0+d+.02);g.gain.exponentialRampToValueAtTime(.0005,t0+d+.9);o.connect(g).connect(AC.destination);o.start(t0+d);o.stop(t0+d+1)})}catch(_){}}
+document.body.insertAdjacentHTML('beforeend','<div class="ntf" id="ntf" role="alert" hidden><span class="ntf-i">🔔</span><div><b id="ntfT"></b><small id="ntfB"></small></div><button id="ntfX" aria-label="إغلاق">✕</button></div>');
+let link=null,hideT=null;
+function show(t,b,l){$('ntfT').textContent=t;$('ntfB').textContent=b||'';link=l||null;const n=$('ntf');n.hidden=false;n.classList.remove('in');void n.offsetWidth;n.classList.add('in');chime();try{navigator.vibrate&&navigator.vibrate([60,40,60])}catch(_){}clearTimeout(hideT);hideT=setTimeout(()=>n.classList.remove('in'),9000)}
+$('ntf').addEventListener('click',e=>{if(e.target.closest('#ntfX')){$('ntf').classList.remove('in');return}$('ntf').classList.remove('in');if(link){if(/^https?:/.test(link))open(link,'_blank');else location.hash=link.replace(/^#/,'')}});
+window.showNotice=show;
+function check(c){const n=(c||{}).notice;if(!n||!n.id||window.ADMONLY)return;const seen=+ls('rw-notice')||0;if(n.id<=seen)return;if(Date.now()-n.id>5*864e5){ls('rw-notice',String(n.id));return}ls('rw-notice',String(n.id));setTimeout(()=>show(n.t||'📣 إشعار جديد',n.b,n.l),1200)}
+{const _a=applyCfg;applyCfg=function(c){_a(c);try{check(c)}catch(_){}}}
+check(CFG);
+let lastNews=ls('rw-lastnews');
+async function poll(){if(document.hidden)return;try{const c=await rpc('rw_get_config');if(c&&typeof c==='object'){const s=JSON.stringify(c);if(s!==ls('rw-cfg')){CFG=c;ls('rw-cfg',s);applyCfg(CFG)}}}catch(_){}try{const r=await rpc('rw_get_news');if(Array.isArray(r)&&r.length){NEWS=r;try{renderNews()}catch(_){}}const top=(r||[])[0];if(top){const k=String(top.id||top.t);if(lastNews&&lastNews!==k&&!window.ADMONLY)show('📰 خبر جديد',top.t,'#news');lastNews=k;ls('rw-lastnews',k)}}catch(_){}}
+setTimeout(poll,5000);setInterval(poll,90000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)poll()});
+/* admin sender */
+document.addEventListener('click',async e=>{if(!e.target.closest('#ntSend'))return;const t=$('ntT').value.trim(),b=$('ntB').value.trim(),l=$('ntL').value.trim();if(!t){toast('اكتب عنوان الإشعار');return}
+  try{const v=JSON.parse(JSON.stringify(CFG||{}));v.notice={id:Date.now(),t,b,l};await rpc('rw_admin_set_config',{p_pin:ADM,p_value:v});CFG=v;ls('rw-cfg',JSON.stringify(v));try{if(typeof ED==='object'&&ED)ED.notice=v.notice}catch(_){}
+    ['ntT','ntB','ntL'].forEach(i=>$(i).value='');toast('تم إرسال الإشعار للجميع 🔔');show(t,b,l)}catch(err){toast(em(err))}});
+})();
+
 /* ===== languages: العربية / English / کوردی ===== */
 (function(){
 const T={
@@ -3516,6 +3601,7 @@ const WN_V='2026-11-21a',WN=[
  ['🧭','شريط أقسام جديد','أيقونات ملوّنة وتفاعلية لكل الأقسام'],
  ['🔔','تنبيه استحقاقك','موعد علاوتك وترفيعك، وطلبك جاهز بضغطة، وتذكير بتقويم موبايلك'],
  ['🤖','المساعد','اسأله عن حقوقك بكلامك (قسم الدليل)'],
+ ['🔔','إشعارات فورية','أي خبر أو إعلان جديد يطلعلك فوق الشاشة مع نغمة لطيفة'],
  ['🌐','3 لغات','العربية · English · کوردی — من زر 🌐 بأعلى الصفحة'],
  ['🚨','الطوارئ الموحّد 911','اضغط ويتصل مباشرة — بقسم صحتي'],
  ['❤️','صحتي · عائلتي · حمايتي','أقسام صحية جديدة برسومات، ونصيحة اليوم، وأرقام الطوارئ'],
