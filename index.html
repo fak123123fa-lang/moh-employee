@@ -1060,6 +1060,20 @@ html.adm-only .help-bub{display:none}
 #donOv .dopts button{min-height:54px;font-size:14.5px!important;border-width:2px!important}
 #donOv .dopts button[aria-pressed=true]{background:linear-gradient(135deg,#f27aa0,#c42e63)!important;color:#fff!important;border-color:transparent!important}
 #donOv .achips button{min-height:44px;font-size:14px!important}
+/* ===== nav: spacious grid, slightly smaller ===== */
+.nav{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:10px 4px!important;overflow:visible!important;padding:12px 8px 10px!important}
+.nav button{width:auto!important;min-height:66px!important;font-size:11.5px!important;gap:6px!important}
+.nav .ic{width:44px!important;height:44px!important;border-radius:14px!important}
+.nav svg{width:22px!important;height:22px!important}
+.nav .nv-sal .ic{width:48px!important;height:48px!important}.nav .nv-sal svg{width:25px!important;height:25px!important}
+.nav.compact{display:flex!important;overflow-x:auto!important;gap:2px!important;padding:4px!important}
+.nav.compact button{flex:0 0 auto;width:54px!important;min-height:46px!important;font-size:9.5px!important}
+/* quick actions: spacious, donate highlighted */
+.qa{gap:8px!important;margin-top:14px!important}
+.qa>*{padding:10px 2px 8px!important;border-radius:18px!important}
+.qa [data-qa=give]{background:linear-gradient(160deg,#f27aa0,#c42e63)!important;color:#fff!important;border:0!important;box-shadow:0 10px 20px -10px #c42e63!important}
+.qa [data-qa=give] span{background:rgba(255,255,255,.22)!important;box-shadow:none!important}
+#v-profile .me-hero{margin-top:4px}
 </style>
 </head>
 <body>
@@ -1136,6 +1150,7 @@ html.adm-only .help-bub{display:none}
     <button data-v="health" style="--c1:#ef5b6a;--c2:#c42e3c"><span class="ic"><svg><use href="#i-heart2"/></svg></span>صحتي</button>
     <button data-v="family" style="--c1:#f5bf47;--c2:#d18a00"><span class="ic"><svg><use href="#i-family"/></svg></span>عائلتي</button>
     <button data-v="protect" style="--c1:#5aa9f0;--c2:#2463c7"><span class="ic"><svg><use href="#i-shield2"/></svg></span>حمايتي</button>
+    <button data-v="profile" style="--c1:#5aa9f0;--c2:#1f5fb8"><span class="ic"><svg><use href="#i-user"/></svg></span>ملفي</button>
     <button data-v="me" style="--c1:#9b8cf2;--c2:#5b45c9"><span class="ic"><svg><use href="#i-cal2"/></svg></span>مواعيدي</button>
     <button data-v="guide" style="--c1:#3cc3c9;--c2:#13838a"><span class="ic"><svg><use href="#i-book"/></svg></span>دليلي</button>
     <button data-v="forms" style="--c1:#f59e6b;--c2:#d9541e"><span class="ic"><svg><use href="#i-file"/></svg></span>نماذج</button>
@@ -1249,6 +1264,7 @@ html.adm-only .help-bub{display:none}
 
 
   <!-- ===== ملفي ===== -->
+  <div class="view" id="v-profile" hidden></div>
   <div class="view" id="v-me" hidden>
     <div class="me-hero" id="meHero"></div>
     <section class="card me-form" id="meForm" style="--c1:#5aa9f0;--c2:#2463c7">
@@ -1299,7 +1315,7 @@ html.adm-only .help-bub{display:none}
       <div class="tb">
         <canvas id="idCv" class="id-cv" aria-label="بطاقة الهوية الوظيفية"></canvas>
         <p class="hint">تُبنى من بيانات «ملفي» وقسم الراتب — عدّلها هناك وتتحدث هنا تلقائياً.</p>
-        <div class="acts" style="padding:0"><button class="btn pri" id="idShare">مشاركة</button><button class="btn" id="idSave">حفظ صورة</button><button class="btn" onclick="location.hash='me'">تعديل بياناتي</button></div>
+        <div class="acts" style="padding:0"><button class="btn pri" id="idShare">مشاركة</button><button class="btn" id="idSave">حفظ صورة</button><button class="btn" onclick="location.hash='profile'">تعديل بياناتي</button></div>
       </div>
     </details>
     <details class="tool" id="cmeTool" style="--c1:#3cc3c9;--c2:#13838a">
@@ -2167,12 +2183,13 @@ try{const m=sessionStorage.getItem('rw-toast');if(m){sessionStorage.removeItem('
 drawAcctBtn();loadRatings();loadNews();
 
 /* ---- views / routing ---- */
-const VIEWS=['salary','health','family','protect','me','tools','forms','guide','news','admin'];
+const VIEWS=['salary','profile','health','family','protect','me','tools','forms','guide','news','admin'];
 function show(v){if(window.ADMONLY)v='admin';if(!VIEWS.includes(v))v='salary';
   if(v==='tools')v='me';
   for(const x of VIEWS)$('v-'+x).hidden=!(x===v||(v==='me'&&x==='tools'));
   document.querySelectorAll('#nav button').forEach(b=>b.setAttribute('aria-current',b.dataset.v===v?'page':'false'));
   document.querySelector('.dock').classList.toggle('mini',v!=='salary');
+  if(v==='profile')renderMe();
   if(v==='me'){renderMe();renderLv();renderSh();renderLn();renderPension()}if(v==='forms')drawFT();if(v==='guide')renderFaq();
   document.body.classList.toggle('adm',v==='admin');if(v==='admin')loadAdmin();
   if(v==='news'){renderPay();renderNews();X.seen=(NEWS[0]||{}).t||'';saveX();$('ndot').style.display='none'}
@@ -3389,7 +3406,7 @@ function icsFor(o){const pad=n=>String(n).padStart(2,'0'),D=d=>`${d.getFullYear(
   if(o.allow)L.push(...ev('allow',o.allow.due,'📈 استحقاق العلاوة السنوية','قدّم طلب العلاوة'));
   if(o.promo)L.push(...ev('promo',o.promo.due,`⬆️ استحقاق الترفيع للدرجة ${GN[st.grade-1]}`,'قدّم طلب الترفيع'));
   L.push('END:VCALENDAR');return L.join('\r\n')}
-function addToCal(){const o=dues();if(!o.allow&&!o.promo){location.hash='me';toast('أدخل تاريخ آخر علاوة وآخر ترفيع أولاً');return}
+function addToCal(){const o=dues();if(!o.allow&&!o.promo){location.hash='profile';toast('أدخل تاريخ آخر علاوة وآخر ترفيع أولاً');return}
   const blob=new Blob([icsFor(o)],{type:'text/calendar;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='استحقاقاتي-موظف-الصحة.ics';document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},2000);
   toast('افتح الملف واضغط «إضافة» — يذكّرك التقويم قبل شهر وقبل يوم 📅')}
 async function askNotif(){if(!('Notification' in window)){toast('جهازك لا يدعم التنبيهات — استخدم «أضف للتقويم»');return}
@@ -3408,7 +3425,7 @@ function drawDue(){const el=$('dueCard');if(!el)return;const o=dues(),has=o.allo
   el.className='due-c'+(hot?' hot':'');
   el.innerHTML=`<span class="dc-ic">${hot?'⏰':'🗓️'}</span><div class="dc-b"><b>${hot?'استحقاقك قريب!':'استحقاقاتك القادمة'}</b>${parts.join('')}<div class="dc-acts">${fi!=null&&fi>=0?`<button class="btn pri" data-dc="form" data-fi="${fi}" data-fv='${esc(JSON.stringify(fv))}'>📝 جهّز طلبك</button>`:''}<button class="btn" data-dc="cal">📅 أضف للتقويم</button>${'Notification' in window&&Notification.permission!=='granted'?'<button class="btn" data-dc="notif">🔔 ذكّرني</button>':''}</div></div>`}
 document.addEventListener('click',e=>{const b=e.target.closest('[data-dc]');if(!b)return;const k=b.dataset.dc;
-  if(k==='me')location.hash='me';else if(k==='cal')addToCal();else if(k==='notif')askNotif();else if(k==='form'){let v={};try{v=JSON.parse(b.dataset.fv)}catch(_){}openForm(+b.dataset.fi,v)}});
+  if(k==='me')location.hash='profile';else if(k==='cal')addToCal();else if(k==='notif')askNotif();else if(k==='form'){let v={};try{v=JSON.parse(b.dataset.fv)}catch(_){}openForm(+b.dataset.fi,v)}});
 {const _rm=renderMe;renderMe=function(){_rm();try{drawDue()}catch(_){}}}
 {const _c6=calc;calc=function(){_c6();try{drawDue()}catch(_){}}}
 drawDue();setTimeout(()=>checkDueNotif(false),4000);
@@ -3489,6 +3506,11 @@ $('admTk').addEventListener('click',async e=>{const b=e.target.closest('[data-ts
 {const _la=loadAdmin;loadAdmin=async function(){await _la();loadInsights();loadAdmTk()}}
 
 window.openTicket=openTicket;
+
+/* profile as its own section */
+$('v-profile').append($('meHero'),$('meForm'));$('meForm').classList.remove('closed');
+{const nav=$('nav'),ord=['salary','profile','me','health','family','protect','guide','forms','news'];ord.forEach(v=>{const b=nav.querySelector(`[data-v="${v}"]`);if(b)nav.appendChild(b)});[...nav.querySelectorAll('button')].forEach((b,i)=>b.style.setProperty('--i',i))}
+{const _mh=$('mhEdit');}
 /* ================= batch 7 ================= */
 /* --- governorates & directorates --- */
 const GOVS=[['بغداد',['دائرة صحة بغداد / الكرخ','دائرة صحة بغداد / الرصافة','دائرة مدينة الطب']],['البصرة',['دائرة صحة البصرة']],['نينوى',['دائرة صحة نينوى']],['ذي قار',['دائرة صحة ذي قار']],['بابل',['دائرة صحة بابل']],['الديوانية',['دائرة صحة الديوانية']],['النجف الأشرف',['دائرة صحة النجف الأشرف']],['كربلاء المقدسة',['دائرة صحة كربلاء المقدسة']],['واسط',['دائرة صحة واسط']],['ميسان',['دائرة صحة ميسان']],['المثنى',['دائرة صحة المثنى']],['ديالى',['دائرة صحة ديالى']],['صلاح الدين',['دائرة صحة صلاح الدين']],['كركوك',['دائرة صحة كركوك']],['الأنبار',['دائرة صحة الأنبار']],['أربيل',['المديرية العامة لصحة أربيل (إقليم كوردستان)']],['السليمانية',['المديرية العامة لصحة السليمانية (إقليم كوردستان)']],['دهوك',['المديرية العامة لصحة دهوك (إقليم كوردستان)']],['حلبجة',['مديرية صحة حلبجة (إقليم كوردستان)']],['مركز الوزارة',['ديوان وزارة الصحة','دائرة أو هيئة مركزية تابعة للوزارة']]];
@@ -3515,7 +3537,7 @@ function drawHero(){const m=X.me,o=dues(),g=GROUPS[st.g],s=g&&g.s[st.s];const nm
   <div class="mh-cs">${chip('📍',m.gov)}${chip('🏛️',m.dir)}${chip('🏥',m.place||m.ptype)}${chip('🎓',`الدرجة ${st.grade} · المرحلة ${st.step}`)}${o.svc!=null?chip('⏳','خدمة '+ym(o.svc)):''}</div>
   <div class="mh-p"><span>اكتمال الملف</span><i><b style="width:${pct}%"></b></i><em>${pct}%</em></div>`;
   $('mhEdit').onclick=()=>{$('meForm').classList.toggle('closed');drawHero();if(!$('meForm').classList.contains('closed'))$('meForm').scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'})}}
-if(X.me.name&&X.me.hire)$('meForm').classList.add('closed');
+
 {const _rm3=renderMe;renderMe=function(){_rm3();try{drawHero()}catch(_){}}}drawHero();
 
 /* --- nav tap shows its content directly --- */
@@ -3554,7 +3576,7 @@ document.addEventListener('click',e=>{if(e.target.closest('#ntSend')){const t=$(
 /* --- engagement: streak + achievements --- */
 (function(){const k=iso(today());let s={};try{s=JSON.parse(ls('rw-streak')||'{}')}catch(_){}
   if(s.d!==k){const y=iso(new Date(today().getTime()-864e5));s.n=s.d===y?(s.n||0)+1:1;s.best=Math.max(s.best||0,s.n);s.d=k;s.total=(s.total||0)+1;ls('rw-streak',JSON.stringify(s))}window.STREAK=s})();
-const ACH=[['profile','👤','أكمل ملفك',()=>X.me.name&&X.me.hire&&X.me.gov,()=>location.hash='me'],['rate','⭐','قيّم التطبيق',()=>!!ls('rw-rated'),()=>openRC()],['share','📤','شارك زميل',()=>!!ls('rw-shared'),()=>$('shareApp').click()],['install','📲','ثبّت التطبيق',()=>standalone,()=>$('install').click()],['push','🔔','فعّل الإشعارات',()=>pushOn(),()=>enablePush()],['health','❤️','زر «صحتي»',()=>!!ls('rw-new-health'),()=>location.hash='health']];
+const ACH=[['profile','👤','أكمل ملفك',()=>X.me.name&&X.me.hire&&X.me.gov,()=>location.hash='profile'],['rate','⭐','قيّم التطبيق',()=>!!ls('rw-rated'),()=>openRC()],['share','📤','شارك زميل',()=>!!ls('rw-shared'),()=>$('shareApp').click()],['install','📲','ثبّت التطبيق',()=>standalone,()=>$('install').click()],['push','🔔','فعّل الإشعارات',()=>pushOn(),()=>enablePush()],['health','❤️','زر «صحتي»',()=>!!ls('rw-new-health'),()=>location.hash='health']];
 function drawEng(){const s=window.STREAK||{n:1},done=ACH.filter(a=>{try{return a[3]()}catch(_){return false}}).length;
   $('eng').innerHTML=`<div class="eg-top"><div class="eg-f"><b>🔥 ${s.n}</b><small>${s.n>1?'أيام متتالية':'يوم'}</small></div><div class="eg-t"><b>${done===ACH.length?'🏆 أكملت كل الإنجازات!':`إنجازاتك ${done} من ${ACH.length}`}</b><i><em style="width:${done/ACH.length*100}%"></em></i><small>${s.n>=7?'ممتاز! استمر 💪':'افتح التطبيق كل يوم وكمّل إنجازاتك'}</small></div></div>
   <div class="eg-a">${ACH.map((a,i)=>{let d=false;try{d=a[3]()}catch(_){}return `<button class="${d?'ok':''}" data-ach="${i}"><i>${d?'✅':a[1]}</i><span>${a[2]}</span></button>`}).join('')}</div>`}
