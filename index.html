@@ -960,6 +960,8 @@ html.lang-en body{font-family:"IBM Plex Sans Arabic",system-ui,-apple-system,"Se
 @keyframes ntfR{0%,100%{transform:rotate(0)}20%{transform:rotate(-14deg)}40%{transform:rotate(12deg)}60%{transform:rotate(-8deg)}80%{transform:rotate(5deg)}}
 .ntf div{flex:1;min-width:0}.ntf b{display:block;font-size:14.5px}.ntf small{display:block;font-size:12.5px;color:var(--mute);line-height:1.5}
 .ntf button{flex:none;width:30px;height:30px;border-radius:50%;border:0;background:var(--bg);color:var(--mute);cursor:pointer}
+.nav{transition:none!important}.nav button,.nav .ic{transition:transform .2s!important}
+html{overflow-anchor:none}
 </style>
 </head>
 <body>
@@ -3480,7 +3482,9 @@ $('tipDay').innerHTML=`<span class="ti">${ic}</span><div style="flex:1;min-width
 $('tipDay').onclick=()=>{location.hash=go};
 $('tipBig').innerHTML=`<span class="ti">${ic}</span><div><b>💡 نصيحة اليوم</b><span>${t}</span></div>`;
 const nav=$('nav');let lastC=false,navTop=0;const mt=()=>{if(!nav.classList.contains('compact')){const r=nav.getBoundingClientRect();navTop=r.top+scrollY}};mt();addEventListener('resize',mt);
-addEventListener('scroll',()=>{const c=scrollY>navTop+80;if(c!==lastC){lastC=c;nav.classList.toggle('compact',c)}},{passive:true});
+let navFullH=0;const navSp=document.createElement('div');navSp.style.cssText='height:0;margin:0;padding:0';navSp.setAttribute('aria-hidden','true');nav.after(navSp);
+function setCompact(c){if(c===lastC)return;if(c){const r0=nav.getBoundingClientRect().height;nav.classList.add('compact');const d=Math.max(0,r0-nav.getBoundingClientRect().height);navSp.style.height=d+'px'}else{nav.classList.remove('compact');navSp.style.height='0px'}lastC=c}
+let sr=0;addEventListener('scroll',()=>{if(sr)return;sr=requestAnimationFrame(()=>{sr=0;const y=scrollY;if(!lastC&&y>navTop+120)setCompact(true);else if(lastC&&y<navTop+30)setCompact(false)})},{passive:true});
 })();
 
 /* ===== image banner carousel (admin managed) ===== */
