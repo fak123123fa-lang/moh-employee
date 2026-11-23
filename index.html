@@ -1203,6 +1203,21 @@ footer{padding:10px 8px 6px!important}
 footer .dua{font-size:13px!important;margin:10px auto 4px!important;padding:4px 8px!important}
 footer .flink{display:inline-flex!important;align-items:center;margin:0 2px 6px!important;min-height:30px!important;padding:0 10px;border-radius:999px;border:1px solid var(--line)!important;background:var(--card)!important;font-size:11px!important;text-decoration:none!important;color:var(--mute)!important}
 footer .flink.fl-upd{color:var(--acc)!important;border-color:color-mix(in srgb,var(--acc) 40%,var(--line))!important}
+/* ===== slim floating net bar ===== */
+.dock{left:10px!important;right:10px!important;bottom:calc(8px + env(safe-area-inset-bottom))!important;padding:6px 6px 6px 14px!important;border-radius:18px!important;min-height:0!important;gap:8px!important;box-shadow:0 10px 26px -10px rgba(7,70,52,.65),inset 0 1px 0 rgba(255,255,255,.18)!important;max-width:840px;margin:0 auto}
+.dock .dnet{display:flex;align-items:baseline;gap:8px;min-width:0}
+.dock .dnet br{display:none}
+.dock .dnet span{font-size:11.5px!important;opacity:.85;font-weight:600}
+.dock .dnet b{font-size:19px!important;letter-spacing:.2px}
+.dock .dact{gap:6px!important}
+.dock .da{width:36px!important;height:36px!important;border-radius:11px!important}
+.dock .da small{display:none!important}
+.dock .da svg{width:18px!important;height:18px!important}
+.dock #toSlip{min-height:36px!important;padding:0 12px!important;font-size:12.5px!important;border-radius:11px!important}
+.dock.mini .da{width:auto!important;padding:0 14px!important}.dock.mini .da small{display:inline!important;font-size:12.5px}
+body{padding-bottom:calc(72px + env(safe-area-inset-bottom))!important}
+.help-bub{bottom:calc(70px + env(safe-area-inset-bottom));touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab;-webkit-touch-callout:none}
+.help-bub.drag{cursor:grabbing;animation:none!important;transform:scale(1.12);box-shadow:0 14px 28px -8px #b42318!important;transition:transform .12s}
 </style>
 </head>
 <body>
@@ -3674,6 +3689,23 @@ $('admTk').addEventListener('click',async e=>{const b=e.target.closest('[data-ts
 {const _la=loadAdmin;loadAdmin=async function(){await _la();loadInsights();loadAdmTk()}}
 
 window.openTicket=openTicket;
+/* draggable help bubble — stays where the user leaves it */
+(function(){const b=$('helpBub');if(!b)return;const K='rw-help-pos';
+  const place=(xp,yp)=>{const w=b.offsetWidth||40,h=b.offsetHeight||40,W=innerWidth,H=innerHeight;
+    const x=Math.max(6,Math.min(W-w-6,xp*W)),y=Math.max(6,Math.min(H-h-6,yp*H));
+    b.style.left=x+'px';b.style.top=y+'px';b.style.right='auto';b.style.bottom='auto'};
+  try{const p=JSON.parse(ls(K)||'null');if(p&&isFinite(p.x)&&isFinite(p.y))requestAnimationFrame(()=>place(p.x,p.y))}catch(_){}
+  let st=null,moved=false;
+  b.addEventListener('pointerdown',e=>{const r=b.getBoundingClientRect();st={x:e.clientX,y:e.clientY,ox:e.clientX-r.left,oy:e.clientY-r.top,id:e.pointerId};moved=false});
+  addEventListener('pointermove',e=>{if(!st||e.pointerId!==st.id)return;if(!moved&&Math.hypot(e.clientX-st.x,e.clientY-st.y)<8)return;
+    if(!moved){moved=true;b.classList.add('drag');try{b.setPointerCapture(e.pointerId)}catch(_){}try{navigator.vibrate&&navigator.vibrate(8)}catch(_){}}
+    e.preventDefault();place((e.clientX-st.ox)/innerWidth,(e.clientY-st.oy)/innerHeight)},{passive:false});
+  const end=e=>{if(!st)return;st=null;if(moved){b.classList.remove('drag');const r=b.getBoundingClientRect();ls(K,JSON.stringify({x:r.left/innerWidth,y:r.top/innerHeight}))}};
+  addEventListener('pointerup',end);addEventListener('pointercancel',end);
+  b.addEventListener('click',e=>{if(moved){e.preventDefault();e.stopPropagation();moved=false}},true);
+  b.addEventListener('contextmenu',e=>e.preventDefault());
+  addEventListener('resize',()=>{try{const p=JSON.parse(ls(K)||'null');if(p)place(p.x,p.y)}catch(_){}});
+})();
 /* ===== quick allowance/promotion calculator (isolated) ===== */
 (function(){
 const SRC={min:['الوزير أو من بدرجته',1],pm:['رئيس مجلس الوزراء',6],oth:['جهة أخرى',1]};
