@@ -862,7 +862,7 @@ input.wh-hid{position:absolute!important;opacity:0!important;pointer-events:none
 .bnr-tr{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;border-radius:18px;box-shadow:0 10px 24px -12px rgba(0,0,0,.35)}
 .bnr-tr::-webkit-scrollbar{display:none}
 .bnr-s{position:relative;flex:0 0 100%;scroll-snap-align:start;aspect-ratio:16/7;overflow:hidden;display:block;text-decoration:none;color:#fff;background:#0f1714}
-.bnr-s img{width:100%;height:100%;object-fit:cover;display:block}
+.bnr-s img,.bnr-s video{width:100%;height:100%;object-fit:cover;display:block}
 .bnr-s.txt{background:radial-gradient(circle at 15% 120%,rgba(255,255,255,.25),transparent 45%),linear-gradient(135deg,color-mix(in srgb,var(--bc) 70%,#fff),var(--bc));display:flex;align-items:center}
 .bnr-tx{padding:14px 18px;position:relative;z-index:1}
 .bnr-tx b{display:block;font-size:18px;line-height:1.35;text-shadow:0 2px 8px rgba(0,0,0,.25)}
@@ -875,7 +875,7 @@ input.wh-hid{position:absolute!important;opacity:0!important;pointer-events:none
 /* admin banners */
 .ab-i{display:flex;align-items:center;gap:10px;padding:8px;margin-top:6px;border-radius:12px;border:1px solid var(--line);background:var(--bg)}
 .ab-i.off{opacity:.5}
-.ab-i img,.ab-c{flex:none;width:78px;height:34px;border-radius:8px;object-fit:cover;display:grid;place-items:center;color:#fff;font-size:11px;font-weight:700}
+.ab-i img,.ab-i video,.ab-c{flex:none;width:78px;height:34px;border-radius:8px;object-fit:cover;display:grid;place-items:center;color:#fff;font-size:11px;font-weight:700}
 .ab-i>div{flex:1;min-width:0}.ab-i b{display:block;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ab-i small{font-size:11px;color:var(--mute);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ab-i{flex-wrap:wrap}.ab-i .lbtn{width:100%;justify-content:flex-start;gap:4px}.ab-i .lbtn button{padding:4px 10px;font-size:12px}
 #abPrev img{width:100%;border-radius:12px;margin-top:8px;aspect-ratio:16/7;object-fit:cover}
@@ -1140,7 +1140,7 @@ html.adm-only .help-bub{display:none}
 .qc-act{display:flex;gap:8px;margin-top:12px}
 .qc-act .btn{flex:1;justify-content:center}
 @media (prefers-reduced-motion:reduce){.qcb::after{animation:none}}
-body:has(#qcOv.on) #helpBub{display:none}
+body:has(.ov.on) #helpBub{display:none}
 #qcOv .qc-sh .disc{color:var(--mute);opacity:1;text-shadow:none;margin:12px 2px 0;line-height:1.6}
 .lay-off{display:none!important}
 #eLayW h4 small{font-size:12px}
@@ -4188,7 +4188,7 @@ let sr=0;addEventListener('scroll',()=>{if(sr)return;sr=requestAnimationFrame(()
 let BN=[];try{BN=JSON.parse(ls('rw-bnr')||'[]')}catch(_){}
 let bi=0,bt=null,paused=false;
 function draw(){const w=$('bnr');if(!w)return;w.hidden=!BN.length;if(!BN.length)return;
-  $('bnrTr').innerHTML=BN.map((b,i)=>{const inner=`${b.img?`<img src="${b.img}" alt="${esc(b.title||'إعلان')}" loading="${i?'lazy':'eager'}">`:''}${b.title||b.sub?`<div class="bnr-tx${b.img?' bov':''}"><b>${esc(b.title||'')}</b>${b.sub?`<small>${esc(b.sub)}</small>`:''}</div>`:''}`;
+  $('bnrTr').innerHTML=BN.map((b,i)=>{const vid=b.img&&/\.(mp4|webm)(\?|#|$)/i.test(b.img);const inner=`${vid?`<video src="${esc(b.img)}" poster="${esc(b.img.replace(/\.(mp4|webm)/i,'.jpg'))}" autoplay muted loop playsinline preload="metadata" aria-label="${esc(b.title||'إعلان فيديو')}"></video>`:b.img?`<img src="${b.img}" alt="${esc(b.title||'إعلان')}" loading="${i?'lazy':'eager'}">`:''}${b.title||b.sub?`<div class="bnr-tx${b.img?' bov':''}"><b>${esc(b.title||'')}</b>${b.sub?`<small>${esc(b.sub)}</small>`:''}</div>`:''}`;
     const st=b.img?'':`style="--bc:${esc(b.color||'#0a7a59')}"`;return b.link?`<a class="bnr-s${b.img?'':' txt'}" ${st} href="${esc(b.link)}" ${/^https?:/.test(b.link)?'target="_blank" rel="noopener"':''}>${inner}</a>`:`<div class="bnr-s${b.img?'':' txt'}" ${st}>${inner}</div>`}).join('');
   $('bnrDots').innerHTML=BN.length>1?BN.map((_,i)=>`<i class="${i===bi?'on':''}"></i>`).join(''):'';bi=Math.min(bi,BN.length-1);go(bi,false);auto()}
 function go(i,sm){const tr=$('bnrTr');if(!tr||!BN.length)return;bi=(i+BN.length)%BN.length;const w=tr.clientWidth;tr.scrollTo({left:-bi*w*(getComputedStyle(tr).direction==='rtl'?1:-1),behavior:sm&&!reduce?'smooth':'auto'});dots()}
@@ -4202,7 +4202,7 @@ async function load(){try{const r=await rpc('rw_get_banners');if(Array.isArray(r
 draw();load();window.reloadBanners=load;
 /* admin */
 async function admDraw(){if(!ADM||!$('admBnr'))return;try{const l=await rpc('rw_admin_banners',{p_pin:ADM});
-  $('admBnr').innerHTML=(l||[]).length?l.map((b,i)=>`<div class="ab-i ${b.active?'':'off'}">${b.img?`<img src="${b.img}">`:`<span class="ab-c" style="background:${esc(b.color||'#0a7a59')}">نص</span>`}<div><b>${esc(b.title||'(بدون عنوان)')}</b><small>${esc(b.sub||'')}${b.link?' · 🔗':''}</small></div><span class="lbtn"><button data-bm="${b.id}" data-d="-1" ${i?'':'disabled'}>▲</button><button data-bm="${b.id}" data-d="1" ${i<l.length-1?'':'disabled'}>▼</button><button data-bh="${b.id}" data-a="${!b.active}">${b.active?'إخفاء':'إظهار'}</button><button class="del" data-bd="${b.id}">حذف</button></span></div>`).join(''):'<p class="hint">لا توجد إعلانات — أضف أول صورة.</p>';
+  $('admBnr').innerHTML=(l||[]).length?l.map((b,i)=>`<div class="ab-i ${b.active?'':'off'}">${b.img?(/\.(mp4|webm)/i.test(b.img)?`<video src="${esc(b.img)}" muted playsinline preload="metadata"></video>`:`<img src="${b.img}">`):`<span class="ab-c" style="background:${esc(b.color||'#0a7a59')}">نص</span>`}<div><b>${esc(b.title||'(بدون عنوان)')}</b><small>${esc(b.sub||'')}${b.link?' · 🔗':''}</small></div><span class="lbtn"><button data-bm="${b.id}" data-d="-1" ${i?'':'disabled'}>▲</button><button data-bm="${b.id}" data-d="1" ${i<l.length-1?'':'disabled'}>▼</button><button data-bh="${b.id}" data-a="${!b.active}">${b.active?'إخفاء':'إظهار'}</button><button class="del" data-bd="${b.id}">حذف</button></span></div>`).join(''):'<p class="hint">لا توجد إعلانات — أضف أول صورة.</p>';
   admDraw.list=l||[]}catch(_){}}
 function resize(file){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const W=Math.min(1200,im.width),H=Math.round(im.height*W/im.width),c=document.createElement('canvas');c.width=W;c.height=H;c.getContext('2d').drawImage(im,0,0,W,H);let q=.85,d=c.toDataURL('image/jpeg',q);while(d.length>650000&&q>.4){q-=.1;d=c.toDataURL('image/jpeg',q)}res(d)};im.onerror=rej;im.src=r.result};r.onerror=rej;r.readAsDataURL(file)})}
 let PIMG=null;
