@@ -1142,6 +1142,22 @@ html.adm-only .help-bub{display:none}
 @media (prefers-reduced-motion:reduce){.qcb::after{animation:none}}
 body:has(#qcOv.on) #helpBub{display:none}
 #qcOv .qc-sh .disc{color:var(--mute);opacity:1;text-shadow:none;margin:12px 2px 0;line-height:1.6}
+.lay-off{display:none!important}
+#eLayW h4 small{font-size:12px}
+.ly-act{display:flex;gap:8px;margin:6px 0 10px}.ly-act .btn{flex:1;justify-content:center;min-height:42px;font-size:13px}
+.ly-h{margin:12px 0 6px;font-weight:800;font-size:13.5px}.ly-h small{font-weight:600;color:var(--mute);font-size:11.5px}
+.ly-r{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:7px 10px;margin-bottom:6px}
+.ly-r.off{opacity:.5}
+.ly-r b{flex:1;font-size:13.5px}
+.ly-n{width:24px;height:24px;border-radius:50%;background:var(--bg);display:grid;place-items:center;font-size:12px;font-weight:800;flex:none}
+.ly-r button{width:34px;height:34px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer;font-size:13px;flex:none}
+.ly-r button:disabled{opacity:.3}
+.ly-sw{position:relative;width:44px;height:26px;flex:none;cursor:pointer}
+.ly-sw input{position:absolute;opacity:0;inset:0;margin:0}
+.ly-sw i{position:absolute;inset:0;border-radius:999px;background:#c9d3d0;transition:background .15s}
+.ly-sw i::after{content:"";position:absolute;top:3px;right:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform .15s;box-shadow:0 1px 3px rgba(0,0,0,.25)}
+.ly-sw input:checked+i{background:#2bb58a}
+.ly-sw input:checked+i::after{transform:translateX(-18px)}
 </style>
 </head>
 <body>
@@ -3691,6 +3707,47 @@ $('nav').addEventListener('click',e=>{const b=e.target.closest('[data-v="donate"
 /* profile as its own section */
 $('v-profile').append($('meHero'),$('meForm'));$('meForm').classList.remove('closed');
 {const nav=$('nav'),ord=['salary','profile','me','leave','health','family','protect','guide','forms','news','donate'];ord.forEach(v=>{const b=nav.querySelector(`[data-v="${v}"]`);if(b)nav.appendChild(b)});[...nav.querySelectorAll('button')].forEach((b,i)=>b.style.setProperty('--i',i))}
+/* ===== admin-controlled home layout (order + show/hide) ===== */
+const LAY_NAV=[['salary','الراتب'],['profile','ملفي'],['me','مواعيدي'],['leave','إجازاتي'],['health','صحتي'],['family','عائلتي'],['protect','حمايتي'],['guide','دليلي'],['forms','نماذج'],['news','الأخبار'],['donate','تبرّع']];
+const LAY_TOP=[['qc','زر «احسب علاوتك أو ترفيعك»','#qcBtn'],['strip','شريط يوم الراتب والتنبيه','#strip'],['bnr','البنر الإعلاني (الصور)','#bnr'],['custom','الأقسام المخصّصة','#custom'],['qa','الأزرار السريعة (قيّم، تبرّع، شارك…)','#qa'],['rstrip','شريط «قيّم التطبيق»','#rstrip']];
+const LAY_IN=[['due','بطاقة «فعّل تنبيه استحقاقك»','#dueCard'],['tip','نصيحة اليوم','#tipDay'],['eng','الأيام المتتالية والإنجازات','#eng']];
+const LAY_OFFONLY=[['sadaqa','بطاقة «صدقة من راتبك»','#sadaqa'],['fut','«مستقبل راتبك» والمقارنة','#fcSeg,#futCard,#cmpCard']];
+const LAY_SUGGEST={nav:LAY_NAV.map(x=>x[0]),navOff:[],top:['qc','strip','bnr','custom','qa','rstrip'],in:['due','tip','eng'],off:['rstrip','eng','sadaqa']};
+const layOrd=(want,def)=>{const k=def.map(x=>x[0]);return [...(want||[]).filter(x=>k.includes(x)),...k.filter(x=>!(want||[]).includes(x))]};
+function applyLayout(c){const L=(c&&c.layout)||{},off=new Set(L.off||[]),navOff=new Set(L.navOff||[]);
+  try{const nav=$('nav');layOrd(L.nav,LAY_NAV).forEach(v=>{const b=nav.querySelector(`[data-v="${v}"]`);if(b){nav.appendChild(b);b.classList.toggle('lay-off',navOff.has(v))}});
+    [...nav.querySelectorAll('button')].forEach((b,i)=>b.style.setProperty('--i',i))}catch(_){}
+  const put=(list,def,anchor)=>{const a=$(anchor);if(!a)return;layOrd(list,def).forEach(k=>{const d=def.find(x=>x[0]===k);document.querySelectorAll(d[2]).forEach(e=>a.parentNode.insertBefore(e,a))})};
+  try{put(L.top,LAY_TOP,'v-salary');put(L.in,LAY_IN,'st1')}catch(_){}
+  [...LAY_TOP,...LAY_IN,...LAY_OFFONLY].forEach(([k,,s])=>document.querySelectorAll(s).forEach(e=>e.classList.toggle('lay-off',off.has(k))));
+}
+{const _ac=applyCfg;applyCfg=function(c){_ac(c);applyLayout(c)}}
+applyLayout(CFG);
+/* editor */
+let LE=null;
+function layFrom(L){L=L||{};return {nav:layOrd(L.nav,LAY_NAV),navOff:[...(L.navOff||[])],top:layOrd(L.top,LAY_TOP),in:layOrd(L.in,LAY_IN),off:[...(L.off||[])]}}
+function drawLayEd(){const box=$('eLay');if(!box||!LE)return;
+  const row=(grp,k,name,i,n,isOff,offKey)=>`<div class="ly-r${isOff?' off':''}"><span class="ly-n">${i+1}</span><b>${name}</b>
+    <button type="button" data-ly="${grp}" data-k="${k}" data-d="-1" ${i===0?'disabled':''} aria-label="لفوق">▲</button><button type="button" data-ly="${grp}" data-k="${k}" data-d="1" ${i===n-1?'disabled':''} aria-label="لجوه">▼</button>
+    <label class="ly-sw"><input type="checkbox" data-lyoff="${offKey}" data-k="${k}" ${isOff?'':'checked'}><i></i></label></div>`;
+  const nm=(def,k)=>def.find(x=>x[0]===k)[1];
+  box.innerHTML=`<p class="ly-h">أيقونات الأقسام <small>(الترتيب بالشبكة: 4 بكل سطر)</small></p>${LE.nav.map((k,i)=>row('nav',k,nm(LAY_NAV,k),i,LE.nav.length,LE.navOff.includes(k),'navOff')).join('')}
+  <p class="ly-h">أعلى الواجهة <small>(تحت الأيقونات)</small></p>${LE.top.map((k,i)=>row('top',k,nm(LAY_TOP,k),i,LE.top.length,LE.off.includes(k),'off')).join('')}
+  <p class="ly-h">بطاقات صفحة الراتب <small>(قبل الحاسبة)</small></p>${LE.in.map((k,i)=>row('in',k,nm(LAY_IN,k),i,LE.in.length,LE.off.includes(k),'off')).join('')}
+  <p class="ly-h">إظهار وإخفاء فقط</p>${LAY_OFFONLY.map(([k,n])=>`<div class="ly-r${LE.off.includes(k)?' off':''}"><span class="ly-n">•</span><b>${n}</b><label class="ly-sw"><input type="checkbox" data-lyoff="off" data-k="${k}" ${LE.off.includes(k)?'':'checked'}><i></i></label></div>`).join('')}`;
+}
+function insertLayEd(){const s=$('eSave');if(!s||$('eLayW'))return;LE=layFrom(ED.layout);
+  s.insertAdjacentHTML('beforebegin',`<div id="eLayW"><h4>🧱 ترتيب الواجهة <small style="font-weight:600;color:var(--mute)">— رتّبها بـ▲▼ وأخفِ اللي ما تريده</small></h4>
+  <div class="ly-act"><button type="button" class="btn" id="eLaySug">✨ ترتيب مقترح بدون تشتت</button><button type="button" class="btn" id="eLayDef">↺ الافتراضي</button></div><div id="eLay"></div></div>`);
+  drawLayEd();
+  $('eLay').addEventListener('click',e=>{const b=e.target.closest('[data-ly]');if(!b)return;const a=LE[b.dataset.ly],i=a.indexOf(b.dataset.k),j=i+ +b.dataset.d;if(j<0||j>=a.length)return;[a[i],a[j]]=[a[j],a[i]];drawLayEd()});
+  $('eLay').addEventListener('change',e=>{const c=e.target.closest('[data-lyoff]');if(!c)return;const a=LE[c.dataset.lyoff],k=c.dataset.k;const i=a.indexOf(k);if(c.checked){if(i>-1)a.splice(i,1)}else if(i<0)a.push(k);drawLayEd()});
+  $('eLaySug').onclick=()=>{LE=layFrom(LAY_SUGGEST);drawLayEd();toast('طبّقنا الترتيب المقترح — اضغط «حفظ ونشر» حتى يوصل للكل')};
+  $('eLayDef').onclick=()=>{LE=layFrom({});drawLayEd()};
+}
+{const _de=drawEditor;drawEditor=function(){_de();insertLayEd()}}
+{const _se=saveEditor;saveEditor=async function(){if(LE)ED.layout={nav:LE.nav,navOff:LE.navOff,top:LE.top,in:LE.in,off:LE.off};return _se()}}
+
 {const _mh=$('mhEdit');}
 /* ================= batch 7 ================= */
 /* --- governorates & directorates --- */
