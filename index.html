@@ -1272,6 +1272,14 @@ body{padding-bottom:calc(72px + env(safe-area-inset-bottom))!important}
 .thx-card{display:flex;flex-direction:column;gap:4px;padding:14px;border-radius:14px;background:linear-gradient(135deg,#fff7e6,var(--card));border:1px dashed #c98a08;text-align:center}.thx-card span{font-size:13px;color:var(--mute)}
 .pl-r{font-size:14px;margin:8px 0}.pl-bar{display:grid;grid-template-columns:28px 1fr 34px;gap:6px;align-items:center;margin:4px 0}.pl-bar i{height:12px;border-radius:6px;background:linear-gradient(90deg,#9b8cf2,#5b45c9);min-width:2px}.pl-bar small{font-size:12px;color:var(--mute)}
 .pl-t{width:100%;border-collapse:collapse;margin-top:8px;font-size:12.5px}.pl-t th,.pl-t td{border-bottom:1px solid var(--line);padding:5px;text-align:right}
+.nwr{display:flex;align-items:center;gap:8px;margin-top:10px;padding:6px 6px 6px 8px;border-radius:16px;background:var(--card);border:1px solid var(--line);box-shadow:var(--sh)}
+.nwr>b{flex:none;font-size:12px;font-weight:800;color:#3a2a00;background:#ffc857;border-radius:999px;padding:4px 10px}
+.nwr-s{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;scroll-snap-type:x proximity}.nwr-s::-webkit-scrollbar{display:none}
+.nwr-s button{flex:none;display:flex;align-items:center;gap:5px;scroll-snap-align:start;border:1px solid color-mix(in srgb,var(--c) 35%,var(--line));background:color-mix(in srgb,var(--c) 9%,var(--card));color:var(--c);border-radius:999px;padding:6px 11px;font:800 12.5px inherit;font-family:inherit;cursor:pointer}
+.nwr-s button i{font-style:normal;font-size:15px}
+:root[data-theme=dark] .nwr-s button{color:var(--ink)}
+details.tool,#oppCard{scroll-margin-top:96px}
+.go-flash{animation:goF 1.6s ease-out}@keyframes goF{0%,40%{box-shadow:0 0 0 4px #ffc857}100%{box-shadow:0 0 0 0 transparent}}
 </style>
 </head>
 <body>
@@ -1357,6 +1365,13 @@ body{padding-bottom:calc(72px + env(safe-area-inset-bottom))!important}
     <button data-v="news" style="--c1:#f27aa0;--c2:#c42e63"><span class="ic"><svg><use href="#i-bell"/></svg></span>الأخبار<i class="ndot" id="ndot"></i></button>
   </nav>
   <button class="qcb" id="qcBtn" type="button"><span class="qcb-ic">⚡</span><span class="qcb-t"><b>احسب علاوتك أو ترفيعك بسرعة</b><small>لك أو لصديقك · مع كتب الشكر والتقدير</small></span><span class="qcb-go">احسب</span></button>
+  <div class="nwr" id="newRow"><b>✨ جديد</b><div class="nwr-s">
+    <button data-go="me:vaultTool" style="--c:#5b45c9"><i>🗂️</i>إضبارتي</button>
+    <button data-go="me:salTool" style="--c:#0a7a59"><i>📒</i>راتبي ناقص؟</button>
+    <button data-go="leave:momTool" style="--c:#c42e63"><i>🤱</i>أمومتي</button>
+    <button data-go="news:oppCard" style="--c:#2463c7"><i>🎓</i>فرصتي</button>
+    <button data-go="guide:fsTool" style="--c:#13838a"><i>🧭</i>خطوتي الأولى</button>
+  </div></div>
   <div id="xHome"></div>
 
   <div class="strip" id="strip"></div>
@@ -4297,7 +4312,8 @@ new MutationObserver(ms=>{for(const m of ms)for(const n of m.addedNodes)if(n.nod
 if(!ls('rw-s5'))$('s5new').hidden=false;
 $('s5sum').addEventListener('click',e=>{const c=e.target.closest('[data-f]');ls('rw-s5','1');$('s5new').hidden=true;if(!c)return;setTimeout(()=>{const inp=$(c.dataset.f);if(!inp)return;const vc=inp.closest('.vc');if(vc){vc.classList.remove('hl');void vc.offsetWidth;vc.classList.add('hl');vc.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'})}setTimeout(()=>{try{inp.focus({preventScroll:true});inp.select()}catch(_){}},350)},90)});
 document.querySelector('#st5 .edit').addEventListener('click',()=>{ls('rw-s5','1');$('s5new').hidden=true});
-const WN_V='2026-11-23b',WN=[
+const WN_V='2026-11-23c',WN=[
+ ['✨','شريط «جديد» بالواجهة','اضغط أي ميزة جديدة وتفتحلك مباشرة'],
  ['📒','راتبي ناقص؟ وإضبارتي الرقمية','بقسم «مواعيدي»: سجّل راتبك كل شهر وينبهك إذا تأخرت علاوتك، واحفظ صور وثائقك الرسمية مرتبة'],
  ['🤱','أمومتي','بقسم «إجازاتي»: تواريخ إجازة الحمل والولادة وإجازة الأمومة'],
  ['🎓','فرصتي','بقسم «الأخبار»: دراسات عليا ودورات ومنح ويا تذكير قبل آخر موعد'],
@@ -4575,6 +4591,10 @@ function insertXEd(){const s=$('eSave');if(!s||$('eXW'))return;const c=ED||{};XE
     XE.pulse={id:XE.pulse.id||'',q:$('xpQ').value.trim(),on:$('xpOn').checked&&!!XE.pulse.id};ED.hol=XE.hol;ED.opps=XE.opps;ED.pulse=XE.pulse}
   const r=await _se2();if(push)try{sendPush(push[0],push[1],'#')}catch(_){}return r}}
 renderXHome();renderOpps();
+
+/* new-features shortcut row */
+$('newRow').addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(!b)return;const[v,id]=b.dataset.go.split(':');location.hash=v;
+  setTimeout(()=>{const t=$(id);if(!t)return;if(t.tagName==='DETAILS')t.open=true;t.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});t.classList.remove('go-flash');void t.offsetWidth;t.classList.add('go-flash')},450)});
 
 }
 </script>
