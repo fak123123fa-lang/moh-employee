@@ -1093,6 +1093,55 @@ html.adm-only .help-bub{display:none}
 .lv-rules{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
 .lv-rules div{padding:10px;border-radius:16px;background:var(--card);border:1px solid var(--line);box-shadow:var(--sh)}
 .lv-rules i{font-style:normal;font-size:20px}.lv-rules b{display:block;font-size:15px;color:var(--acc);margin-top:2px}.lv-rules span{font-size:12px;color:var(--mute);line-height:1.6}
+/* ===== quick allowance/promotion calculator ===== */
+.qcb{display:flex;align-items:center;gap:12px;width:100%;margin-top:12px;padding:12px 14px;border:0;border-radius:18px;cursor:pointer;font-family:inherit;text-align:right;color:#fff;background:linear-gradient(120deg,#6a4fe0 0%,#2463c7 55%,#0f8a92 100%);box-shadow:0 10px 24px -10px #4a3bc0;position:relative;overflow:hidden;transition:transform .12s}
+.qcb:active{transform:scale(.98)}
+.qcb::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.28) 50%,transparent 70%);transform:translateX(120%);animation:qcShine 3.6s ease-in-out infinite}
+@keyframes qcShine{0%,60%{transform:translateX(120%)}100%{transform:translateX(-120%)}}
+.qcb-ic{flex:none;width:44px;height:44px;border-radius:14px;background:rgba(255,255,255,.18);display:grid;place-items:center;font-size:24px}
+.qcb-t{flex:1;display:flex;flex-direction:column;gap:2px;min-width:0}
+.qcb-t b{font-size:15.5px;line-height:1.35}
+.qcb-t small{font-size:12px;opacity:.9}
+.qcb-go{flex:none;background:#ffc857;color:#3a2a00;font-weight:800;font-size:13px;padding:7px 12px;border-radius:999px}
+.qc-sh{text-align:right;width:min(460px,100%);padding:18px 16px 16px;position:relative}
+.qc-hd{display:flex;gap:12px;align-items:center;margin:2px 0 12px;padding-left:40px}
+.qc-hic{flex:none;width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-size:24px;background:linear-gradient(135deg,#6a4fe0,#0f8a92)}
+.qc-hd b{display:block;font-size:17px}
+.qc-hd small{display:block;font-size:12px;color:var(--mute);line-height:1.5}
+.qc-sec{background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:12px;margin-top:10px}
+.qc-st{display:flex;align-items:center;gap:8px;font-weight:800;font-size:14.5px;margin-bottom:8px}
+.qc-st i{font-style:normal;width:24px;height:24px;border-radius:50%;background:#6a4fe0;color:#fff;display:grid;place-items:center;font-size:12.5px}
+.qc-cnt{margin-inline-start:auto;font-size:12px;font-weight:700;color:#6a4fe0;background:rgba(106,79,224,.1);padding:3px 10px;border-radius:999px}
+.qc-fg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.qc-fg .full{grid-column:1/-1}
+.qc-fg label,.qc-l label{display:block;font-size:12px;color:var(--mute);margin-bottom:4px}
+.qc-sh select,.qc-sh input[type=number]{width:100%;min-height:42px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:600 14px inherit;font-family:inherit;padding:0 10px}
+.qc-note{font-size:12px;color:var(--mute);line-height:1.6;margin:0 0 8px}
+.qc-l{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px;margin-bottom:8px;display:grid;grid-template-columns:1.3fr .8fr;gap:8px;position:relative;animation:qcIn .25s ease-out}
+@keyframes qcIn{from{opacity:0;transform:translateY(6px)}}
+.qc-l .lh{grid-column:1/-1;display:flex;align-items:center;gap:8px;font-weight:800;font-size:13px}
+.qc-l .lh i{font-style:normal;width:22px;height:22px;border-radius:50%;background:#ffc857;color:#3a2a00;display:grid;place-items:center;font-size:12px}
+.qc-l .lh .bad{font-size:11px;font-weight:700;color:#c42e3c;background:rgba(196,46,60,.1);padding:2px 8px;border-radius:999px}
+.qc-l .del{margin-inline-start:auto;width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+.qc-l .full{grid-column:1/-1}
+.qc-add{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.qc-add button{border:1.5px dashed #6a4fe0;background:rgba(106,79,224,.06);color:#5b45c9;border-radius:12px;padding:8px 4px;font:800 12.5px inherit;font-family:inherit;cursor:pointer;line-height:1.3}
+.qc-add small{display:block;font-weight:600;font-size:11px;opacity:.8}
+.qc-r{border-radius:16px;padding:12px 14px;margin-top:8px;color:#fff}
+.qc-r.a{background:linear-gradient(135deg,#2bb58a,#0a7a59)}
+.qc-r.p{background:linear-gradient(135deg,#5aa9f0,#2463c7)}
+.qc-r.n{background:var(--card);color:var(--ink);border:1px solid var(--line)}
+.qc-r .t{font-size:12.5px;opacity:.92}
+.qc-r .big{font-size:22px;font-weight:800;margin:2px 0}
+.qc-r .d{font-size:13px;opacity:.95;line-height:1.6}
+.qc-r .sv{display:inline-block;margin-top:6px;background:rgba(255,255,255,.2);border-radius:999px;padding:3px 10px;font-size:12px;font-weight:700}
+.qc-r.due{box-shadow:0 0 0 3px #ffc857}
+.qc-x{font-size:12px;color:var(--mute);margin-top:8px;line-height:1.6}
+.qc-act{display:flex;gap:8px;margin-top:12px}
+.qc-act .btn{flex:1;justify-content:center}
+@media (prefers-reduced-motion:reduce){.qcb::after{animation:none}}
+body:has(#qcOv.on) #helpBub{display:none}
+#qcOv .qc-sh .disc{color:var(--mute);opacity:1;text-shadow:none;margin:12px 2px 0;line-height:1.6}
 </style>
 </head>
 <body>
@@ -1177,6 +1226,7 @@ html.adm-only .help-bub{display:none}
     <button data-v="forms" style="--c1:#f59e6b;--c2:#d9541e"><span class="ic"><svg><use href="#i-file"/></svg></span>نماذج</button>
     <button data-v="news" style="--c1:#f27aa0;--c2:#c42e63"><span class="ic"><svg><use href="#i-bell"/></svg></span>الأخبار<i class="ndot" id="ndot"></i></button>
   </nav>
+  <button class="qcb" id="qcBtn" type="button"><span class="qcb-ic">⚡</span><span class="qcb-t"><b>احسب علاوتك أو ترفيعك بسرعة</b><small>لك أو لصديقك · مع كتب الشكر والتقدير</small></span><span class="qcb-go">احسب</span></button>
 
   <div class="strip" id="strip"></div>
   <div class="bnr" id="bnr" hidden><div class="bnr-tr" id="bnrTr"></div><div class="bnr-dots" id="bnrDots"></div></div>
@@ -1661,6 +1711,24 @@ html.adm-only .help-bub{display:none}
   <button class="btn pri" id="rnCopy" style="width:100%;justify-content:center">📋 انسخ رابط التطبيق</button>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px"><button class="btn" id="rnOk">اسم أيقونتي صحيح ✓</button><button class="btn" id="rnLater">ذكّرني لاحقاً</button></div></div></div>
 <div class="ov" id="lgOv" data-noi18n><div class="isheet rcsheet lg-sh"><h3>اللغة · Language · زمان</h3><button data-lg="ar"><span>🇮🇶</span><b>العربية</b></button><button data-lg="ku"><span>☀️</span><b>کوردی (سۆرانی)</b></button><button data-lg="en"><span>🌐</span><b>English</b></button><p class="hint">Some detailed content is in Arabic only for now · هەندێک ناوەڕۆک تەنها بە عەرەبییە</p></div></div>
+<div class="ov" id="qcOv"><div class="isheet qc-sh" role="dialog" aria-label="حاسبة العلاوة والترفيع"><button class="xbtn" id="qcX" aria-label="إغلاق">✕</button>
+<div class="qc-hd"><span class="qc-hic">⚡</span><div><b>حاسبة العلاوة والترفيع</b><small>منفصلة عن ملفك — ما تنحفظ ولا تغيّر بياناتك. احسب لنفسك أو لأي زميل.</small></div></div>
+<div class="qc-sec"><div class="qc-st"><i>1</i>الدرجة والتواريخ</div>
+<div class="qc-fg">
+<div><label for="qcG">الدرجة الحالية</label><select id="qcG"></select></div>
+<div><label for="qcS">المرحلة</label><select id="qcS"></select></div>
+<div class="full"><label for="qcA">تاريخ استحقاق آخر علاوة</label><input type="date" id="qcA"></div>
+<div class="full"><label for="qcP">تاريخ آخر ترفيع (أو التعيين إذا ما ترفّعت)</label><input type="date" id="qcP"></div>
+</div></div>
+<div class="qc-sec"><div class="qc-st"><i>2</i>كتب الشكر والتقدير <span class="qc-cnt" id="qcCnt">لا يوجد</span></div>
+<p class="qc-note">كل كتاب يعطي «قدم» بالأشهر يقرّب موعدك. الكتاب اللي تاريخه قبل آخر علاوة أو ترفيع ما ينحسب لهم لأنه انصرف سابقاً.</p>
+<div id="qcList"></div>
+<div class="qc-add"><button type="button" data-add="min">+ كتاب وزير<small>شهر واحد</small></button><button type="button" data-add="pm">+ رئيس الوزراء<small>6 أشهر</small></button><button type="button" data-add="oth">+ جهة أخرى<small>تحدد الأشهر</small></button></div>
+</div>
+<div class="qc-sec"><div class="qc-st"><i>3</i>النتيجة</div><div id="qcRes"></div></div>
+<div class="qc-act"><button class="btn pri" id="qcShare" type="button">📤 شارك النتيجة</button><button class="btn" id="qcReset" type="button">↺ من جديد</button></div>
+<p class="disc">ℹ️ حساب تقديري حسب جدول قانون رواتب موظفي الدولة رقم 22 لسنة 2008. أشهر القدم لكل كتاب حسب الجهة المانحة والتعليمات النافذة — تأكد من الموارد البشرية في دائرتك.</p>
+</div></div>
 <div class="ov" id="calcOv"><div class="isheet calc-sh" data-noi18n><div class="calc-top"><b>🧮 حاسبة سريعة</b><button class="xbtn" id="calcX" style="position:static">✕</button></div>
   <div class="calc-scr"><small id="calcExp"></small><b id="calcOut">0</b></div>
   <div class="calc-k" id="calcK"></div></div></div>
@@ -3545,6 +3613,60 @@ $('admTk').addEventListener('click',async e=>{const b=e.target.closest('[data-ts
 {const _la=loadAdmin;loadAdmin=async function(){await _la();loadInsights();loadAdmTk()}}
 
 window.openTicket=openTicket;
+/* ===== quick allowance/promotion calculator (isolated) ===== */
+(function(){
+const SRC={min:['الوزير أو من بدرجته',1],pm:['رئيس مجلس الوزراء',6],oth:['جهة أخرى',1]};
+let L=[],uid=0;
+const g=$('qcG'),s=$('qcS');
+g.innerHTML=Array.from({length:10},(_,i)=>`<option value="${i+1}">الدرجة ${GN[i+1]}</option>`).join('');
+s.innerHTML=Array.from({length:STEPS},(_,i)=>`<option value="${i+1}">المرحلة ${i+1}</option>`).join('');
+function defaults(){g.value=st.grade||6;s.value=st.step||1;$('qcA').value='';$('qcP').value='';L=[];drawL();calc()}
+function drawL(){
+  $('qcCnt').textContent=L.length?`${L.length} ${L.length===1?'كتاب':L.length===2?'كتابين':'كتب'}`:'لا يوجد';
+  $('qcList').innerHTML=L.map((l,i)=>`<div class="qc-l" data-i="${l.id}"><div class="lh"><i>${i+1}</i>كتاب شكر<span class="bad" data-bad hidden></span><button type="button" class="del" aria-label="حذف الكتاب">✕</button></div>
+  <div><label>الجهة المانحة</label><select data-k="src">${Object.entries(SRC).map(([k,v])=>`<option value="${k}"${l.src===k?' selected':''}>${v[0]}</option>`).join('')}</select></div>
+  <div><label>القدم (أشهر)</label><input type="number" data-k="m" min="0" max="24" value="${l.m}"></div>
+  <div class="full"><label>ينحسب لـ</label><select data-k="for"><option value="b"${l.for==='b'?' selected':''}>العلاوة والترفيع</option><option value="a"${l.for==='a'?' selected':''}>العلاوة فقط</option><option value="p"${l.for==='p'?' selected':''}>الترفيع فقط</option></select></div>
+  <div class="full"><label for="mqd${l.id}">تاريخ الكتاب (اختياري)</label><input type="date" id="mqd${l.id}" data-k="d" value="${l.d||''}"></div></div>`).join('');
+}
+$('qcList').addEventListener('input',e=>{const r=e.target.closest('.qc-l');if(!r)return;const l=L.find(x=>x.id==r.dataset.i),k=e.target.dataset.k;if(!l||!k)return;
+  if(k==='src'){l.src=e.target.value;l.m=SRC[l.src][1];r.querySelector('[data-k=m]').value=l.m}else if(k==='m')l.m=Math.max(0,Math.min(24,+e.target.value||0));else l[k]=e.target.value;calc()});
+$('qcList').addEventListener('click',e=>{const b=e.target.closest('.del');if(!b)return;const id=b.closest('.qc-l').dataset.i;L=L.filter(x=>x.id!=id);drawL();calc()});
+document.querySelectorAll('.qc-add [data-add]').forEach(b=>b.onclick=()=>{const k=b.dataset.add;L.push({id:++uid,src:k,m:SRC[k][1],for:'b',d:''});drawL();calc();try{const r=$('qcList').lastElementChild;r&&r.scrollIntoView({block:'nearest',behavior:reduce?'auto':'smooth'})}catch(_){}});
+[g,s,$('qcA'),$('qcP')].forEach(e=>{e.addEventListener('input',calc);e.addEventListener('change',calc)});
+let last='';
+function calc(){
+  const G=+g.value,S=+s.value,A=pd($('qcA').value),P=pd($('qcP').value),T=today();
+  let sa=0,sp=0;const ex=[];
+  document.querySelectorAll('#qcList .qc-l').forEach(r=>{const l=L.find(x=>x.id==r.dataset.i);if(!l)return;const d=pd(l.d),bad=[];
+    if(l.for!=='p'){if(A&&d&&d<A)bad.push('العلاوة');else sa+=+l.m||0}
+    if(l.for!=='a'){if(P&&d&&d<P)bad.push('الترفيع');else sp+=+l.m||0}
+    const bd=r.querySelector('[data-bad]');bd.hidden=!bad.length;bd.textContent=bad.length?`ما ينحسب لـ${bad.join(' و')}`:'';
+    if(bad.length)ex.push(`كتاب ${[...r.parentNode.children].indexOf(r)+1}: تاريخه قبل آخر ${bad.join(' و')} فما ينحسب له`)});
+  const out=[],txt=[`⚡ حاسبة العلاوة والترفيع — موظف الصحة`,`الدرجة ${GN[G]} · المرحلة ${S}`];
+  const left=(d,f)=>{const n=dd(T,d);return n<=0?(f?'مستحقة الآن 🎉':'مستحق الآن 🎉'):n>60?`باقي ${ym(Math.ceil(n/30.44))}`:`باقي ${n} يوم`};
+  if(S>=STEPS)out.push(`<div class="qc-r n"><div class="t">العلاوة السنوية</div><div class="big">بلغت آخر مرحلة</div><div class="d">ما تستحق علاوة بدرجتك — الخطوة القادمة الترفيع.</div></div>`);
+  else if(!A)out.push(`<div class="qc-r n"><div class="t">العلاوة السنوية القادمة</div><div class="d">أدخل «تاريخ استحقاق آخر علاوة» حتى تطلع.</div></div>`);
+  else{const base=addM(A,12),due=addM(A,Math.max(0,12-sa)),n=dd(T,due),inc=scale[G]?scale[G][1]:0;
+    out.push(`<div class="qc-r a${n<=0?' due':''}"><div class="t">العلاوة السنوية القادمة · إلى المرحلة ${S+1}</div><div class="big">${left(due,1)}</div><div class="d">📅 ${dl(due)}<br>➕ ${fmt(inc)} د.ع على الراتب الاسمي</div>${sa?`<span class="sv">📜 كتب الشكر قرّبتها ${ym(Math.min(sa,12))} (كانت ${dl(base)})</span>`:''}${sa>12?`<span class="sv">⚠️ ${sa-12} شهر زايد عن سنة العلاوة</span>`:''}</div>`);
+    txt.push(`العلاوة القادمة: ${dl(due)} (${left(due,1)})${sa?` — كتب الشكر قرّبتها ${ym(Math.min(sa,12))}`:''}`)}
+  if(G<=1)out.push(`<div class="qc-r n"><div class="t">الترفيع</div><div class="big">أنت بالدرجة الأولى</div><div class="d">أعلى درجة بالسلّم.</div></div>`);
+  else if(!P)out.push(`<div class="qc-r n"><div class="t">الترفيع القادم</div><div class="d">أدخل «تاريخ آخر ترفيع» حتى يطلع.</div></div>`);
+  else{const yrs=scale[G]?scale[G][2]:4,base=addM(P,yrs*12),due=addM(P,Math.max(0,yrs*12-sp)),n=dd(T,due);
+    out.push(`<div class="qc-r p${n<=0?' due':''}"><div class="t">الترفيع القادم · إلى الدرجة ${GN[G-1]}</div><div class="big">${left(due)}</div><div class="d">📅 ${dl(due)}<br>⏳ المدة القانونية ${yrs} سنوات بالدرجة</div>${sp?`<span class="sv">📜 كتب الشكر قرّبته ${ym(sp)} (كان ${dl(base)})</span>`:''}</div>`);
+    txt.push(`الترفيع القادم: ${dl(due)} (${left(due)})${sp?` — كتب الشكر قرّبته ${ym(sp)}`:''}`)}
+  if(L.length)out.push(`<div class="qc-x">📜 مجموع القدم المحتسب: <b>${sa} شهر للعلاوة</b> · <b>${sp} شهر للترفيع</b>${ex.length?'<br>'+ex.join('<br>'):''}</div>`);
+  $('qcRes').innerHTML=out.join('');
+  txt.push(`احسبها بنفسك: ${location.origin+location.pathname}`);last=txt.join('\n');
+}
+$('qcShare').onclick=async()=>{try{if(navigator.share){await navigator.share({title:'حاسبة العلاوة والترفيع',text:last});return}}catch(_){return}
+  try{await navigator.clipboard.writeText(last);toast('📋 انسخت النتيجة — الصقها لصديقك')}catch(_){toast('ما گدرت أنسخ')}};
+$('qcReset').onclick=defaults;
+const open=()=>{defaults();$('qcOv').classList.add('on')};
+$('qcBtn').onclick=open;$('qcX').onclick=()=>$('qcOv').classList.remove('on');
+$('qcOv').addEventListener('click',e=>{if(e.target===$('qcOv'))$('qcOv').classList.remove('on')});
+window.openQC=open;
+})();
 
 /* ===== leave balance view ===== */
 $('v-leave').appendChild($('lvTool'));
@@ -3883,7 +4005,8 @@ new MutationObserver(ms=>{for(const m of ms)for(const n of m.addedNodes)if(n.nod
 if(!ls('rw-s5'))$('s5new').hidden=false;
 $('s5sum').addEventListener('click',e=>{const c=e.target.closest('[data-f]');ls('rw-s5','1');$('s5new').hidden=true;if(!c)return;setTimeout(()=>{const inp=$(c.dataset.f);if(!inp)return;const vc=inp.closest('.vc');if(vc){vc.classList.remove('hl');void vc.offsetWidth;vc.classList.add('hl');vc.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'})}setTimeout(()=>{try{inp.focus({preventScroll:true});inp.select()}catch(_){}},350)},90)});
 document.querySelector('#st5 .edit').addEventListener('click',()=>{ls('rw-s5','1');$('s5new').hidden=true});
-const WN_V='2026-11-21c',WN=[
+const WN_V='2026-11-23a',WN=[
+ ['⚡','احسب علاوتك أو ترفيعك بسرعة','لك أو لصديقك، مع كتب الشكر والتقدير وقدم كل كتاب — الزر البنفسجي تحت الأقسام'],
  ['🧭','شريط أقسام جديد','أيقونات ملوّنة وتفاعلية لكل الأقسام'],
  ['🔔','تنبيه استحقاقك','موعد علاوتك وترفيعك، وطلبك جاهز بضغطة، وتذكير بتقويم موبايلك'],
  ['🤖','المساعد','اسأله عن حقوقك بكلامك (قسم الدليل)'],
