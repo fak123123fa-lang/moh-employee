@@ -1218,6 +1218,60 @@ footer .flink.fl-upd{color:var(--acc)!important;border-color:color-mix(in srgb,v
 body{padding-bottom:calc(72px + env(safe-area-inset-bottom))!important}
 .help-bub{bottom:calc(70px + env(safe-area-inset-bottom));touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab;-webkit-touch-callout:none}
 .help-bub.drag{cursor:grabbing;animation:none!important;transform:scale(1.12);box-shadow:0 14px 28px -8px #b42318!important;transition:transform .12s}
+/* ===== batch 9 features ===== */
+#xHome{display:flex;flex-direction:column;gap:8px;margin-top:10px}#xHome[hidden]{display:none}
+.xh{position:relative;border-radius:18px;padding:12px 14px;background:var(--card);border:1px solid var(--line);box-shadow:var(--sh);animation:qcIn .3s ease-out}
+.xh>b{display:block;font-size:15px;padding-left:28px}.xh p{margin:4px 0 6px;font-size:13.5px;line-height:1.6;color:var(--mute)}.xh small{font-size:11.5px;color:var(--mute)}
+.xh-x{position:absolute;top:8px;left:8px;width:28px;height:28px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--mute);cursor:pointer;font-size:12px}
+.xh .btn{min-height:36px;font-size:12.5px;padding:0 12px}
+.xh.hol{background:linear-gradient(135deg,#fff7e6,var(--card));border-color:#f5bf47}
+.hol-h{display:flex;gap:10px;align-items:center;padding-left:30px}.hol-h>span{font-size:26px}.hol-h b{display:block;font-size:15.5px}.hol-h small{font-size:12px;color:var(--mute)}
+.hol-g{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}.hol-g span{font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px}
+.hol-g .off{background:rgba(229,72,77,.12);color:#b42318}.hol-g .on{background:rgba(43,181,138,.14);color:#0a7a59}
+.xh a{font-size:12.5px;font-weight:700;color:var(--acc)}
+.xh.fake{background:linear-gradient(135deg,#fdecec,var(--card));border-color:#e5484d}.xh.fake>b{color:#b42318}
+.xh.pulse{background:linear-gradient(135deg,#f1eeff,var(--card));border-color:#9b8cf2}
+.pl-e{display:flex;justify-content:space-between;gap:6px;margin:6px 0}.pl-e button{flex:1;font-size:26px;min-height:48px;border-radius:14px;border:1px solid var(--line);background:var(--bg);cursor:pointer;transition:transform .12s}.pl-e button:active{transform:scale(.9)}
+.xh.vx{border-color:#c98a08}.xh.opx{border-color:#9b8cf2}.xh.slx{border-color:#2bb58a}
+:root[data-theme=dark] .xh.hol,:root[data-theme=dark] .xh.fake,:root[data-theme=dark] .xh.pulse{background:var(--card)}
+.op-f{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin:8px 0}.op-f::-webkit-scrollbar{display:none}
+.op-f button{flex:none;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:6px 12px;font:700 12px inherit;font-family:inherit;cursor:pointer}
+.op-f button[aria-pressed=true]{background:#5b45c9;color:#fff;border-color:#5b45c9}
+.op{border:1px solid var(--line);border-radius:16px;padding:12px;margin-top:8px;background:var(--bg)}
+.op-h{display:flex;justify-content:space-between;gap:8px;margin-bottom:4px}.op-k{font-size:12px;font-weight:800;color:#5b45c9}
+.op-d{font-size:11.5px;font-weight:800;padding:2px 10px;border-radius:999px;background:rgba(91,69,201,.1);color:#5b45c9}.op-d.hot{background:rgba(229,72,77,.12);color:#b42318}
+.op b{display:block;font-size:15px}.op p{margin:4px 0;font-size:13px;color:var(--mute);line-height:1.6}.op small{font-size:12px;color:var(--mute)}
+.op-a{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.op-a .btn{min-height:36px;font-size:12px;padding:0 12px;text-decoration:none}
+.op-a .btn[aria-pressed=true]{background:rgba(43,181,138,.14);border-color:#2bb58a;color:#0a7a59}
+.op-empty{text-align:center;color:var(--mute);font-size:13px;padding:14px 6px;margin:0}
+.sl-al{border-radius:12px;padding:9px 12px;margin:8px 0;font-size:13px;line-height:1.6}
+.sl-al.warn{background:rgba(229,72,77,.1);color:#9b1c24;border:1px solid rgba(229,72,77,.3)}.sl-al.info{background:rgba(36,99,199,.08);color:var(--ink);border:1px solid rgba(36,99,199,.2)}
+:root[data-theme=dark] .sl-al.warn{color:#ffb4b8}
+.sl-ch{width:100%;height:76px;margin:6px 0;background:var(--bg);border-radius:12px}
+#slList .li{display:grid;grid-template-columns:1fr auto auto 30px;gap:8px;align-items:center;padding:8px 4px;border-bottom:1px solid var(--line);font-size:13px}
+#slList .li b{font-variant-numeric:tabular-nums}#slList .li i{font-style:normal;font-size:11.5px;font-weight:800}#slList .li i.up{color:#0a7a59}#slList .li i.dn{color:#c42e3c}
+#slList .li button,#vlList .xbtn{width:28px;height:28px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--mute);cursor:pointer}
+.vl-pick{display:flex!important;align-items:center;justify-content:center;min-height:52px;border:2px dashed #9b8cf2;border-radius:14px;color:#5b45c9!important;font-weight:800;font-size:14px!important;cursor:pointer;background:rgba(155,140,242,.08)}
+#vlPrev img{display:block;max-width:100%;max-height:180px;margin:8px auto 0;border-radius:12px}
+#vaultTool,#vaultTool .tb{min-width:0;max-width:100%}
+.vl-g{margin:12px 0 6px;font-weight:800;font-size:13.5px}.vl-g small{color:var(--mute)}
+.vl-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.vl-it{min-width:0;overflow:hidden;display:flex;flex-direction:column;gap:3px;padding:6px;border-radius:14px;border:1px solid var(--line);background:var(--bg);cursor:pointer;text-align:center;font-family:inherit;color:var(--ink)}
+.vl-it img,.vl-ph{width:100%;max-width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:10px;background:var(--card);display:grid;place-items:center;font-size:30px}
+.vl-it b{font-size:11.5px;line-height:1.3;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}.vl-it small{font-size:10.5px;color:var(--mute)}
+.vl-ov .isheet{text-align:right;display:flex;flex-direction:column;gap:6px;max-width:460px}.vl-ov .isheet small{color:var(--mute)}.vl-ov img{width:100%;max-height:60vh;object-fit:contain;border-radius:12px;background:var(--bg)}
+.mm{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+.mm-r{display:flex;gap:10px;align-items:stretch;padding:10px;border-radius:14px;background:var(--bg);border:1px solid var(--line)}.mm-r>i{flex:none;width:6px;border-radius:3px;background:var(--c)}
+.mm-r b{display:block;font-size:14px}.mm-r small{display:block;font-size:12px;color:var(--mute)}.mm-r span{display:inline-block;margin-top:4px;font-size:12px;font-weight:800;color:var(--c)}
+.fs-p{height:8px;border-radius:4px;background:var(--line);overflow:hidden}.fs-p div{height:100%;background:linear-gradient(90deg,#3cc3c9,#13838a);transition:width .4s}
+.fs-c{font-size:12.5px;font-weight:700;color:#13838a;margin:6px 0 8px}
+.fs{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}.fs:last-child{border:0}
+.fs-ck{flex:none;width:34px;height:34px;border-radius:50%;border:2px solid #13838a;background:var(--card);color:#13838a;font-weight:800;cursor:pointer;font-family:inherit}
+.fs.ok .fs-ck{background:#13838a;color:#fff}.fs.ok b{text-decoration:line-through;opacity:.65}
+.fs b{display:block;font-size:14px}.fs p{margin:3px 0 6px;font-size:13px;color:var(--mute);line-height:1.6}.fs .btn{min-height:34px;font-size:12px;padding:0 12px}
+.thx-card{display:flex;flex-direction:column;gap:4px;padding:14px;border-radius:14px;background:linear-gradient(135deg,#fff7e6,var(--card));border:1px dashed #c98a08;text-align:center}.thx-card span{font-size:13px;color:var(--mute)}
+.pl-r{font-size:14px;margin:8px 0}.pl-bar{display:grid;grid-template-columns:28px 1fr 34px;gap:6px;align-items:center;margin:4px 0}.pl-bar i{height:12px;border-radius:6px;background:linear-gradient(90deg,#9b8cf2,#5b45c9);min-width:2px}.pl-bar small{font-size:12px;color:var(--mute)}
+.pl-t{width:100%;border-collapse:collapse;margin-top:8px;font-size:12.5px}.pl-t th,.pl-t td{border-bottom:1px solid var(--line);padding:5px;text-align:right}
 </style>
 </head>
 <body>
@@ -1303,6 +1357,7 @@ body{padding-bottom:calc(72px + env(safe-area-inset-bottom))!important}
     <button data-v="news" style="--c1:#f27aa0;--c2:#c42e63"><span class="ic"><svg><use href="#i-bell"/></svg></span>الأخبار<i class="ndot" id="ndot"></i></button>
   </nav>
   <button class="qcb" id="qcBtn" type="button"><span class="qcb-ic">⚡</span><span class="qcb-t"><b>احسب علاوتك أو ترفيعك بسرعة</b><small>لك أو لصديقك · مع كتب الشكر والتقدير</small></span><span class="qcb-go">احسب</span></button>
+  <div id="xHome"></div>
 
   <div class="strip" id="strip"></div>
   <div class="bnr" id="bnr" hidden><div class="bnr-tr" id="bnrTr"></div><div class="bnr-dots" id="bnrDots"></div></div>
@@ -1427,6 +1482,17 @@ body{padding-bottom:calc(72px + env(safe-area-inset-bottom))!important}
       <div><i>⏱️</i><b>120 يوماً</b><span>أقصى مدة تُمنح براتب تام في المرة الواحدة</span></div>
       <div><i>🏥</i><b>المرضية</b><span>180 يوماً براتب تام و180 بنصف راتب خلال 5 سنوات</span></div>
     </div>
+    <details class="tool" id="momTool" style="--c1:#f27aa0;--c2:#c42e63;margin-top:12px">
+      <summary><span class="ic emo">🤱</span><span><b>أمومتي <i class="newb">جديد</i></b><small>إجازة الحمل والولادة وإجازة الأمومة بالتواريخ</small></span></summary>
+      <div class="tb">
+        <div class="fg">
+          <div><label for="mmDue">موعد الولادة المتوقع (أو الفعلي)</label><input id="mmDue" type="date"></div>
+          <div style="display:flex;align-items:end"><label class="ck" style="margin:0"><input type="checkbox" id="mmTw">حمل بتوأم</label></div>
+        </div>
+        <div id="mmOut"></div>
+        <p class="disc">ℹ️ حسب المتداول من الأحكام النافذة: إجازة حمل وولادة 72 يوماً براتب تام (21 يوماً منها على الأقل قبل الولادة)، وإجازة أمومة لرعاية طفل دون السنة لمدة سنة: 6 أشهر براتب تام والباقي بنصف راتب، ولأم التوأم سنة براتب تام. المبالغ تقديرية — تأكدي من الموارد البشرية في دائرتك.</p>
+      </div>
+    </details>
     <p class="disc">ℹ️ الحساب تقديري حسب قانون الخدمة المدنية رقم 24 لسنة 1960 — الرصيد الرسمي لدى الموارد البشرية في دائرتك.</p>
   </div>
   <div class="view" id="v-me" hidden>
@@ -1495,6 +1561,68 @@ body{padding-bottom:calc(72px + env(safe-area-inset-bottom))!important}
         <div class="kpis" id="cmKpi"></div>
         <div class="lst" id="cmList"></div>
         <button class="btn" id="cmShare" style="width:100%;justify-content:center;margin-top:8px">مشاركة / نسخ السجل</button>
+      </div>
+    </details>
+    <details class="tool" id="salTool" style="--c1:#2bb58a;--c2:#0a7a59">
+      <summary><span class="ic emo">📒</span><span><b>راتبي ناقص؟ <i class="newb">جديد</i></b><small>سجّل راتبك كل شهر، وينبّهك إذا تأخرت علاوتك أو نقص راتبك</small></span></summary>
+      <div class="tb">
+        <div class="fg">
+          <div><label for="slM">الشهر</label><input id="slM" type="month"></div>
+          <div><label for="slV">الراتب الصافي المستلم (د.ع)</label><input id="slV" type="number" inputmode="numeric" min="0" placeholder="مثلاً 1106622"></div>
+        </div>
+        <button class="btn pri" id="slAdd" style="width:100%;justify-content:center">💾 حفظ راتب هذا الشهر</button>
+        <div id="slAl"></div>
+        <div id="slChart"></div>
+        <div class="lst" id="slList"></div>
+        <button class="btn" id="slShare" style="width:100%;justify-content:center;margin-top:8px">📤 ملخص للمراجعة</button>
+        <p class="hint">🔒 الأرقام تبقى على جهازك فقط. التنبيه يگول «تحقق» — أحياناً التأخير إداري طبيعي.</p>
+      </div>
+    </details>
+    <details class="tool" id="vaultTool" style="--c1:#9b8cf2;--c2:#5b45c9">
+      <summary><span class="ic emo">🗂️</span><span><b>إضبارتي الرقمية <i class="newb">جديد</i></b><small>صوّر وثائقك الرسمية واحفظها مرتبة على جهازك</small></span></summary>
+      <div class="tb">
+        <div id="vlAl"></div>
+        <div class="fg">
+          <div><label for="vlType">نوع الوثيقة</label><select id="vlType"></select></div>
+          <div><label for="vlDate">تاريخ الوثيقة</label><input id="vlDate" type="date"></div>
+          <div class="full"><label for="vlTitle">وصف مختصر</label><input id="vlTitle" maxlength="100" placeholder="مثلاً: شكر من السيد الوزير"></div>
+          <div id="vlSrcW"><label for="vlSrc">جهة كتاب الشكر</label><select id="vlSrc"><option value="min">الوزير أو من بدرجته (شهر)</option><option value="pm">رئيس مجلس الوزراء (6 أشهر)</option><option value="oth">جهة أخرى</option></select></div>
+          <div id="vlExpW"><label for="vlExp">تاريخ انتهاء الصلاحية (اختياري)</label><input id="vlExp" type="date"></div>
+          <div class="full"><label for="vlImg" class="vl-pick">📷 صوّر الوثيقة أو اختر صورة</label><input id="vlImg" type="file" accept="image/*" hidden><div id="vlPrev"></div></div>
+        </div>
+        <button class="btn pri" id="vlAdd" style="width:100%;justify-content:center">💾 حفظ بالإضبارة</button>
+        <div id="vlList"></div>
+        <div class="acts" style="padding:0;margin-top:8px"><button class="btn" id="vlBak">⬇️ نسخة احتياطية</button><label class="btn" for="vlRes" style="cursor:pointer">⬆️ استرجاع</label><input id="vlRes" type="file" accept=".json,application/json" hidden></div>
+        <p class="hint">🔒 الصور تبقى على جهازك فقط وما تنرفع لأي مكان. إذا بدّلت الموبايل أو مسحت التطبيق، استعمل «نسخة احتياطية» حتى ما تضيع.</p>
+      </div>
+    </details>
+    <details class="tool" id="bloodTool" style="--c1:#ef5b6a;--c2:#c42e3c">
+      <summary><span class="ic emo">🩸</span><span><b>قطرة حياة <i class="newb" data-lk="blood">جديد</i></b><small>شبكة تبرع بالدم بين منتسبي الصحة</small></span></summary>
+      <div class="tb">
+        <p class="hint">سجّل نفسك متبرعاً بإرادتك. عند طلب دم عاجل بمحافظتك وبنفس فصيلتك يوصلك إشعار، ورقمك ما يبين لأحد إلا بموافقتك.</p>
+        <div class="fg"><div><label for="bdT">فصيلة الدم</label><select id="bdT"><option value="">اختر</option><option>O-</option><option>O+</option><option>A-</option><option>A+</option><option>B-</option><option>B+</option><option>AB-</option><option>AB+</option></select></div>
+        <div><label for="bdGov">المحافظة</label><select id="bdGov"></select></div>
+        <label class="ck full"><input type="checkbox" id="bdOk">أوافق أن تُستخدم فصيلة دمي ومحافظتي لمطابقة طلبات التبرع فقط</label></div>
+        <button class="btn pri" id="bdReg" style="width:100%;justify-content:center">🩸 سجّلني متبرعاً</button>
+        <p class="tk-ok" id="bdMsg" hidden></p>
+        <p class="hint">التطبيق يوصّل الناس ببعض فقط — التبرع نفسه يتم في مصرف الدم بالطريقة الطبية الرسمية.</p>
+      </div>
+    </details>
+    <details class="tool" id="thxTool" style="--c1:#f5bf47;--c2:#c98a08">
+      <summary><span class="ic emo">🌹</span><span><b>شكراً يا بطل <i class="newb" data-lk="thx">جديد</i></b><small>رسائل شكر من المرضى وأهاليهم توصلك برمزك الخاص</small></span></summary>
+      <div class="tb">
+        <p class="hint">لكل موظف رمز QR خاص. المريض يصوّره ويكتب رسالة شكر بدون تسجيل، والرسالة توصلك بعد ما تمر على الفلتر وموافقتك.</p>
+        <div class="thx-card"><b>🌹 رسائل الشكر</b><span>صندوقك فارغ لحد الآن — ينفتح بعد موافقة الوزارة.</span></div>
+      </div>
+    </details>
+    <details class="tool" id="swapTool" style="--c1:#5aa9f0;--c2:#2463c7">
+      <summary><span class="ic emo">🔁</span><span><b>النقل التبادلي <i class="newb" data-lk="swap">جديد</i></b><small>لگيلك شريك يتبادل وياك النقل بين المحافظات</small></span></summary>
+      <div class="tb">
+        <div class="fg"><div class="full"><label for="swT">العنوان الوظيفي والاختصاص</label><input id="swT" maxlength="80" placeholder="مثلاً: ممرض جامعي"></div>
+        <div><label for="swFrom">من دائرة صحة</label><select id="swFrom"></select></div><div><label for="swTo">إلى دائرة صحة</label><select id="swTo"></select></div></div>
+        <button class="btn pri" id="swReg" style="width:100%;justify-content:center">🔁 سجّل طلب التبادل</button>
+        <p class="tk-ok" id="swMsg" hidden></p>
+        <p class="hint">التطبيق يلگيلك الشريك فقط — معاملة النقل تمشي بالطريق الرسمي. رقمك يبين للطرف الثاني فقط إذا وافقتوا الاثنين.</p>
       </div>
     </details>
     <details class="tool" id="lvTool" open style="--c1:#5aa9f0;--c2:#2463c7">
@@ -1631,6 +1759,11 @@ body{padding-bottom:calc(72px + env(safe-area-inset-bottom))!important}
   </div>
 
   <div class="view" id="v-guide" hidden>
+    <details class="tool" id="fsTool" style="--c1:#3cc3c9;--c2:#13838a;margin-bottom:12px">
+      <summary><span class="ic emo">🧭</span><span><b>خطوتي الأولى <i class="newb">جديد</i></b><small>موظف جديد؟ دليلك من التعيين لأول راتب</small></span></summary>
+      <div class="tb"><div id="fsOut"></div>
+      <p class="hint">المستمسكات والإجراءات تختلف قليلاً بين الدوائر — اسأل شعبة الموارد البشرية في دائرتك عن القائمة المعتمدة.</p></div>
+    </details>
     <section class="card" style="--c1:#3cc3c9;--c2:#13838a">
       <h2><span class="ic"><svg><use href="#i-book"/></svg></span>دليل حقوق الموظف</h2>
       <div class="bot"><div class="bot-h"><span class="bot-av">🤖</span><div><b>اسأل المساعد</b><small>اكتب سؤالك بكلامك — مثل: «متى أترفع؟»</small></div></div>
@@ -1649,6 +1782,12 @@ body{padding-bottom:calc(72px + env(safe-area-inset-bottom))!important}
       <h2><span class="ic"><svg><use href="#i-wallet"/></svg></span>موعد صرف الراتب</h2>
       <div class="payc" id="payBox"></div>
       <div class="fg" style="margin-top:12px"><div><label for="payDay">يوم الصرف المعتاد في دائرتك</label><input id="payDay" type="number" min="1" max="28" value="10"></div></div>
+    </section>
+    <section class="card" id="oppCard" style="--c1:#9b8cf2;--c2:#5b45c9">
+      <h2><span class="ic emo">🎓</span>فرصتي <i class="newb">جديد</i></h2>
+      <p class="hint">دراسات عليا، إجازات دراسية، دورات، منح وامتحانات — ويا تذكير قبل آخر موعد.</p>
+      <div class="op-f" id="opF"></div>
+      <div id="opList"></div>
     </section>
     <section class="card" style="--c1:#f27aa0;--c2:#c42e63">
       <h2><span class="ic"><svg><use href="#i-bell"/></svg></span>آخر الأخبار والقرارات</h2>
@@ -2470,6 +2609,9 @@ function drawEditor(){ED=JSON.parse(JSON.stringify(CFG||{}));ED.hide=ED.hide||{}
   <label class="ck"><input type="checkbox" id="eOpTk" ${(ED.open||{}).tk?'checked':''}>فتح «المقترحات والشكاوى» للجميع</label>
   <label class="ck"><input type="checkbox" id="eOpId" ${(ED.open||{}).id?'checked':''}>فتح «هويتي الوظيفية» للجميع</label>
   <label class="ck"><input type="checkbox" id="eOpCm" ${(ED.open||{}).cme?'checked':''}>فتح «سجل التعليم الطبي المستمر» للجميع</label>
+  <label class="ck"><input type="checkbox" id="eOpBd" ${(ED.open||{}).blood?'checked':''}>فتح «قطرة حياة» للجميع</label>
+  <label class="ck"><input type="checkbox" id="eOpTx" ${(ED.open||{}).thx?'checked':''}>فتح «شكراً يا بطل» للجميع</label>
+  <label class="ck"><input type="checkbox" id="eOpSw" ${(ED.open||{}).swap?'checked':''}>فتح «النقل التبادلي» للجميع</label>
 
   <h4>🏅 شارة الاعتماد الرسمي</h4>
   <label class="ck"><input type="checkbox" id="eApr" ${(ED.approved||{}).on?'checked':''}>إظهار شارة الاعتماد تحت العنوان (فعّلها فقط بعد موافقة رسمية)</label>
@@ -2527,7 +2669,7 @@ document.addEventListener('click',e=>{const t=e.target.closest('[data-cd],[data-
   drawEdLists()});
 async function saveEditor(){
   ED.banner={on:$('eBon').checked,text:$('eBt').value.trim(),link:$('eBl').value.trim(),color:$('eBc').value};
-  ED.open={tk:$('eOpTk').checked,id:$('eOpId').checked,cme:$('eOpCm').checked};
+  ED.open={tk:$('eOpTk').checked,id:$('eOpId').checked,cme:$('eOpCm').checked,blood:!!($('eOpBd')&&$('eOpBd').checked),thx:!!($('eOpTx')&&$('eOpTx').checked),swap:!!($('eOpSw')&&$('eOpSw').checked)};
   ED.approved={on:$('eApr').checked,text:$('eAprT').value.trim()};
   ED.ticker={off:$('eTkOff').checked,items:$('eTk').value.split('\n').map(s=>s.trim()).filter(Boolean),color:$('eTkc').value};
   ED.texts={title:$('eT1').value.trim(),sub:$('eT2').value.trim()};
@@ -3758,6 +3900,7 @@ $('qcReset').onclick=defaults;
 const open=()=>{defaults();$('qcOv').classList.add('on')};
 $('qcBtn').onclick=open;$('qcX').onclick=()=>$('qcOv').classList.remove('on');
 $('qcOv').addEventListener('click',e=>{if(e.target===$('qcOv'))$('qcOv').classList.remove('on')});
+window.qcImport=arr=>{arr.forEach(x=>{const k=SRC[x.src]?x.src:'min';L.push({id:++uid,src:k,m:SRC[k][1],for:'b',d:x.d||''})});drawL();calc()};
 window.openQC=open;
 })();
 
@@ -4154,7 +4297,11 @@ new MutationObserver(ms=>{for(const m of ms)for(const n of m.addedNodes)if(n.nod
 if(!ls('rw-s5'))$('s5new').hidden=false;
 $('s5sum').addEventListener('click',e=>{const c=e.target.closest('[data-f]');ls('rw-s5','1');$('s5new').hidden=true;if(!c)return;setTimeout(()=>{const inp=$(c.dataset.f);if(!inp)return;const vc=inp.closest('.vc');if(vc){vc.classList.remove('hl');void vc.offsetWidth;vc.classList.add('hl');vc.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'})}setTimeout(()=>{try{inp.focus({preventScroll:true});inp.select()}catch(_){}},350)},90)});
 document.querySelector('#st5 .edit').addEventListener('click',()=>{ls('rw-s5','1');$('s5new').hidden=true});
-const WN_V='2026-11-23a',WN=[
+const WN_V='2026-11-23b',WN=[
+ ['📒','راتبي ناقص؟ وإضبارتي الرقمية','بقسم «مواعيدي»: سجّل راتبك كل شهر وينبهك إذا تأخرت علاوتك، واحفظ صور وثائقك الرسمية مرتبة'],
+ ['🤱','أمومتي','بقسم «إجازاتي»: تواريخ إجازة الحمل والولادة وإجازة الأمومة'],
+ ['🎓','فرصتي','بقسم «الأخبار»: دراسات عليا ودورات ومنح ويا تذكير قبل آخر موعد'],
+ ['🧭','خطوتي الأولى','بقسم «دليلي»: دليل الموظف الجديد من التعيين لأول راتب'],
  ['⚡','احسب علاوتك أو ترفيعك بسرعة','لك أو لصديقك، مع كتب الشكر والتقدير وقدم كل كتاب — الزر البنفسجي تحت الأقسام'],
  ['🧭','شريط أقسام جديد','أيقونات ملوّنة وتفاعلية لكل الأقسام'],
  ['🔔','تنبيه استحقاقك','موعد علاوتك وترفيعك، وطلبك جاهز بضغطة، وتذكير بتقويم موبايلك'],
@@ -4246,6 +4393,189 @@ $('instClose').onclick=()=>$('instOv').classList.remove('on');
 $('instOv').addEventListener('click',e=>{if(e.target===$('instOv'))$('instOv').classList.remove('on')});
 addEventListener('appinstalled',()=>{instDone();toast('تم التثبيت 🎉')});
 if('serviceWorker' in navigator&&location.protocol==='https:'){navigator.serviceWorker.register('sw.js').catch(()=>{})}
+/* ================= batch 9: new features ================= */
+const xEsc=esc;
+const govNames=()=>GOVS.map(g=>g[0]);
+const wkd=d=>d.toLocaleDateString('ar-IQ',{weekday:'long'});
+const relDay=d=>{const n=dd(today(),d);return n===0?'اليوم':n===1?'باچر':n===2?'بعد باچر':n>0?`بعد ${n} أيام`:''};
+const shareTxt=async(t,txt)=>{try{if(navigator.share){await navigator.share({title:t,text:txt});return}}catch(_){return}try{await navigator.clipboard.writeText(txt);toast('📋 انسخ — الصقه وين ما تريد')}catch(_){toast('ما گدرت أنسخ')}};
+const dlFile=(name,data,type)=>{const b=new Blob([data],{type});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)};
+
+/* ---------- home notices: holiday · pulse · reminders ---------- */
+function renderXHome(){const box=$('xHome');if(!box)return;const c=CFG||{},T=today(),out=[];
+  const h=c.hol;
+  if(h&&h.d&&!ls('rw-holx-'+h.d+(h.fake?'f':''))){const d=pd(h.d);if(d&&dd(T,d)>=0){
+    if(h.fake)out.push(`<div class="xh hol fake"><button class="xh-x" data-xh="holx-${h.d}f" aria-label="إخفاء">✕</button><b>❌ غير صحيح</b><p>${xEsc(h.t||'')} — ما صدر أي قرار رسمي بعطلة يوم ${wkd(d)} ${dl(d)}.</p>${h.src?`<a href="${xEsc(h.src)}" target="_blank" rel="noopener">المصدر ↗</a>`:''}</div>`);
+    else out.push(`<div class="xh hol"><button class="xh-x" data-xh="holx-${h.d}" aria-label="إخفاء">✕</button><div class="hol-h"><span>📢</span><div><b>${relDay(d)} ${wkd(d)} — عطلة رسمية</b><small>${dl(d)}</small></div></div>${h.t?`<p>${xEsc(h.t)}</p>`:''}
+      <div class="hol-g"><span class="${h.dw==='on'?'on':'off'}">🏢 الدوائر والمراكز: ${h.dw==='on'?'دوام':'عطلة'}</span><span class="${h.hs==='off'?'off':'on'}">🏥 المستشفيات والطوارئ: ${h.hs==='off'?'عطلة':'دوام اعتيادي'}</span><span class="on">🌙 الخفارات: حسب الجدول</span></div>
+      ${h.src?`<a href="${xEsc(h.src)}" target="_blank" rel="noopener">📄 البيان الرسمي ↗</a>`:''}</div>`)}}
+  const p=c.pulse;
+  if(p&&p.on&&p.id&&p.q&&!ls('rw-pulse-'+p.id)&&!sessionStorage.getItem('rw-pl-'+p.id))out.push(`<div class="xh pulse"><button class="xh-x" data-pl="later" aria-label="لاحقاً">✕</button><b>💓 نبض الموظف</b><p>${xEsc(p.q)}</p><div class="pl-e">${['😞','🙁','😐','🙂','😍'].map((e,i)=>`<button data-pl="${i+1}" aria-label="${i+1} من 5">${e}</button>`).join('')}</div><small>بدون اسم — نتائجه تساعد بتحسين بيئة العمل</small></div>`);
+  try{const ex=vaultExpiring();if(ex.length&&!sessionStorage.getItem('rw-vx'))out.push(`<div class="xh vx"><button class="xh-x" data-xs="rw-vx" aria-label="إخفاء">✕</button><b>🗂️ وثيقة قربت تنتهي</b><p>${ex.map(x=>`${xEsc(x.title||x.type)} — ${x.left<0?'منتهية':'باقي '+x.left+' يوم'}`).join('<br>')}</p><button class="btn" onclick="location.hash='me';setTimeout(()=>{const t=$('vaultTool');t.open=true;t.scrollIntoView({block:'start'})},400)">افتح الإضبارة</button></div>`)}catch(_){}
+  try{const rm=JSON.parse(ls('rw-oprem')||'[]'),ops=(c.opps||[]).filter(o=>rm.includes(o.id)&&o.d);const near=ops.map(o=>({o,n:dd(T,pd(o.d))})).filter(x=>x.n>=0&&x.n<=7);
+    if(near.length&&!sessionStorage.getItem('rw-opx'))out.push(`<div class="xh opx"><button class="xh-x" data-xs="rw-opx" aria-label="إخفاء">✕</button><b>🎓 تذكير بفرصة</b><p>${near.map(x=>`${xEsc(x.o.t)} — ${x.n===0?'آخر يوم اليوم!':'باقي '+x.n+' يوم'}`).join('<br>')}</p></div>`)}catch(_){}
+  try{const pdD=+X.payDay||10,d=T.getDate(),mk=iso(T).slice(0,7),lg=salLog();if(d>=pdD&&d<=pdD+5&&lg.length&&!lg.some(x=>x.m===mk)&&!sessionStorage.getItem('rw-slx'))out.push(`<div class="xh slx"><button class="xh-x" data-xs="rw-slx" aria-label="إخفاء">✕</button><b>📒 نزل راتبك؟</b><p>سجّله بثانيتين حتى ننبهك إذا نقص أو تأخرت علاوتك.</p><button class="btn" onclick="location.hash='me';setTimeout(()=>{const t=$('salTool');t.open=true;t.scrollIntoView({block:'start'})},400)">سجّل الراتب</button></div>`)}catch(_){}
+  box.innerHTML=out.join('');box.hidden=!out.length;
+}
+$('xHome').addEventListener('click',async e=>{const x=e.target.closest('[data-xh]');if(x){ls('rw-'+x.dataset.xh,'1');renderXHome();return}
+  const s=e.target.closest('[data-xs]');if(s){sessionStorage.setItem(s.dataset.xs,'1');renderXHome();return}
+  const p=e.target.closest('[data-pl]');if(!p)return;const pl=(CFG||{}).pulse;if(!pl)return;
+  if(p.dataset.pl==='later'){sessionStorage.setItem('rw-pl-'+pl.id,'1');renderXHome();return}
+  const sc=+p.dataset.pl;p.closest('.pl-e').querySelectorAll('button').forEach(b=>b.disabled=true);
+  try{await rpc('rw_pulse_add',{p_qid:pl.id,p_device:DEV,p_score:sc,p_gov:X.me.gov||null,p_pt:X.me.ptype||null});ls('rw-pulse-'+pl.id,String(sc));toast('شكراً 💚 صوتك وصل');renderXHome()}catch(_){toast('ما وصل — جرّب بعدين');p.closest('.pl-e').querySelectorAll('button').forEach(b=>b.disabled=false)}});
+{const _a9=applyCfg;applyCfg=function(c){_a9(c);try{renderXHome();renderOpps()}catch(_){}}}
+
+/* ---------- فرصتي ---------- */
+const OPK={study:'🎓 دراسات عليا',leave:'📚 إجازة دراسية',course:'🧑‍🏫 دورات وورش',grant:'🌍 زمالات ومنح',exam:'📝 امتحانات',other:'✨ أخرى'};
+let opF='all';
+function icsFor(o){const d=pd(o.d),s=iso(addD(d,-1)).replace(/-/g,''),e=iso(d).replace(/-/g,'');return ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//muwazzaf//AR','BEGIN:VEVENT','UID:'+o.id+'@muwazzaf','DTSTAMP:'+e+'T090000Z','DTSTART;VALUE=DATE:'+s,'DTEND;VALUE=DATE:'+e,'SUMMARY:آخر موعد: '+o.t,'DESCRIPTION:'+(o.u||''),'BEGIN:VALARM','TRIGGER:-P6D','ACTION:DISPLAY','DESCRIPTION:تذكير','END:VALARM','END:VEVENT','END:VCALENDAR'].join('\r\n')}
+const addD=(d,n)=>new Date(d.getFullYear(),d.getMonth(),d.getDate()+n);
+function renderOpps(){const box=$('opList');if(!box)return;const T=today(),rm=JSON.parse(ls('rw-oprem')||'[]');
+  const all=((CFG||{}).opps||[]).filter(o=>!o.d||dd(T,pd(o.d))>=0).sort((a,b)=>(a.d||'9')>(b.d||'9')?1:-1);
+  const kinds=[...new Set(all.map(o=>o.k))];
+  $('opF').innerHTML=all.length?[['all','الكل'],...kinds.map(k=>[k,OPK[k]||k])].map(([k,n])=>`<button data-of="${k}" aria-pressed="${opF===k}">${n}</button>`).join(''):'';
+  const L=all.filter(o=>opF==='all'||o.k===opF);
+  box.innerHTML=L.length?L.map(o=>{const n=o.d?dd(T,pd(o.d)):null;return `<div class="op"><div class="op-h"><span class="op-k">${OPK[o.k]||'✨'}</span>${n!=null?`<span class="op-d${n<=7?' hot':''}">${n===0?'آخر يوم اليوم':'باقي '+n+' يوم'}</span>`:''}</div>
+    <b>${xEsc(o.t)}</b>${o.who?`<p>👥 ${xEsc(o.who)}</p>`:''}${o.note?`<p>${xEsc(o.note)}</p>`:''}${o.d?`<small>📅 آخر موعد: ${dl(pd(o.d))}</small>`:''}
+    <div class="op-a">${o.u?`<a class="btn" href="${xEsc(o.u)}" target="_blank" rel="noopener">الإعلان الرسمي ↗</a>`:''}${o.d?`<button class="btn" data-orem="${o.id}" aria-pressed="${rm.includes(o.id)}">${rm.includes(o.id)?'🔔 راح أذكّرك':'🔔 ذكّرني'}</button><button class="btn" data-oics="${o.id}">📅 للتقويم</button>`:''}</div></div>`}).join(''):`<p class="op-empty">ماكو فرص منشورة هسه — أول ما تنزل فرصة جديدة توصلك هنا.</p>`;
+}
+$('oppCard').addEventListener('click',e=>{const f=e.target.closest('[data-of]');if(f){opF=f.dataset.of;renderOpps();return}
+  const r=e.target.closest('[data-orem]');if(r){let rm=JSON.parse(ls('rw-oprem')||'[]');const id=r.dataset.orem;rm=rm.includes(id)?rm.filter(x=>x!==id):[...rm,id];ls('rw-oprem',JSON.stringify(rm));renderOpps();renderXHome();if(rm.includes(id))toast('🔔 راح يطلعلك تذكير بالواجهة قبل الموعد بأسبوع');return}
+  const c=e.target.closest('[data-oics]');if(c){const o=((CFG||{}).opps||[]).find(x=>x.id===c.dataset.oics);if(o)dlFile('opportunity.ics',icsFor(o),'text/calendar')}});
+
+/* ---------- راتبي ناقص؟ ---------- */
+const salLog=()=>{try{return JSON.parse(ls('rw-sallog')||'[]')}catch(_){return []}};
+const mName=m=>{const[y,mo]=m.split('-').map(Number);return new Date(y,mo-1,1).toLocaleDateString('ar-IQ',{month:'long',year:'numeric'})};
+$('slM').value=iso(today()).slice(0,7);
+function renderSal(){const L=salLog().sort((a,b)=>a.m<b.m?-1:1),al=[],T=today();
+  if(L.length>=2){const a=L[L.length-2],b=L[L.length-1],df=b.v-a.v;if(df<-1000)al.push(`<div class="sl-al warn">⚠️ راتب ${mName(b.m)} نقص <b>${fmt(-df)} د.ع</b> عن ${mName(a.m)} — تحقق من الاستقطاعات.</div>`)}
+  try{const o=dues();for(const[k,lab]of[['allow','علاوتك'],['promo','ترفيعك']]){const x=o[k];if(!x||x.left>-35)continue;const dm=iso(x.due).slice(0,7),bef=L.filter(r=>r.m<dm),aft=L.filter(r=>r.m>dm);
+    if(bef.length&&aft.length){const base=bef[bef.length-1].v;if(Math.max(...aft.map(r=>r.v))<=base+500)al.push(`<div class="sl-al warn">⚠️ ${lab} مستحق${k==='allow'?'ة':''} من ${dl(x.due)} والراتب ما زاد لحد الآن. راجع الحسابات وخذ ويّاك «ملخص للمراجعة».</div>`)}}}catch(_){}
+  try{const est=compute().net,lb=L[L.length-1];if(lb&&Math.abs(lb.v-est)>Math.max(25000,est*.05))al.push(`<div class="sl-al info">ℹ️ آخر راتب سجلته ${fmt(lb.v)} د.ع، والتقدير حسب الحاسبة ${fmt(est)} د.ع. إذا الفرق كبير، تأكد من بيانات قسم الراتب.</div>`)}catch(_){}
+  if(!L.length)al.push(`<div class="sl-al info">📒 سجّل راتب هذا الشهر — ومن الشهر الجاي نبدي نقارن وننبهك.</div>`);
+  $('slAl').innerHTML=al.join('');
+  const R=L.slice(-12);if(R.length>=2){const mx=Math.max(...R.map(r=>r.v)),mn=Math.min(...R.map(r=>r.v)),W=300,H=70,sx=W/(R.length-1),y=v=>H-6-((v-mn)/((mx-mn)||1))*(H-14);
+    $('slChart').innerHTML=`<svg class="sl-ch" viewBox="0 0 ${W} ${H}" aria-label="رسم الراتب"><polyline fill="none" stroke="#0a7a59" stroke-width="2.5" stroke-linejoin="round" points="${R.map((r,i)=>`${W-i*sx},${y(r.v).toFixed(1)}`).join(' ')}"/>${R.map((r,i)=>`<circle cx="${W-i*sx}" cy="${y(r.v).toFixed(1)}" r="3.2" fill="#0a7a59"/>`).join('')}</svg>`}else $('slChart').innerHTML='';
+  $('slList').innerHTML=L.slice().reverse().slice(0,24).map((r,i,a)=>{const p=a[i+1],df=p?r.v-p.v:0;return `<div class="li"><span>${mName(r.m)}</span><b>${fmt(r.v)}</b>${p&&df?`<i class="${df>0?'up':'dn'}">${df>0?'▲':'▼'} ${fmt(Math.abs(df))}</i>`:'<i></i>'}<button data-sld="${r.m}" aria-label="حذف">✕</button></div>`}).join('');
+}
+$('slAdd').onclick=()=>{const m=$('slM').value,v=Math.round(+$('slV').value||0);if(!/^\d{4}-\d{2}$/.test(m)||v<=0){toast('اختر الشهر واكتب الراتب');return}
+  const L=salLog().filter(r=>r.m!==m);L.push({m,v});ls('rw-sallog',JSON.stringify(L));$('slV').value='';renderSal();renderXHome();toast('💾 انحفظ')};
+$('slList').addEventListener('click',e=>{const b=e.target.closest('[data-sld]');if(!b)return;ls('rw-sallog',JSON.stringify(salLog().filter(r=>r.m!==b.dataset.sld)));renderSal()});
+$('slShare').onclick=()=>{const L=salLog().sort((a,b)=>a.m<b.m?-1:1),o=dues(),t=[`📒 ملخص رواتبي — موظف الصحة`,`الدرجة ${st.grade} · المرحلة ${st.step}`];
+  if(o.allow)t.push(`استحقاق العلاوة: ${dl(o.allow.due)}`);if(o.promo)t.push(`استحقاق الترفيع: ${dl(o.promo.due)}`);t.push('','الراتب المستلم:',...L.slice(-12).map(r=>`${mName(r.m)}: ${fmt(r.v)} د.ع`));shareTxt('ملخص رواتبي',t.join('\n'))};
+renderSal();
+
+/* ---------- إضبارتي الرقمية (IndexedDB) ---------- */
+const VT=[['appoint','أمر التعيين'],['start','أمر المباشرة'],['allow','أمر علاوة'],['promo','أمر ترفيع'],['thx','كتاب شكر وتقدير'],['cert','شهادة دراسية'],['lic','إجازة ممارسة المهنة'],['union','هوية النقابة'],['id','هوية / مستمسك'],['other','أخرى']];
+const VN=k=>(VT.find(x=>x[0]===k)||[0,'وثيقة'])[1];
+$('vlType').innerHTML=VT.map(([k,n])=>`<option value="${k}">${n}</option>`).join('');
+let VDB=null,VCACHE=[];
+const vdb=()=>VDB||(VDB=new Promise((res,rej)=>{const r=indexedDB.open('rw-vault',1);r.onupgradeneeded=()=>r.result.createObjectStore('docs',{keyPath:'id'});r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)}));
+const vtx=async(mode,fn)=>{const db=await vdb();return new Promise((res,rej)=>{const t=db.transaction('docs',mode),s=t.objectStore('docs');const out=fn(s);t.oncomplete=()=>res(out&&out.result!==undefined?out.result:out);t.onerror=()=>rej(t.error)})};
+const vAll=async()=>{const db=await vdb();return new Promise((res,rej)=>{const r=db.transaction('docs').objectStore('docs').getAll();r.onsuccess=()=>res(r.result||[]);r.onerror=()=>rej(r.error)})};
+function vaultExpiring(){const T=today();return VCACHE.filter(d=>d.exp).map(d=>({...d,left:dd(T,pd(d.exp))})).filter(d=>d.left<=30)}
+let vImg=null;
+const vType=()=>{const t=$('vlType').value;$('vlSrcW').hidden=t!=='thx';$('vlExpW').hidden=!['lic','union','id','other'].includes(t)};
+$('vlType').addEventListener('change',vType);vType();
+const shrink=f=>new Promise((res,rej)=>{const u=URL.createObjectURL(f),im=new Image();im.onload=()=>{const k=Math.min(1,1600/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext('2d').drawImage(im,0,0,c.width,c.height);URL.revokeObjectURL(u);c.toBlob(b=>b?res(b):rej(new Error('img')),'image/jpeg',.82)};im.onerror=()=>{URL.revokeObjectURL(u);rej(new Error('img'))};im.src=u});
+$('vlImg').addEventListener('change',async()=>{const f=$('vlImg').files[0];if(!f)return;try{vImg=await shrink(f);$('vlPrev').innerHTML=`<img src="${URL.createObjectURL(vImg)}" alt="معاينة الوثيقة">`}catch(_){toast('ما گدرت أقرا الصورة');vImg=null}});
+$('vlAdd').onclick=async()=>{const t=$('vlType').value;if(!vImg&&!$('vlTitle').value.trim()){toast('صوّر الوثيقة أو اكتب وصفها');return}
+  const d={id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),type:t,title:$('vlTitle').value.trim(),date:$('vlDate').value||'',exp:$('vlExpW').hidden?'':($('vlExp').value||''),src:t==='thx'?$('vlSrc').value:'',img:vImg||null,at:Date.now()};
+  try{await vtx('readwrite',s=>s.put(d));vImg=null;$('vlImg').value='';$('vlPrev').innerHTML='';$('vlTitle').value='';$('vlExp').value='';toast('🗂️ انحفظت بالإضبارة');renderVault()}catch(_){toast('ما گدرت أحفظ — مساحة الجهاز؟')}};
+async function renderVault(){try{VCACHE=await vAll()}catch(_){VCACHE=[]}
+  const ex=vaultExpiring();$('vlAl').innerHTML=ex.length?`<div class="sl-al warn">⏳ ${ex.map(x=>`${xEsc(x.title||VN(x.type))}: ${x.left<0?'منتهية من '+(-x.left)+' يوم':'تنتهي بعد '+x.left+' يوم'}`).join(' · ')}</div>`:'';
+  const g={};VCACHE.sort((a,b)=>(b.date||'')>(a.date||'')?1:-1).forEach(d=>(g[d.type]=g[d.type]||[]).push(d));
+  $('vlList').innerHTML=VCACHE.length?VT.filter(([k])=>g[k]).map(([k,n])=>`<p class="vl-g">${n} <small>(${g[k].length})</small></p><div class="vl-grid">${g[k].map(d=>`<button class="vl-it" data-vo="${d.id}">${d.img?`<img src="${URL.createObjectURL(d.img)}" alt="">`:'<span class="vl-ph">📄</span>'}<b>${xEsc(d.title||n)}</b><small>${d.date?dl(pd(d.date)):''}</small></button>`).join('')}</div>`).join(''):`<p class="op-empty">إضبارتك فارغة — ابدي بأمر التعيين وكتب الشكر.</p>`;
+  renderXHome()}
+$('vlList').addEventListener('click',e=>{const b=e.target.closest('[data-vo]');if(!b)return;const d=VCACHE.find(x=>x.id===b.dataset.vo);if(!d)return;
+  const ov=document.createElement('div');ov.className='ov on vl-ov';ov.innerHTML=`<div class="isheet"><button class="xbtn" aria-label="إغلاق">✕</button><b>${xEsc(d.title||VN(d.type))}</b><small>${VN(d.type)}${d.date?' · '+dl(pd(d.date)):''}${d.exp?' · تنتهي '+dl(pd(d.exp)):''}</small>${d.img?`<img src="${URL.createObjectURL(d.img)}" alt="${xEsc(d.title||VN(d.type))}">`:''}<div class="acts" style="padding:0"><button class="btn pri" data-vs>📤 مشاركة</button><button class="btn" data-vd>🗑️ حذف</button></div></div>`;
+  document.body.appendChild(ov);const close=()=>ov.remove();
+  ov.addEventListener('click',async ev=>{if(ev.target===ov||ev.target.closest('.xbtn'))return close();
+    if(ev.target.closest('[data-vs]')){try{const f=d.img?new File([d.img],(d.title||'وثيقة')+'.jpg',{type:'image/jpeg'}):null;if(f&&navigator.canShare&&navigator.canShare({files:[f]}))await navigator.share({files:[f],title:d.title||VN(d.type)});else if(d.img)dlFile((d.title||'وثيقة')+'.jpg',d.img,'image/jpeg')}catch(_){}}
+    if(ev.target.closest('[data-vd]')){if(!confirm('تحذف هالوثيقة من إضبارتك؟ ما تنرجع إلا من نسخة احتياطية.'))return;await vtx('readwrite',s=>s.delete(d.id));close();renderVault()}})});
+const b64=b=>new Promise(r=>{const f=new FileReader();f.onload=()=>r(f.result);f.readAsDataURL(b)});
+$('vlBak').onclick=async()=>{const all=await vAll();if(!all.length){toast('الإضبارة فارغة');return}const out=[];for(const d of all)out.push({...d,img:d.img?await b64(d.img):null});dlFile(`idbarati-${iso(today())}.json`,JSON.stringify({app:'muwazzaf-alseha',v:1,docs:out}),'application/json');toast('⬇️ احفظ الملف بمكان أمين')};
+$('vlRes').addEventListener('change',async()=>{const f=$('vlRes').files[0];if(!f)return;try{const j=JSON.parse(await f.text());if(!j||!Array.isArray(j.docs))throw 0;let n=0;
+  for(const d of j.docs){if(!d||!d.id)continue;let img=null;if(typeof d.img==='string'&&d.img.startsWith('data:image/')){img=await (await fetch(d.img)).blob()}await vtx('readwrite',s=>s.put({id:String(d.id).slice(0,40),type:VT.some(x=>x[0]===d.type)?d.type:'other',title:String(d.title||'').slice(0,100),date:String(d.date||'').slice(0,10),exp:String(d.exp||'').slice(0,10),src:['min','pm','oth'].includes(d.src)?d.src:'',img,at:+d.at||Date.now()}));n++}
+  toast(`⬆️ رجعت ${n} وثيقة`);renderVault()}catch(_){toast('الملف مو نسخة إضبارة صحيحة')}$('vlRes').value=''});
+renderVault();
+window.vaultThanks=()=>VCACHE.filter(d=>d.type==='thx').map(d=>({src:d.src||'min',d:d.date||''}));
+
+/* ---------- أمومتي ---------- */
+const MK='rw-mom';try{const o=JSON.parse(ls(MK)||'{}');if(o.due)$('mmDue').value=o.due;$('mmTw').checked=!!o.tw}catch(_){}
+function renderMom(){const due=pd($('mmDue').value),tw=$('mmTw').checked;ls(MK,JSON.stringify({due:$('mmDue').value,tw}));if(!due){$('mmOut').innerHTML='<p class="op-empty">اكتبي موعد الولادة حتى تطلع التواريخ.</p>';return}
+  const T=today(),s1=addD(due,-21),e1=addD(s1,71),s2=addD(e1,1),m6=addD(addM(s2,6),-1),e2=addD(addM(s2,12),-1);let net=0;try{net=compute().net}catch(_){}
+  const row=(c,t,a,b,pay)=>`<div class="mm-r" style="--c:${c}"><i></i><div><b>${t}</b><small>من ${dl(a)} إلى ${dl(b)}</small><span>${pay}</span></div></div>`;
+  const nxt=[[s1,'تبدي إجازة الحمل والولادة'],[s2,'تبدي إجازة الأمومة (إذا طلبتيها)'],[addD(e2,1),'آخر موعد رجوع للدوام بعد إجازة الأمومة']].find(x=>dd(T,x[0])>=0);
+  $('mmOut').innerHTML=`${nxt?`<div class="sl-al info">📌 ${nxt[1]} <b>${relDay(nxt[0])||'بعد '+dd(T,nxt[0])+' يوم'}</b> — ${dl(nxt[0])}</div>`:''}
+  <div class="mm">${row('#e5484d','🤰 إجازة الحمل والولادة — 72 يوم',s1,e1,`براتب تام${net?` · تقريباً ${fmt(net)} د.ع شهرياً`:''}`)}
+  ${tw?row('#2bb58a','👶👶 إجازة الأمومة لأم التوأم — سنة',s2,e2,`براتب تام${net?` · تقريباً ${fmt(net)} د.ع شهرياً`:''}`):row('#2bb58a','👶 إجازة الأمومة — أول 6 أشهر',s2,m6,`براتب تام${net?` · تقريباً ${fmt(net)} د.ع شهرياً`:''}`)+row('#c98a08','👶 إجازة الأمومة — الأشهر الباقية',addD(m6,1),e2,`بنصف راتب${net?` · تقريباً ${fmt(net/2)} د.ع شهرياً`:''}`)}</div>
+  <p class="hint">إجازة الأمومة اختيارية وتطلبيها بطلب تحريري. تقدرين ترجعين للدوام بعد إجازة الحمل والولادة مباشرة.</p>`}
+$('mmDue').addEventListener('input',renderMom);$('mmDue').addEventListener('change',renderMom);$('mmTw').addEventListener('change',renderMom);renderMom();
+
+/* ---------- خطوتي الأولى ---------- */
+const FS=[['📄','صدور الأمر الإداري بالتعيين','خذ نسخة من الأمر واحفظها بـ«إضبارتي الرقمية». تاريخ الأمر ورقمه تحتاجهم بكل معاملة.'],
+ ['🏢','المباشرة بالدوام','راجع شعبة الموارد البشرية بالدائرة المنسّب لها مع المستمسكات المطلوبة، وخذ «أمر المباشرة». تاريخ المباشرة هو أساس حساب علاوتك وإجازاتك.'],
+ ['💳','فتح حساب الراتب','اسأل الحسابات عن المصرف المعتمد لتوطين رواتب دائرتك، وافتح الحساب بأسرع وقت حتى ما يتأخر راتبك.'],
+ ['🗂️','إكمال إضبارتك الشخصية','تأكد إن إضبارتك بالذاتية بيها: أمر التعيين، أمر المباشرة، نسخة الشهادة، والمستمسكات الرسمية.'],
+ ['💰','أول راتب','أول راتب ممكن يتأخر لحد ما تكتمل المعاملة، وأحياناً ينزل ويّاه فرق الأيام السابقة. احسب راتبك التقديري من الحاسبة.','calc'],
+ ['📅','سجّل تاريخ تعيينك بـ«ملفي»','حتى يذكّرك التطبيق بعلاوتك الأولى بعد سنة، ويحسبلك رصيد إجازاتك.','me']];
+function renderFS(){const done=JSON.parse(ls('rw-fs')||'[]'),n=done.length;
+  $('fsOut').innerHTML=`<div class="fs-p"><div style="width:${Math.round(n/FS.length*100)}%"></div></div><p class="fs-c">${n===FS.length?'🎉 كملت كل الخطوات — بالتوفيق بوظيفتك!':`أكملت ${n} من ${FS.length} خطوات`}</p>`+FS.map(([ic,t,d,a],i)=>`<div class="fs${done.includes(i)?' ok':''}"><button class="fs-ck" data-fs="${i}" aria-pressed="${done.includes(i)}" aria-label="${done.includes(i)?'إلغاء الإنجاز':'تم'}">${done.includes(i)?'✓':i+1}</button><div><b>${ic} ${t}</b><p>${d}</p>${a==='calc'?`<button class="btn" onclick="location.hash='salary'">احسب راتبي</button>`:a==='me'?`<button class="btn" onclick="location.hash='profile'">افتح ملفي</button>`:''}</div></div>`).join('')}
+$('fsOut').addEventListener('click',e=>{const b=e.target.closest('[data-fs]');if(!b)return;let d=JSON.parse(ls('rw-fs')||'[]');const i=+b.dataset.fs;d=d.includes(i)?d.filter(x=>x!==i):[...d,i];ls('rw-fs',JSON.stringify(d));renderFS()});
+renderFS();
+
+/* ---------- locked trio (preview for admin until opened) ---------- */
+SVC.push(['blood','bloodTool'],['thx','thxTool'],['swap','swapTool']);
+for(const[k,id]of [['blood','bloodTool'],['thx','thxTool'],['swap','swapTool']]){const el=$(id);if(el)el.querySelector('summary').addEventListener('click',e=>{if(!svcOpen(k)){e.preventDefault();toast('🔒 هذه الخدمة سوف تفتح قريباً')}})}
+{const gs=govNames().map(g=>`<option>${g}</option>`).join('');$('bdGov').innerHTML='<option value="">اختر</option>'+gs;$('swFrom').innerHTML='<option value="">اختر</option>'+gs;$('swTo').innerHTML='<option value="">اختر</option>'+gs;if(X.me.gov){$('bdGov').value=X.me.gov;$('swFrom').value=X.me.gov}}
+$('bdReg').onclick=()=>{if(!$('bdT').value||!$('bdGov').value){toast('اختر الفصيلة والمحافظة');return}if(!$('bdOk').checked){toast('لازم توافق أول');return}$('bdMsg').hidden=false;$('bdMsg').textContent='🩸 شكراً لإنسانيتك — الشبكة تتفعّل رسمياً بعد موافقة الوزارة، وراح يوصلك إشعار.'};
+$('swReg').onclick=()=>{if(!$('swT').value.trim()||!$('swFrom').value||!$('swTo').value||$('swFrom').value===$('swTo').value){toast('اكمل البيانات واختر محافظتين مختلفتين');return}$('swMsg').hidden=false;$('swMsg').textContent='🔁 انحفظ طلبك — المطابقة تتفعّل بعد موافقة الوزارة.'};
+applyLocks();
+
+/* ---------- quick calc: import thanks letters from vault ---------- */
+document.querySelector('.qc-add').insertAdjacentHTML('beforeend','<button type="button" data-vimp style="grid-column:1/-1">📥 جيب كتب الشكر من إضبارتي<small>المحفوظة بإضبارتك الرقمية</small></button>');
+document.querySelector('[data-vimp]').onclick=()=>{const v=window.vaultThanks?window.vaultThanks():[];if(!v.length){toast('ماكو كتب شكر بإضبارتك — ضيفها من «مواعيدي ← إضبارتي»');return}window.qcImport&&window.qcImport(v);toast(`📥 انضافت ${v.length} كتب`)};
+
+/* ---------- admin: holiday · opportunities · pulse ---------- */
+let XE=null;
+function insertXEd(){const s=$('eSave');if(!s||$('eXW'))return;const c=ED||{};XE={hol:{...(c.hol||{})},opps:[...(c.opps||[])],pulse:{...(c.pulse||{})}};
+  s.insertAdjacentHTML('beforebegin',`<div id="eXW">
+  <h4>📢 باچر عطلة؟</h4><p class="hint">تنشر العطلة الرسمية بعد صدور البيان فقط، ويا رابطه. «إشاعة» تطلع للناس «❌ غير صحيح».</p>
+  <div class="fg"><div><label for="xhD">تاريخ العطلة</label><input id="xhD" type="date" value="${XE.hol.d||''}"></div><div><label for="xhDw">الدوائر والمراكز</label><select id="xhDw"><option value="off">عطلة</option><option value="on"${XE.hol.dw==='on'?' selected':''}>دوام</option></select></div>
+  <div class="full"><label for="xhT">المناسبة / نص البيان المختصر</label><input id="xhT" maxlength="160" value="${xEsc(XE.hol.t||'')}"></div>
+  <div class="full"><label for="xhS">رابط البيان الرسمي</label><input id="xhS" dir="ltr" value="${xEsc(XE.hol.src||'')}" placeholder="https://..."></div>
+  <div><label for="xhHs">المستشفيات والطوارئ</label><select id="xhHs"><option value="on">دوام اعتيادي</option><option value="off"${XE.hol.hs==='off'?' selected':''}>عطلة</option></select></div>
+  <div style="display:flex;flex-direction:column;justify-content:end;gap:4px"><label class="ck" style="margin:0"><input type="checkbox" id="xhF"${XE.hol.fake?' checked':''}>إشاعة (غير صحيح)</label><label class="ck" style="margin:0"><input type="checkbox" id="xhP">أرسل إشعار للأجهزة عند الحفظ</label></div></div>
+  <button type="button" class="btn" id="xhClr" style="width:100%;justify-content:center">🧹 إزالة إعلان العطلة</button>
+  <h4>🎓 فرصتي</h4><div id="xoL"></div>
+  <div class="fg"><div><label for="xoK">النوع</label><select id="xoK">${Object.entries(OPK).map(([k,n])=>`<option value="${k}">${n}</option>`).join('')}</select></div><div><label for="xoD">آخر موعد للتقديم</label><input id="xoD" type="date"></div>
+  <div class="full"><label for="xoT">العنوان</label><input id="xoT" maxlength="140" placeholder="مثلاً: التقديم للدراسات العليا 2027"></div>
+  <div class="full"><label for="xoW">لمن؟ (اختياري)</label><input id="xoW" maxlength="140" placeholder="مثلاً: حملة البكالوريوس بخدمة سنتين فأكثر"></div>
+  <div class="full"><label for="xoN">ملاحظات / الشروط المختصرة (اختياري)</label><input id="xoN" maxlength="240"></div>
+  <div class="full"><label for="xoU">رابط الإعلان الرسمي</label><input id="xoU" dir="ltr" placeholder="https://..."></div></div>
+  <button type="button" class="btn" id="xoAdd" style="width:100%;justify-content:center">➕ إضافة الفرصة</button>
+  <h4>💓 نبض الموظف</h4><p class="hint">سؤال واحد يطلع للكل مرة وحدة، والجواب بدون اسم.</p>
+  <div class="fg"><div class="full"><label for="xpQ">السؤال</label><input id="xpQ" maxlength="120" value="${xEsc(XE.pulse.q||'شلون رضاك عن بيئة عملك هالشهر؟')}"></div></div>
+  <label class="ck"><input type="checkbox" id="xpOn"${XE.pulse.on?' checked':''}>إظهار السؤال للمستخدمين</label>
+  <div class="acts" style="padding:0"><button type="button" class="btn" id="xpNew">🆕 سؤال جديد (يصفّر الأجوبة)</button><button type="button" class="btn" id="xpRes">📊 النتائج</button></div>
+  <p class="hint" id="xpId">${XE.pulse.id?'رقم السؤال الحالي: '+xEsc(XE.pulse.id):'ما بديت أي سؤال بعد'}</p><div id="xpOut"></div></div>`);
+  const drawO=()=>{$('xoL').innerHTML=XE.opps.length?XE.opps.map((o,i)=>`<div class="ly-r"><b>${xEsc(o.t)}<small style="display:block;font-weight:500;color:var(--mute)">${OPK[o.k]||''}${o.d?' · '+o.d:''}</small></b><button type="button" data-xod="${i}" aria-label="حذف">✕</button></div>`).join(''):'<p class="hint">ماكو فرص منشورة.</p>'};drawO();
+  $('xoL').addEventListener('click',e=>{const b=e.target.closest('[data-xod]');if(!b)return;XE.opps.splice(+b.dataset.xod,1);drawO()});
+  $('xoAdd').onclick=()=>{const t=$('xoT').value.trim(),u=$('xoU').value.trim();if(!t){toast('اكتب عنوان الفرصة');return}if(u&&!/^https:\/\//.test(u)){toast('الرابط لازم يبدي بـ https://');return}
+    XE.opps.push({id:Date.now().toString(36),k:$('xoK').value,t,d:$('xoD').value||'',who:$('xoW').value.trim(),note:$('xoN').value.trim(),u});['xoT','xoW','xoN','xoU','xoD'].forEach(i=>$(i).value='');drawO();toast('انضافت — اضغط «حفظ ونشر»')};
+  $('xhClr').onclick=()=>{['xhD','xhT','xhS'].forEach(i=>$(i).value='');$('xhF').checked=false;toast('انشال — اضغط «حفظ ونشر»')};
+  $('xpNew').onclick=()=>{XE.pulse.id=iso(today()).slice(0,7)+'-'+Math.random().toString(36).slice(2,6);$('xpOn').checked=true;$('xpId').textContent='سؤال جديد: '+XE.pulse.id+' — اضغط «حفظ ونشر»';$('xpOut').innerHTML=''};
+  $('xpRes').onclick=async()=>{if(!XE.pulse.id){toast('ماكو سؤال');return}$('xpOut').innerHTML='<p class="hint">جاري التحميل…</p>';try{const r=await rpc('rw_admin_pulse',{p_pin:ADM,p_qid:XE.pulse.id});const n=+r.n||0,ds=r.dist||{},mx=Math.max(1,...[1,2,3,4,5].map(i=>+ds[i]||0));
+    $('xpOut').innerHTML=`<div class="pl-r"><b>${n}</b> جواب · المعدل <b>${r.avg??'—'}</b> من 5</div>${['😞','🙁','😐','🙂','😍'].map((e,i)=>`<div class="pl-bar"><span>${e}</span><i style="width:${Math.round((+ds[i+1]||0)/mx*100)}%"></i><small>${+ds[i+1]||0}</small></div>`).join('')}${(r.govs||[]).length?`<table class="pl-t"><tr><th>المحافظة</th><th>عدد</th><th>المعدل</th></tr>${r.govs.map(g=>`<tr><td>${xEsc(g.gov)}</td><td>${g.n}</td><td>${g.avg}</td></tr>`).join('')}</table>`:''}`}catch(e){$('xpOut').innerHTML='<p class="hint">تعذّر التحميل: '+xEsc(e.message||'')+'</p>'}};
+}
+{const _de2=drawEditor;drawEditor=function(){_de2();insertXEd()}}
+{const _se2=saveEditor;saveEditor=async function(){let push=null;if(XE&&$('eXW')){const d=$('xhD').value;XE.hol=d?{d,t:$('xhT').value.trim(),src:$('xhS').value.trim(),dw:$('xhDw').value,hs:$('xhHs').value,fake:$('xhF').checked}:{};
+    if(d&&$('xhP').checked){const dt=pd(d);push=XE.hol.fake?['❌ غير صحيح: ما صدر قرار بعطلة '+wkd(dt),XE.hol.t||'']:[`📢 ${relDay(dt)||''} ${wkd(dt)} عطلة رسمية`.replace(/\s+/g,' '),(XE.hol.t||'')+' — المستشفيات: '+(XE.hol.hs==='off'?'عطلة':'دوام اعتيادي')]}
+    XE.pulse={id:XE.pulse.id||'',q:$('xpQ').value.trim(),on:$('xpOn').checked&&!!XE.pulse.id};ED.hol=XE.hol;ED.opps=XE.opps;ED.pulse=XE.pulse}
+  const r=await _se2();if(push)try{sendPush(push[0],push[1],'#')}catch(_){}return r}}
+renderXHome();renderOpps();
+
 }
 </script>
 </body>
