@@ -1306,6 +1306,24 @@ details.tool,#oppCard{scroll-margin-top:96px}
 @keyframes ntDrop{0%,100%{transform:translateY(0)}40%{transform:translateY(3px)}60%{transform:translateY(-1px)}}
 @media (prefers-reduced-motion:reduce){.nt-i{animation:none!important}}
 @media(max-width:350px){.nwg-g{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* ===== compact users/ratings strip + side rating tab + help hint ===== */
+.proof{min-height:28px!important;padding:3px 12px!important;font-size:12px!important;gap:6px!important;margin-top:6px!important;border-radius:999px!important;background:color-mix(in srgb,var(--acc) 7%,var(--card))!important}
+.proof .pf-u b,.proof .pf-r b{color:var(--ink)}.proof small{font-size:11px;color:var(--mute)}
+.proof .pf-d{width:4px;height:4px;border-radius:50%;background:var(--line);display:inline-block}
+.rate-tab{position:fixed;z-index:43;left:0;top:46%;display:flex;flex-direction:column;align-items:center;gap:2px;padding:9px 6px 9px 5px;border:0;border-radius:0 14px 14px 0;background:linear-gradient(160deg,#ffd76a,#e09a00);color:#3a2a00;font-family:inherit;cursor:pointer;box-shadow:4px 6px 16px -6px rgba(176,110,0,.7);transition:transform .2s}
+.rate-tab[hidden]{display:none}
+.rate-tab:active{transform:translateX(-2px)}
+.rate-tab .rt-s{font-size:16px;line-height:1;animation:rtTw 3s ease-in-out infinite}
+.rate-tab b{font-size:12px;line-height:1.1}
+.rate-tab small{writing-mode:vertical-rl;transform:rotate(180deg);font-size:10px;font-weight:800;letter-spacing:.3px;margin-top:2px}
+@keyframes rtTw{0%,80%,100%{transform:scale(1) rotate(0)}88%{transform:scale(1.3) rotate(18deg)}}
+html.adm-only .rate-tab,body:has(.ov.on) .rate-tab{display:none}
+.help-bub.hint::before{content:"✋ حرّكني لأي مكان";position:absolute;bottom:calc(100% + 8px);right:-4px;white-space:nowrap;background:#1c2b27;color:#fff;font-size:11px;font-weight:700;padding:5px 9px;border-radius:10px;box-shadow:0 6px 14px rgba(0,0,0,.25);animation:hbHint 2.2s ease-in-out infinite;pointer-events:none}
+.help-bub.hint::after{content:"";position:absolute;bottom:calc(100% + 2px);right:14px;border:6px solid transparent;border-top-color:#1c2b27;border-bottom:0;pointer-events:none;animation:hbHint 2.2s ease-in-out infinite}
+.help-bub.hint.hl::before{right:auto;left:-4px}.help-bub.hint.hl::after{right:auto;left:14px}
+.help-bub.hint.hb::before{bottom:auto;top:calc(100% + 8px)}.help-bub.hint.hb::after{bottom:auto;top:calc(100% + 2px);border-top-color:transparent;border-bottom:6px solid #1c2b27;border-top:0}
+@keyframes hbHint{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@media (prefers-reduced-motion:reduce){.rate-tab .rt-s,.help-bub.hint::before,.help-bub.hint::after{animation:none}}
 </style>
 </head>
 <body>
@@ -1989,6 +2007,7 @@ details.tool,#oppCard{scroll-margin-top:96px}
 <div class="ov" id="calcOv"><div class="isheet calc-sh" data-noi18n><div class="calc-top"><b>🧮 حاسبة سريعة</b><button class="xbtn" id="calcX" style="position:static">✕</button></div>
   <div class="calc-scr"><small id="calcExp"></small><b id="calcOut">0</b></div>
   <div class="calc-k" id="calcK"></div></div></div>
+<button class="rate-tab" id="rateTab" hidden aria-label="تقييمات التطبيق — قيّم واكتب تعليقك"><span class="rt-s">★</span><b id="rtAvg">قيّم</b><small>قيّم وعلّق</small></button>
 <a class="help-bub" id="helpBub" href="https://www.instagram.com/eng.furqan_kazem" target="_blank" rel="noopener" aria-label="للمساعدة اضغط هنا"><b>؟</b><span>للمساعدة<br>اضغط هنا</span></a>
 <div class="ov" id="wnOv"><div class="isheet rcsheet"><button class="xbtn" id="wnX">✕</button><div style="text-align:center"><span class="wn-tag">✨ تحديث جديد</span><h3 style="margin:4px 0">شنو الجديد بـ«موظف الصحة»</h3></div><ul class="wn-l" id="wnL"></ul><button class="btn pri" id="wnOk" style="width:100%;justify-content:center;margin-top:8px">تمام، خلّيني أجرب 🚀</button></div></div>
 <div class="ov" id="rcOv" role="dialog" aria-label="التقييمات"><div class="isheet rcsheet" id="rcBox"><button class="xbtn" id="rcClose" aria-label="إغلاق">✕</button></div></div>
@@ -2489,7 +2508,8 @@ function drawRatings(){if(!RT)return;const tot=RT.count||0;
   $('rAvg').textContent=tot?(+RT.avg).toFixed(1):'—';$('rStars').innerHTML=starsH(RT.avg);$('rCount').textContent=tot?`${fmt(tot)} تقييم`:'كن أول من يقيّم';
   $('rDist').innerHTML=[5,4,3,2,1].map((s,i)=>{const n=(RT.dist||[])[i]||0;return `<div class="rd"><span>${s}</span><div class="t"><div class="f" style="width:${tot?n/tot*100:0}%"></div></div><span>${fmt(n)}</span></div>`}).join('');
   $('rList').innerHTML=(RT.latest||[]).slice(0,8).map(r=>`<article class="rv"><header><b>${esc(r.name||'مستخدم')}</b><time>${ago(r.updated_at)}</time></header>${starsH(r.stars)}<p>${esc(r.comment)}</p></article>`).join('');
-  if(tot){$('proof').hidden=false;$('proof').innerHTML=`<span class="st">★</span><b>${(+RT.avg).toFixed(1)}</b> · ${fmt(tot)} تقييم${RT.users?` · <b>${fmt(RT.users)}</b> مستخدم`:''}`}
+  if(tot||RT.users){$('proof').hidden=false;$('proof').innerHTML=`${RT.users?`<span class="pf-u">👥 <b>${fmt(RT.users)}</b> مستخدم</span><i class="pf-d"></i>`:''}<span class="pf-r"><span class="st">★</span> <b>${tot?(+RT.avg).toFixed(1):'—'}</b> <small>(${fmt(tot)} تقييم)</small></span>`}
+  try{const t=$('rateTab');if(t){t.hidden=false;$('rtAvg').textContent=tot?(+RT.avg).toFixed(1):'قيّم'}}catch(_){}
 }
 function drawQuick(h=0){const L=lastR();$('qstars').innerHTML=[1,2,3,4,5].map(i=>`<button data-qs="${i}" aria-label="${i} نجوم"><svg viewBox="0 0 24 24"><path d="${STAR}" fill="${i<=h?'#f5a400':'var(--line)'}"/></svg></button>`).join('');$('rateEdit').hidden=!L}
 const myName=()=>(ACC&&ACC.name)||X.me.name||'';
@@ -3884,7 +3904,9 @@ window.openTicket=openTicket;
   addEventListener('pointermove',e=>{if(!st||e.pointerId!==st.id)return;if(!moved&&Math.hypot(e.clientX-st.x,e.clientY-st.y)<8)return;
     if(!moved){moved=true;b.classList.add('drag');try{b.setPointerCapture(e.pointerId)}catch(_){}try{navigator.vibrate&&navigator.vibrate(8)}catch(_){}}
     e.preventDefault();place((e.clientX-st.ox)/innerWidth,(e.clientY-st.oy)/innerHeight)},{passive:false});
-  const end=e=>{if(!st)return;st=null;if(moved){b.classList.remove('drag');const r=b.getBoundingClientRect();ls(K,JSON.stringify({x:r.left/innerWidth,y:r.top/innerHeight}))}};
+  const hintPos=()=>{const r=b.getBoundingClientRect();b.classList.toggle('hl',r.left<innerWidth/2);b.classList.toggle('hb',r.top<90)};
+  if(!ls('rw-help-moved')){b.classList.add('hint');requestAnimationFrame(hintPos);setTimeout(hintPos,600)}
+  const end=e=>{if(!st)return;st=null;if(moved){b.classList.remove('drag','hint');ls('rw-help-moved','1');const r=b.getBoundingClientRect();ls(K,JSON.stringify({x:r.left/innerWidth,y:r.top/innerHeight}))}};
   addEventListener('pointerup',end);addEventListener('pointercancel',end);
   b.addEventListener('click',e=>{if(moved){e.preventDefault();e.stopPropagation();moved=false}},true);
   b.addEventListener('contextmenu',e=>e.preventDefault());
@@ -4228,18 +4250,23 @@ let sr=0;addEventListener('scroll',()=>{if(sr)return;sr=requestAnimationFrame(()
 /* ===== image banner carousel (admin managed) ===== */
 (function(){
 let BN=[];try{BN=JSON.parse(ls('rw-bnr')||'[]')}catch(_){}
-let bi=0,bt=null,paused=false;
+let bi=0,bt=null,manual=false;
 function draw(){const w=$('bnr');if(!w)return;w.hidden=!BN.length;if(!BN.length)return;
-  $('bnrTr').innerHTML=BN.map((b,i)=>{const vid=b.img&&/\.(mp4|webm)(\?|#|$)/i.test(b.img);const inner=`${vid?`<video src="${esc(b.img)}" poster="${esc(b.img.replace(/\.(mp4|webm)/i,'.jpg'))}" autoplay muted loop playsinline preload="metadata" aria-label="${esc(b.title||'إعلان فيديو')}"></video>`:b.img?`<img src="${b.img}" alt="${esc(b.title||'إعلان')}" loading="${i?'lazy':'eager'}">`:''}${b.title||b.sub?`<div class="bnr-tx${b.img?' bov':''}"><b>${esc(b.title||'')}</b>${b.sub?`<small>${esc(b.sub)}</small>`:''}</div>`:''}`;
+  $('bnrTr').innerHTML=BN.map((b,i)=>{const vid=b.img&&/\.(mp4|webm)(\?|#|$)/i.test(b.img);const inner=`${vid?`<video src="${esc(b.img)}" poster="${esc(b.img.replace(/\.(mp4|webm)/i,'.jpg'))}" muted playsinline preload="metadata" aria-label="${esc(b.title||'إعلان فيديو')}"></video>`:b.img?`<img src="${b.img}" alt="${esc(b.title||'إعلان')}" loading="${i?'lazy':'eager'}">`:''}${b.title||b.sub?`<div class="bnr-tx${b.img?' bov':''}"><b>${esc(b.title||'')}</b>${b.sub?`<small>${esc(b.sub)}</small>`:''}</div>`:''}`;
     const st=b.img?'':`style="--bc:${esc(b.color||'#0a7a59')}"`;return b.link?`<a class="bnr-s${b.img?'':' txt'}" ${st} href="${esc(b.link)}" ${/^https?:/.test(b.link)?'target="_blank" rel="noopener"':''}>${inner}</a>`:`<div class="bnr-s${b.img?'':' txt'}" ${st}>${inner}</div>`}).join('');
-  $('bnrDots').innerHTML=BN.length>1?BN.map((_,i)=>`<i class="${i===bi?'on':''}"></i>`).join(''):'';bi=Math.min(bi,BN.length-1);go(bi,false);auto()}
-function go(i,sm){const tr=$('bnrTr');if(!tr||!BN.length)return;bi=(i+BN.length)%BN.length;const w=tr.clientWidth;tr.scrollTo({left:-bi*w*(getComputedStyle(tr).direction==='rtl'?1:-1),behavior:sm&&!reduce?'smooth':'auto'});dots()}
+  $('bnrDots').innerHTML=BN.length>1?BN.map((_,i)=>`<i class="${i===bi?'on':''}"></i>`).join(''):'';bi=Math.min(bi,BN.length-1);go(bi,false)}
+function go(i,sm,rs=true){const tr=$('bnrTr');if(!tr||!BN.length)return;bi=(i+BN.length)%BN.length;const w=tr.clientWidth;tr.scrollTo({left:-bi*w*(getComputedStyle(tr).direction==='rtl'?1:-1),behavior:sm&&!reduce?'smooth':'auto'});dots();playCur(rs&&!manual)}
 function dots(){[...$('bnrDots').children].forEach((d,k)=>d.classList.toggle('on',k===bi))}
-function auto(){clearInterval(bt);if(BN.length>1&&!reduce)bt=setInterval(()=>{if(!paused&&!document.hidden)go(bi+1,true)},5000)}
-const tr=$('bnrTr');let st;tr.addEventListener('scroll',()=>{clearTimeout(st);st=setTimeout(()=>{const w=tr.clientWidth||1;const i=Math.round(Math.abs(tr.scrollLeft)/w);if(i!==bi){bi=i;dots()}},80)},{passive:true});
-tr.addEventListener('pointerdown',()=>{paused=true});tr.addEventListener('pointerup',()=>{setTimeout(()=>paused=false,4000)});
-$('bnrDots').addEventListener('click',e=>{const d=e.target.closest('i');if(d)go([...$('bnrDots').children].indexOf(d),true)});
-addEventListener('resize',()=>go(bi,false));
+function playCur(fromStart){clearTimeout(bt);const sl=[...$('bnrTr').children];
+  sl.forEach((s,k)=>{const v=s.querySelector('video');if(!v)return;if(k===bi&&!reduce){v.loop=manual||BN.length<2;if(fromStart){try{v.currentTime=0}catch(_){}}const p=v.play();if(p)p.catch(()=>{})}else{try{v.pause()}catch(_){}}});
+  if(manual||BN.length<2||reduce)return;const v=sl[bi]&&sl[bi].querySelector('video');
+  if(v){v.onended=()=>{if(!manual)go(bi+1,true)};const d=isFinite(v.duration)&&v.duration>0?v.duration:14;bt=setTimeout(()=>{if(!manual&&!document.hidden)go(bi+1,true)},(d+1.5)*1000)}
+  else bt=setTimeout(()=>{if(!manual&&!document.hidden)go(bi+1,true);else playCur(false)},6000)}
+const tr=$('bnrTr');let st;tr.addEventListener('scroll',()=>{clearTimeout(st);st=setTimeout(()=>{const w=tr.clientWidth||1;const i=Math.round(Math.abs(tr.scrollLeft)/w);if(i!==bi){bi=i;dots();if(manual)playCur(false)}},120)},{passive:true});
+const stopAuto=()=>{if(manual)return;manual=true;clearTimeout(bt);playCur(false)};tr.addEventListener('pointerdown',stopAuto);tr.addEventListener('touchstart',stopAuto,{passive:true});tr.addEventListener('wheel',stopAuto,{passive:true});
+document.addEventListener('visibilitychange',()=>{const v=$('bnrTr').children[bi]&&$('bnrTr').children[bi].querySelector('video');if(document.hidden){v&&v.pause()}else playCur(false)});
+$('bnrDots').addEventListener('click',e=>{const d=e.target.closest('i');if(d){manual=true;go([...$('bnrDots').children].indexOf(d),true)}});
+addEventListener('resize',()=>go(bi,false,false));
 async function load(){try{const r=await rpc('rw_get_banners');if(Array.isArray(r)){BN=r.filter(b=>!(b.link&&b.link.indexOf(location.host)>-1&&location.host));try{ls('rw-bnr',JSON.stringify(r))}catch(_){ls('rw-bnr',JSON.stringify(r.map(b=>({...b,img:null}))))}draw()}}catch(_){}}
 draw();load();window.reloadBanners=load;
 /* admin */
@@ -4622,6 +4649,8 @@ renderXHome();renderOpps();
 /* new-features shortcut row */
 $('newRow').addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(!b)return;if(b.dataset.lock&&!svcOpen(b.dataset.lock)){toast('🔒 «قطرة حياة» سوف تفتح قريباً — بانتظار موافقة الوزارة');return}const[v,id]=b.dataset.go.split(':');location.hash=v;
   setTimeout(()=>{const t=$(id);if(!t)return;if(t.tagName==='DETAILS')t.open=true;t.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});t.classList.remove('go-flash');void t.offsetWidth;t.classList.add('go-flash')},450)});
+
+$('rateTab').onclick=()=>{try{openRC()}catch(_){}};
 
 }
 </script>
