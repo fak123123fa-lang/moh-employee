@@ -2038,7 +2038,7 @@ html.adm-only .rate-tab,body:has(.ov.on) .rate-tab{display:none}
 <div class="ov" id="calcOv"><div class="isheet calc-sh" data-noi18n><div class="calc-top"><b>🧮 حاسبة سريعة</b><button class="xbtn" id="calcX" style="position:static">✕</button></div>
   <div class="calc-scr"><small id="calcExp"></small><b id="calcOut">0</b></div>
   <div class="calc-k" id="calcK"></div></div></div>
-<button class="rate-tab" id="rateTab" hidden aria-label="تقييمات التطبيق — قيّم واكتب تعليقك"><span class="rt-s">★</span><b id="rtAvg">قيّم</b><small>قيّم وعلّق</small></button>
+<button class="rate-tab" id="rateTab" hidden aria-label="تقييمات التطبيق — قيّم واكتب تعليقك"><span class="rt-s">★</span><b id="rtTabAvg">قيّم</b><small>قيّم وعلّق</small></button>
 <a class="help-bub" id="helpBub" href="https://www.instagram.com/eng.furqan_kazem" target="_blank" rel="noopener" aria-label="للمساعدة اضغط هنا"><b>؟</b><span>للمساعدة<br>اضغط هنا</span></a>
 <div class="ov" id="wnOv"><div class="isheet rcsheet"><button class="xbtn" id="wnX">✕</button><div style="text-align:center"><span class="wn-tag">✨ تحديث جديد</span><h3 style="margin:4px 0">شنو الجديد بـ«موظف الصحة»</h3></div><ul class="wn-l" id="wnL"></ul><button class="btn pri" id="wnOk" style="width:100%;justify-content:center;margin-top:8px">تمام، خلّيني أجرب 🚀</button></div></div>
 <div class="ov" id="rcOv" role="dialog" aria-label="التقييمات"><div class="isheet rcsheet" id="rcBox"><button class="xbtn" id="rcClose" aria-label="إغلاق">✕</button></div></div>
@@ -2540,7 +2540,7 @@ function drawRatings(){if(!RT)return;const tot=RT.count||0;
   $('rDist').innerHTML=[5,4,3,2,1].map((s,i)=>{const n=(RT.dist||[])[i]||0;return `<div class="rd"><span>${s}</span><div class="t"><div class="f" style="width:${tot?n/tot*100:0}%"></div></div><span>${fmt(n)}</span></div>`}).join('');
   $('rList').innerHTML=(RT.latest||[]).slice(0,8).map(r=>`<article class="rv"><header><b>${esc(r.name||'مستخدم')}</b><time>${ago(r.updated_at)}</time></header>${starsH(r.stars)}<p>${esc(r.comment)}</p></article>`).join('');
   if(tot||RT.users){$('proof').hidden=false;$('proof').innerHTML=`${RT.users?`<span class="pf-u">👥 <b>${fmt(RT.users)}</b> مستخدم</span><i class="pf-d"></i>`:''}<span class="pf-r"><span class="st">★</span> <b>${tot?(+RT.avg).toFixed(1):'—'}</b> <small>(${fmt(tot)} تقييم)</small></span>`}
-  try{const t=$('rateTab');if(t){t.hidden=false;$('rtAvg').textContent=tot?(+RT.avg).toFixed(1):'قيّم'}}catch(_){}
+  try{const t=$('rateTab');if(t){t.hidden=false;$('rtTabAvg').textContent=tot?(+RT.avg).toFixed(1):'قيّم'}}catch(_){}
 }
 function drawQuick(h=0){const L=lastR();$('qstars').innerHTML=[1,2,3,4,5].map(i=>`<button data-qs="${i}" aria-label="${i} نجوم"><svg viewBox="0 0 24 24"><path d="${STAR}" fill="${i<=h?'#f5a400':'var(--line)'}"/></svg></button>`).join('');$('rateEdit').hidden=!L}
 const myName=()=>(ACC&&ACC.name)||X.me.name||'';
