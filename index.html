@@ -1423,6 +1423,16 @@ body:not(.solo) #v-tools>.own{display:none!important}
   #nav.nav:not(.compact){max-width:620px;margin-inline:auto!important}
   .xstrip{max-width:620px;margin-inline:auto;justify-content:center}
 }
+
+/* ===== v6: comments as vertical auto-scrolling compact list ===== */
+#rList{display:block!important;flex-direction:column!important;height:250px;overflow-y:auto!important;overflow-x:hidden!important;scroll-snap-type:none!important;padding:4px!important;border-radius:14px;background:color-mix(in srgb,var(--ink) 3%,transparent);
+  -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 18px,#000 calc(100% - 22px),transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 18px,#000 calc(100% - 22px),transparent 100%);scrollbar-width:none}
+#rList::-webkit-scrollbar{display:none}
+#rList .rv{display:block;max-width:none!important;width:auto;flex:none!important;margin:0 0 6px!important;padding:7px 10px!important;border-radius:12px;border:1px solid var(--line);background:var(--card)}
+#rList .rv header{display:flex;align-items:center;gap:6px}
+#rList .rv header b{font-size:12.5px}#rList .rv header time{margin-inline-start:auto;font-size:10.5px}
+#rList .rv .stars{display:inline-flex;margin:0}#rList .rv .stars svg{width:10px;height:10px}
+#rList .rv p{font-size:12.5px;line-height:1.5;margin:2px 0 0;-webkit-line-clamp:2;text-align:start}
 </style>
 </head>
 <body>
@@ -4901,7 +4911,14 @@ applyLayout(CFG);requestAnimationFrame(drawRows);setTimeout(()=>drawRows(),400);
 {const _dr3=drawRatings;drawRatings=function(){_dr3();try{const L=(RT&&RT.latest)||[];const box=$('rList');if(!box)return;
   let h=$('rcH');if(!h){box.insertAdjacentHTML('beforebegin','<div class="rc-h" id="rcH"></div>');h=$('rcH')}
   h.innerHTML=L.length?`<span>💬 كل التعليقات (${fmt(L.length)})</span><small>اسحب ← للمزيد</small>`:'';
-  box.innerHTML=L.map(r=>`<article class="rv"><header><b>${esc(r.name||'مستخدم')}</b><time>${ago(r.updated_at)}</time></header>${starsH(r.stars)}<p>${esc(r.comment)}</p></article>`).join('')}catch(_){}}}
+  const one=L.map(r=>`<article class="rv"><header><b>${esc(r.name||'مستخدم')}</b>${starsH(r.stars)}<time>${ago(r.updated_at)}</time></header><p>${esc(r.comment)}</p></article>`).join('');
+  box.innerHTML=one+(L.length>3?`<div class="rv-loop" aria-hidden="true">${one}</div>`:'');
+  h.innerHTML=L.length?`<span>💬 كل التعليقات (${fmt(L.length)})</span><small>اسحب لفوق ↑</small>`:'';rvAuto()}catch(_){}}}
+let rvT=0,rvPause=0;function rvAuto(){cancelAnimationFrame(rvT);const box=$('rList');if(!box||reduce)return;let last=0,acc=0;
+  const step=t=>{rvT=requestAnimationFrame(step);if(!last){last=t;return}const dt=t-last;last=t;if(!$('rcOv').classList.contains('on')||Date.now()<rvPause)return;
+    const loop=box.querySelector('.rv-loop');if(!loop)return;acc+=dt*0.022;if(acc>=1){const n=Math.floor(acc);acc-=n;box.scrollTop+=n;if(box.scrollTop>=loop.offsetTop)box.scrollTop-=loop.offsetTop}};
+  rvT=requestAnimationFrame(step)}
+['touchstart','wheel','pointerdown'].forEach(ev=>document.addEventListener(ev,e=>{if(e.target.closest&&e.target.closest('#rList'))rvPause=Date.now()+4000},{passive:true}));
 if(RT)drawRatings();
 
 /* ===== ID photo: capture / gallery → white background → card ===== */
