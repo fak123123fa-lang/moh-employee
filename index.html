@@ -1376,6 +1376,23 @@ body:not(.solo) #v-tools>.own{display:none!important}
 .xstrip{gap:6px;margin-top:8px}
 .xstrip button{padding:6px 11px 6px 12px;border-radius:999px;border:1px solid var(--line);border-right:1px solid var(--line);background:var(--card);font-size:12px;font-weight:700;box-shadow:0 1px 2px rgba(0,0,0,.05)}
 .xstrip button i{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;font-size:12.5px;background:color-mix(in srgb,var(--c) 14%,transparent)}
+
+/* ===== v4: bigger vivid icons, comments strip, ID photo ===== */
+#nav.nav:not(.compact){gap:8px 0!important;padding:8px 3px!important}
+#nav.nav:not(.compact) button{min-height:62px!important;gap:4px!important;font-size:11.5px!important;font-weight:800!important;color:var(--ink)!important;letter-spacing:-.1px}
+#nav.nav .ic{width:44px!important;height:44px!important;border-radius:14px!important;filter:saturate(1.35) contrast(1.06)}
+#nav.nav svg{width:22px!important;height:22px!important;stroke-width:2.3!important}
+#nav.nav .nv-sal .ic{width:46px!important;height:46px!important}#nav.nav .nv-sal svg{width:23px!important;height:23px!important}
+.rc-h{display:flex;justify-content:space-between;align-items:center;margin:12px 0 6px;font-size:13px;font-weight:800}.rc-h small{font-weight:600;color:var(--mute);font-size:11.5px}
+#rList{display:flex!important;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;padding:2px 2px 6px;scrollbar-width:thin;flex-direction:row!important}
+#rList .rv{flex:0 0 72%;max-width:250px;padding:8px 10px;border-radius:12px;scroll-snap-align:start;border:1px solid var(--line);background:var(--card)}
+#rList .rv header b{font-size:12.5px}#rList .rv time{font-size:10.5px}#rList .rv .stars svg{width:11px;height:11px}
+#rList .rv p{font-size:12.5px;line-height:1.55;margin-top:3px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.idph{display:flex;gap:12px;align-items:center;padding:10px;border-radius:14px;border:1px dashed color-mix(in srgb,var(--acc) 40%,var(--line));background:color-mix(in srgb,var(--acc) 5%,var(--card))}
+.idph-img{flex:none;width:72px;height:96px;border-radius:10px;background:#fff center/cover no-repeat;border:2px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.15);display:grid;place-items:center;font-size:34px;color:#b8c4c0}
+.idph-c{flex:1;min-width:0}.idph-c b{display:block;font-size:14px}.idph-c small{display:block;font-size:11.5px;color:var(--mute);line-height:1.5}
+.idph-b{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 4px}.idph-b .btn{padding:6px 10px;font-size:12.5px;cursor:pointer}
+.idph-st{font-size:12px;font-weight:700;color:var(--acc)}
 </style>
 </head>
 <body>
@@ -1622,6 +1639,10 @@ body:not(.solo) #v-tools>.own{display:none!important}
       <h2><span class="ic"><svg><use href="#i-user"/></svg></span>ملفي الوظيفي</h2>
       <p class="hint">املأ بياناتك مرة وحدة — وكل ما تفتح البرنامج تشوف كم باقي على علاوتك وترفيعك. البيانات تُحفظ على جهازك فقط.</p>
       <div class="fg">
+        <div class="full idph" id="idPh"><div class="idph-img" id="idPhImg">👤</div><div class="idph-c"><b>صورة الهوية</b><small>صوّر وجهك وكتافك وإنت باوع للكاميرا. نشيل الخلفية ونخليها بيضاء تلقائياً.</small>
+          <div class="idph-b"><label class="btn pri" for="idPhCam">📷 التقاط</label><label class="btn" for="idPhGal">🖼 من المعرض</label><button type="button" class="btn" id="idPhDel" hidden>🗑</button></div>
+          <input type="file" accept="image/*" capture="user" id="idPhCam" hidden><input type="file" accept="image/*" id="idPhGal" hidden>
+          <span class="idph-st" id="idPhSt"></span><small>🔒 تنحفظ على جهازك، وتوصل لإدارة التطبيق فقط لغرض الهوية.</small></div></div>
         <div class="full"><label for="mName">الاسم</label><input id="mName" placeholder="اسمك الكامل"></div>
         <div><label for="mTitle">العنوان الوظيفي</label><input id="mTitle" placeholder="مثلاً: مهندس أقدم"></div>
         <div><label for="mDept">الدائرة / القسم</label><input id="mDept" placeholder="مثلاً: المركز التخصصي للحروق"></div>
@@ -1667,6 +1688,7 @@ body:not(.solo) #v-tools>.own{display:none!important}
         <canvas id="idCv" class="id-cv" aria-label="بطاقة الهوية الوظيفية"></canvas>
         <p class="hint">تُبنى من بيانات «ملفي» وقسم الراتب — عدّلها هناك وتتحدث هنا تلقائياً.</p>
         <div class="acts" style="padding:0"><button class="btn pri" id="idShare">مشاركة</button><button class="btn" id="idSave">حفظ صورة</button><button class="btn" onclick="location.hash='profile'">تعديل بياناتي</button></div>
+        <div class="acts" style="padding:0;margin-top:6px"><label class="btn" for="idPhCam">📷 صورة الهوية (التقاط)</label><label class="btn" for="idPhGal">🖼 من المعرض</label></div>
       </div>
     </details>
     <details class="tool" id="cmeTool" style="--c1:#3cc3c9;--c2:#13838a">
@@ -4820,7 +4842,7 @@ document.addEventListener('click',e=>{if(e.target.closest('[data-solox]')){clear
 function lockMsg(){toast('🔒 هاي الخدمة جاهزة، وتنفتح بعد موافقة الوزارة')}
 $('nav').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
   if(b.dataset.qc){e.stopImmediatePropagation();try{openQC()}catch(_){}return}
-  if(b.dataset.t){e.stopImmediatePropagation();if(b.dataset.lk&&!svcOpen(b.dataset.lk)){lockMsg();return}openSolo(b.dataset.tv,b.dataset.t,b.textContent.trim());return}
+  if(b.dataset.t){e.stopImmediatePropagation();if(b.dataset.lk&&!svcOpen(b.dataset.lk)){lockMsg();return}openSolo(b.dataset.tv,b.dataset.t,b.textContent.replace('🔒','').trim());return}
   clearSolo();if(b.dataset.v==='salary')setTimeout(()=>{const t=$('st1');if(!t)return;const y=t.getBoundingClientRect().top+scrollY-($('nav').offsetHeight||0)-12;scrollTo({top:Math.max(0,y),behavior:'smooth'})},120)},true);
 function markLocks(){document.querySelectorAll('#nav [data-lk]').forEach(b=>{if(!b.querySelector('.nlb'))b.insertAdjacentHTML('beforeend','<span class="nlb">🔒</span>');b.classList.toggle('nlk',!svcOpen(b.dataset.lk))})}
 {const _ac2=applyCfg;applyCfg=function(c){_ac2(c);try{markLocks()}catch(_){}}}
@@ -4842,6 +4864,79 @@ drawRows=function(){const nav=$('nav');if(!nav)return;nav.querySelectorAll('.nro
   rows.forEach((r,i)=>{const t=Math.min(...r.map(b=>b.offsetTop))-3,h=Math.max(...r.map(b=>b.offsetTop+b.offsetHeight))-t+3;const c=ROWC[i%ROWC.length];
     const d=document.createElement('div');d.className='nrow';d.style.cssText=`top:${t}px;height:${h}px;--rc:${c[0]}`;nav.insertBefore(d,nav.firstChild)})};
 applyLayout(CFG);requestAnimationFrame(drawRows);setTimeout(()=>drawRows(),400);setTimeout(()=>drawRows(),1700);
+
+/* ===== comments strip: all comments, compact ===== */
+{const _dr3=drawRatings;drawRatings=function(){_dr3();try{const L=(RT&&RT.latest)||[];const box=$('rList');if(!box)return;
+  let h=$('rcH');if(!h){box.insertAdjacentHTML('beforebegin','<div class="rc-h" id="rcH"></div>');h=$('rcH')}
+  h.innerHTML=L.length?`<span>💬 كل التعليقات (${fmt(L.length)})</span><small>اسحب ← للمزيد</small>`:'';
+  box.innerHTML=L.map(r=>`<article class="rv"><header><b>${esc(r.name||'مستخدم')}</b><time>${ago(r.updated_at)}</time></header>${starsH(r.stars)}<p>${esc(r.comment)}</p></article>`).join('')}catch(_){}}}
+if(RT)drawRatings();
+
+/* ===== ID photo: capture / gallery → white background → card ===== */
+const SEGV='0.10.14';
+async function segLoad(){if(window._seg)return window._seg;
+  const v=await import(`https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@${SEGV}/vision_bundle.mjs`);
+  const fs=await v.FilesetResolver.forVisionTasks(`https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@${SEGV}/wasm`);
+  window._seg=await v.ImageSegmenter.createFromOptions(fs,{baseOptions:{modelAssetPath:'https://storage.googleapis.com/mediapipe-models/image_segmenter/selfie_segmenter/float16/latest/selfie_segmenter.tflite',delegate:'CPU'},runningMode:'IMAGE',outputCategoryMask:false,outputConfidenceMasks:true});
+  return window._seg}
+async function makeIdPhoto(file){
+  const bmp=await createImageBitmap(file);const sc=Math.min(1,900/Math.max(bmp.width,bmp.height));
+  const W=Math.round(bmp.width*sc),H=Math.round(bmp.height*sc);const c=document.createElement('canvas');c.width=W;c.height=H;const x=c.getContext('2d');x.drawImage(bmp,0,0,W,H);
+  let mask=null,ok=false;
+  try{const seg=await Promise.race([segLoad(),new Promise((_,r)=>setTimeout(()=>r('t'),20000))]);const res=seg.segment(c);const m=res.confidenceMasks[0];
+    const a=m.getAsFloat32Array(),mw=m.width,mh=m.height;if(mw===W&&mh===H)mask=a;else{mask=new Float32Array(W*H);for(let y=0;y<H;y++){const ry=Math.min(mh-1,Math.floor(y*mh/H))*mw;for(let xx=0;xx<W;xx++)mask[y*W+xx]=a[ry+Math.min(mw-1,Math.floor(xx*mw/W))]}}ok=true;try{res.close&&res.close()}catch(_){}}catch(_){}
+  // person box
+  let bx0=0,by0=0,bx1=W,by1=H;
+  if(ok){let minx=W,miny=H,maxx=0,maxy=0,n=0;for(let y=0;y<H;y+=2)for(let xx=0;xx<W;xx+=2)if(mask[y*W+xx]>.5){n++;if(xx<minx)minx=xx;if(xx>maxx)maxx=xx;if(y<miny)miny=y;if(y>maxy)maxy=y}
+    if(n>W*H/200){bx0=minx;by0=miny;bx1=maxx;by1=maxy}else ok=false}
+  // passport crop 3:4 around head & shoulders
+  const pw=bx1-bx0,cx=(bx0+bx1)/2;let ch=Math.min(H,ok?Math.min(by1-by0,pw*1.45)*1.12:H*.9),cw=ch*.75;if(cw>W){cw=W;ch=cw/.75}
+  let cy=ok?Math.max(0,by0-ch*.08):Math.max(0,(H-ch)*.3);let cxx=Math.max(0,Math.min(W-cw,cx-cw/2));if(cy+ch>H)cy=H-ch;
+  if(ok){const id=x.getImageData(0,0,W,H),d=id.data;for(let i=0;i<W*H;i++){let a=mask[i];a=a<.35?0:a>.75?1:(a-.35)/.4;a=a*a*(3-2*a);const k=i*4;d[k]=d[k]*a+255*(1-a);d[k+1]=d[k+1]*a+255*(1-a);d[k+2]=d[k+2]*a+255*(1-a)}x.putImageData(id,0,0)}
+  const o=document.createElement('canvas');o.width=300;o.height=400;const ox=o.getContext('2d');ox.fillStyle='#fff';ox.fillRect(0,0,300,400);
+  ox.filter='brightness(1.04) contrast(1.05) saturate(1.05)';ox.drawImage(c,cxx,cy,cw,ch,0,0,300,400);ox.filter='none';
+  let q=.86,url=o.toDataURL('image/jpeg',q);while(url.length>110000&&q>.5){q-=.08;url=o.toDataURL('image/jpeg',q)}
+  return {url,ok}}
+function idCode(){const m=X.me||{};const s=(m.name||'')+'|'+(m.photo||'').length+'|'+(m.photoAt||'');let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}const t=(h>>>0).toString(36).toUpperCase().padStart(7,'0');return t.slice(0,4)+'-'+t.slice(4,8)}
+function drawIdPh(){const m=X.me||{};const el=$('idPhImg');if(!el)return;if(m.photo){el.style.backgroundImage=`url(${m.photo})`;el.textContent=''}else{el.style.backgroundImage='';el.textContent='👤'}$('idPhDel').hidden=!m.photo}
+async function onIdFile(f){if(!f)return;const st=$('idPhSt');st.textContent='⏳ جاري تجهيز الصورة وإزالة الخلفية…';
+  try{const r=await makeIdPhoto(f);X.me=X.me||{};X.me.photo=r.url;X.me.photoAt=new Date().toISOString().slice(0,10);saveX();drawIdPh();try{drawIdCard()}catch(_){}
+    st.textContent=r.ok?'✅ جاهزة — الخلفية صارت بيضاء':'✅ انحفظت — ما كدرنا نشيل الخلفية، صوّر على حائط فاتح لنتيجة أحسن';
+    try{await rpc('rw_photo_save',{p_device:DEV,p_img:r.url,p_name:(X.me.name||null),p_token:ACC?ACC.token:null})}catch(_){}}
+  catch(e){st.textContent='⚠️ ما انقرت الصورة، جرّب صورة ثانية'}}
+['idPhCam','idPhGal'].forEach(id=>$(id).addEventListener('change',e=>{onIdFile(e.target.files[0]);e.target.value=''}));
+$('idPhDel').onclick=async()=>{if(!confirm('تحذف صورة الهوية؟'))return;delete X.me.photo;delete X.me.photoAt;saveX();drawIdPh();try{drawIdCard()}catch(_){}$('idPhSt').textContent='';try{await rpc('rw_photo_del',{p_device:DEV})}catch(_){}};
+drawIdPh();
+/* ID card v2 with photo + verification code */
+const _phImg=new Image();let _phSrc='';
+drawIdCard=function(){const cv=$('idCv');if(!cv)return;const W=1000,H=600,x=cv.getContext('2d');cv.width=W;cv.height=H;
+  const g=GROUPS[st.g],s=g.s[st.s],m=X.me||{},o=dues();const F=(w,z)=>`${w} ${z}px "IBM Plex Sans Arabic",Tajawal,sans-serif`;
+  const bg=x.createLinearGradient(0,0,W,H);bg.addColorStop(0,'#0e8a64');bg.addColorStop(1,'#064c38');x.fillStyle=bg;x.beginPath();x.roundRect(0,0,W,H,40);x.fill();
+  x.globalAlpha=.07;x.fillStyle='#fff';for(let i=0;i<6;i++){x.beginPath();x.arc(120+i*170,H-30,90+i*12,0,7);x.fill()}x.globalAlpha=1;
+  x.save();x.globalAlpha=.05;x.fillStyle='#fff';x.font=F(700,22);x.translate(W/2,H/2);x.rotate(-.35);for(let yy=-400;yy<400;yy+=70)for(let xx=-700;xx<700;xx+=260)x.fillText('موظف الصحة',xx,yy);x.restore();
+  x.fillStyle='rgba(255,255,255,.12)';x.fillRect(0,0,W,96);
+  x.direction='rtl';x.textAlign='right';x.fillStyle='#fff';x.font=F(700,40);x.fillText('هويتي الوظيفية',W-44,62);
+  x.textAlign='left';x.font=F(500,24);x.fillStyle='#f5d27a';x.fillText('موظف الصحة',44,60);
+  // photo
+  const px=44,py=122,pw=190,ph=253;x.fillStyle='#fff';x.beginPath();x.roundRect(px-6,py-6,pw+12,ph+12,16);x.fill();
+  if(m.photo){if(_phSrc!==m.photo){_phSrc=m.photo;_phImg.onload=()=>drawIdCard();_phImg.src=m.photo}if(_phImg.complete&&_phImg.naturalWidth){x.save();x.beginPath();x.roundRect(px,py,pw,ph,10);x.clip();x.drawImage(_phImg,px,py,pw,ph);
+      x.globalAlpha=.22;x.strokeStyle='#0a7a59';x.lineWidth=1.2;for(let k=0;k<8;k++){x.beginPath();x.arc(px+pw-6,py+ph-6,14+k*6,Math.PI,1.5*Math.PI);x.stroke()}x.restore()}}
+  else{x.fillStyle='#e9efed';x.beginPath();x.roundRect(px,py,pw,ph,10);x.fill();x.fillStyle='#b8c4c0';x.beginPath();x.arc(px+pw/2,py+95,44,0,7);x.fill();x.beginPath();x.ellipse(px+pw/2,py+215,78,60,0,Math.PI,0);x.fill();x.fillStyle='#7d8f89';x.font=F(700,18);x.textAlign='center';x.fillText('أضف صورتك من «ملفي»',px+pw/2,py+ph-12)}
+  // text
+  x.textAlign='right';x.fillStyle='#fff';x.font=F(700,44);x.fillText(String(m.name||'اسمك (من «ملفي»)').slice(0,26),W-44,168);
+  const rows=[['الاختصاص',s[0]],['العنوان الوظيفي',m.title||'—'],['الدائرة',m.dept||'—'],['الدرجة / المرحلة',`${GN[st.grade]} / ${st.step}`],['مدة الخدمة',o.svc!=null?ym(o.svc):'—']];
+  rows.forEach(([k,v],i)=>{const y=226+i*62;x.font=F(500,22);x.fillStyle='rgba(255,255,255,.75)';x.fillText(k,W-44,y);x.font=F(700,27);x.fillStyle='#fff';x.fillText(String(v).slice(0,24),W-250,y)});
+  // QR
+  const code=idCode();
+  const txt=[`الاسم: ${m.name||'-'}`,`الاختصاص: ${s[0]}`,`العنوان: ${m.title||'-'}`,`الدائرة: ${m.dept||'-'}`,`الدرجة: ${st.grade} المرحلة: ${st.step}`,o.svc!=null?`الخدمة: ${ym(o.svc)}`:'',`رمز التحقق: ${code}`,`موظف الصحة: ${SITE}`].filter(Boolean).join('\n');
+  const mt=qrMatrix(txt),n=mt.length,sz=168,cell=sz/n,qx=262,qy=150;x.fillStyle='#fff';x.beginPath();x.roundRect(qx-12,qy-12,sz+24,sz+24,16);x.fill();x.fillStyle='#062e22';
+  for(let a=0;a<n;a++)for(let b=0;b<n;b++)if(mt[a][b])x.fillRect(qx+b*cell,qy+a*cell,Math.ceil(cell),Math.ceil(cell));
+  x.font=F(500,17);x.fillStyle='rgba(255,255,255,.85)';x.textAlign='center';x.fillText('امسح لعرض البيانات',qx+sz/2,qy+sz+40);
+  // footer
+  x.fillStyle='rgba(0,0,0,.18)';x.fillRect(0,H-64,W,64);
+  x.textAlign='left';x.font=F(700,20);x.fillStyle='#f5d27a';x.fillText(`رمز التحقق: ${code}`,44,H-26);
+  x.textAlign='right';x.font=F(500,17);x.fillStyle='rgba(255,255,255,.7)';x.fillText(`${m.photoAt?'تاريخ الصورة '+m.photoAt+' · ':''}بيانات يدخلها الموظف بنفسه — للتعريف والاسترشاد`,W-44,H-26)};
+try{if(document.querySelector('#idTool').open)drawIdCard()}catch(_){}
 
 }
 </script>
