@@ -1412,6 +1412,17 @@ body:not(.solo) #v-tools>.own{display:none!important}
 @keyframes wUp{from{transform:translateY(12px);opacity:0}to{transform:none;opacity:1}}
 @keyframes wLoad{0%{transform:translateX(130%)}100%{transform:translateX(-260%)}}
 @media (prefers-reduced-motion:reduce){#wel *{animation:none!important}}
+
+/* ===== v5 presentation polish ===== */
+#nav .nv-new,#nav .nlb~.nv-new{display:none!important}
+#nav .nrow{left:3px!important;right:3px!important;border:0!important;box-shadow:none!important;border-radius:16px!important;background:color-mix(in srgb,var(--rc) 7%,transparent)!important}
+.rate-tab{top:auto!important;bottom:calc(150px + env(safe-area-inset-bottom))!important;padding:7px 4px 7px 3px!important;border-radius:0 11px 11px 0!important;transform:scale(.88);transform-origin:left center}
+.help-bub{bottom:calc(112px + env(safe-area-inset-bottom))}
+.help-bub.hint-off::before{display:none!important}
+@media (min-width:700px){
+  #nav.nav:not(.compact){max-width:620px;margin-inline:auto!important}
+  .xstrip{max-width:620px;margin-inline:auto;justify-content:center}
+}
 </style>
 </head>
 <body>
@@ -4978,6 +4989,10 @@ try{if(document.querySelector('#idTool').open)drawIdCard()}catch(_){}
     $('welSkip').onclick=()=>{ls(ask?'rw-wel-skip':'rw-wel-ios',ask?String(Date.now()):'1');close()};
   }else setTimeout(close,1500);
 })();
+
+/* hide the drag hint after a few seconds */
+setTimeout(()=>{try{const h=document.querySelector('.help-bub');if(h)h.classList.add('hint-off')}catch(_){}},6000);
+setTimeout(()=>{try{drawRows()}catch(_){}},300);addEventListener('resize',()=>{try{drawRows()}catch(_){}});
 
 }
 </script>
