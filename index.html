@@ -1332,6 +1332,10 @@ html.adm-only .rate-tab,body:has(.ov.on) .rate-tab{display:none}
 .rt-big .eq{display:inline-block;margin-top:6px;font-size:12px;background:rgba(255,255,255,.16);padding:4px 10px;border-radius:999px}
 .rt-big.min{background:linear-gradient(135deg,#2bb58a,#0a7a59)}.rt-big.no{background:linear-gradient(135deg,#e07a5f,#b4452a)}
 .rt-k{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.rt-ym{display:flex;align-items:center;gap:8px}.rt-ym select{width:auto;min-width:70px}.rt-ym span{font-size:13px;color:var(--mut,#667)}
+.rt-avh{margin:4px 0 0;font-size:12px;color:var(--mut,#667);line-height:1.5}.rt-avh button{border:0;background:none;color:var(--pri,#0a7a59);font:inherit;font-weight:800;cursor:pointer;padding:0;text-decoration:underline}
+.rt-tb{width:100%;border-collapse:collapse;margin-top:10px;font-size:13.5px}.rt-tb td{padding:7px 8px;border-bottom:1px dashed rgba(127,127,127,.25)}.rt-tb td:last-child{text-align:left;font-weight:800;font-variant-numeric:tabular-nums;white-space:nowrap}.rt-tb small{display:block;font-size:11px;opacity:.7;font-weight:400}.rt-tb tr.tot td{border-bottom:0;border-top:2px solid currentColor;font-size:15px}
+.rt-note{margin-top:8px;font-size:12.5px;border-radius:12px;padding:8px 10px;background:rgba(10,122,89,.08);line-height:1.6}
 .rt-k div{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:8px;text-align:center}.rt-k b{display:block;font-size:16px}.rt-k span{font-size:11px;color:var(--mute)}
 .rt-cmp{margin-top:10px;font-size:12.5px;color:var(--mute)}.rt-cmp b{color:var(--ink)}
 .rt-chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}.rt-chips button{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:5px 11px;font:700 12px inherit;font-family:inherit;color:var(--ink);cursor:pointer}
@@ -1877,12 +1881,14 @@ html.adm-only .rate-tab,body:has(.ov.on) .rate-tab{display:none}
       <div class="fg">
         <div><label for="rtG">الدرجة عند الإحالة</label><select id="rtG"></select></div>
         <div><label for="rtS">المرحلة</label><select id="rtS"></select></div>
-        <div class="full"><label for="rtAvg">معدل الراتب الاسمي لآخر 3 سنوات (د.ع)</label><input id="rtAvg" type="number" inputmode="numeric" min="0"></div>
-        <div class="full"><label for="rtY">سنوات الخدمة التقاعدية</label><div class="rt-yr"><button type="button" data-ry="-1" aria-label="أقل">−</button><input id="rtY" type="number" inputmode="numeric" min="0" max="50" value="30"><button type="button" data-ry="1" aria-label="أكثر">+</button></div></div>
+        <div class="full"><label for="rtC">الشهادة</label><select id="rtC"><option value="0">إعدادية فما دون</option><option value="5">دبلوم (5%)</option><option value="10">بكالوريوس (10%)</option><option value="15">دبلوم عالي / ماجستير (15%)</option><option value="20">دكتوراه (20%)</option></select></div>
+        <div class="full"><label for="rtY">مدة الخدمة التقاعدية</label><div class="rt-ym"><div class="rt-yr"><button type="button" data-ry="-1" aria-label="أقل">−</button><input id="rtY" type="number" inputmode="numeric" min="0" max="50" value="30"><button type="button" data-ry="1" aria-label="أكثر">+</button></div><span>سنة</span><select id="rtM" aria-label="أشهر"></select><span>شهر</span></div></div>
+        <div class="full"><label for="rtAvg">معدل الراتب الاسمي لآخر 36 شهراً (د.ع)</label><input id="rtAvg" type="number" inputmode="numeric" min="0"><p class="rt-avh" id="rtAvH"></p></div>
+        <div class="full"><label for="rtFull">الراتب الكلي الأخير مع المخصصات <small>(اختياري — لمكافأة نهاية الخدمة)</small></label><input id="rtFull" type="number" inputmode="numeric" min="0" placeholder="مثلاً 1500000"></div>
       </div>
       <div id="rtOut"></div>
       <div class="acts" style="padding:0;margin-top:10px"><button class="btn pri" id="rtShare" type="button">📤 شارك النتيجة</button><button class="btn" id="rtReset" type="button">↺ من جديد</button></div>
-      <p class="disc">ℹ️ تقدير حسب قانون التقاعد الموحد رقم 9 لسنة 2014 وتعديلاته: معدل الراتب الوظيفي (بدون مخصصات) لآخر 36 شهراً × 2.5% × سنوات الخدمة، بحد أعلى 100% من آخر راتب وظيفي، وأقل خدمة لراتب شهري 15 سنة (6 أشهر فأكثر تُحسب سنة). الحد الأدنى للراتب حسب القانون النافذ. المبلغ النهائي تحدده هيأة التقاعد الوطنية.</p>
+      <p class="disc">ℹ️ حسب قانون التقاعد الموحد رقم 9 لسنة 2014 وتعديله الأول (قانون 26 لسنة 2019): الراتب التقاعدي = معدل الراتب الوظيفي (الاسمي بدون مخصصات) لآخر 36 شهراً × 2.5% × (أشهر الخدمة ÷ 12)، ولا يزيد على آخر راتب وظيفي، وحدّه الأدنى 400 ألف (م21). يُضاف له مخصصات معيشة 1% عن كل سنة خدمة (م35/تاسعاً)، ومخصصات الشهادة (م35/عاشراً)، ومخصصات تحسين معيشة حتى لا يقل المجموع عن 500 ألف (م21/رابعاً-ب). يستحق الراتب بخدمة 15 سنة فأكثر، ويُصرف بعد إكمال 45 سنة من العمر. النتيجة تقديرية، والمبلغ النهائي تحدده هيأة التقاعد الوطنية.</p>
     </section>
   </div>
 
@@ -2396,7 +2402,7 @@ function renderPension(){
   const o=dues();const yrs=X.pn.years!=null?X.pn.years:(o.svcAtRet!=null?o.svcAtRet:30);
   if(document.activeElement!==$('pnYears'))$('pnYears').value=yrs;
   if(X.pn.avg==null&&document.activeElement!==$('pnAvg'))$('pnAvg').value=Math.round(base);
-  const avg=X.pn.avg!=null?X.pn.avg:base,pc=penCalc(avg,yrs),pct=pc.ok?pc.pct:0,pen=pc.pen;
+  const avg=X.pn.avg!=null?X.pn.avg:base,CM={100:20,75:15,55:15,45:10,35:5},pc2=penCalc2({avg,months:Math.round(yrs*12),last:base,cert:CM[+$('pCert').value]||0}),pct=pc2.ok?pc2.pct:0,pen=pc2.ok?Math.round(pc2.tot):0;
   $('pnKpi').innerHTML=`<div class="k big"><b>${fmt(pen)}</b><span>الراتب التقاعدي التقديري (د.ع)</span></div><div class="k"><b>${Math.round(pct*100)}%</b><span>من معدل الراتب</span></div><div class="k"><b>${yrs}</b><span>سنة خدمة</span></div><div class="k"><b>${o.ret?dl(o.ret.d):'—'}</b><span>تاريخ الإحالة</span></div>`;
 }
 
@@ -4684,31 +4690,56 @@ $('newRow').addEventListener('click',e=>{const b=e.target.closest('[data-go]');i
 
 $('rateTab').onclick=()=>{try{openRC()}catch(_){}};
 
-/* ===== راتب متقاعدي الصحة (isolated) ===== */
-const penMin=()=>+((CFG||{}).penMin)||500000;
-function penCalc(avg,yrs){const y=Math.max(0,Math.round(+yrs||0)),a=Math.max(0,+avg||0);if(y<15)return {ok:false,y,a,raw:0,pen:0};
-  const raw=a*0.025*y,capped=Math.min(raw,a),mn=penMin(),pen=Math.max(capped,mn);return {ok:true,y,a,raw,pen,usedMin:pen>capped,pct:Math.min(1,0.025*y)}}
-{const g=$('rtG'),s=$('rtS');g.innerHTML=Array.from({length:10},(_,i)=>`<option value="${i+1}">الدرجة ${GN[i+1]}</option>`).join('');s.innerHTML=Array.from({length:STEPS},(_,i)=>`<option value="${i+1}">المرحلة ${i+1}</option>`).join('');
+/* ===== راتب متقاعدي الصحة (isolated) — قانون التقاعد الموحد 9/2014 وتعديله 26/2019 ===== */
+function penBase(){return +((typeof CFG!=='undefined'&&CFG||{}).penBase)||400000}function penTotal(){return +((typeof CFG!=='undefined'&&CFG||{}).penTotal)||500000}
+/* o:{avg,months,last,cert(%)} */
+function penCalc2(o){const n=Math.max(0,Math.round(+o.months||0)),Y=n/12,a=Math.max(0,+o.avg||0),last=Math.max(0,+o.last||a),c=Math.max(0,+o.cert||0)/100;
+  if(n<180){return {ok:false,n,Y,a,last,grat:Math.round(last*2*Y)}}
+  const raw=a*0.025*Y,capd=Math.min(raw,last),P=Math.max(capd,penBase()),fy=Math.floor(Y);
+  const living=P*0.01*fy,cert=P*c,sub=P+living+cert,imp=Math.max(0,penTotal()-sub),tot=sub+imp;
+  return {ok:true,n,Y,fy,a,last,raw,capped:raw>last,P,usedMin:P>capd,living,cert,c,imp,tot,pct:Math.min(1,0.025*Y)}}
+function penCalc(avg,yrs){const r=penCalc2({avg,months:Math.round((+yrs||0)*12),last:avg});return r.ok?{ok:true,y:Math.round(r.Y),pen:r.tot,raw:r.raw,usedMin:r.usedMin||r.imp>0,pct:r.pct,a:r.a}:{ok:false,y:Math.round(r.Y),pen:0}}
+function avgEst(g,s){let t=0;for(let k=0;k<3;k++)t+=nomOf(g,Math.max(1,s-k));return t/3}
+const _avgEstOld=(g,s)=>{let t=0;for(let k=0;k<3;k++)t+=nomOf(g,Math.max(1,s-k));return t/3};
+{const g=$('rtG'),s=$('rtS'),m=$('rtM'),cS=$('rtC');g.innerHTML=Array.from({length:10},(_,i)=>`<option value="${i+1}">الدرجة ${GN[i+1]}</option>`).join('');s.innerHTML=Array.from({length:STEPS},(_,i)=>`<option value="${i+1}">المرحلة ${i+1}</option>`).join('');
+  m.innerHTML=Array.from({length:12},(_,i)=>`<option value="${i}">${i}</option>`).join('');
   let R={};try{R=JSON.parse(ls('rw-ret')||'{}')}catch(_){}
-  g.value=R.g||4;s.value=R.s||5;$('rtY').value=R.y!=null?R.y:30;$('rtAvg').value=R.a||'';
-  const autoAvg=()=>{$('rtAvg').value=Math.round(nomOf(+g.value,+s.value));};
-  if(!R.a)autoAvg();
-  const save=()=>ls('rw-ret',JSON.stringify({g:+g.value,s:+s.value,y:+$('rtY').value,a:+$('rtAvg').value||0}));
-  [g,s].forEach(e=>e.addEventListener('change',()=>{autoAvg();save();renderRet()}));
-  ['rtAvg','rtY'].forEach(id=>$(id).addEventListener('input',()=>{save();renderRet()}));
+  g.value=R.g||4;s.value=R.s||5;$('rtY').value=R.y!=null?R.y:30;m.value=R.m||0;cS.value=R.c!=null?R.c:10;$('rtAvg').value=R.a||'';$('rtFull').value=R.f||'';
+  let manual=!!R.man;
+  const autoAvg=()=>{manual=false;$('rtAvg').value=Math.round(avgEst(+g.value,+s.value))};
+  if(!R.a||!manual)autoAvg();
+  const save=()=>ls('rw-ret',JSON.stringify({g:+g.value,s:+s.value,y:+$('rtY').value,m:+m.value,c:+cS.value,a:+$('rtAvg').value||0,f:+$('rtFull').value||0,man:manual}));
+  [g,s].forEach(e=>e.addEventListener('change',()=>{if(!manual)autoAvg();save();renderRet()}));
+  [m,cS].forEach(e=>e.addEventListener('change',()=>{save();renderRet()}));
+  $('rtAvg').addEventListener('input',()=>{manual=true;save();renderRet()});
+  ['rtY','rtFull'].forEach(id=>$(id).addEventListener('input',()=>{save();renderRet()}));
+  $('rtAvH').addEventListener('click',e=>{if(e.target.closest('[data-rauto]')){autoAvg();save();renderRet()}});
   document.querySelectorAll('[data-ry]').forEach(b=>b.onclick=()=>{$('rtY').value=Math.max(0,Math.min(50,(+$('rtY').value||0)+ +b.dataset.ry));save();renderRet()});
-  $('rtReset').onclick=()=>{g.value=4;s.value=5;$('rtY').value=30;autoAvg();save();renderRet()};
-  $('rtShare').onclick=()=>{const c=penCalc($('rtAvg').value,$('rtY').value);const t=[`🧓 راتب متقاعدي الصحة — موظف الصحة`,`الدرجة ${GN[+g.value]} · المرحلة ${s.value} · ${c.y} سنة خدمة`,c.ok?`الراتب التقاعدي التقديري: ${fmt(c.pen)} د.ع شهرياً`:'أقل من 15 سنة خدمة: ما يستحق راتب تقاعدي شهري',`احسبه بنفسك: ${SITE}`];shareTxt('راتب المتقاعد',t.join('\n'))};
+  $('rtReset').onclick=()=>{g.value=4;s.value=5;$('rtY').value=30;m.value=0;cS.value=10;$('rtFull').value='';autoAvg();save();renderRet()};
+  window.rtState=()=>({g:+g.value,s:+s.value,manual,months:(+$('rtY').value||0)*12+(+m.value||0),cert:+cS.value,avg:+$('rtAvg').value||0,full:+$('rtFull').value||0,last:nomOf(+g.value,+s.value)});
+  $('rtShare').onclick=()=>{const S=rtState(),c=penCalc2(S);const yt=`${Math.floor(S.months/12)} سنة${S.months%12?` و${S.months%12} شهر`:''}`;
+    const t=[`🧓 راتب متقاعدي الصحة — موظف الصحة`,`الدرجة ${GN[S.g]} · المرحلة ${S.s} · خدمة ${yt}`,c.ok?`الراتب التقاعدي التقديري مع المخصصات: ${fmt(c.tot)} د.ع شهرياً`:`أقل من 15 سنة خدمة: ما يستحق راتب شهري — مكافأة تقاعدية تقديرية ${fmt(c.grat)} د.ع`,`احسبه بنفسك: ${SITE}`];shareTxt('راتب المتقاعد',t.join('\n'))};
 }
-function renderRet(){const avg=+$('rtAvg').value||0,y=+$('rtY').value||0,c=penCalc(avg,y);
+function renderRet(){const S=rtState(),c=penCalc2(S),yt=`${Math.floor(S.months/12)} سنة${S.months%12?` و${S.months%12} شهر`:''}`;
+  $('rtAvH').innerHTML=S.manual?`معدل كتبته بنفسك. <button type="button" data-rauto>رجّع التقدير التلقائي</button>`:`تقدير تلقائي: معدل آخر 3 مراحل (علاوة سنوية كل سنة) = ${fmt(Math.round(avgEst(S.g,S.s)))}. إذا تعرف معدلك الحقيقي اكتبه.`;
   let h='';
-  if(!avg)h=`<p class="op-empty">اكتب معدل الراتب الاسمي حتى يطلع الراتب التقاعدي.</p>`;
-  else if(!c.ok)h=`<div class="rt-big no"><small>سنوات الخدمة ${c.y}</small><b>ما يستحق راتب شهري</b><span class="eq">${c.y>=10?'من 10 لـ15 سنة: يستحق مكافأة أو مبلغ مقطوع حسب القانون':'أقل خدمة للراتب التقاعدي الشهري 15 سنة'}</span></div>`;
-  else{h=`<div class="rt-big${c.usedMin?' min':''}"><small>الراتب التقاعدي التقديري شهرياً</small><b>${fmt(c.pen)} د.ع</b><span class="eq">${c.usedMin?`الحساب ${fmt(c.raw)} — رُفع للحد الأدنى`:`${fmt(c.a)} × 2.5% × ${c.y} سنة`}</span></div>
-    <div class="rt-k"><div><b>${Math.round(c.pct*100)}%</b><span>من معدل الراتب</span></div><div><b>${c.y}</b><span>سنة خدمة</span></div><div><b>${fmt(Math.round(c.pen*12/1000)*1000)}</b><span>سنوياً تقريباً</span></div></div>`}
-  if(avg){const opts=[20,25,30,35,40];h+=`<div class="rt-cmp">لو كانت خدمته:</div><div class="rt-chips">${opts.map(o=>`<button type="button" data-ryc="${o}" aria-pressed="${o===c.y}">${o} سنة · <b>${fmt(penCalc(avg,o).pen)}</b></button>`).join('')}</div>`}
+  if(!S.avg)h=`<p class="op-empty">اكتب معدل الراتب الاسمي حتى يطلع الراتب التقاعدي.</p>`;
+  else if(!c.ok){h=`<div class="rt-big no"><small>الخدمة ${yt}</small><b>ما يستحق راتب شهري</b><span class="eq">أقل خدمة للراتب التقاعدي الشهري 15 سنة</span></div>
+    <table class="rt-tb"><tr><td>المكافأة التقاعدية التقديرية<small>آخر راتب وظيفي ${fmt(S.last)} × 2 × ${c.Y.toFixed(2)} سنة (م22)</small></td><td>${fmt(c.grat)}</td></tr></table>
+    ${c.n>=120?'<p class="rt-note">من 10 سنوات لأقل من 15: القانون يخيّره بين المكافأة التقاعدية أو المبلغ المقطوع الشهري — يراجع هيأة التقاعد.</p>':''}`}
+  else{const pc=Math.round(c.pct*1000)/10;
+    h=`<div class="rt-big${c.imp>0?' min':''}"><small>الراتب التقاعدي التقديري شهرياً (مع المخصصات)</small><b>${fmt(Math.round(c.tot))} د.ع</b><span class="eq">خدمة ${yt} · ${pc}% من المعدل</span></div>
+    <table class="rt-tb">
+    <tr><td>الراتب التقاعدي الأساسي<small>${fmt(c.a)} × 2.5% × ${c.Y.toFixed(2)} سنة = ${fmt(Math.round(c.raw))}${c.capped?` ← حُدّد بآخر راتب ${fmt(c.last)}`:''}${c.usedMin?` ← رُفع للحد الأدنى ${fmt(penBase())}`:''}</small></td><td>${fmt(Math.round(c.P))}</td></tr>
+    <tr><td>مخصصات المعيشة<small>1% × ${c.fy} سنة خدمة كاملة (م35/تاسعاً)</small></td><td>${fmt(Math.round(c.living))}</td></tr>
+    <tr><td>مخصصات الشهادة<small>${c.c?`${Math.round(c.c*100)}% من الراتب التقاعدي (م35/عاشراً)`:'لا تُمنح لشهادة الإعدادية فما دون'}</small></td><td>${fmt(Math.round(c.cert))}</td></tr>
+    ${c.imp>0?`<tr><td>مخصصات تحسين المعيشة<small>حتى يصير المجموع ${fmt(penTotal())} (م21/رابعاً-ب)</small></td><td>${fmt(Math.round(c.imp))}</td></tr>`:''}
+    <tr class="tot"><td>المجموع الشهري التقديري</td><td>${fmt(Math.round(c.tot))}</td></tr></table>`;
+    if(c.n>=300){h+=S.full?`<p class="rt-note">🎁 مكافأة نهاية الخدمة (خدمة 25 سنة فأكثر): ${fmt(S.full)} × 12 = <b>${fmt(S.full*12)} د.ع</b> تُصرف مرة وحدة (م21/تاسعاً).</p>`:`<p class="rt-note">🎁 خدمته 25 سنة فأكثر، فيستحق مكافأة نهاية خدمة = الراتب الكلي الأخير مع المخصصات × 12. اكتب راتبه الكلي فوق حتى نحسبها.</p>`}
+    h+=`<p class="rt-note">⏳ يُصرف الراتب التقاعدي بعد إكمال 45 سنة من العمر. السن القانوني للإحالة 60 سنة.</p>`}
+  if(S.avg){const opts=[15,20,25,30,35,40];h+=`<div class="rt-cmp">لو كانت خدمته:</div><div class="rt-chips">${opts.map(o=>{const r=penCalc2({...S,months:o*12});return `<button type="button" data-ryc="${o}" aria-pressed="${S.months===o*12}">${o} سنة · <b>${fmt(Math.round(r.tot))}</b></button>`}).join('')}</div>`}
   $('rtOut').innerHTML=h}
-$('rtOut').addEventListener('click',e=>{const b=e.target.closest('[data-ryc]');if(!b)return;$('rtY').value=b.dataset.ryc;$('rtY').dispatchEvent(new Event('input'))});
+$('rtOut').addEventListener('click',e=>{const b=e.target.closest('[data-ryc]');if(!b)return;$('rtY').value=b.dataset.ryc;$('rtM').value=0;$('rtY').dispatchEvent(new Event('input'))});
 renderRet();
 
 }
