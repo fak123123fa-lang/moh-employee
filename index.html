@@ -1359,6 +1359,23 @@ body:not(.solo) #v-tools>.own{display:none!important}
 .solo-bar{display:flex;align-items:center;gap:10px;margin:10px 0 8px}
 .solo-bar button{border:0;border-radius:12px;padding:8px 14px;background:var(--card);box-shadow:var(--sh);font:800 13px inherit;font-family:inherit;color:var(--ink);cursor:pointer}
 .solo-bar b{font-size:15px}
+
+/* ===== v3 polish: compact 3D icons + delicate bands ===== */
+#nav.nav:not(.compact){gap:5px 0!important;padding:6px 3px!important}
+#nav.nav:not(.compact) button{min-height:50px!important;gap:3px!important;font-size:10px!important;font-weight:700!important;padding:3px 0!important}
+#nav.nav .ic{width:34px!important;height:34px!important;border-radius:11px!important;
+  background:radial-gradient(120% 80% at 30% 18%,rgba(255,255,255,.55) 0,rgba(255,255,255,0) 46%),linear-gradient(160deg,var(--c1),var(--c2))!important;
+  box-shadow:0 3px 0 color-mix(in srgb,var(--c2) 72%,#000),0 7px 12px -5px color-mix(in srgb,var(--c2) 80%,transparent),inset 0 -3px 5px rgba(0,0,0,.18),inset 0 1.5px 1.5px rgba(255,255,255,.55)!important;
+  transition:transform .12s,box-shadow .12s!important}
+#nav.nav svg{width:17px!important;height:17px!important;filter:drop-shadow(0 1.5px 1px rgba(0,0,0,.28))}
+#nav.nav .nv-sal .ic{width:36px!important;height:36px!important}#nav.nav .nv-sal svg{width:19px!important;height:19px!important}
+#nav.nav button:active .ic{transform:translateY(2px)!important;box-shadow:0 1px 0 color-mix(in srgb,var(--c2) 72%,#000),0 3px 6px -3px var(--c2),inset 0 -2px 4px rgba(0,0,0,.2)!important}
+#nav.nav button[aria-current=page] .ic{transform:translateY(-1px)!important;outline:2px solid color-mix(in srgb,var(--c2) 35%,transparent);outline-offset:2px}
+#nav .nrow{left:4px;right:4px;border-radius:14px;border-right:0;background:linear-gradient(90deg,color-mix(in srgb,var(--rc) 3%,transparent),color-mix(in srgb,var(--rc) 9%,transparent));box-shadow:inset -2px 0 0 color-mix(in srgb,var(--rc) 55%,transparent)}
+#strip,#qa{padding:6px!important;border-radius:16px!important;border-right:0!important;background:color-mix(in srgb,var(--rc) 5%,var(--card))!important;box-shadow:inset -2px 0 0 color-mix(in srgb,var(--rc) 50%,transparent),0 1px 0 var(--line)}
+.xstrip{gap:6px;margin-top:8px}
+.xstrip button{padding:6px 11px 6px 12px;border-radius:999px;border:1px solid var(--line);border-right:1px solid var(--line);background:var(--card);font-size:12px;font-weight:700;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+.xstrip button i{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;font-size:12.5px;background:color-mix(in srgb,var(--c) 14%,transparent)}
 </style>
 </head>
 <body>
@@ -4804,7 +4821,7 @@ function lockMsg(){toast('🔒 هاي الخدمة جاهزة، وتنفتح ب�
 $('nav').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
   if(b.dataset.qc){e.stopImmediatePropagation();try{openQC()}catch(_){}return}
   if(b.dataset.t){e.stopImmediatePropagation();if(b.dataset.lk&&!svcOpen(b.dataset.lk)){lockMsg();return}openSolo(b.dataset.tv,b.dataset.t,b.textContent.trim());return}
-  clearSolo()},true);
+  clearSolo();if(b.dataset.v==='salary')setTimeout(()=>{const t=$('st1');if(!t)return;const y=t.getBoundingClientRect().top+scrollY-($('nav').offsetHeight||0)-12;scrollTo({top:Math.max(0,y),behavior:'smooth'})},120)},true);
 function markLocks(){document.querySelectorAll('#nav [data-lk]').forEach(b=>{if(!b.querySelector('.nlb'))b.insertAdjacentHTML('beforeend','<span class="nlb">🔒</span>');b.classList.toggle('nlk',!svcOpen(b.dataset.lk))})}
 {const _ac2=applyCfg;applyCfg=function(c){_ac2(c);try{markLocks()}catch(_){}}}
 markLocks();setTimeout(markLocks,2500);
