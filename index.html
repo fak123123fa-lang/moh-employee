@@ -1332,6 +1332,7 @@ html.adm-only .rate-tab,body:has(.ov.on) .rate-tab{display:none}
 .rt-big .eq{display:inline-block;margin-top:6px;font-size:12px;background:rgba(255,255,255,.16);padding:4px 10px;border-radius:999px}
 .rt-big.min{background:linear-gradient(135deg,#2bb58a,#0a7a59)}.rt-big.no{background:linear-gradient(135deg,#e07a5f,#b4452a)}
 .rt-k{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.tg-w{border:1px solid rgba(127,127,127,.25);border-radius:14px;padding:10px 12px;margin-bottom:8px}.tg-how summary{cursor:pointer;font-weight:800;font-size:13.5px}.tg-how ol{margin:6px 0;padding-right:20px;font-size:13px;line-height:1.7}
 .rt-ym{display:flex;align-items:center;gap:8px}.rt-ym select{width:auto;min-width:70px}.rt-ym span{font-size:13px;color:var(--mut,#667)}
 .rt-avh{margin:4px 0 0;font-size:12px;color:var(--mut,#667);line-height:1.5}.rt-avh button{border:0;background:none;color:var(--pri,#0a7a59);font:inherit;font-weight:800;cursor:pointer;padding:0;text-decoration:underline}
 .rt-tb{width:100%;border-collapse:collapse;margin-top:10px;font-size:13.5px}.rt-tb td{padding:7px 8px;border-bottom:1px dashed rgba(127,127,127,.25)}.rt-tb td:last-child{text-align:left;font-weight:800;font-variant-numeric:tabular-nums;white-space:nowrap}.rt-tb small{display:block;font-size:11px;opacity:.7;font-weight:400}.rt-tb tr.tot td{border-bottom:0;border-top:2px solid currentColor;font-size:15px}
@@ -1926,6 +1927,17 @@ html.adm-only .rate-tab,body:has(.ov.on) .rate-tab{display:none}
         <div class="full"><label for="ntL">عند الضغط يفتح (اختياري)</label><input id="ntL" dir="ltr" placeholder="#news أو https://..."></div></div>
         <label class="ck"><input type="checkbox" id="ntPush" checked>إرساله أيضاً كإشعار على أجهزة من فعّلوا الإشعارات (حتى لو التطبيق مسكّر)</label>
         <button class="btn pri" id="ntSend" style="width:100%;justify-content:center">🔔 إرسال الإشعار الآن</button>
+        <h4>🤖 بوت تلكرام للإدارة</h4>
+        <div id="tgW" class="tg-w">
+          <p class="hint" id="tgSt">…</p>
+          <details class="tg-how"><summary>شلون أسوي البوت؟ (دقيقتين)</summary><ol>
+            <li>افتح تلكرام وابحث عن <b dir="ltr">@BotFather</b> واضغط Start.</li>
+            <li>دز له <code dir="ltr">/newbot</code>، واكتب اسم البوت (مثلاً: إدارة موظف الصحة)، وبعدين معرّف ينتهي بـ bot.</li>
+            <li>ينطيك <b>توكن</b> طويل مثل <code dir="ltr">123456789:AA…</code> — انسخه وألصقه هنا واضغط «ربط».</li>
+            <li>افتح البوت مالتك ودز له: <code dir="ltr">/login</code> ورمز الإدارة. الرسالة تنمسح تلقائياً.</li></ol></details>
+          <div class="fg"><div class="full"><label for="tgTok">توكن البوت</label><input id="tgTok" dir="ltr" type="password" autocomplete="off" placeholder="123456789:AA..."></div></div>
+          <div class="pp-ex"><button class="btn pri" id="tgGo">🔗 ربط البوت</button><button class="btn" id="tgOff">⛔ فصل البوت</button></div>
+        </div>
         <h4>👥 المستخدمون</h4>
         <div class="pp-tabs" id="ppTabs"><button data-pt="accounts" aria-pressed="true">المسجّلون</button><button data-pt="raters">المقيّمون</button><button data-pt="visitors">الزوار</button></div>
         <div class="pp-bar"><input id="ppQ" type="search" placeholder="بحث بالاسم أو الرقم…"><small id="ppCnt"></small></div>
@@ -4741,6 +4753,14 @@ function renderRet(){const S=rtState(),c=penCalc2(S),yt=`${Math.floor(S.months/1
   $('rtOut').innerHTML=h}
 $('rtOut').addEventListener('click',e=>{const b=e.target.closest('[data-ryc]');if(!b)return;$('rtY').value=b.dataset.ryc;$('rtM').value=0;$('rtY').dispatchEvent(new Event('input'))});
 renderRet();
+
+/* ===== telegram admin bot ===== */
+async function tgStatus(){if(!ADM||!$('tgSt'))return;try{const r=await rpc('rw_admin_tg_status',{p_pin:ADM});if(r&&r.error)return;
+  $('tgSt').innerHTML=r.on?`🟢 البوت مربوط · ${r.admins} محادثة مدير مسجلة${r.admins?'':' — افتح البوت ودز <code dir="ltr">/login</code> ورمز الإدارة'}`:'⚪️ البوت مو مربوط بعد. يوصلك عليه تنبيه بكل تقييم وحساب وتذكرة، وتدير منه كل شي.';$('tgOff').style.display=r.on?'':'none'}catch(_){}}
+$('tgGo').onclick=async()=>{const t=$('tgTok').value.trim();if(!/^\d{6,12}:[A-Za-z0-9_-]{30,50}$/.test(t)){toast('⚠️ التوكن مو صحيح — انسخه كامل من BotFather');return}
+  try{const r=await rpc('rw_admin_tg_setup',{p_pin:ADM,p_token:t});if(r&&r.error){toast('⚠️ '+r.error);return}$('tgTok').value='';toast('✅ انربط البوت — افتحه بتلكرام ودز /login ورمز الإدارة');setTimeout(tgStatus,1500)}catch(e){toast('⚠️ '+em(e))}};
+$('tgOff').onclick=async()=>{if(!confirm('تريد تفصل البوت؟ ما يوصلك بعد أي تنبيه.'))return;try{await rpc('rw_admin_tg_off',{p_pin:ADM});toast('⛔ انفصل البوت');tgStatus()}catch(e){toast('⚠️ '+em(e))}};
+{const _la=loadAdmin;loadAdmin=async function(){await _la.apply(this,arguments);tgStatus()}}
 
 }
 </script>
