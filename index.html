@@ -1341,6 +1341,24 @@ html.adm-only .rate-tab,body:has(.ov.on) .rate-tab{display:none}
 .rt-cmp{margin-top:10px;font-size:12.5px;color:var(--mute)}.rt-cmp b{color:var(--ink)}
 .rt-chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}.rt-chips button{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:5px 11px;font:700 12px inherit;font-family:inherit;color:var(--ink);cursor:pointer}
 .rt-chips button[aria-pressed=true]{background:#4a5a7a;color:#fff;border-color:#4a5a7a}
+
+/* ===== v2 home: 5 icons per row, direct-open tools, bottom strip ===== */
+.nav:not(.compact){grid-template-columns:repeat(10,minmax(0,1fr))!important;gap:8px 0!important;padding:8px 4px!important}
+.nav:not(.compact) button{min-height:54px!important;gap:3px!important;font-size:10.5px!important;line-height:1.15}
+.nav:not(.compact) .ic{width:38px!important;height:38px!important;border-radius:12px!important}
+.nav:not(.compact) svg{width:19px!important;height:19px!important}
+.nav:not(.compact) .nv-sal .ic{width:40px!important;height:40px!important}
+.nav .nlb{position:absolute;top:2px;left:calc(50% - 25px);z-index:3;font-size:9px;line-height:1;background:var(--card);border-radius:50%;padding:3px;box-shadow:0 1px 3px rgba(0,0,0,.25);pointer-events:none}.nav button:not(.nlk) .nlb{display:none}
+#qcBtn,#newRow{display:none!important}
+body:not(.solo) #v-tools>.own{display:none!important}
+.solo-hide{display:none!important}
+.xstrip{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:10px -2px 0;padding:2px 2px 4px;scroll-snap-type:x proximity}
+.xstrip::-webkit-scrollbar{display:none}
+.xstrip button{flex:0 0 auto;scroll-snap-align:start;display:flex;align-items:center;gap:7px;padding:8px 12px 8px 14px;border-radius:14px;border:1px solid color-mix(in srgb,var(--c) 30%,var(--line));background:color-mix(in srgb,var(--c) 9%,var(--card));color:var(--ink);font:700 12.5px inherit;font-family:inherit;cursor:pointer;white-space:nowrap;border-right:4px solid var(--c)}
+.xstrip button i{font-style:normal;font-size:17px}
+.solo-bar{display:flex;align-items:center;gap:10px;margin:10px 0 8px}
+.solo-bar button{border:0;border-radius:12px;padding:8px 14px;background:var(--card);box-shadow:var(--sh);font:800 13px inherit;font-family:inherit;color:var(--ink);cursor:pointer}
+.solo-bar b{font-size:15px}
 </style>
 </head>
 <body>
@@ -1426,6 +1444,13 @@ html.adm-only .rate-tab,body:has(.ov.on) .rate-tab{display:none}
     <button data-v="forms" style="--c1:#f59e6b;--c2:#d9541e"><span class="ic"><svg><use href="#i-file"/></svg></span>نماذج</button>
     <button data-v="news" style="--c1:#f27aa0;--c2:#c42e63"><span class="ic"><svg><use href="#i-bell"/></svg></span>الأخبار<i class="ndot" id="ndot"></i></button>
     <button data-v="pension" style="--c1:#9aa8c2;--c2:#4a5a7a"><span class="ic"><svg><use href="#i-ret"/></svg></span>المتقاعدين</button>
+    <button data-v="x-qc" data-qc="1" style="--c1:#a78bfa;--c2:#6d28d9"><span class="ic"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></span>العلاوة</button>
+    <button data-v="x-id" data-t="idTool" data-tv="me" data-lk="id" style="--c1:#2bb58a;--c2:#0a7a59"><span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2.2"/><path d="M5.8 16.5c.6-1.7 1.8-2.5 3.2-2.5s2.6.8 3.2 2.5M14 10h4M14 13h3"/></svg></span>هويتي</button>
+    <button data-v="x-blood" data-t="bloodTool" data-tv="me" data-lk="blood" style="--c1:#ef5b6a;--c2:#b4232f"><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 3c3 4 6 7 6 11a6 6 0 0 1-12 0c0-4 3-7 6-11z"/><path d="M9.5 14.5a2.5 2.5 0 0 0 2.5 2.5"/></svg></span>قطرة حياة</button>
+    <button data-v="x-swap" data-t="swapTool" data-tv="me" data-lk="swap" style="--c1:#5aa9f0;--c2:#2463c7"><span class="ic"><svg viewBox="0 0 24 24"><path d="M4 8h14l-3-3M20 16H6l3 3"/></svg></span>التبادل</button>
+    <button data-v="x-thx" data-t="thxTool" data-tv="me" data-lk="thx" style="--c1:#f5bf47;--c2:#c98a08"><span class="ic"><svg viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg></span>شكراً</button>
+    <button data-v="x-cme" data-t="cmeTool" data-tv="me" data-lk="cme" style="--c1:#3cc3c9;--c2:#0f7d86"><span class="ic"><svg viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/></svg></span>تعليم طبي</button>
+    <button data-v="x-tk" data-t="tkTool" data-tv="me" data-lk="tk" style="--c1:#f59e6b;--c2:#d9541e"><span class="ic"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H8l-4 4z"/><path d="M8 9h8M8 12h5"/></svg></span>مقترحات</button>
   </nav>
   <button class="qcb" id="qcBtn" type="button"><span class="qcb-ic">⚡</span><span class="qcb-t"><b>احسب علاوتك أو ترفيعك بسرعة</b><small>لك أو لصديقك · مع كتب الشكر والتقدير</small></span><span class="qcb-go">احسب</span></button>
   <section class="nwg" id="newRow"><div class="nwg-h"><b>✨ جديد بالتطبيق</b><small>اضغط وجرّب</small></div><div class="nwg-g">
@@ -4041,7 +4066,7 @@ $('nav').addEventListener('click',e=>{const b=e.target.closest('[data-v="donate"
 $('v-profile').append($('meHero'),$('meForm'));$('meForm').classList.remove('closed');
 {const nav=$('nav'),ord=['salary','profile','me','leave','health','family','protect','guide','forms','news','donate','pension'];ord.forEach(v=>{const b=nav.querySelector(`[data-v="${v}"]`);if(b)nav.appendChild(b)});[...nav.querySelectorAll('button')].forEach((b,i)=>b.style.setProperty('--i',i))}
 /* ===== admin-controlled home layout (order + show/hide) ===== */
-const LAY_NAV=[['salary','الراتب'],['profile','ملفي'],['me','مواعيدي'],['leave','إجازاتي'],['health','صحتي'],['family','عائلتي'],['protect','حمايتي'],['guide','دليلي'],['forms','نماذج'],['news','الأخبار'],['donate','تبرّع'],['pension','المتقاعدين']];
+const LAY_NAV=[['salary','الراتب'],['profile','ملفي'],['me','مواعيدي'],['leave','إجازاتي'],['health','صحتي'],['family','عائلتي'],['protect','حمايتي'],['guide','دليلي'],['forms','نماذج'],['news','الأخبار'],['donate','تبرّع'],['pension','المتقاعدين'],['x-qc','العلاوة'],['x-id','هويتي'],['x-blood','قطرة حياة'],['x-swap','التبادل'],['x-thx','شكراً'],['x-cme','تعليم طبي'],['x-tk','مقترحات']];
 const LAY_TOP=[['qc','زر «احسب علاوتك أو ترفيعك»','#qcBtn'],['strip','شريط يوم الراتب والتنبيه','#strip'],['bnr','البنر الإعلاني (الصور)','#bnr'],['custom','الأقسام المخصّصة','#custom'],['qa','الأزرار السريعة (قيّم، تبرّع، شارك…)','#qa'],['rstrip','شريط «قيّم التطبيق»','#rstrip']];
 const LAY_IN=[['due','بطاقة «فعّل تنبيه استحقاقك»','#dueCard'],['tip','نصيحة اليوم','#tipDay'],['eng','الأيام المتتالية والإنجازات','#eng']];
 const LAY_OFFONLY=[['sadaqa','بطاقة «صدقة من راتبك»','#sadaqa'],['fut','«مستقبل راتبك» والمقارنة','#fcSeg,#futCard,#cmpCard']];
@@ -4761,6 +4786,45 @@ $('tgGo').onclick=async()=>{const t=$('tgTok').value.trim();if(!/^\d{6,12}:[A-Za
   try{const r=await rpc('rw_admin_tg_setup',{p_pin:ADM,p_token:t});if(r&&r.error){toast('⚠️ '+r.error);return}$('tgTok').value='';toast('✅ انربط البوت — افتحه بتلكرام ودز /login ورمز الإدارة');setTimeout(tgStatus,1500)}catch(e){toast('⚠️ '+em(e))}};
 $('tgOff').onclick=async()=>{if(!confirm('تريد تفصل البوت؟ ما يوصلك بعد أي تنبيه.'))return;try{await rpc('rw_admin_tg_off',{p_pin:ADM});toast('⛔ انفصل البوت');tgStatus()}catch(e){toast('⚠️ '+em(e))}};
 {const _la=loadAdmin;loadAdmin=async function(){await _la.apply(this,arguments);tgStatus()}}
+
+/* ===== v2 home: direct-open icons + bottom strip ===== */
+['tkTool','idTool','cmeTool','salTool','vaultTool','bloodTool','thxTool','swapTool'].forEach(id=>{const e=$(id);if(e)e.classList.add('own')});
+function clearSolo(){document.body.classList.remove('solo');document.querySelectorAll('.solo-hide').forEach(e=>e.classList.remove('solo-hide'));document.querySelectorAll('.solo-bar').forEach(e=>e.remove())}
+function openSolo(view,id,title){
+  const go=()=>{clearSolo();const t=$(id);if(!t)return;document.body.classList.add('solo');
+    document.querySelectorAll('.view:not([hidden])').forEach(v=>[...v.children].forEach(ch=>{if(ch!==t&&!ch.contains(t))ch.classList.add('solo-hide')}));
+    let p=t.parentElement;while(p&&!p.classList.contains('view')){[...p.children].forEach(ch=>{if(ch!==t&&!ch.contains(t))ch.classList.add('solo-hide')});p=p.parentElement}
+    if(t.tagName==='DETAILS')t.open=true;
+    t.insertAdjacentHTML('beforebegin',`<div class="solo-bar"><button type="button" data-solox>→ رجوع</button><b>${title||''}</b></div>`);
+    const y=t.getBoundingClientRect().top+scrollY-($('nav').offsetHeight||0)-60;scrollTo({top:Math.max(0,y),behavior:'auto'})};
+  if(location.hash!=='#'+view){window._soloNext=go;location.hash=view}else go()}
+addEventListener('hashchange',()=>{const g=window._soloNext;window._soloNext=null;if(g)setTimeout(g,60);else clearSolo()});
+document.addEventListener('click',e=>{if(e.target.closest('[data-solox]')){clearSolo();toTop()}});
+function lockMsg(){toast('🔒 هاي الخدمة جاهزة، وتنفتح بعد موافقة الوزارة')}
+$('nav').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+  if(b.dataset.qc){e.stopImmediatePropagation();try{openQC()}catch(_){}return}
+  if(b.dataset.t){e.stopImmediatePropagation();if(b.dataset.lk&&!svcOpen(b.dataset.lk)){lockMsg();return}openSolo(b.dataset.tv,b.dataset.t,b.textContent.trim());return}
+  clearSolo()},true);
+function markLocks(){document.querySelectorAll('#nav [data-lk]').forEach(b=>{if(!b.querySelector('.nlb'))b.insertAdjacentHTML('beforeend','<span class="nlb">🔒</span>');b.classList.toggle('nlk',!svcOpen(b.dataset.lk))})}
+{const _ac2=applyCfg;applyCfg=function(c){_ac2(c);try{markLocks()}catch(_){}}}
+markLocks();setTimeout(markLocks,2500);
+/* bottom strip */
+$('nav').insertAdjacentHTML('afterend',`<div class="xstrip" id="xStrip">
+  <button data-xs="me:vaultTool" style="--c:#7c5cff"><i>🗂️</i>إضبارتي</button>
+  <button data-xs="me:salTool" style="--c:#0a7a59"><i>📒</i>راتبي ناقص؟</button>
+  <button data-xs="leave:momTool" style="--c:#c2255c"><i>🤱</i>أمومتي</button>
+  <button data-xs="news:oppCard" style="--c:#1971c2"><i>🎓</i>فرصتي</button>
+  <button data-xs="guide:fsTool" style="--c:#0b7285"><i>🧭</i>خطوتي الأولى</button></div>`);
+$('xStrip').addEventListener('click',e=>{const b=e.target.closest('[data-xs]');if(!b)return;const[v,id]=b.dataset.xs.split(':');openSolo(v,id,b.textContent.trim())});
+/* 5 icons per row bands */
+drawRows=function(){const nav=$('nav');if(!nav)return;nav.querySelectorAll('.nrow').forEach(e=>e.remove());
+  const bs=[...nav.querySelectorAll('button')].filter(b=>!b.hidden&&!b.classList.contains('lay-off'));bs.forEach(b=>b.style.gridColumn='');
+  if(nav.classList.contains('compact'))return;const P=5;
+  const last=bs.length%P;if(last)bs[bs.length-last].style.gridColumn=`${1+(P-last)} / span 2`;
+  const rows=[];for(let i=0;i<bs.length;i+=P)rows.push(bs.slice(i,i+P));
+  rows.forEach((r,i)=>{const t=Math.min(...r.map(b=>b.offsetTop))-3,h=Math.max(...r.map(b=>b.offsetTop+b.offsetHeight))-t+3;const c=ROWC[i%ROWC.length];
+    const d=document.createElement('div');d.className='nrow';d.style.cssText=`top:${t}px;height:${h}px;--rc:${c[0]}`;nav.insertBefore(d,nav.firstChild)})};
+applyLayout(CFG);requestAnimationFrame(drawRows);setTimeout(()=>drawRows(),400);setTimeout(()=>drawRows(),1700);
 
 }
 </script>
