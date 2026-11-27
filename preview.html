@@ -1632,6 +1632,36 @@ body.v2.dark .v2-hero .hbtns #theme{background:linear-gradient(160deg,#F7C948,#E
 [data-theme=dark] body.v2 #xStrip button i{background:color-mix(in srgb,var(--c) 25%,#12302A)}
 [data-theme=dark] body.v2 .topbar .tick *{color:#8FE0C4!important}
 [data-theme=dark] body.v2 #rList .rv p{color:#C8DDD6}
+/* ---- v2.5 ---- */
+.v2 #bnr .bnr-s{aspect-ratio:3/1!important}
+.v2 #bnr .bnr-tx b{font-size:17px!important}.v2 #bnr .bnr-tx small{font-size:12px!important}
+.v2 #bnr .bnr-dots{margin-top:4px!important}
+.v2-meta{display:none!important}
+.v2-cal{margin-inline-start:auto;border:0;background:rgba(255,255,255,.14);color:#fff;border-radius:999px;padding:6px 11px;font-size:12px;cursor:pointer;white-space:nowrap}
+.v2-cal b{font-weight:700}
+.v2-net{cursor:pointer}
+.v2-hero .topbar{margin:10px 0 0!important;background:rgba(255,255,255,.10)!important;border:1px solid rgba(255,255,255,.12)!important;height:28px!important;border-radius:999px!important}
+.v2-hero .topbar .tick{height:28px!important}
+.v2-hero .topbar .tick,.v2-hero .topbar .tick *{color:#E9FFF7!important;font-size:12px!important;font-weight:600!important}
+[data-theme=dark] body.v2 .v2-hero .topbar{background:rgba(255,255,255,.08)!important}
+[data-theme=dark] body.v2 .v2-hero .topbar .tick *{color:#E9FFF7!important}
+.v2-hero{padding-bottom:12px!important}
+/* coming soon row */
+.v2-grp.v2-soon{background:transparent!important;box-shadow:none!important;border:1.5px dashed #CFDDD7;padding:8px 4px 4px!important}
+.v2-grp.v2-soon h3{color:var(--mu)!important;font-size:12.5px!important}
+.v2 #nav .v2-grid[data-g="3"]{display:flex!important;overflow-x:auto;gap:2px;scrollbar-width:none;padding-bottom:2px}
+.v2 #nav .v2-grid[data-g="3"]::-webkit-scrollbar{display:none}
+.v2 #nav .v2-grid[data-g="3"] button{flex:0 0 19%!important;font-size:10.5px!important;color:var(--mu)!important}
+.v2 #nav .v2-grid[data-g="3"] button .ic{width:36px!important;height:36px!important;border-radius:12px!important;background:#C9D6D1!important;box-shadow:none!important;filter:none!important}
+.v2 #nav .v2-grid[data-g="3"] button .ic svg{width:18px!important;height:18px!important}
+.v2 #nav .v2-grid[data-g="3"] button::before{display:none!important}
+[data-theme=dark] body.v2 .v2-grp.v2-soon{border-color:#24473E}
+[data-theme=dark] body.v2 #nav .v2-grid[data-g="3"] button .ic{background:#2A4A42!important}
+.v2 #nav .v2-main button[data-v=pension] .ic{background:linear-gradient(160deg,#F2C14E,#C98A12)!important}
+.v2 #nav .v2-main button[data-v=pension]{background:linear-gradient(150deg,#FFF6DF,#fff 70%)!important;box-shadow:inset 0 0 0 2px var(--y),0 8px 18px -10px rgba(226,168,43,.8)!important}
+[data-theme=dark] body.v2 #nav .v2-main button[data-v=pension]{background:linear-gradient(150deg,#3A3216,#12302A 70%)!important}
+.v2 .v2-grid[data-g="0"] button:nth-child(4n+3) .ic{background:linear-gradient(160deg,#4C8FD6,#2463A8)!important}
+.v2 .v2-grid[data-g="1"] button:nth-child(4n+3) .ic{background:linear-gradient(160deg,#B07CE8,#7A47C2)!important}
 </style>
 </head>
 <body>
@@ -5220,9 +5250,9 @@ document.body.classList.add('v2');
   /* HERO */
   const hero=document.createElement('section');hero.className='v2-hero';
   hero.innerHTML=`<div class="v2-top"><div class="v2-who"><img id="v2Av" alt=""><div><small id="v2Gr">أهلاً بك</small><b id="v2Nm">موظف الصحة</b></div></div><div id="v2Btns"></div></div>
-  <div class="v2-brand">${MK}<h2>موظف الصحة</h2><span>رفيقك الوظيفي<br>والصحي والعائلي</span></div>
-  <div class="v2-net"><div class="l"><small>صافي راتبك الشهري</small><b id="v2Net">0<i>د.ع</i></b><em id="v2Nx"></em></div><button id="v2Slip">التفاصيل ←</button></div>
-  <div class="v2-meta"><span id="v2Clk"></span><button id="v2Cal">📅 التقويم</button></div>`;
+  <div class="v2-brand">${MK}<h2>موظف الصحة</h2><button id="v2Cal" class="v2-cal">📅 <b id="v2Dt"></b></button></div>
+  <div class="v2-net" id="v2NetBox"><div class="l"><small>صافي راتبك الشهري</small><b id="v2Net">0<i>د.ع</i></b><em id="v2Nx"></em></div><button id="v2Slip">التفاصيل ←</button></div>
+`;
   wrap.insertBefore(hero,top);
   const hb=document.querySelector('header .hbtns');if(hb)$('v2Btns').appendChild(hb);
   $('v2Av').src=$('avatar').src;
@@ -5234,22 +5264,27 @@ document.body.classList.add('v2');
     if(X&&X.me&&X.me.photo)$('v2Av').src=X.me.photo;
     $('v2Net').innerHTML=($('dockNet').textContent||'0').replace(/\s*د\.ع/,'')+'<i>د.ع</i>';
     const s=$('strip')&&$('strip').querySelector('*');const t=(s?s.innerText:'').split('\n')[0];$('v2Nx').textContent=t?'🗓 '+t:'';
-    $('v2Clk').textContent=($('clkD').textContent||'')+' · '+($('clkT').textContent||'');
+    $('v2Dt').textContent=(($('clkD').textContent||'').replace(/\s*\d{4}.*$/,'').replace(/^[^،,]*[،,]\s*/,''))||'التقويم';
   }catch(_){}}
   sync();setInterval(sync,1000);
   /* NAV regroup */
-  const SUB={salary:'احسب راتبك بدقة',me:'علاوتك وترفيعك',leave:'رصيد إجازاتك',profile:'بياناتك وهويتك'};
-  const G=[['💼','#FFF3D6','وظيفتي','العلاوات والتقاعد',['x-qc','pension','forms','guide','x-id']],
+  const SUB={pension:'راتبك التقاعدي',me:'علاوتك وترفيعك',leave:'رصيد إجازاتك',profile:'بياناتك وهويتك'};
+  const G=[['💼','#FFF3D6','وظيفتي وخدماتي','دليلك بالدوائر',['x-qc','forms','guide','news','x-id']],
            ['❤️','#FFE4E6','صحتي وعائلتي','لك ولأهلك',['health','family','protect','donate','x-blood']],
-           ['🤝','#E0F2EE','مجتمع الصحة','تواصل وتعلّم',['news','x-thx','x-swap','x-cme','x-tk']]];
+           ['🤝','#E0F2EE','مجتمع الصحة','تواصل وتعلّم',['x-thx','x-swap','x-cme','x-tk']],
+           ['⏳','#EEF1F0','قريباً بالتطبيق','تنفتح تباعاً',[]]];
   function arrange(){if(!nav)return;nav.classList.remove('compact');
     const btn=v=>nav.querySelector(`button[data-v="${v}"]`);
     let m=nav.querySelector('.v2-main');
-    if(!m){nav.insertAdjacentHTML('afterbegin','<div class="v2-sec">الأساسية<small>الأكثر استخداماً</small></div><div class="v2-main"></div><div class="v2-sec">كل الخدمات</div>'+G.map((g,i)=>`<div class="v2-grp"><h3><i style="background:${g[1]}">${g[0]}</i>${g[2]}<small>${g[3]}</small></h3><div class="v2-grid" data-g="${i}"></div></div>`).join(''));m=nav.querySelector('.v2-main')}
+    if(!m){nav.insertAdjacentHTML('afterbegin','<div class="v2-sec">الأساسية<small>الأكثر استخداماً</small></div><div class="v2-main"></div><div class="v2-sec">كل الخدمات</div>'+G.map((g,i)=>`<div class="v2-grp${i==3?' v2-soon':''}" data-gw="${i}"><h3><i style="background:${g[1]}">${g[0]}</i>${g[2]}<small>${g[3]}</small></h3><div class="v2-grid" data-g="${i}"></div></div>`).join('')+'<div class="v2-hid" hidden></div>');m=nav.querySelector('.v2-main')}
+    const soon=nav.querySelector('.v2-grid[data-g="3"]'),hid=nav.querySelector('.v2-hid');
+    const sal=btn('salary');if(sal&&sal.parentNode!==hid)hid.appendChild(sal);
     Object.keys(SUB).forEach(v=>{const b=btn(v);if(b){b.dataset.sub=SUB[v];if(b.parentNode!==m)m.appendChild(b)}});
-    G.forEach((g,i)=>{const box=nav.querySelector(`.v2-grid[data-g="${i}"]`);g[4].forEach(v=>{const b=btn(v);if(b&&b.parentNode!==box)box.appendChild(b)})});
-    nav.querySelectorAll(':scope > button').forEach(b=>nav.querySelector('.v2-grid[data-g="2"]').appendChild(b));
+    G.forEach((g,i)=>{const box=nav.querySelector(`.v2-grid[data-g="${i}"]`);g[4].forEach(v=>{const b=btn(v);if(!b)return;const to=b.classList.contains('nlk')?soon:box;if(b.parentNode!==to)to.appendChild(b)})});
+    nav.querySelectorAll(':scope > button').forEach(b=>(b.classList.contains('nlk')?soon:nav.querySelector('.v2-grid[data-g="0"]')).appendChild(b));
+    nav.querySelectorAll('.v2-grid').forEach(g=>{const n=g.children.length;g.parentNode.hidden=!n;g.style.gridTemplateColumns=g.dataset.g==='3'?'':`repeat(${n<=4?4:5},1fr)`});
   }
+  {const _ml=markLocks;markLocks=function(){_ml.apply(this,arguments);try{arrange()}catch(_){}}}
   {const _al=applyLayout;applyLayout=function(c){_al(c);try{arrange()}catch(_){}}}
   drawRows=function(){try{arrange()}catch(_){}};
   new MutationObserver(()=>{if(nav.classList.contains('compact'))nav.classList.remove('compact')}).observe(nav,{attributes:true,attributeFilter:['class']});
@@ -5299,6 +5334,12 @@ document.body.classList.add('v2');
 /* ---- v2.4 ---- */
 (function(){const fix=()=>{const b=$('bnr'),h=document.querySelector('.v2-hero');if(b&&h&&b.nextElementSibling!==h)h.parentNode.insertBefore(b,h)};
   fix();new MutationObserver(fix).observe(document.querySelector('.wrap'),{childList:true});setTimeout(fix,800);setTimeout(fix,2500)})();
+/* ---- v2.5 ---- */
+(function(){
+  const h=document.querySelector('.v2-hero'),tb=$('topbar');if(h&&tb)h.appendChild(tb);
+  $('v2NetBox').addEventListener('click',e=>{if(e.target.closest('#v2Slip'))return;const s=document.querySelector('.v2-hid button[data-v="salary"]');if(s)s.click()});
+  try{markLocks()}catch(_){}
+})();
 
 }
 </script>
