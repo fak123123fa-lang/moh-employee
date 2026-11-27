@@ -1833,6 +1833,22 @@ body.v2.dark .v2-hero .hbtns #theme{background:linear-gradient(160deg,#F7C948,#E
 .v2 #nav .ic.v2-emo,.v2 #nav .v2-main button .ic.v2-emo,.v2 #xStrip button i.v2-emo{box-shadow:0 8px 16px -5px var(--b,rgba(0,0,0,.4)),inset 0 1px 0 rgba(255,255,255,.4)!important}
 .v2 #nav .v2-grid button .ic.v2-emo{filter:drop-shadow(0 6px 9px -5px var(--b))}
 .v2 #nav .v2-grid[data-g="3"] .ic.v2-emo .v2-g{filter:grayscale(.35) opacity(.85) drop-shadow(0 1px 1px rgba(0,0,0,.2))}
+
+/* ===== v3.2 home rating card ===== */
+.v2-rate{display:flex;align-items:center;gap:12px;background:#fff;border-radius:22px;padding:13px 14px;margin:0 0 14px;box-shadow:0 3px 14px -7px rgba(10,63,49,.2);border:1px solid #EAF1EE}
+.v2-rate .vr-l{display:flex;align-items:center;gap:14px;flex:1;min-width:0}
+.v2-rate .vr-box{text-align:center;flex:none}
+.v2-rate .vr-box b{display:block;font-size:21px;font-weight:800;line-height:1.1;color:#14332A}
+.v2-rate .vr-box .vr-st{color:#E2A82B;font-size:12px;letter-spacing:1px}
+.v2-rate .vr-box small{display:block;font-size:10.5px;color:#5E7A71;margin-top:1px}
+.v2-rate .vr-sep{width:1px;align-self:stretch;background:#EAF1EE;margin:2px 0}
+.v2-rate .vr-u b{color:#0E8C7A}
+.v2-rate .vr-u .vr-ic{font-size:18px}
+.v2-rate button{flex:none;border:0;border-radius:14px;background:linear-gradient(150deg,#1A8A6C,#0E5B45);color:#fff;font-weight:800;font-size:13px;font-family:inherit;padding:11px 14px;cursor:pointer;box-shadow:0 6px 14px -7px #0E5B45;display:flex;align-items:center;gap:5px}
+.v2-rate button:active{transform:scale(.96)}
+[data-theme=dark] body.v2 .v2-rate{background:#12302A;border-color:#1E433A}
+[data-theme=dark] body.v2 .v2-rate .vr-box b{color:#E6F2EE}
+[data-theme=dark] body.v2 .v2-rate .vr-sep{background:#1E433A}
 </style>
 </head>
 <body>
@@ -5876,6 +5892,37 @@ document.body.classList.add('v2');
     const xs=$('xStrip');if(xs)xs.querySelectorAll('button').forEach(b=>{const e=XM[b.dataset.xs];if(e){const i=b.querySelector('i');if(i){i.classList.add('v2-emo');if(!i.dataset.emo){i.dataset.emo=1;i.innerHTML='<span class="v2-g">'+e+'</span>'}}}})}
   if(typeof markLocks==='function'){const _m=markLocks;markLocks=function(){_m.apply(this,arguments);try{run()}catch(_){}}}
   run();setTimeout(run,600);setTimeout(run,1900);
+})();
+
+
+/* ===== v3.2 home rating + users card ===== */
+(function(){
+  function ensure(){
+    const nav=$('nav');if(!nav)return null;
+    let card=$('v2Rate');
+    if(!card){
+      card=document.createElement('section');card.id='v2Rate';card.className='v2-rate';
+      card.innerHTML=`<div class="vr-l">
+        <div class="vr-box vr-u"><span class="vr-ic">👥</span><b id="vrUsers">—</b><small>مستخدم</small></div>
+        <div class="vr-sep"></div>
+        <div class="vr-box"><b id="vrAvg">—</b><span class="vr-st" id="vrStars">★★★★★</span><small id="vrCount">لا تقييمات بعد</small></div>
+      </div>
+      <button id="vrGo">⭐ قيّم التطبيق</button>`;
+      nav.parentNode.insertBefore(card,nav);
+      card.querySelector('#vrGo').onclick=()=>{try{(window.openRC||function(){var t=$('rateTab');t&&t.click()})()}catch(_){}};
+    }
+    return card;
+  }
+  function paint(){try{
+    const card=ensure();if(!card||typeof RT==='undefined'||!RT)return;
+    const tot=RT.count||0,avg=tot?(+RT.avg):0;
+    if($('vrUsers'))$('vrUsers').textContent=RT.users?fmt(RT.users):'—';
+    if($('vrAvg'))$('vrAvg').textContent=tot?avg.toFixed(1):'جديد';
+    if($('vrCount'))$('vrCount').textContent=tot?('('+fmt(tot)+' تقييم)'):'كن أول مقيّم';
+    if($('vrStars')){const f=Math.round(avg);$('vrStars').textContent='★★★★★'.slice(0,f)+'☆☆☆☆☆'.slice(0,5-f)}
+  }catch(_){}}
+  if(typeof drawRatings==='function'){const _d=drawRatings;drawRatings=function(){_d.apply(this,arguments);paint()}}
+  ensure();paint();setTimeout(paint,800);setTimeout(paint,2200);
 })();
 
 }
