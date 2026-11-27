@@ -1601,6 +1601,37 @@ body.v2{background:radial-gradient(900px 500px at 100% -10%,#DDEFE8 0%,transpare
 .v2-pv{bottom:auto!important;top:calc(6px + env(safe-area-inset-top))!important;font-size:10px!important;padding:4px 10px!important;opacity:.9}
 body.v2{padding-bottom:calc(80px + env(safe-area-inset-bottom))!important}
 .v2-pv{left:8px!important;transform:none!important;top:auto!important;bottom:calc(150px + env(safe-area-inset-bottom))!important;writing-mode:vertical-rl;padding:8px 4px!important;border-radius:10px!important}
+/* ---- v2.4 ---- */
+.v2 #bnr{margin:6px 0 8px!important}
+.v2 #bnr .bnr-tr{border-radius:20px!important}
+/* compact salary row */
+.v2-net{padding:8px 10px!important;gap:8px!important;border-radius:14px!important;align-items:center!important}
+.v2-net .l{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:8px;row-gap:0}
+.v2-net small{font-size:11px!important;width:100%}
+.v2-net b{font-size:22px!important;line-height:1.1!important}
+.v2-net b i{font-size:12px!important}
+.v2-net em{margin:0!important;font-size:11px!important}
+.v2-net button{padding:8px 11px!important;font-size:12px!important;border-radius:11px!important}
+/* header buttons: distinct colors */
+.v2-hero .hbtns #lgBtn{display:grid!important}
+.v2-hero .hbtns .ib{border:0!important;box-shadow:0 4px 10px -4px rgba(0,0,0,.45)!important}
+.v2-hero .hbtns #acctBtn{background:linear-gradient(160deg,#5AA9F0,#2463C7)!important}
+.v2-hero .hbtns #theme{background:linear-gradient(160deg,#8B7CF6,#5B45C9)!important}
+.v2-hero .hbtns #lgBtn{background:linear-gradient(160deg,#2BC4B0,#0F7F72)!important;position:relative}
+.v2-hero .hbtns #lgBtn b{font-size:9px!important;position:absolute;bottom:1px;left:3px;color:#fff;font-weight:800}
+.v2-hero .hbtns #updTop{background:#fff!important}.v2-hero .hbtns #updTop svg{stroke:var(--g)!important}
+body.v2.dark .v2-hero .hbtns #theme{background:linear-gradient(160deg,#F7C948,#E08A00)!important}
+.v2-hero .hbtns .ib:active{transform:scale(.9)}
+/* dark mode (app uses html[data-theme=dark]) */
+[data-theme=dark] body.v2{--bg:#0B1F19;--ink:#E6F2EE;--mu:#9DB8AF;background:radial-gradient(900px 500px at 100% -10%,#12382D 0%,transparent 60%),linear-gradient(180deg,#0B1F19,#08170F)!important}
+[data-theme=dark] body.v2 .v2-grp,[data-theme=dark] body.v2 #nav .v2-main button,[data-theme=dark] body.v2 .v2-tabs,[data-theme=dark] body.v2 .topbar,[data-theme=dark] body.v2 #xStrip,[data-theme=dark] body.v2 #rList .rv{background:#12302A!important;border-color:#1E433A!important}
+[data-theme=dark] body.v2 #nav .v2-main button[data-v=salary]{background:linear-gradient(150deg,#3A3216,#12302A 70%)!important}
+[data-theme=dark] body.v2 #rList{background:#0E2620!important}
+[data-theme=dark] body.v2 .v2-hero .hbtns #theme{background:linear-gradient(160deg,#F7C948,#E08A00)!important}
+[data-theme=dark] body.v2 .v2-tabs .home i{border-color:#12302A}
+[data-theme=dark] body.v2 #xStrip button i{background:color-mix(in srgb,var(--c) 25%,#12302A)}
+[data-theme=dark] body.v2 .topbar .tick *{color:#8FE0C4!important}
+[data-theme=dark] body.v2 #rList .rv p{color:#C8DDD6}
 </style>
 </head>
 <body>
@@ -5265,6 +5296,9 @@ document.body.classList.add('v2');
     box.scrollTop=0}catch(_){}};
   try{drawRatings()}catch(_){}
 })();
+/* ---- v2.4 ---- */
+(function(){const fix=()=>{const b=$('bnr'),h=document.querySelector('.v2-hero');if(b&&h&&b.nextElementSibling!==h)h.parentNode.insertBefore(b,h)};
+  fix();new MutationObserver(fix).observe(document.querySelector('.wrap'),{childList:true});setTimeout(fix,800);setTimeout(fix,2500)})();
 
 }
 </script>
