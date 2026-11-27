@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https:; media-src 'self' data: blob: https:; connect-src 'self' https://jmvbxnmvoqvumsljsqff.supabase.co https://cdn.jsdelivr.net https://storage.googleapis.com https://fonts.googleapis.com https://fonts.gstatic.com; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>موظف الصحة</title>
@@ -1433,6 +1435,371 @@ body:not(.solo) #v-tools>.own{display:none!important}
 #rList .rv header b{font-size:12.5px}#rList .rv header time{margin-inline-start:auto;font-size:10.5px}
 #rList .rv .stars{display:inline-flex;margin:0}#rList .rv .stars svg{width:10px;height:10px}
 #rList .rv p{font-size:12.5px;line-height:1.5;margin:2px 0 0;-webkit-line-clamp:2;text-align:start}
+
+/* ===== V2 visual identity ===== */
+/* ===== V2 identity — preview ===== */
+body.v2{--g:#0E5B45;--gd:#08392C;--t:#17A08F;--y:#E2A82B;--bg:#EEF4F1;--ink:#14332A;--mu:#5E7A71;background:var(--bg)!important;font-family:Tajawal,"IBM Plex Sans Arabic",sans-serif!important;padding-bottom:calc(96px + env(safe-area-inset-bottom))!important}
+body.v2 button,body.v2 input,body.v2 select,body.v2 textarea{font-family:inherit}
+.v2 .wrap>header,.v2 .dock,.v2 #qa,.v2 #strip,.v2 #eng,.v2 .tools-bar,.v2 #rateTab,.v2 .topbar .clk{display:none!important}
+.v2-pv{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(84px + env(safe-area-inset-bottom));z-index:60;background:var(--y);color:#3a2a00;font-weight:800;font-size:11px;padding:6px 12px;border-radius:999px;box-shadow:0 4px 12px rgba(0,0,0,.2);white-space:nowrap;pointer-events:none}
+/* HERO */
+.v2-hero{position:relative;margin:10px 0 12px;padding:16px 16px 18px;border-radius:28px;color:#fff;background:radial-gradient(120% 90% at 0% 0%,#1C8A6F 0%,transparent 55%),linear-gradient(155deg,var(--g),var(--gd));box-shadow:0 18px 34px -18px var(--gd);overflow:hidden}
+.v2-hero::before{content:"";position:absolute;left:-40px;bottom:-60px;width:220px;height:220px;border-radius:50%;border:28px solid rgba(255,255,255,.05)}
+.v2-hero::after{content:"";position:absolute;inset:auto 0 0 0;height:4px;background:linear-gradient(90deg,transparent,var(--y),transparent);opacity:.8}
+.v2-top{display:flex;align-items:center;justify-content:space-between;gap:8px;position:relative}
+.v2-who{display:flex;align-items:center;gap:10px;min-width:0}
+.v2-who img{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2.5px solid var(--y);flex:none}
+.v2-who small{display:block;font-size:12px;opacity:.8;font-weight:500}
+.v2-who b{display:block;font-size:15px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.v2-hero .hbtns{position:static!important;display:flex!important;flex-direction:row!important;gap:5px!important}
+.v2-hero .hbtns .ib{width:34px!important;height:34px!important;min-width:34px;border-radius:12px!important;background:rgba(255,255,255,.12)!important;border:1px solid rgba(255,255,255,.14)!important;color:#fff!important;padding:0!important;font-size:0!important;display:grid;place-items:center;box-shadow:none!important}
+.v2-hero .hbtns .ib svg{stroke:#fff!important;width:17px!important;height:17px!important}
+.v2-hero .hbtns .ib b{font-size:0!important}
+.v2-hero .hbtns #lgBtn,.v2-hero .hbtns #tourBtn{display:none!important}
+.v2-brand{display:flex;align-items:center;gap:8px;margin:16px 0 4px;position:relative}
+.v2-brand svg{width:34px;height:29px;flex:none}
+.v2-brand h2{margin:0;font-size:22px;font-weight:800;letter-spacing:-.2px}
+.v2-brand span{font-size:12px;opacity:.75;margin-inline-start:auto;text-align:end;line-height:1.3}
+.v2-net{position:relative;margin-top:12px;padding:14px;border-radius:20px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;gap:12px;backdrop-filter:blur(6px)}
+.v2-net .l{flex:1;min-width:0}
+.v2-net small{font-size:12px;opacity:.8}
+.v2-net b{display:block;font-size:30px;font-weight:800;line-height:1.15;letter-spacing:-.5px;direction:ltr;text-align:right}
+.v2-net b i{font-style:normal;font-size:14px;opacity:.8;margin-inline-start:4px}
+.v2-net em{display:inline-flex;align-items:center;gap:5px;margin-top:4px;font-style:normal;font-size:12px;color:#FFE3A3;font-weight:700}
+.v2-net button{flex:none;border:0;border-radius:14px;background:var(--y);color:#3a2a00;font-weight:800;font-size:13px;padding:12px 14px;cursor:pointer;box-shadow:0 6px 14px -6px rgba(0,0,0,.4)}
+.v2-meta{position:relative;display:flex;justify-content:space-between;align-items:center;margin-top:12px;font-size:12px;opacity:.9;gap:8px}
+.v2-meta button{border:0;background:rgba(255,255,255,.12);color:#fff;border-radius:999px;padding:5px 10px;font-size:11.5px;font-weight:700;cursor:pointer}
+/* ticker slim */
+.v2 .topbar{display:block!important;background:#fff!important;border:1px solid #E1ECE7!important;border-radius:999px!important;box-shadow:none!important;min-height:0!important;padding:0!important;margin:0 0 14px!important;overflow:hidden;height:38px}
+.v2 .topbar .tick{height:38px;display:flex;align-items:center;background:none!important}
+.v2 .topbar .tick,.v2 .topbar .tick *{color:var(--g)!important;font-weight:700;font-size:13px}
+.v2 #proof{display:none!important}
+/* SECTION TITLES */
+.v2-sec{display:flex;align-items:center;gap:8px;margin:4px 4px 10px;font-size:15px;font-weight:800;color:var(--ink)}
+.v2-sec::before{content:"";width:5px;height:18px;border-radius:3px;background:var(--y)}
+.v2-sec small{margin-inline-start:auto;font-size:11.5px;color:var(--mu);font-weight:500}
+/* NAV */
+.v2 #nav.nav{display:block!important;position:static!important;background:transparent!important;border:0!important;box-shadow:none!important;padding:0!important;margin:0 0 6px!important}
+.v2 #nav .nrow{display:none!important}
+.v2 #nav button::after{display:none!important}
+.v2 #nav .nlb{display:none!important}
+.v2 #nav button{position:relative;border:0!important;background:none!important;box-shadow:none!important;min-height:0!important;padding:0!important;color:var(--ink)!important;font-weight:700!important;cursor:pointer}
+/* main 4 */
+.v2-main{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px}
+.v2 #nav .v2-main button{display:flex!important;flex-direction:row!important;align-items:center!important;gap:10px!important;text-align:start!important;padding:12px!important;border-radius:20px!important;min-height:78px!important;background:#fff!important;box-shadow:0 3px 14px -6px rgba(10,63,49,.18)!important;font-size:14.5px!important;overflow:hidden}
+.v2 #nav .v2-main button .ic{width:48px!important;height:48px!important;min-width:48px;border-radius:15px!important;margin:0!important}
+.v2 #nav .v2-main button .ic svg{width:24px!important;height:24px!important}
+.v2 #nav .v2-main button::before{content:attr(data-sub);position:absolute;inset-inline-start:70px;bottom:13px;font-size:11px;font-weight:500;color:var(--mu);white-space:nowrap}
+.v2 #nav .v2-main button{align-items:flex-start!important;padding-top:16px!important}
+.v2 #nav .v2-main button[data-v=salary]{background:linear-gradient(150deg,#FFF6DF,#fff 70%)!important;box-shadow:inset 0 0 0 2px var(--y),0 8px 18px -10px rgba(226,168,43,.8)!important}
+.v2 #nav .v2-main button .bdg,.v2 #nav .v2-main button .cur{display:none!important}
+/* groups */
+.v2-grp{background:#fff;border-radius:24px;padding:14px 8px 10px;margin-bottom:12px;box-shadow:0 3px 14px -8px rgba(10,63,49,.2)}
+.v2-grp h3{margin:0 8px 10px;font-size:13.5px;font-weight:800;color:var(--ink);display:flex;align-items:center;gap:7px}
+.v2-grp h3 i{font-style:normal;width:26px;height:26px;border-radius:9px;display:grid;place-items:center;font-size:14px}
+.v2-grp h3 small{margin-inline-start:auto;font-size:11px;color:var(--mu);font-weight:500}
+.v2-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:4px}
+.v2 #nav .v2-grid button{display:flex!important;flex-direction:column!important;align-items:center!important;gap:6px!important;font-size:11.5px!important;padding:4px 0 6px!important;line-height:1.2}
+.v2 #nav .v2-grid button .ic{width:48px!important;height:48px!important;border-radius:16px!important;margin:0!important}
+.v2 #nav .v2-grid button .ic svg{width:23px!important;height:23px!important}
+.v2 #nav .v2-grid button.nlk .ic{filter:grayscale(.55) opacity(.75)}
+.v2 #nav .v2-grid button.nlk::before{content:"قريباً";position:absolute;top:-4px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;font-size:9px;font-weight:700;padding:1px 6px;border-radius:999px;z-index:2}
+/* shortcuts strip */
+.v2 #xStrip{margin:4px 0 14px!important}
+.v2 #xStrip button{background:#fff!important;border:1px solid #E1ECE7!important;border-radius:14px!important;font-weight:700!important;color:var(--ink)!important}
+.v2 #rstrip{border-radius:18px!important}
+.v2 .card,.v2 section.step,.v2 .slip{border-radius:22px!important}
+/* TAB BAR */
+.v2-tabs{position:fixed;left:0;right:0;bottom:0;z-index:20;height:calc(66px + env(safe-area-inset-bottom));padding-bottom:env(safe-area-inset-bottom);background:#fff;box-shadow:0 -6px 22px rgba(10,63,49,.10);display:grid;grid-template-columns:repeat(5,1fr);align-items:end;border-radius:22px 22px 0 0}
+.v2-tabs button{border:0;background:none;display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 0 9px;color:var(--mu);font-weight:700;font-size:11px;font-family:inherit;cursor:pointer}
+.v2-tabs button svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.v2-tabs button.on{color:var(--g)}
+.v2-tabs .home{margin-top:-26px}
+.v2-tabs .home i{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(160deg,var(--g),var(--gd));border:4px solid #fff;box-shadow:0 0 0 2px var(--y),0 10px 20px -6px var(--gd)}
+.v2-tabs .home i svg{width:25px;height:25px;stroke:#fff}
+@media (min-width:700px){.v2-tabs{max-width:620px;margin:0 auto}}
+/* dark */
+body.v2.dark{--bg:#0B1F19;--ink:#E6F2EE;--mu:#9DB8AF}
+body.v2.dark .v2-grp,body.v2.dark .v2 #nav .v2-main button,body.v2.dark .v2-tabs,body.v2.dark .topbar,body.v2.dark #xStrip button{background:#12302A!important;border-color:#1E433A!important}
+.v2 #nav .v2-main button,.v2 #nav .v2-grid button{grid-column:auto!important;width:auto!important;max-width:none!important;flex:none!important;margin:0!important;order:0!important}
+.v2 #nav .v2-main button .ic,.v2 #nav .v2-grid button .ic{flex:none}
+.v2 #nav .v2-main button>span,.v2 #nav .v2-main button>b{font-size:15px}
+/* ---- v2.2 polish ---- */
+body.v2{background:radial-gradient(900px 500px at 100% -10%,#DDEFE8 0%,transparent 60%),radial-gradient(700px 500px at -10% 40%,#F6EEDB 0%,transparent 55%),linear-gradient(180deg,#F3F8F6,#EAF2EE)!important;background-attachment:fixed!important}
+.v2 .view{animation:v2in .38s cubic-bezier(.2,.8,.2,1)}
+@keyframes v2in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.v2 .v2-flash{animation:v2fl 1.3s ease}
+@keyframes v2fl{0%,100%{box-shadow:0 0 0 0 rgba(226,168,43,0)}25%{box-shadow:0 0 0 5px rgba(226,168,43,.55)}}
+.v2 #nav button{transition:transform .15s}.v2 #nav button:active{transform:scale(.95)}
+/* coordinated palette */
+.v2 #nav .ic{box-shadow:0 6px 12px -6px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.35)!important}
+.v2 #nav button[data-v=salary] .ic{background:linear-gradient(160deg,#F2C14E,#C98A12)!important}
+.v2 #nav button[data-v=me] .ic{background:linear-gradient(160deg,#2BB5A3,#0F7F72)!important}
+.v2 #nav button[data-v=leave] .ic{background:linear-gradient(160deg,#25A27E,#0E5B45)!important}
+.v2 #nav button[data-v=profile] .ic{background:linear-gradient(160deg,#3B7A8F,#1D4E5F)!important}
+.v2 .v2-grid[data-g="0"] .ic{background:linear-gradient(160deg,#F0BE4C,#C98A12)!important}
+.v2 .v2-grid[data-g="0"] button:nth-child(even) .ic{background:linear-gradient(160deg,#2E9B7C,#0E5B45)!important}
+.v2 .v2-grid[data-g="1"] .ic{background:linear-gradient(160deg,#F2788A,#C93C55)!important}
+.v2 .v2-grid[data-g="1"] button:nth-child(even) .ic{background:linear-gradient(160deg,#F49A6C,#D8613A)!important}
+.v2 .v2-grid[data-g="2"] .ic{background:linear-gradient(160deg,#2BB5A3,#0F7F72)!important}
+.v2 .v2-grid[data-g="2"] button:nth-child(even) .ic{background:linear-gradient(160deg,#4C8FD6,#2463A8)!important}
+.v2 #nav .v2-grid button.nlk .ic{filter:saturate(.35) brightness(1.05)!important}
+.v2 .v2-grp h3 i{background:#F1F6F4!important}
+/* shortcuts card */
+.v2 #xStrip{display:grid!important;grid-template-columns:repeat(5,1fr)!important;gap:4px!important;background:#fff;border-radius:24px;padding:12px 6px 10px!important;margin:0 0 14px!important;overflow:visible!important;box-shadow:0 3px 14px -8px rgba(10,63,49,.2);flex-wrap:nowrap}
+.v2 #xStrip button{display:flex!important;flex-direction:column!important;align-items:center!important;gap:6px!important;border:0!important;background:none!important;box-shadow:none!important;padding:2px 0!important;font-size:11px!important;line-height:1.25;text-align:center;white-space:normal!important;min-width:0!important;height:auto!important;color:var(--ink)!important}
+.v2 #xStrip button i{font-style:normal;width:48px;height:48px;border-radius:16px;display:grid;place-items:center;font-size:23px;background:color-mix(in srgb,var(--c) 13%,#fff);box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--c) 28%,transparent);margin:0!important}
+/* comments */
+.v2 #rList{height:320px!important;overflow-y:auto!important;scrollbar-width:thin;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;background:#F4F8F6!important;padding:6px!important;border-radius:16px!important}
+.v2 #rList::-webkit-scrollbar{display:block!important;width:5px}.v2 #rList::-webkit-scrollbar-thumb{background:#B9D3CA;border-radius:3px}
+.v2 #rList .rv{background:#fff!important;border:0!important;box-shadow:0 1px 4px rgba(10,63,49,.08);padding:9px 11px!important;border-radius:14px!important}
+.v2 #rList .rv header{gap:8px!important}
+.v2 #rList .rv .v2-ini{width:30px;height:30px;border-radius:50%;flex:none;display:grid;place-items:center;color:#fff;font-weight:800;font-size:13px;background:linear-gradient(160deg,#25A27E,#0E5B45)}
+.v2 #rList .rv header b{font-size:13.5px!important;color:var(--ink);font-weight:800}
+.v2 #rList .rv p{-webkit-line-clamp:unset!important;display:block!important;margin:5px 0 0!important;font-size:13px!important;color:#33524A}
+.v2 .rc-h small{color:var(--g)!important;font-weight:700}
+.v2 .rv-loop{display:none!important}
+/* ---- v2.3 compact ---- */
+.v2 .wrap{padding-top:6px!important}
+.v2-hero{margin:6px 0 10px!important;padding:12px 14px 13px!important;border-radius:24px!important}
+.v2-brand{margin:10px 0 2px!important}.v2-brand h2{font-size:20px!important}.v2-brand svg{width:30px;height:26px}
+.v2-net{margin-top:9px!important;padding:10px 12px!important;border-radius:16px!important}
+.v2-net b{font-size:26px!important}.v2-net em{margin-top:2px!important}
+.v2-net button{padding:10px 12px!important}
+.v2-meta{margin-top:8px!important}
+.v2 .topbar{height:32px!important;margin:0 0 10px!important}.v2 .topbar .tick{height:32px!important}.v2 .topbar .tick *{font-size:12px!important}
+.v2-sec{margin:2px 4px 7px!important;font-size:14px!important}
+.v2-main{gap:8px!important;margin-bottom:12px!important}
+.v2 #nav .v2-main button{min-height:64px!important;padding:10px!important;padding-top:11px!important;border-radius:18px!important;font-size:14px!important}
+.v2 #nav .v2-main button .ic{width:42px!important;height:42px!important;min-width:42px;border-radius:13px!important}
+.v2 #nav .v2-main button::before{inset-inline-start:62px!important;bottom:10px!important}
+.v2-grp{padding:10px 6px 6px!important;margin-bottom:8px!important;border-radius:20px!important}
+.v2-grp h3{margin:0 8px 6px!important;font-size:13px!important}.v2-grp h3 i{width:22px!important;height:22px!important;font-size:12px!important}
+.v2 #nav .v2-grid button{gap:4px!important;font-size:11px!important;padding:3px 0 4px!important}
+.v2 #nav .v2-grid button .ic{width:42px!important;height:42px!important;border-radius:14px!important}
+.v2 #nav .v2-grid button .ic svg{width:21px!important;height:21px!important}
+.v2 #xStrip{padding:9px 4px 7px!important;margin:0 0 10px!important;border-radius:20px!important}
+.v2 #xStrip button i{width:42px!important;height:42px!important;font-size:20px!important;border-radius:14px!important}
+.v2 #rstrip{margin:0 0 10px!important;min-height:0!important;padding:8px 12px!important}
+/* views */
+.v2 .view>*+*,.v2 .view .cds{margin-top:10px!important}
+.v2 .card,.v2 section.card,.v2 .step,.v2 .slip{padding:12px!important;margin-bottom:0!important}
+.v2 .step h2,.v2 .card h2{margin-bottom:8px!important;font-size:15px!important}
+.v2 .xh{padding:10px 12px!important;border-radius:16px!important;margin-bottom:8px!important}
+.v2 .xh b{font-size:14px}.v2 .xh p{margin:3px 0!important;font-size:13px}
+.v2 .xh small{font-size:11px}
+.v2 .pl-e{margin:5px 0!important;gap:5px!important}
+.v2 .pl-e button{min-height:38px!important;font-size:21px!important;border-radius:11px!important}
+.v2 .bnr-s{aspect-ratio:12/5!important}
+.v2 .cds{grid-template-columns:1fr 1fr!important;gap:8px!important}
+.v2 .cd{padding:9px 10px!important;border-radius:14px!important}
+.v2 .cd.empty span{font-size:12.5px}.v2 .cd.empty small{font-size:11px;line-height:1.35}
+.v2 details.tool{margin-top:8px!important;border-radius:16px!important}
+.v2 .tool>summary{padding:9px 12px!important;gap:10px!important}
+.v2 .tool>summary .ic{width:36px!important;height:36px!important;border-radius:11px!important}
+.v2 .tool>summary b{font-size:14.5px!important}.v2 .tool>summary small{font-size:11.5px!important}
+.v2 .wrap>footer{padding:14px 10px!important;margin-top:14px!important}
+/* floating bits */
+.v2 .fab-inst{bottom:calc(78px + env(safe-area-inset-bottom))!important;left:8px!important;padding:4px 6px 4px 10px!important;transform:scale(.82);transform-origin:left bottom}
+.v2-pv{bottom:auto!important;top:calc(6px + env(safe-area-inset-top))!important;font-size:10px!important;padding:4px 10px!important;opacity:.9}
+body.v2{padding-bottom:calc(80px + env(safe-area-inset-bottom))!important}
+.v2-pv{left:8px!important;transform:none!important;top:auto!important;bottom:calc(150px + env(safe-area-inset-bottom))!important;writing-mode:vertical-rl;padding:8px 4px!important;border-radius:10px!important}
+/* ---- v2.4 ---- */
+.v2 #bnr{margin:6px 0 8px!important}
+.v2 #bnr .bnr-tr{border-radius:20px!important}
+/* compact salary row */
+.v2-net{padding:8px 10px!important;gap:8px!important;border-radius:14px!important;align-items:center!important}
+.v2-net .l{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:8px;row-gap:0}
+.v2-net small{font-size:11px!important;width:100%}
+.v2-net b{font-size:22px!important;line-height:1.1!important}
+.v2-net b i{font-size:12px!important}
+.v2-net em{margin:0!important;font-size:11px!important}
+.v2-net button{padding:8px 11px!important;font-size:12px!important;border-radius:11px!important}
+/* header buttons: distinct colors */
+.v2-hero .hbtns #lgBtn{display:grid!important}
+.v2-hero .hbtns .ib{border:0!important;box-shadow:0 4px 10px -4px rgba(0,0,0,.45)!important}
+.v2-hero .hbtns #acctBtn{background:linear-gradient(160deg,#5AA9F0,#2463C7)!important}
+.v2-hero .hbtns #theme{background:linear-gradient(160deg,#8B7CF6,#5B45C9)!important}
+.v2-hero .hbtns #lgBtn{background:linear-gradient(160deg,#2BC4B0,#0F7F72)!important;position:relative}
+.v2-hero .hbtns #lgBtn b{font-size:9px!important;position:absolute;bottom:1px;left:3px;color:#fff;font-weight:800}
+.v2-hero .hbtns #updTop{background:#fff!important}.v2-hero .hbtns #updTop svg{stroke:var(--g)!important}
+body.v2.dark .v2-hero .hbtns #theme{background:linear-gradient(160deg,#F7C948,#E08A00)!important}
+.v2-hero .hbtns .ib:active{transform:scale(.9)}
+/* dark mode (app uses html[data-theme=dark]) */
+[data-theme=dark] body.v2{--bg:#0B1F19;--ink:#E6F2EE;--mu:#9DB8AF;background:radial-gradient(900px 500px at 100% -10%,#12382D 0%,transparent 60%),linear-gradient(180deg,#0B1F19,#08170F)!important}
+[data-theme=dark] body.v2 .v2-grp,[data-theme=dark] body.v2 #nav .v2-main button,[data-theme=dark] body.v2 .v2-tabs,[data-theme=dark] body.v2 .topbar,[data-theme=dark] body.v2 #xStrip,[data-theme=dark] body.v2 #rList .rv{background:#12302A!important;border-color:#1E433A!important}
+[data-theme=dark] body.v2 #nav .v2-main button[data-v=salary]{background:linear-gradient(150deg,#3A3216,#12302A 70%)!important}
+[data-theme=dark] body.v2 #rList{background:#0E2620!important}
+[data-theme=dark] body.v2 .v2-hero .hbtns #theme{background:linear-gradient(160deg,#F7C948,#E08A00)!important}
+[data-theme=dark] body.v2 .v2-tabs .home i{border-color:#12302A}
+[data-theme=dark] body.v2 #xStrip button i{background:color-mix(in srgb,var(--c) 25%,#12302A)}
+[data-theme=dark] body.v2 .topbar .tick *{color:#8FE0C4!important}
+[data-theme=dark] body.v2 #rList .rv p{color:#C8DDD6}
+/* ---- v2.5 ---- */
+.v2 #bnr .bnr-s{aspect-ratio:3/1!important}
+.v2 #bnr .bnr-tx b{font-size:17px!important}.v2 #bnr .bnr-tx small{font-size:12px!important}
+.v2 #bnr .bnr-dots{margin-top:4px!important}
+.v2-meta{display:none!important}
+.v2-cal{margin-inline-start:auto;border:0;background:rgba(255,255,255,.14);color:#fff;border-radius:999px;padding:6px 11px;font-size:12px;cursor:pointer;white-space:nowrap}
+.v2-cal b{font-weight:700}
+.v2-net{cursor:pointer}
+.v2-hero .topbar{margin:10px 0 0!important;background:rgba(255,255,255,.10)!important;border:1px solid rgba(255,255,255,.12)!important;height:28px!important;border-radius:999px!important}
+.v2-hero .topbar .tick{height:28px!important}
+.v2-hero .topbar .tick,.v2-hero .topbar .tick *{color:#E9FFF7!important;font-size:12px!important;font-weight:600!important}
+[data-theme=dark] body.v2 .v2-hero .topbar{background:rgba(255,255,255,.08)!important}
+[data-theme=dark] body.v2 .v2-hero .topbar .tick *{color:#E9FFF7!important}
+.v2-hero{padding-bottom:12px!important}
+/* coming soon row */
+.v2-grp.v2-soon{background:transparent!important;box-shadow:none!important;border:1.5px dashed #CFDDD7;padding:8px 4px 4px!important}
+.v2-grp.v2-soon h3{color:var(--mu)!important;font-size:12.5px!important}
+.v2 #nav .v2-grid[data-g="3"]{display:flex!important;overflow-x:auto;gap:2px;scrollbar-width:none;padding-bottom:2px}
+.v2 #nav .v2-grid[data-g="3"]::-webkit-scrollbar{display:none}
+.v2 #nav .v2-grid[data-g="3"] button{flex:0 0 19%!important;font-size:10.5px!important;color:var(--mu)!important}
+.v2 #nav .v2-grid[data-g="3"] button .ic{width:36px!important;height:36px!important;border-radius:12px!important;background:#C9D6D1!important;box-shadow:none!important;filter:none!important}
+.v2 #nav .v2-grid[data-g="3"] button .ic svg{width:18px!important;height:18px!important}
+.v2 #nav .v2-grid[data-g="3"] button::before{display:none!important}
+[data-theme=dark] body.v2 .v2-grp.v2-soon{border-color:#24473E}
+[data-theme=dark] body.v2 #nav .v2-grid[data-g="3"] button .ic{background:#2A4A42!important}
+.v2 #nav .v2-main button[data-v=pension] .ic{background:linear-gradient(160deg,#F2C14E,#C98A12)!important}
+.v2 #nav .v2-main button[data-v=pension]{background:linear-gradient(150deg,#FFF6DF,#fff 70%)!important;box-shadow:inset 0 0 0 2px var(--y),0 8px 18px -10px rgba(226,168,43,.8)!important}
+[data-theme=dark] body.v2 #nav .v2-main button[data-v=pension]{background:linear-gradient(150deg,#3A3216,#12302A 70%)!important}
+.v2 .v2-grid[data-g="0"] button:nth-child(4n+3) .ic{background:linear-gradient(160deg,#4C8FD6,#2463A8)!important}
+.v2 .v2-grid[data-g="1"] button:nth-child(4n+3) .ic{background:linear-gradient(160deg,#B07CE8,#7A47C2)!important}
+/* ---- v2.6 calm icons: one hue per category ---- */
+.v2 #nav .ic::after,.v2 #nav .ic::before{display:none!important}
+.v2 #nav .ic{box-shadow:none!important;transform:none!important;border:0!important}
+.v2 #nav .v2-grid .ic,.v2 #xStrip button i{background:var(--t1)!important;box-shadow:inset 0 0 0 1px var(--t2)!important}
+.v2 #nav .v2-grid .ic svg{stroke:var(--k)!important;stroke-width:1.9!important}
+.v2 #nav .v2-grid[data-g="0"]{--k:#2563C9;--t1:#EAF1FD;--t2:#D3E2FA}
+.v2 #nav .v2-grid[data-g="1"]{--k:#D9576A;--t1:#FDEEF0;--t2:#F7D7DC}
+.v2 #nav .v2-grid[data-g="2"]{--k:#0E8C7A;--t1:#E5F5F1;--t2:#CBEAE2}
+.v2 #nav .v2-grid[data-g="3"]{--k:#90A39C;--t1:#EEF2F0;--t2:#E0E7E4}
+.v2 #nav .v2-grid button:nth-child(n) .ic{background:var(--t1)!important}
+.v2 #nav .v2-grid[data-g="3"] button .ic{background:var(--t1)!important}
+/* main 4: one brand green, solid */
+.v2 #nav .v2-main button .ic,.v2 #nav .v2-main button[data-v] .ic{background:linear-gradient(150deg,#1A8A6C,#0E5B45)!important;box-shadow:0 6px 12px -7px #0E5B45!important}
+.v2 #nav .v2-main button svg{stroke:#fff!important;stroke-width:1.9!important}
+.v2 #nav .v2-main button[data-v=pension]{background:#fff!important;box-shadow:0 3px 14px -6px rgba(10,63,49,.18)!important}
+[data-theme=dark] body.v2 #nav .v2-main button[data-v=pension]{background:#12302A!important}
+/* shortcuts: amber family with line glyphs */
+.v2 #xStrip{--k:#B7791F;--t1:#FDF4E3;--t2:#F4E2BC}
+.v2 #xStrip button i{width:42px!important;height:42px!important;border-radius:14px!important}
+.v2 #xStrip button i svg{width:21px;height:21px;fill:none;stroke:var(--k);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.v2-grp h3 i{background:transparent!important;width:8px!important;height:8px!important;border-radius:50%!important;font-size:0!important;background:var(--k)!important}
+.v2-grp[data-gw="0"]{--k:#2563C9}.v2-grp[data-gw="1"]{--k:#D9576A}.v2-grp[data-gw="2"]{--k:#0E8C7A}.v2-grp[data-gw="3"]{--k:#A9B8B2}
+/* calmer header buttons */
+.v2-hero .hbtns .ib{background:rgba(255,255,255,.14)!important;box-shadow:inset 0 0 0 1px rgba(255,255,255,.18)!important}
+.v2-hero .hbtns #acctBtn{background:rgba(255,255,255,.95)!important}.v2-hero .hbtns #acctBtn svg{stroke:#0E5B45!important}
+.v2-hero .hbtns #theme svg{stroke:#FFE2A0!important}
+.v2-hero .hbtns #lgBtn svg{stroke:#A8F0DE!important}
+[data-theme=dark] body.v2 .v2-hero .hbtns #theme{background:rgba(255,255,255,.14)!important}
+[data-theme=dark] body.v2 #nav .v2-grid[data-g="0"]{--t1:#17304F;--t2:#21406A;--k:#7FB0F5}
+[data-theme=dark] body.v2 #nav .v2-grid[data-g="1"]{--t1:#3A1E25;--t2:#4E2830;--k:#F39AA7}
+[data-theme=dark] body.v2 #nav .v2-grid[data-g="2"]{--t1:#123A33;--t2:#1A4D44;--k:#6FD8C3}
+[data-theme=dark] body.v2 #nav .v2-grid[data-g="3"]{--t1:#1E332E;--t2:#28433C;--k:#7E958E}
+[data-theme=dark] body.v2 #xStrip{--t1:#3A3016;--t2:#4C3F1E;--k:#F3C56B}
+.v2 #nav .v2-grp h3 i{background:var(--k)!important;width:8px!important;height:8px!important}
+/* salary tiles: calm green */
+.v2 .tile .ic{background:#E5F5F1!important;box-shadow:inset 0 0 0 1px #CBEAE2!important}
+.v2 .tile svg{stroke:#0E8C7A!important;stroke-width:1.9!important}
+.v2 .tile[aria-pressed=true]{border-color:#0E5B45!important;background:#F1F8F5!important;box-shadow:0 0 0 2px #0E5B45 inset!important}
+.v2 .tile[aria-pressed=true] .ic{background:linear-gradient(150deg,#1A8A6C,#0E5B45)!important;box-shadow:none!important}
+.v2 .tile[aria-pressed=true] svg{stroke:#fff!important}
+[data-theme=dark] body.v2 .tile .ic{background:#123A33!important;box-shadow:inset 0 0 0 1px #1A4D44!important}
+[data-theme=dark] body.v2 .tile svg{stroke:#6FD8C3!important}
+[data-theme=dark] body.v2 .tile[aria-pressed=true]{background:#12302A!important;box-shadow:0 0 0 2px #6FD8C3 inset!important}
+[data-theme=dark] body.v2 .tile[aria-pressed=true] svg{stroke:#fff!important}
+/* tools list icons calm */
+.v2 .tool>summary .ic{background:#E5F5F1!important;box-shadow:inset 0 0 0 1px #CBEAE2!important}
+.v2 .tool>summary .ic svg{stroke:#0E8C7A!important}
+.v2 details.tool{border-inline-start-color:#CBEAE2!important}
+/* ---- v2.7 vivid filled icons, one hue per category ---- */
+.v2 #nav .v2-grid .ic,.v2 #xStrip button i{background:linear-gradient(155deg,var(--a),var(--b))!important;box-shadow:0 6px 12px -7px var(--b),inset 0 1px 0 rgba(255,255,255,.35)!important}
+.v2 #nav .v2-grid .ic svg{stroke:#fff!important;stroke-width:2!important}
+.v2 #xStrip button i svg{stroke:#fff!important;stroke-width:2!important}
+.v2 #nav .v2-grid[data-g="0"]{--a:#4F8EF7;--b:#1E56D6}
+.v2 #nav .v2-grid[data-g="0"] button:nth-child(even){--a:#3B7BEA;--b:#1747B8}
+.v2 #nav .v2-grid[data-g="1"]{--a:#FF6F86;--b:#D7304F}
+.v2 #nav .v2-grid[data-g="1"] button:nth-child(even){--a:#F65C79;--b:#C02145}
+.v2 #nav .v2-grid[data-g="2"]{--a:#1FC7AE;--b:#0B8C7A}
+.v2 #nav .v2-grid[data-g="2"] button:nth-child(even){--a:#12B39C;--b:#087565}
+.v2 #xStrip{--a:#FFBE3D;--b:#E08600}
+.v2 #xStrip button:nth-child(even){--a:#F7AE2B;--b:#CC7400}
+.v2 #nav .v2-grid[data-g="3"]{--a:#C9D4D0;--b:#A5B4AE}
+.v2 #nav .v2-grid[data-g="3"] .ic{box-shadow:none!important}
+.v2 .v2-grp[data-gw="0"]{--k:#1E56D6}.v2 .v2-grp[data-gw="1"]{--k:#D7304F}.v2 .v2-grp[data-gw="2"]{--k:#0B8C7A}
+.v2 #nav .v2-main button[data-v=salary]{background:linear-gradient(150deg,#FFF6DF,#fff 70%)!important;box-shadow:inset 0 0 0 2px var(--y),0 8px 18px -10px rgba(226,168,43,.8)!important}
+.v2 #nav .v2-main button[data-v=salary] .ic{background:linear-gradient(155deg,#FFC24A,#D98A00)!important;box-shadow:0 6px 12px -7px #D98A00!important}
+[data-theme=dark] body.v2 #nav .v2-main button[data-v=salary]{background:linear-gradient(150deg,#3A3216,#12302A 70%)!important}
+[data-theme=dark] body.v2 #nav .v2-grid[data-g="3"]{--a:#3A524B;--b:#2A403A}
+/* search */
+.v2-sbtn svg{stroke:#fff!important}
+.v2-so{position:fixed;inset:0;z-index:80;background:rgba(6,30,23,.45);backdrop-filter:blur(4px);display:none;padding:calc(12px + env(safe-area-inset-top)) 12px 12px}
+.v2-so.on{display:block;animation:v2in .25s ease}
+.v2-sp{max-width:620px;margin:0 auto;background:var(--bg,#EEF4F1);border-radius:24px;box-shadow:0 20px 40px -15px rgba(0,0,0,.4);overflow:hidden;display:flex;flex-direction:column;max-height:calc(100vh - 40px)}
+.v2-sf{display:flex;align-items:center;gap:8px;padding:12px;background:#fff;border-bottom:1px solid #E1ECE7}
+.v2-sf svg{width:20px;height:20px;stroke:#0E5B45;fill:none;stroke-width:2.2;stroke-linecap:round;flex:none}
+.v2-sf input{flex:1;border:0;outline:0;font-size:16px;background:none;color:var(--ink);min-width:0}
+.v2-sf button{border:0;background:#EEF4F1;color:#14332A;border-radius:10px;padding:7px 10px;font-weight:700;font-size:12.5px;cursor:pointer}
+.v2-sr{overflow-y:auto;padding:8px}
+.v2-sr h4{margin:8px 6px 6px;font-size:12px;color:var(--mu);font-weight:700}
+.v2-sr a{display:flex;align-items:center;gap:10px;padding:10px;border-radius:14px;background:#fff;margin-bottom:6px;color:var(--ink);text-decoration:none;cursor:pointer}
+.v2-sr a i{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;font-style:normal;flex:none;background:linear-gradient(155deg,#1A8A6C,#0E5B45);color:#fff;font-size:15px}
+.v2-sr a b{display:block;font-size:14px;font-weight:800}.v2-sr a small{display:block;font-size:11.5px;color:var(--mu)}
+.v2-sr a em{margin-inline-start:auto;font-style:normal;font-size:10.5px;color:var(--mu);background:#EEF4F1;padding:2px 8px;border-radius:999px;white-space:nowrap}
+.v2-chips{display:flex;flex-wrap:wrap;gap:6px;padding:2px 6px 8px}
+.v2-chips button{border:1px solid #DCE8E3;background:#fff;border-radius:999px;padding:6px 12px;font-size:12.5px;cursor:pointer;color:var(--ink)}
+.v2-sr .v2-none{text-align:center;color:var(--mu);padding:24px 10px;font-size:13px}
+[data-theme=dark] .v2-sf,[data-theme=dark] .v2-sr a,[data-theme=dark] .v2-chips button{background:#12302A!important;border-color:#1E433A!important}
+[data-theme=dark] .v2-sp{background:#0B1F19}
+.v2 #nav .v2-grid button:nth-child(n) .ic,[data-theme=dark] body.v2 #nav .v2-grid button:nth-child(n) .ic{background:linear-gradient(155deg,var(--a),var(--b))!important;box-shadow:0 6px 12px -7px var(--b),inset 0 1px 0 rgba(255,255,255,.35)!important}
+[data-theme=dark] body.v2 #nav .v2-grid .ic svg{stroke:#fff!important}
+[data-theme=dark] body.v2 #xStrip button i{background:linear-gradient(155deg,var(--a),var(--b))!important}
+.v2 #nav .v2-grid[data-g="3"] button:nth-child(n) .ic{box-shadow:none!important}
+.v2-hero .hbtns #updTop{display:none!important}
+/* ---- v2.9 salary icon + banner ---- */
+.v2 #nav .v2-main button[data-v=salary] .ic{width:40px!important;height:40px!important;min-width:40px;border:0!important;margin:0!important;animation:none!important;transform:none!important}
+.v2 #nav .v2-main button[data-v=salary] svg{width:21px!important;height:21px!important}
+.v2 #nav .v2-main button[data-v=salary] .coin{display:none!important}
+.v2 #nav .v2-main button[data-v=salary]{font-size:14px!important}
+.v2 #bnr .bnr-tr{border-radius:20px!important;box-shadow:0 10px 24px -14px rgba(6,48,31,.55)!important}
+.v2 #bnr .bnr-s{aspect-ratio:2/1!important;background:#0E5B45}
+.v2 #bnr .bnr-s img,.v2 #bnr .bnr-s video{object-fit:cover;width:100%;height:100%}
+.v2 #bnr .bnr-tx.bov{background:linear-gradient(0deg,rgba(0,0,0,.55),transparent)!important;padding:18px 14px 10px!important}
+.v2 #bnr .bnr-dots{display:flex;justify-content:center;gap:5px;margin-top:6px!important}
+.v2 #bnr .bnr-dots i{width:6px;height:6px;border-radius:999px;background:#C9D6D1;transition:width .25s}
+.v2 #bnr .bnr-dots i.on{width:18px;background:#0E5B45}
+.v2-vplay{position:absolute;left:10px;bottom:10px;z-index:2;border:0;border-radius:999px;background:rgba(0,0,0,.55);color:#fff;font-weight:800;font-size:12px;padding:6px 11px;cursor:pointer;font-family:inherit;backdrop-filter:blur(4px)}
+.v2-vov{position:fixed;inset:0;z-index:90;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;padding:16px}
+.v2-vov.on{display:flex}.v2-vov video{width:100%;max-width:820px;border-radius:16px;background:#000}
+.v2-vov button{position:absolute;top:calc(14px + env(safe-area-inset-top));left:14px;border:0;border-radius:999px;width:42px;height:42px;background:rgba(255,255,255,.15);color:#fff;font-size:20px;cursor:pointer}
+/* ---- v2.10 compact hero top, help bubble, what's new ---- */
+.v2-who img{width:38px!important;height:38px!important;border-width:2px!important}
+.v2-who b{font-size:13.5px!important}.v2-who small{font-size:11px!important}
+.v2-hero .hbtns{gap:4px!important}
+.v2-hero .hbtns .ib{width:30px!important;height:30px!important;min-width:30px!important;border-radius:10px!important}
+.v2-hero .hbtns .ib svg{width:15px!important;height:15px!important}
+.v2-hero .hbtns #lgBtn b{font-size:8px!important}
+.v2-brand h2{font-size:18px!important}.v2-brand svg{width:26px!important;height:22px!important}.v2-brand{margin:8px 0 2px!important}
+.v2-cal{padding:5px 9px!important;font-size:11px!important}
+.v2-net b{font-size:21px!important}.v2-net small{font-size:10.5px!important}
+.v2-net button{padding:7px 10px!important;font-size:11.5px!important}
+.v2-rf svg{stroke:#fff!important}.v2-rf.spin svg{animation:v2spin .8s linear infinite}
+@keyframes v2spin{to{transform:rotate(360deg)}}
+/* help bubble */
+.v2 #helpBub.help-bub{display:flex!important;align-items:center;gap:6px!important;padding:4px 11px 4px 4px!important;background:linear-gradient(150deg,#1A8A6C,#0E5B45)!important;box-shadow:0 10px 22px -8px rgba(6,48,31,.7),0 0 0 2px #E2A82B!important;bottom:calc(84px + env(safe-area-inset-bottom));transition:opacity .4s,transform .25s;z-index:45!important}
+.v2 .help-bub b{width:30px!important;height:30px!important;background:#E2A82B!important;color:#3a2a00!important;font-weight:900}
+.v2 .help-bub span{display:block!important;font-size:10px!important;font-weight:800;line-height:1.2;color:#fff}
+.v2 .help-bub.v2-idle{opacity:.45;transform:scale(.9)}
+.v2 .help-bub.v2-hot{opacity:1;transform:scale(1.12)}
+.v2 .help-bub::before,.v2 .help-bub::after{display:none!important}
+/* welcome & what's new */
+#wel .w-sec{margin:14px auto 0;display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;background:rgba(255,255,255,.14);padding:6px 12px;border-radius:999px}
+.v2-wn h3{margin:6px 0 4px}.v2-wn ul{list-style:none;padding:0;margin:10px 0;text-align:start}
+.v2-wn li{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid #EEF3F1;font-size:13.5px;line-height:1.5}
+.v2-wn li:last-child{border:0}.v2-wn li i{font-style:normal;font-size:20px;width:30px;text-align:center;flex:none}
+.v2-wn li b{display:block}.v2-wn li small{color:#5E7A71;font-size:12px}
+[data-theme=dark] .v2-wn li{border-color:#1E433A}
 </style>
 </head>
 <body>
@@ -5010,6 +5377,356 @@ try{if(document.querySelector('#idTool').open)drawIdCard()}catch(_){}
 /* hide the drag hint after a few seconds */
 setTimeout(()=>{try{const h=document.querySelector('.help-bub');if(h)h.classList.add('hint-off')}catch(_){}},6000);
 setTimeout(()=>{try{drawRows()}catch(_){}},300);addEventListener('resize',()=>{try{drawRows()}catch(_){}});
+
+/* ===== V2 identity — preview ===== */
+document.body.classList.add('v2');
+(function(){
+  const l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap';document.head.appendChild(l);
+  const wrap=document.querySelector('.wrap'),top=$('topbar'),nav=$('nav');
+  const MK='<svg viewBox="0 0 60 50" aria-hidden="true"><path d="M30 46C10 33 4 22 8 13c4-8 14-9 22 0 8-9 18-8 22 0 4 9-2 20-22 33z" fill="none" stroke="#fff" stroke-width="5" stroke-linejoin="round"/><path d="M6 27h12l4-8 6 15 5-11 3 4h18" fill="none" stroke="#E2A82B" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  /* HERO */
+  const hero=document.createElement('section');hero.className='v2-hero';
+  hero.innerHTML=`<div class="v2-top"><div class="v2-who"><img id="v2Av" alt=""><div><small id="v2Gr">أهلاً بك</small><b id="v2Nm">موظف الصحة</b></div></div><div id="v2Btns"></div></div>
+  <div class="v2-brand">${MK}<h2>موظف الصحة</h2><button id="v2Cal" class="v2-cal">📅 <b id="v2Dt"></b></button></div>
+  <div class="v2-net" id="v2NetBox"><div class="l"><small>صافي راتبك الشهري</small><b id="v2Net">0<i>د.ع</i></b><em id="v2Nx"></em></div><button id="v2Slip">التفاصيل ←</button></div>
+`;
+  wrap.insertBefore(hero,top);
+  const hb=document.querySelector('header .hbtns');if(hb)$('v2Btns').appendChild(hb);
+  $('v2Av').src=$('avatar').src;
+  $('v2Slip').onclick=()=>$('toSlip').click();$('v2Cal').onclick=()=>$('calBtn').click();
+  const greet=()=>{const h=new Date().getHours();return h<12?'صباح الخير ☀️':h<17?'نهارك سعيد 🌤':'مساء الخير 🌙'};
+  function sync(){try{
+    $('v2Gr').textContent=greet();
+    const nm=(window.X&&X.me&&X.me.name)||'';$('v2Nm').textContent=nm?nm.split(' ').slice(0,2).join(' '):'زميلنا في الصحة';
+    if(X&&X.me&&X.me.photo)$('v2Av').src=X.me.photo;
+    $('v2Net').innerHTML=($('dockNet').textContent||'0').replace(/\s*د\.ع/,'')+'<i>د.ع</i>';
+    const s=$('strip')&&$('strip').querySelector('*');const t=(s?s.innerText:'').split('\n')[0];$('v2Nx').textContent=t?'🗓 '+t:'';
+    $('v2Dt').textContent=(($('clkD').textContent||'').replace(/\s*\d{4}.*$/,'').replace(/^[^،,]*[،,]\s*/,''))||'التقويم';
+  }catch(_){}}
+  sync();setInterval(sync,1000);
+  /* NAV regroup */
+  const SUB={salary:'احسب راتبك بدقة',me:'علاوتك وترفيعك',leave:'رصيد إجازاتك',profile:'بياناتك وهويتك'};
+  const G=[['💼','#FFF3D6','وظيفتي وخدماتي','دليلك بالدوائر',['x-qc','forms','guide','news','pension','x-id']],
+           ['❤️','#FFE4E6','صحتي وعائلتي','لك ولأهلك',['health','family','protect','donate','x-blood']],
+           ['🤝','#E0F2EE','مجتمع الصحة','تواصل وتعلّم',['x-thx','x-swap','x-cme','x-tk']],
+           ['⏳','#EEF1F0','قريباً بالتطبيق','تنفتح تباعاً',[]]];
+  function arrange(){if(!nav)return;nav.classList.remove('compact');
+    const btn=v=>nav.querySelector(`button[data-v="${v}"]`);
+    let m=nav.querySelector('.v2-main');
+    if(!m){nav.insertAdjacentHTML('afterbegin','<div class="v2-sec">الأساسية<small>الأكثر استخداماً</small></div><div class="v2-main"></div><div class="v2-sec">كل الخدمات</div>'+G.map((g,i)=>`<div class="v2-grp${i==3?' v2-soon':''}" data-gw="${i}"><h3><i style="background:${g[1]}">${g[0]}</i>${g[2]}<small>${g[3]}</small></h3><div class="v2-grid" data-g="${i}"></div></div>`).join('')+'<div class="v2-hid" hidden></div>');m=nav.querySelector('.v2-main')}
+    const soon=nav.querySelector('.v2-grid[data-g="3"]'),hid=nav.querySelector('.v2-hid');
+    Object.keys(SUB).forEach(v=>{const b=btn(v);if(b){b.dataset.sub=SUB[v];if(b.parentNode!==m)m.appendChild(b)}});
+    G.forEach((g,i)=>{const box=nav.querySelector(`.v2-grid[data-g="${i}"]`);g[4].forEach(v=>{const b=btn(v);if(!b)return;const to=b.classList.contains('nlk')?soon:box;if(b.parentNode!==to)to.appendChild(b)})});
+    nav.querySelectorAll(':scope > button').forEach(b=>(b.classList.contains('nlk')?soon:nav.querySelector('.v2-grid[data-g="0"]')).appendChild(b));
+    nav.querySelectorAll('.v2-grid').forEach(g=>{const n=g.children.length;g.parentNode.hidden=!n;g.style.gridTemplateColumns=g.dataset.g==='3'?'':`repeat(${n<=4?4:5},1fr)`});
+  }
+  {const _ml=markLocks;markLocks=function(){_ml.apply(this,arguments);try{arrange()}catch(_){}}}
+  {const _al=applyLayout;applyLayout=function(c){_al(c);try{arrange()}catch(_){}}}
+  drawRows=function(){try{arrange()}catch(_){}};
+  new MutationObserver(()=>{if(nav.classList.contains('compact'))nav.classList.remove('compact')}).observe(nav,{attributes:true,attributeFilter:['class']});
+  arrange();setTimeout(arrange,500);setTimeout(arrange,1800);
+  /* shortcuts title */
+  const xs=$('xStrip');if(xs)xs.insertAdjacentHTML('beforebegin','<div class="v2-sec">اختصارات سريعة</div>');
+  /* TAB BAR */
+  const I=d=>`<svg viewBox="0 0 24 24">${d}</svg>`;
+  document.body.insertAdjacentHTML('beforeend',`<nav class="v2-tabs" aria-label="التنقل السفلي">
+    <button data-tb="acc">${I('<circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/>')}حسابي</button>
+    <button data-tb="news">${I('<path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4z"/><path d="M10 21h4"/>')}الأخبار</button>
+    <button data-tb="home" class="home on"><i>${I('<path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/>')}</i>الرئيسية</button>
+    <button data-tb="svc">${I('<rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/>')}الخدمات</button>
+    <button data-tb="rate">${I('<path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/>')}قيّمنا</button></nav>`);
+  const tabs=document.querySelector('.v2-tabs');
+  const on=k=>tabs.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.tb===k));
+  tabs.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const k=b.dataset.tb;on(k);try{clearSolo()}catch(_){}
+    if(k==='acc')$('acctBtn').click();
+    else if(k==='news')location.hash='news';
+    else if(k==='home'){location.hash='salary';setTimeout(()=>scrollTo({top:0,behavior:'smooth'}),60)}
+    else if(k==='svc'){location.hash='salary';setTimeout(()=>{const s=nav.querySelectorAll('.v2-sec')[1];scrollTo({top:s.getBoundingClientRect().top+scrollY-10,behavior:'smooth'})},80)}
+    else if(k==='rate')$('rateTab').click()});
+  addEventListener('hashchange',()=>{const h=location.hash.slice(1);on(h==='news'?'news':(!h||h==='salary')?'home':'svc')});
+})();
+/* ---- v2.2 ---- */
+(function(){
+  // smooth salary entry
+  function smoothTo(y,ms){const s=scrollY,d=y-s,t0=performance.now();const f=t=>{const k=Math.min(1,(t-t0)/ms),e=k<.5?4*k*k*k:1-Math.pow(-2*k+2,3)/2;scrollTo(0,s+d*e);if(k<1)requestAnimationFrame(f)};requestAnimationFrame(f)}
+  $('nav').addEventListener('click',e=>{const b=e.target.closest('button[data-v="salary"]');if(!b)return;e.preventDefault();e.stopImmediatePropagation();
+    try{clearSolo()}catch(_){}
+    if(location.hash!=='#salary')location.hash='salary';
+    setTimeout(()=>{const t=$('st1');if(!t)return;smoothTo(t.getBoundingClientRect().top+scrollY-14,650);setTimeout(()=>{t.classList.remove('v2-flash');void t.offsetWidth;t.classList.add('v2-flash')},620)},90)},true);
+  // shortcuts title
+  const sec=document.querySelectorAll('.v2-sec');sec.forEach(s=>{if(s.textContent.startsWith('اختصارات'))s.innerHTML='ملفاتي وحقوقي<small>أدوات تحفظ حقك</small>'});
+  // comments: free scroll + names
+  rvAuto=function(){};
+  const COL=['#25A27E,#0E5B45','#F0BE4C,#C98A12','#2BB5A3,#0F7F72','#F2788A,#C93C55','#4C8FD6,#2463A8'];
+  const _d=drawRatings;drawRatings=function(){_d.apply(this,arguments);try{const box=$('rList');if(!box)return;
+    box.querySelectorAll('.rv-loop').forEach(x=>x.remove());
+    box.querySelectorAll('.rv').forEach((a,i)=>{const b=a.querySelector('header b');if(!b||a.querySelector('.v2-ini'))return;
+      if(/^مستخدم$/.test(b.textContent.trim()))b.textContent='موظف صحة';
+      const n=b.textContent.trim();b.insertAdjacentHTML('beforebegin',`<span class="v2-ini" style="background:linear-gradient(160deg,${COL[i%5]})">${n==='موظف صحة'?'🩺':n.charAt(0)}</span>`)});
+    const h=$('rcH');if(h){const s=h.querySelector('small');if(s)s.textContent='مرّر للأعلى والأسفل ↕'}
+    box.scrollTop=0}catch(_){}};
+  try{drawRatings()}catch(_){}
+})();
+/* ---- v2.4 ---- */
+(function(){const fix=()=>{const b=$('bnr'),h=document.querySelector('.v2-hero');if(b&&h&&b.nextElementSibling!==h)h.parentNode.insertBefore(b,h)};
+  fix();new MutationObserver(fix).observe(document.querySelector('.wrap'),{childList:true});setTimeout(fix,800);setTimeout(fix,2500)})();
+/* ---- v2.5 ---- */
+(function(){
+  const h=document.querySelector('.v2-hero'),tb=$('topbar');if(h&&tb)h.appendChild(tb);
+  $('v2NetBox').addEventListener('click',e=>{if(e.target.closest('#v2Slip'))return;const s=document.querySelector('#nav button[data-v="salary"]');if(s)s.click()});
+  try{markLocks()}catch(_){}
+})();
+/* ---- v2.6 shortcut glyphs ---- */
+(function(){const P={'إضبارتي':'<path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M8 13h8"/>',
+ 'راتبي':'<rect x="3" y="6" width="18" height="13" rx="2.5"/><path d="M3 10h18"/><path d="M12 13.5v2.5"/><circle cx="12" cy="17.6" r=".4"/>',
+ 'أمومتي':'<circle cx="12" cy="6" r="2.6"/><path d="M7 21v-3a5 5 0 0 1 10 0v3"/><circle cx="12" cy="15.5" r="1.8"/>',
+ 'فرصتي':'<rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7"/><path d="M3 12.5h18"/>',
+ 'خطوتي':'<path d="M5 21V4"/><path d="M5 4h11l-2 3.5 2 3.5H5"/>'};
+ const go=()=>{const x=$('xStrip');if(!x)return;x.querySelectorAll('button').forEach(b=>{const i=b.querySelector('i');if(!i||i.dataset.g)return;const t=b.textContent;const k=Object.keys(P).find(k=>t.includes(k));if(k){i.innerHTML=`<svg viewBox="0 0 24 24">${P[k]}</svg>`;i.dataset.g=1}})};
+ go();setTimeout(go,600);setTimeout(go,2000)})();
+/* ---- v2.7 search ---- */
+(function(){
+  const N=s=>(s||'').toLowerCase().replace(/[ً-ْـ]/g,'').replace(/[أإآٱ]/g,'ا').replace(/ة/g,'ه').replace(/ى/g,'ي').replace(/ؤ/g,'و').replace(/ئ/g,'ي').replace(/[^؀-ۿa-z0-9 ]/g,' ').replace(/\s+/g,' ').trim();
+  const SYN={salary:'راتب رواتب صافي مخصصات استقطاع مجموعه اختصاص شهاده درجه مرحله',pension:'تقاعد متقاعد تقاعدي معاش نهايه خدمه مكافاه',leave:'اجازه اجازات عطله مرضيه اعتياديه رصيد',me:'موعد مواعيد علاوه ترفيع استحقاق',profile:'ملف بياناتي حساب',health:'صحه فحص ضغط سكر',family:'عائله زوجه اطفال مخصصات زوجيه',protect:'حمايه عدوى لقاح سلامه',donate:'تبرع دعم',news:'اخبار تعميم قرار فرص',forms:'نموذج نماذج طلب كتاب استماره',guide:'دليل خطوات نقل تعيين معامله','x-qc':'علاوه سنويه حاسبه سريعه','x-id':'هويه بطاقه صوره','x-blood':'دم تبرع بالدم','x-thx':'شكر كتاب شكر','x-swap':'تبادل نقل محافظه','x-cme':'تعليم طبي مستمر دورات','x-tk':'مقترح شكوى ملاحظه'};
+  const TSYN={momTool:'ولاده حمل امومه','vaultTool':'اضباره وثائق مستمسكات','salTool':'نقص راتب استقطاع خطا','fsTool':'تعيين جديد اول مره','lvTool':'اجازه رصيد'};
+  function index(){const out=[];
+    document.querySelectorAll('#nav button[data-v]').forEach(b=>{const t=(b.innerText||'').split('\n').map(x=>x.trim()).filter(x=>x&&x!=='قريباً'&&x!=='🔒').join(' ');const v=b.dataset.v;out.push({t:t.split(' ').slice(0,3).join(' '),s:b.dataset.sub||'',k:N(t+' '+(SYN[v]||'')+' '+(b.dataset.sub||'')),cat:b.classList.contains('nlk')?'قريباً':'خدمة',go:()=>b.click(),ic:'★'})});
+    document.querySelectorAll('#xStrip button').forEach(b=>{const t=b.innerText.trim();out.push({t,s:'ملفاتي وحقوقي',k:N(t+' '+(TSYN[(b.dataset.xs||'').split(':')[1]]||'')),cat:'أداة',go:()=>b.click(),ic:'🗂'})});
+    document.querySelectorAll('details.tool').forEach(d=>{const sb=d.querySelector('summary b'),sm=d.querySelector('summary small');if(!sb)return;const t=sb.childNodes[0].textContent.trim();if(out.some(o=>o.t===t))return;
+      out.push({t,s:sm?sm.textContent.trim():'',k:N(t+' '+(sm?sm.textContent:'')+' '+(TSYN[d.id]||'')),cat:'أداة',ic:'🧰',go:()=>{const v=d.closest('.view');if(v&&v.id)location.hash=v.id.replace(/^v-/,'');setTimeout(()=>{d.open=true;scrollTo({top:d.getBoundingClientRect().top+scrollY-12,behavior:'smooth'})},500)}})});
+    return out}
+  function score(it,q){const ws=q.split(' ');let s=0;for(const w of ws){if(!w)continue;const tn=N(it.t);if(tn.startsWith(w))s+=5;else if(tn.includes(w))s+=3;else if(it.k.includes(w))s+=2;else if(w.length>3&&it.k.includes(w.slice(0,-1)))s+=1;else return 0}return s}
+  const RK='rw-v2-recent';const rec=()=>{try{return JSON.parse(localStorage.getItem(RK)||'[]')}catch(_){return[]}};
+  const save=q=>{try{const r=rec().filter(x=>x!==q);r.unshift(q);localStorage.setItem(RK,JSON.stringify(r.slice(0,4)))}catch(_){}};
+  document.body.insertAdjacentHTML('beforeend',`<div class="v2-so" id="v2So" role="dialog" aria-label="بحث"><div class="v2-sp"><div class="v2-sf"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="v2Q" type="search" placeholder="ابحث: تقاعد، إجازة، ولادة، علاوة…" autocomplete="off"><button id="v2Sx">إغلاق</button></div><div class="v2-sr" id="v2Sr"></div></div></div>`);
+  const so=$('v2So'),q=$('v2Q'),sr=$('v2Sr');let IDX=[];
+  function draw(){const v=N(q.value);let h='';
+    if(!v){const r=rec();if(r.length)h+='<h4>آخر بحث</h4><div class="v2-chips">'+r.map(x=>`<button data-q="${x.replace(/"/g,'')}">${x}</button>`).join('')+'</div>';
+      h+='<h4>جرّب</h4><div class="v2-chips">'+['التقاعد','إجازة','ولادة','العلاوة','الإضبارة','نماذج'].map(x=>`<button data-q="${x}">${x}</button>`).join('')+'</div>';sr.innerHTML=h;return}
+    const res=IDX.map(it=>[score(it,v),it]).filter(x=>x[0]).sort((a,b)=>b[0]-a[0]).slice(0,12);
+    sr.innerHTML=res.length?res.map(([,it],i)=>`<a data-i="${IDX.indexOf(it)}"><i>${it.ic}</i><span><b>${it.t}</b>${it.s?`<small>${it.s}</small>`:''}</span><em>${it.cat}</em></a>`).join(''):'<div class="v2-none">ما لگينا نتيجة 🤔<br>جرّب كلمة ثانية، مثل «راتب» أو «إجازة»</div>'}
+  const open=()=>{IDX=index();so.classList.add('on');q.value='';draw();setTimeout(()=>q.focus(),60)};
+  const close=()=>so.classList.remove('on');
+  q.addEventListener('input',draw);
+  sr.addEventListener('click',e=>{const c=e.target.closest('[data-q]');if(c){q.value=c.dataset.q;draw();return}
+    const a=e.target.closest('a[data-i]');if(!a)return;const it=IDX[+a.dataset.i];save(q.value.trim());close();try{clearSolo()}catch(_){}setTimeout(()=>it.go(),80)});
+  $('v2Sx').onclick=close;so.addEventListener('click',e=>{if(e.target===so)close()});
+  addEventListener('keydown',e=>{if(e.key==='Escape'&&so.classList.contains('on'))close()});
+  const bt=document.createElement('button');bt.className='ib v2-sbtn';bt.setAttribute('aria-label','بحث');bt.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>';bt.onclick=open;
+  const hb=document.querySelector('.v2-hero .hbtns');if(hb)hb.insertBefore(bt,hb.firstChild);
+  window.v2Search=open;
+})();
+/* ---- v2.8 security: PIN recovery + recovery code + national-ID verification ---- */
+(function(){
+  Object.assign(ERR,{BADCODE:'الرمز غير صحيح — تأكد من الأرقام',NOCODE:'ماكو رمز فعّال لهذا الرقم — اطلبه من الإدارة أولاً',EXPIRED:'انتهت صلاحية الرمز (30 دقيقة) — اطلب رمزاً جديداً',TRIES:'محاولات كثيرة على هذا الرمز — اطلب رمزاً جديداً',WEAK:'هذا الرمز سهل التخمين — اختر 6 أرقام غير متسلسلة وغير مكررة',NOREC:'لا يوجد رمز استرداد لهذا الحساب — اطلب الاسترجاع من الإدارة',BADREC:'رمز الاسترداد غير صحيح',LIMIT:'وصلت الحد اليومي للطلبات — حاول باچر',IMG:'الصورة غير صالحة — صوّرها من جديد',SIZE:'الصورة صغيرة جداً أو كبيرة جداً — صوّرها من جديد',WAIT:'انرسل طلبك قبل شوية — انتظر دقيقتين',DONE:'هويتك موثّقة مسبقاً ✓'});
+  ERR.LOCKED='الحساب مقفل مؤقتاً بسبب محاولات خاطئة — اضغط «نسيت الرمز السري؟» أو حاول لاحقاً';
+  {const p=ERR.PIN;delete ERR.PIN;ERR.PIN=p}
+  const SP=s=>`<style>${s}</style>`;
+  const LV=(k,v)=>{try{if(v===undefined)return localStorage.getItem(k);if(v===null)localStorage.removeItem(k);else localStorage.setItem(k,v)}catch(_){}};
+  const pinOk=p=>/^\d{6}$/.test(p);
+  document.head.insertAdjacentHTML('beforeend',SP(`
+   .v2-link{display:block;margin:10px auto 0;border:0;background:none;color:var(--g,#0E5B45);font-weight:800;font-size:13.5px;text-decoration:underline;text-underline-offset:4px;cursor:pointer;font-family:inherit}
+   .v2-opt{display:flex;align-items:center;gap:12px;width:100%;text-align:start;border:1.5px solid #DCE8E3;background:#fff;border-radius:16px;padding:12px;margin-top:10px;cursor:pointer;font-family:inherit;color:inherit}
+   .v2-opt i{font-style:normal;width:42px;height:42px;border-radius:13px;display:grid;place-items:center;font-size:21px;flex:none;background:#E5F5F1}
+   .v2-opt b{display:block;font-size:14.5px}.v2-opt small{display:block;font-size:12px;color:#5E7A71;margin-top:2px;line-height:1.4}
+   .v2-step{font-size:12px;color:#5E7A71;text-align:center;margin:4px 0 8px}
+   .v2-code{direction:ltr;font:800 26px/1.2 ui-monospace,Menlo,monospace;letter-spacing:3px;text-align:center;background:#FFF8E6;border:2px dashed #E2A82B;border-radius:14px;padding:14px;margin:10px 0;user-select:all;color:#3a2a00}
+   .v2-note{font-size:12px;line-height:1.6;color:#5E7A71;background:#F1F6F4;border-radius:12px;padding:9px 11px;margin-top:10px;text-align:start}
+   .v2-sec2{margin-top:12px;border:1px solid #E1ECE7;border-radius:16px;padding:11px;text-align:start}
+   .v2-sec2 h4{margin:0 0 6px;font-size:14px;display:flex;align-items:center;gap:6px}
+   .v2-badge{display:inline-flex;align-items:center;gap:4px;font-size:11.5px;font-weight:800;padding:3px 9px;border-radius:999px;margin-inline-start:auto}
+   .v2-badge.ok{background:#E3F6EE;color:#0A7A59}.v2-badge.wait{background:#FFF4DB;color:#9A6A00}.v2-badge.no{background:#FDECEC;color:#C0392B}.v2-badge.none{background:#EEF2F0;color:#5E7A71}
+   .v2-idwarn{display:flex;gap:10px;align-items:flex-start;background:#FFF7E6;border:1px solid #F3D28A;border-radius:14px;padding:10px 12px;margin:10px 0;text-align:start}
+   .v2-idwarn.ok{background:#E9F7F1;border-color:#A8DCC5}.v2-idwarn.wait{background:#F0F6FF;border-color:#BCD3F5}.v2-idwarn.no{background:#FDEFEF;border-color:#F2B8B8}
+   .v2-idwarn i{font-style:normal;font-size:22px;line-height:1}
+   .v2-idwarn b{display:block;font-size:13.5px}.v2-idwarn small{display:block;font-size:12px;color:#5E6B66;line-height:1.5;margin-top:2px}
+   .v2-idwarn button{margin-top:7px;border:0;border-radius:10px;background:#0E5B45;color:#fff;font-weight:800;font-size:12.5px;padding:8px 12px;cursor:pointer;font-family:inherit}
+   .v2-slots{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+   .v2-slot{border:2px dashed #C9DAD3;border-radius:16px;aspect-ratio:1.58;display:grid;place-items:center;text-align:center;position:relative;overflow:hidden;background:#F7FAF9;cursor:pointer}
+   .v2-slot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+   .v2-slot span{font-size:12.5px;font-weight:700;color:#5E7A71;line-height:1.5}
+   .v2-slot.has{border-style:solid;border-color:#0E5B45}
+   .v2-slot em{position:absolute;bottom:6px;left:6px;font-style:normal;font-size:10.5px;background:rgba(0,0,0,.6);color:#fff;padding:2px 7px;border-radius:999px}
+   [data-theme=dark] .v2-opt,[data-theme=dark] .v2-sec2{background:#12302A;border-color:#1E433A}
+   [data-theme=dark] .v2-note,[data-theme=dark] .v2-slot{background:#0E2620}
+   [data-theme=dark] .v2-idwarn{background:#2A2414;border-color:#5A4A1E}[data-theme=dark] .v2-idwarn small{color:#B8C7C2}
+  `));
+
+  /* ===== 1) forgot PIN ===== */
+  let RV={step:'choose',phone:''};
+  async function finishLogin(r,msg){
+    ACC={token:r.token,name:r.name,phone:r.phone,synced:0};ls('rw-acc',JSON.stringify(ACC));
+    try{const d=await rpc('rw_get_data',{p_token:ACC.token});if(d&&d.data&&d.data.st){applySnap(d.data);ACC.synced=Date.now();ls('rw-acc',JSON.stringify(ACC));try{sessionStorage.setItem('rw-toast',msg)}catch(_){}location.reload();return}}catch(_){}
+    await syncNow();drawAcctBtn();closeAll();toast(msg);
+  }
+  function drawRecover(msg='',ok=false){
+    const b=$('acctBox'),ph=esc(RV.phone||ls('rw-phone')||'');
+    const head=`<span class="dic big" style="background:linear-gradient(145deg,#F2C14E,#C98A12)">🔑</span><h3>استرجاع الدخول</h3>`;
+    const foot=`<p class="err ${ok?'ok':''}">${esc(msg)}</p><button class="v2-link" id="rvBack">${RV.step==='choose'?'↩ رجوع لتسجيل الدخول':'↩ رجوع'}</button>`;
+    const pins=`<div class="full"><label for="rvN1">الرمز السري الجديد (6 أرقام)</label><input id="rvN1" class="pin" type="password" inputmode="numeric" maxlength="6" autocomplete="new-password"></div><div class="full"><label for="rvN2">أعد كتابة الرمز الجديد</label><input id="rvN2" class="pin" type="password" inputmode="numeric" maxlength="6" autocomplete="new-password"></div>`;
+    if(RV.step==='choose'){b.innerHTML=head+`<p class="isub">بياناتك محفوظة بحسابك وما تضيع — نرجّعلك الدخول بطريقة آمنة.</p>
+      <button class="v2-opt" data-s="rec"><i>🔐</i><span><b>عندي رمز استرداد</b><small>الرمز المكوّن من 12 حرف اللي حفظته من حسابك — يرجّعك فوراً</small></span></button>
+      <button class="v2-opt" data-s="req"><i>🧑‍💼</i><span><b>ما عندي — أطلب من الإدارة</b><small>تتأكد الإدارة منك على نفس رقم هاتفك وتدزلك رمز مؤقت</small></span></button>`+foot}
+    else if(RV.step==='rec'){b.innerHTML=head+`<p class="v2-step">بواسطة رمز الاسترداد</p><div class="fg" style="text-align:start">
+      <div class="full"><label for="rvPh">رقم الهاتف</label><input id="rvPh" type="tel" inputmode="numeric" dir="ltr" maxlength="11" placeholder="07xxxxxxxxx" value="${ph}"></div>
+      <div class="full"><label for="rvRc">رمز الاسترداد</label><input id="rvRc" dir="ltr" maxlength="14" placeholder="XXXX-XXXX-XXXX" autocomplete="off" autocapitalize="characters" style="text-transform:uppercase;letter-spacing:2px;text-align:center"></div>${pins}</div>
+      <button class="btn pri" id="rvGo" style="width:100%;justify-content:center">تغيير الرمز والدخول</button>
+      <div class="v2-note">🔐 رمز الاسترداد يُستخدم مرة وحدة. بعد الدخول سوّي رمز جديد من «حسابي».</div>`+foot}
+    else if(RV.step==='req'){b.innerHTML=head+`<p class="v2-step">الخطوة 1 من 2 — طلب الاسترجاع</p><div class="fg" style="text-align:start">
+      <div class="full"><label for="rvPh">رقم الهاتف المسجّل</label><input id="rvPh" type="tel" inputmode="numeric" dir="ltr" maxlength="11" placeholder="07xxxxxxxxx" value="${ph}"></div>
+      <div class="full"><label for="rvNm">اسمك الكامل كما في الحساب</label><input id="rvNm" maxlength="60" value="${esc(X.me.name||'')}"></div></div>
+      <button class="btn pri" id="rvGo" style="width:100%;justify-content:center">أرسل الطلب</button>
+      <div class="v2-note">📞 الإدارة راح تتصل أو تراسل <b>نفس الرقم</b> حتى تتأكد إنه إلك، وبعدها تدزلك رمز من 6 أرقام صالح 30 دقيقة. لا تعطي هذا الرمز لأي أحد.</div>
+      <button class="v2-link" id="rvHave">عندي الرمز من الإدارة ←</button>`+foot}
+    else if(RV.step==='code'){b.innerHTML=head+`<p class="v2-step">الخطوة 2 من 2 — اكتب الرمز اللي وصلك</p><div class="fg" style="text-align:start">
+      <div class="full"><label for="rvPh">رقم الهاتف</label><input id="rvPh" type="tel" inputmode="numeric" dir="ltr" maxlength="11" value="${ph}"></div>
+      <div class="full"><label for="rvCd">الرمز المؤقت (6 أرقام)</label><input id="rvCd" class="pin" inputmode="numeric" maxlength="6" autocomplete="one-time-code"></div>${pins}</div>
+      <button class="btn pri" id="rvGo" style="width:100%;justify-content:center">تأكيد والدخول</button>
+      <div class="v2-note">⏳ إذا ما وصلك الرمز خلال يوم، تواصل ويا الإدارة من «مقترحات» أو أعد الطلب.</div>`+foot}
+    b.querySelectorAll('[data-s]').forEach(x=>x.onclick=()=>{RV.step=x.dataset.s;drawRecover()});
+    $('rvBack').onclick=()=>{if(RV.step==='choose'){acctMode='login';drawAcct()}else{RV.step=RV.step==='code'?'req':'choose';drawRecover()}};
+    if($('rvHave'))$('rvHave').onclick=()=>{RV.phone=$('rvPh').value.replace(/\D/g,'');RV.step='code';drawRecover()};
+    const go=$('rvGo');if(!go)return;
+    go.onclick=async()=>{const phv=$('rvPh').value.replace(/\D/g,'');RV.phone=phv;ls('rw-phone',phv);
+      if(!/^07\d{9}$/.test(phv))return drawRecover(ERR.PHONE);
+      let n1='',n2='';if($('rvN1')){n1=$('rvN1').value;n2=$('rvN2').value;if(!pinOk(n1))return drawRecover(ERR.PIN);if(n1!==n2)return drawRecover('الرمزين مو متطابقين');}
+      go.disabled=true;go.textContent='لحظة…';
+      try{
+        if(RV.step==='req'){await rpc('rw_reset_request',{p_phone:phv,p_name:$('rvNm').value,p_device:DEV});RV.step='code';return drawRecover('✓ انرسل طلبك للإدارة — راح يتواصلون وياك على نفس الرقم',true)}
+        if(RV.step==='rec'){const r=await rpc('rw_rec_use',{p_phone:phv,p_rec:$('rvRc').value,p_new:n1});LV('rw-rec-need','1');return finishLogin(r,'رجع دخولك ✓ — سوّي رمز استرداد جديد من حسابي')}
+        if(RV.step==='code'){const c=$('rvCd').value.replace(/\D/g,'');if(c.length!==6)return drawRecover('اكتب الرمز المؤقت كامل (6 أرقام)');const r=await rpc('rw_reset_finish',{p_phone:phv,p_code:c,p_new:n1});return finishLogin(r,'رجع دخولك ✓ — بياناتك محفوظة')}
+      }catch(e){drawRecover(em(e))}};
+  }
+
+  /* ===== 2) account panel additions ===== */
+  async function recBlock(){const box=$('v2RecB');if(!box||!ACC)return;
+    let has=null;try{has=(await rpc('rw_rec_status',{p_token:ACC.token})).has}catch(_){}
+    box.innerHTML=`<h4>🔐 رمز الاسترداد <span class="v2-badge ${has?'ok':'none'}">${has?'✓ محفوظ':'غير مُنشأ'}</span></h4>
+      <small style="display:block;font-size:12px;color:#5E7A71;line-height:1.5">إذا نسيت رمزك السري يرجّعك فوراً بدون انتظار الإدارة.</small>
+      <div style="display:flex;gap:6px;margin-top:8px"><input id="v2RcPin" class="pin" type="password" inputmode="numeric" maxlength="6" placeholder="رمزك الحالي" style="flex:1"><button class="btn pri" id="v2RcGo">${has?'رمز جديد':'إنشاء'}</button></div><div id="v2RcOut"></div>`;
+    $('v2RcGo').onclick=async()=>{const p=$('v2RcPin').value;if(!pinOk(p))return $('v2RcOut').innerHTML=`<p class="err">${ERR.PIN}</p>`;
+      try{const r=await rpc('rw_rec_new',{p_token:ACC.token,p_pin:p});LV('rw-rec-need',null);
+        $('v2RcOut').innerHTML=`<div class="v2-code" id="v2RcC">${esc(r.code)}</div><div style="display:flex;gap:6px"><button class="btn" id="v2RcCp" style="flex:1;justify-content:center">📋 نسخ</button></div><div class="v2-note">⚠️ <b>يظهر مرة وحدة بس.</b> اكتبه بورقة أو صوّره واحفظه بمكان آمن، ولا تعطيه لأحد. أي رمز قديم بطل يشتغل.</div>`;
+        $('v2RcCp').onclick=()=>{try{navigator.clipboard.writeText(r.code);toast('انسخ ✓')}catch(_){}};$('v2RcPin').value='';
+      }catch(e){$('v2RcOut').innerHTML=`<p class="err">${esc(em(e))}</p>`}};
+  }
+  const IDS={none:['none','غير موثّقة'],pending:['wait','⏳ قيد التدقيق'],approved:['ok','✓ موثّقة'],rejected:['no','مرفوضة'],expired:['none','انتهى الطلب']};
+  async function idvStatus(){if(!ACC)return {status:'none'};try{const s=await rpc('rw_idv_status',{p_token:ACC.token});LV('rw-idv',JSON.stringify(s));return s}catch(_){try{return JSON.parse(LV('rw-idv')||'{"status":"none"}')}catch(__){return {status:'none'}}}}
+  const idvCached=()=>{try{return JSON.parse(LV('rw-idv')||'{"status":"none"}')}catch(_){return {status:'none'}}};
+  async function idvBlock(){const box=$('v2IdvB');if(!box)return;const s=await idvStatus();const [c,t]=IDS[s.status]||IDS.none;
+    box.innerHTML=`<h4>🪪 توثيق الهوية <span class="v2-badge ${c}">${t}</span></h4>${s.status==='rejected'&&s.note?`<small style="display:block;color:#C0392B;font-size:12px">السبب: ${esc(s.note)}</small>`:''}
+      ${s.status==='approved'?'<small style="display:block;font-size:12px;color:#5E7A71">هويتك الرقمية مكتملة ✓</small>':`<button class="btn" id="v2IdvGo" style="width:100%;justify-content:center;margin-top:8px">${s.status==='pending'?'إعادة الإرفاق':'إرفاق البطاقة الوطنية'}</button>`}`;
+    if($('v2IdvGo'))$('v2IdvGo').onclick=()=>{closeAll();openIdv()};
+  }
+  {const _da=drawAcct;drawAcct=function(msg='',ok=false){_da(msg,ok);try{
+    const b=$('acctBox');
+    if(!ACC){
+      if(acctMode!=='reg'){const g=$('aGo');if(g&&!$('aForgot')){g.insertAdjacentHTML('afterend','<button class="v2-link" id="aForgot">نسيت الرمز السري؟</button>');$('aForgot').onclick=()=>{RV={step:'choose',phone:($('aPhone')||{}).value||''};drawRecover()}}}
+      b.querySelectorAll('p.isub').forEach(p=>{if(p.textContent.includes('لا يمكن استرجاعه'))p.textContent='احفظ رمزك السري جيداً. إذا نسيته تگدر ترجع حسابك برمز الاسترداد أو عن طريق الإدارة، وبياناتك ما تضيع. اسمك ورقمك يطّلع عليهما مدير التطبيق فقط.'});
+    }else{
+      const o=$('aOut');if(o&&!$('v2RecB')){o.insertAdjacentHTML('beforebegin','<div class="v2-sec2" id="v2IdvB"></div><div class="v2-sec2" id="v2RecB"></div>');recBlock();idvBlock()}
+    }}catch(_){}}}
+
+  /* ===== 3) national ID verification sheet ===== */
+  document.body.insertAdjacentHTML('beforeend',`<div class="ov" id="v2IdvOv" role="dialog" aria-label="توثيق الهوية"><div class="isheet" id="v2IdvBox"></div></div>`);
+  const ID={front:null,back:null};
+  function compress(file){return new Promise((res,rej)=>{const fr=new FileReader();fr.onerror=rej;fr.onload=()=>{const im=new Image();im.onerror=rej;im.onload=()=>{
+    let w=im.naturalWidth,h=im.naturalHeight;const M=1400,s=Math.min(1,M/Math.max(w,h));w=Math.round(w*s);h=Math.round(h*s);
+    const cv=document.createElement('canvas');cv.width=w;cv.height=h;const x=cv.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,w,h);x.drawImage(im,0,0,w,h);
+    let q=.8,u=cv.toDataURL('image/jpeg',q);while(u.length>650000&&q>.35){q-=.1;u=cv.toDataURL('image/jpeg',q)}
+    if(u.length>650000){const c2=document.createElement('canvas');c2.width=Math.round(w*.7);c2.height=Math.round(h*.7);c2.getContext('2d').drawImage(cv,0,0,c2.width,c2.height);u=c2.toDataURL('image/jpeg',.6)}
+    if(Math.min(w,h)<300)return rej(new Error('SIZE'));res(u)};im.src=fr.result};fr.readAsDataURL(file)})}
+  async function openIdv(msg='',ok=false){
+    const b=$('v2IdvBox'),s=ACC?await idvStatus():idvCached();
+    const head=`<span class="dic big" style="background:linear-gradient(145deg,#25A27E,#0E5B45)">🪪</span><h3>توثيق الهوية الرقمية</h3>`;
+    if(!ACC){b.innerHTML=head+`<div class="v2-idwarn"><i>⚠️</i><div><b>هويتك ليست كاملة</b><small>حتى نوثّق هويتك لازم يكون عندك حساب، حتى ينربط التوثيق بيك وما يضيع.</small></div></div><button class="btn pri" id="v2IdLogin" style="width:100%;justify-content:center">سجّل دخول أو أنشئ حساب</button><button class="btn" id="v2IdX" style="width:100%;justify-content:center;margin-top:8px">إغلاق</button>`;
+      $('v2IdLogin').onclick=()=>{closeAll();$('acctBtn').click()};$('v2IdX').onclick=closeAll;$('v2IdvOv').classList.add('on');return}
+    if(s.status==='approved'){b.innerHTML=head+`<div class="v2-idwarn ok"><i>✅</i><div><b>هويتك موثّقة</b><small>تم تدقيق بطاقتك الوطنية، وانمسحت صورها من الخادم بعد التدقيق.</small></div></div><button class="btn" id="v2IdX" style="width:100%;justify-content:center">إغلاق</button>`;$('v2IdX').onclick=closeAll;$('v2IdvOv').classList.add('on');return}
+    const warn=s.status==='pending'?`<div class="v2-idwarn wait"><i>⏳</i><div><b>طلبك قيد التدقيق</b><small>انرسلت البطاقة للإدارة. إذا تريد تبدّل الصور تگدر تعيد الإرفاق.</small></div></div>`
+      :s.status==='rejected'?`<div class="v2-idwarn no"><i>❌</i><div><b>ما انقبل التوثيق</b><small>${esc(s.note||'')} — أعد الإرفاق.</small></div></div>`
+      :`<div class="v2-idwarn"><i>⚠️</i><div><b>هويتك ليست كاملة</b><small>يرجى إرفاق البطاقة الوطنية (الوجه والظهر) لغرض تدقيق المعلومات.</small></div></div>`;
+    const slot=(k,t)=>`<label class="v2-slot ${ID[k]?'has':''}" for="v2F_${k}">${ID[k]?`<img src="${ID[k]}" alt=""><em>✓ ${t}</em>`:`<span>📷<br>${t}<br><small style="font-weight:500">صوّر أو اختار</small></span>`}</label><input id="v2F_${k}" type="file" accept="image/*" capture="environment" hidden>`;
+    b.innerHTML=head+warn+`<div class="v2-slots">${slot('front','الوجه الأمامي')}${slot('back','الوجه الخلفي')}</div>
+      <div class="v2-note">💡 صوّر البطاقة على سطح غامق، بإضاءة جيدة، وكل الحواف واضحة وبدون لمعة.<br>🔐 الصور تنرسل مشفّرة، يشوفها مدير التطبيق فقط للتدقيق، و<b>تنمسح نهائياً</b> بعد القبول أو الرفض (وتلقائياً بعد 14 يوم إذا ما انراجعت).</div>
+      <p class="err ${ok?'ok':''}">${esc(msg)}</p>
+      <button class="btn pri" id="v2IdSend" style="width:100%;justify-content:center" ${ID.front&&ID.back?'':'disabled'}>إرسال للتدقيق</button>
+      <button class="btn" id="v2IdX" style="width:100%;justify-content:center;margin-top:8px">إغلاق</button>`;
+    ['front','back'].forEach(k=>{$('v2F_'+k).onchange=async e=>{const f=e.target.files[0];if(!f)return;try{ID[k]=await compress(f);openIdv()}catch(_){openIdv(ERR.SIZE)}}});
+    $('v2IdX').onclick=closeAll;
+    $('v2IdSend').onclick=async()=>{const g=$('v2IdSend');g.disabled=true;g.textContent='جاري الإرسال الآمن…';
+      try{await rpc('rw_idv_submit',{p_token:ACC.token,p_device:DEV,p_front:ID.front,p_back:ID.back});ID.front=ID.back=null;LV('rw-idv',JSON.stringify({status:'pending'}));openIdv('✓ انرسلت البطاقة — يوصلك الرد بعد التدقيق',true);paintIdWarn()}
+      catch(e){openIdv(em(e))}};
+    $('v2IdvOv').classList.add('on');
+  }
+  window.v2OpenIdv=openIdv;
+  $('v2IdvOv').addEventListener('click',e=>{if(e.target.id==='v2IdvOv')closeAll()});
+
+  /* notices where the digital ID lives */
+  function warnHtml(){const s=idvCached().status;
+    if(s==='approved')return `<div class="v2-idwarn ok v2-idw"><i>✅</i><div><b>هويتك موثّقة</b><small>تم تدقيق البطاقة الوطنية.</small></div></div>`;
+    if(s==='pending')return `<div class="v2-idwarn wait v2-idw"><i>⏳</i><div><b>هويتك قيد التدقيق</b><small>راح نبلغك أول ما تنراجع.</small><button type="button" data-idv>تفاصيل</button></div></div>`;
+    return `<div class="v2-idwarn v2-idw ${s==='rejected'?'no':''}"><i>⚠️</i><div><b>هويتك ليست كاملة</b><small>يرجى إرفاق البطاقة الوطنية لغرض تدقيق المعلومات.</small><button type="button" data-idv>إرفاق البطاقة الوطنية</button></div></div>`}
+  function paintIdWarn(){
+    const ph=$('idPh');if(ph){const n=ph.nextElementSibling;if(n&&n.classList.contains('v2-idw'))n.remove();ph.insertAdjacentHTML('afterend',warnHtml())}
+    const tb=document.querySelector('#idTool .tb');if(tb){const o=tb.querySelector(':scope > .v2-idw');if(o)o.remove();tb.insertAdjacentHTML('afterbegin',warnHtml())}
+    try{drawIdCard()}catch(_){}
+  }
+  document.addEventListener('click',e=>{if(e.target.closest('[data-idv]')){e.preventDefault();openIdv()}});
+  {const _di=drawIdCard;drawIdCard=function(){_di.apply(this,arguments);try{const cv=$('idCv');if(!cv)return;const x=cv.getContext('2d'),s=idvCached().status,okv=s==='approved';
+    x.save();x.fillStyle=okv?'#0A7A59':'#C98A12';const t=okv?'✓ موثّقة':(s==='pending'?'قيد التدقيق':'غير موثّقة');x.font='800 26px Tajawal, sans-serif';const w=x.measureText(t).width+36;
+    x.beginPath();x.roundRect?x.roundRect(24,24,w,46,23):x.rect(24,24,w,46);x.fill();x.fillStyle='#fff';x.textAlign='center';x.textBaseline='middle';x.direction='rtl';x.fillText(t,24+w/2,48);x.restore()}catch(_){}}}
+  /* first time a user adds an ID photo -> remind to verify */
+  {const _sv=makeIdPhoto;if(typeof _sv==='function'){makeIdPhoto=async function(){const r=await _sv.apply(this,arguments);try{if(idvCached().status!=='approved'){toast('⚠️ هويتك ليست كاملة — أرفق البطاقة الوطنية للتدقيق');setTimeout(()=>openIdv(),900)}}catch(_){}return r}}}
+  if(ACC)idvStatus().then(paintIdWarn);else paintIdWarn();
+  setTimeout(paintIdWarn,1500);
+  if(ACC&&LV('rw-rec-need'))setTimeout(()=>toast('🔐 سوّي رمز استرداد جديد من «حسابي»'),2500);
+})();
+/* ---- v2.9 promo video banner (preview) ---- */
+(function(){
+  document.body.insertAdjacentHTML('beforeend','<div class="v2-vov" id="v2Vov"><button aria-label="إغلاق">✕</button><video id="v2Vid" controls playsinline preload="none" poster="media/promo.jpg"></video></div>');
+  const ov=$('v2Vov'),vd=$('v2Vid');const close=()=>{ov.classList.remove('on');try{vd.pause()}catch(_){}};
+  ov.querySelector('button').onclick=close;ov.addEventListener('click',e=>{if(e.target===ov)close()});
+  const tag=()=>{document.querySelectorAll('#bnrTr .bnr-s').forEach(s=>{const v=s.querySelector('video');if(v&&!s.querySelector('.v2-vplay')){s.style.position='relative';s.insertAdjacentHTML('beforeend','<button class="v2-vplay">▶ شاهد كامل</button>')}})};
+  new MutationObserver(tag).observe($('bnrTr'),{childList:true});tag();
+  $('bnrTr').addEventListener('click',e=>{const b=e.target.closest('.v2-vplay');if(!b)return;e.preventDefault();e.stopPropagation();const v=b.parentNode.querySelector('video');vd.src=v.getAttribute('src');vd.muted=false;ov.classList.add('on');vd.play().catch(()=>{})});
+})();
+/* ---- v2.10 quick refresh, help bubble, welcome ---- */
+(function(){
+  /* quick refresh */
+  const hb=document.querySelector('.v2-hero .hbtns');
+  if(hb&&!document.querySelector('.v2-rf')){const r=document.createElement('button');r.className='ib v2-rf';r.setAttribute('aria-label','تحديث سريع');r.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.3-5.7"/><path d="M20 4v5h-5"/></svg>';
+    r.onclick=async()=>{r.classList.add('spin');toast('⏳ جاري التحديث…');
+      try{if('serviceWorker' in navigator){const g=await navigator.serviceWorker.getRegistration();if(g){await g.update();if(g.waiting)g.waiting.postMessage({type:'SKIP_WAITING'})}}
+        if(window.caches){const ks=await caches.keys();await Promise.all(ks.map(k=>caches.delete(k)))}
+        try{await syncNow()}catch(_){}
+      }catch(_){}setTimeout(()=>location.reload(),500)};
+    hb.appendChild(r)}
+  /* help bubble: visible label, fades when idle, pops on press */
+  const bub=$('helpBub');
+  if(bub){let t;const idle=()=>{clearTimeout(t);t=setTimeout(()=>bub.classList.add('v2-idle'),3500)};
+    const hot=()=>{bub.classList.remove('v2-idle');bub.classList.add('v2-hot');setTimeout(()=>bub.classList.remove('v2-hot'),450);idle()};
+    bub.addEventListener('pointerdown',hot);bub.addEventListener('mouseenter',()=>{bub.classList.remove('v2-idle');idle()});
+    let st;addEventListener('scroll',()=>{bub.classList.add('v2-idle');clearTimeout(st)},{passive:true});
+    bub.classList.remove('hint');idle()}
+  /* welcome splash: security line */
+  const w=$('wel');if(w&&!w.querySelector('.w-sec')){const tg=w.querySelector('.w-tg');tg&&tg.insertAdjacentHTML('afterend','<p class="w-sec">🔐 بياناتك محمية ومشفّرة</p>')}
+  /* one-time what's new sheet */
+  let seen=null;try{seen=localStorage.getItem('rw-v2-seen')}catch(_){}
+  if(!seen&&!/admin/.test(location.search)){
+    document.body.insertAdjacentHTML('beforeend',`<div class="ov" id="v2WnOv" role="dialog" aria-label="الجديد"><div class="isheet v2-wn"><span class="dic big" style="background:linear-gradient(145deg,#1A8A6C,#0E5B45)">✨</span><h3>أهلاً بيك بالشكل الجديد</h3><p class="isub">«موظف الصحة» صار أوضح وأسرع وأأمن</p><ul>
+      <li><i>🎨</i><span><b>واجهة مرتبة</b><small>كل الخدمات بمجاميع واضحة، والراتب بأول نظرة</small></span></li>
+      <li><i>🔍</i><span><b>بحث سريع</b><small>اكتب «تقاعد» أو «إجازة» وتوصل فوراً</small></span></li>
+      <li><i>🔐</i><span><b>أمان أعلى</b><small>قفل تلقائي للمحاولات الخاطئة، ورموزك مشفّرة</small></span></li>
+      <li><i>🔑</i><span><b>نسيت رمزك؟</b><small>صار تگدر ترجّع حسابك وبياناتك محفوظة</small></span></li>
+      <li><i>🪪</i><span><b>توثيق الهوية</b><small>أرفق البطاقة الوطنية حتى تكتمل هويتك الرقمية</small></span></li></ul>
+      <button class="btn pri" id="v2WnGo" style="width:100%;justify-content:center">يلا نبدأ</button></div></div>`);
+    const go=()=>{try{localStorage.setItem('rw-v2-seen','1')}catch(_){}$('v2WnOv').classList.remove('on')};
+    $('v2WnGo').onclick=go;$('v2WnOv').addEventListener('click',e=>{if(e.target.id==='v2WnOv')go()});
+    const show=()=>{if($('wel')){setTimeout(show,700);return}$('v2WnOv').classList.add('on')};setTimeout(show,1600);
+  }
+  /* anti-framing */
+  try{if(window.top!==window.self)window.top.location=window.location}catch(_){}
+})();
 
 }
 </script>
