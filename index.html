@@ -1825,6 +1825,14 @@ body.v2.dark .v2-hero .hbtns #theme{background:linear-gradient(160deg,#F7C948,#E
 .v2-dept .v2-dbadge{font-size:11.5px;font-weight:800;background:#E5F5F1;color:#0A7A59;padding:3px 10px;border-radius:999px}
 [data-theme=dark] .rw-paper{background:#12302A;color:#E6F2EE}
 [data-theme=dark] .rw-paper p,[data-theme=dark] .rw-paper h4{color:#E6F2EE}
+
+/* ===== v3.1 3D emoji icons ===== */
+.v2 #nav .ic.v2-emo svg,.v2 #nav .v2-main button.v2-has-emo svg,.v2 #xStrip button i.v2-emo svg{display:none!important}
+.v2 #nav .ic.v2-emo .v2-g,.v2 #xStrip button i.v2-emo .v2-g{font-size:24px;line-height:1;filter:drop-shadow(0 2px 2px rgba(0,0,0,.28));display:block}
+.v2 #nav .v2-main button .ic.v2-emo .v2-g{font-size:28px}
+.v2 #nav .ic.v2-emo,.v2 #nav .v2-main button .ic.v2-emo,.v2 #xStrip button i.v2-emo{box-shadow:0 8px 16px -5px var(--b,rgba(0,0,0,.4)),inset 0 1px 0 rgba(255,255,255,.4)!important}
+.v2 #nav .v2-grid button .ic.v2-emo{filter:drop-shadow(0 6px 9px -5px var(--b))}
+.v2 #nav .v2-grid[data-g="3"] .ic.v2-emo .v2-g{filter:grayscale(.35) opacity(.85) drop-shadow(0 1px 1px rgba(0,0,0,.2))}
 </style>
 </head>
 <body>
@@ -5856,6 +5864,18 @@ document.body.classList.add('v2');
   window.rwApplyTheme=applyTheme;
   {const _ac=applyCfg;applyCfg=function(c){_ac(c);try{applyTheme(c)}catch(_){}}}
   try{applyTheme(CFG)}catch(_){}
+})();
+
+
+/* ===== v3.1 3D emoji icons ===== */
+(function(){
+  const EM={salary:'💵',me:'📅',leave:'🏖️',profile:'👤',pension:'🧓',forms:'📝',guide:'📖',news:'📰','x-qc':'📈','x-id':'🪪',health:'❤️',family:'👨‍👩‍👧',protect:'🛡️',donate:'🤲','x-blood':'🩸','x-thx':'🌹','x-swap':'🔄','x-cme':'🎓','x-tk':'💡'};
+  const XM={'me:vaultTool':'🗂️','me:salTool':'📒','leave:momTool':'🤱','news:oppCard':'🎓','guide:fsTool':'🧭'};
+  function emo(ic,ch){if(!ic||ic.dataset.emo)return;ic.dataset.emo=1;ic.classList.add('v2-emo');ic.insertAdjacentHTML('beforeend','<span class="v2-g">'+ch+'</span>')}
+  function run(){const nav=$('nav');if(nav)nav.querySelectorAll('button[data-v]').forEach(b=>{const e=EM[b.dataset.v];if(e)emo(b.querySelector('.ic'),e);if(b.classList.contains('v2-main')||b.closest('.v2-main'))b.classList.add('v2-has-emo')});
+    const xs=$('xStrip');if(xs)xs.querySelectorAll('button').forEach(b=>{const e=XM[b.dataset.xs];if(e){const i=b.querySelector('i');if(i){i.classList.add('v2-emo');if(!i.dataset.emo){i.dataset.emo=1;i.innerHTML='<span class="v2-g">'+e+'</span>'}}}})}
+  if(typeof markLocks==='function'){const _m=markLocks;markLocks=function(){_m.apply(this,arguments);try{run()}catch(_){}}}
+  run();setTimeout(run,600);setTimeout(run,1900);
 })();
 
 }
