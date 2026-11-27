@@ -1800,6 +1800,31 @@ body.v2.dark .v2-hero .hbtns #theme{background:linear-gradient(160deg,#F7C948,#E
 .v2-wn li:last-child{border:0}.v2-wn li i{font-style:normal;font-size:20px;width:30px;text-align:center;flex:none}
 .v2-wn li b{display:block}.v2-wn li small{color:#5E7A71;font-size:12px}
 [data-theme=dark] .v2-wn li{border-color:#1E433A}
+
+/* ===== v3 print / share / dept / theme ===== */
+#rwPrintArea{display:none}
+@media print{
+  body *{visibility:hidden!important}
+  #rwPrintArea,#rwPrintArea *{visibility:visible!important}
+  #rwPrintArea{display:block!important;position:absolute;inset:0;margin:0;padding:0;background:#fff;color:#000}
+  .v2-tabs,.help-bub,.fab-inst,#offline,.v2-pv{display:none!important}
+  @page{size:A4;margin:18mm 16mm}
+}
+.rw-paper{max-width:720px;margin:0 auto;background:#fff;color:#111;border-radius:14px;padding:26px 26px 30px;box-shadow:0 10px 30px -14px rgba(0,0,0,.3);font-family:Tajawal,"IBM Plex Sans Arabic",serif;line-height:2}
+.rw-paper .rp-top{display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #0E5B45;padding-bottom:8px;margin-bottom:16px}
+.rw-paper .rp-top b{color:#0E5B45;font-size:15px}.rw-paper .rp-top span{font-size:12px;color:#555}
+.rw-paper h4{text-align:center;font-size:17px;margin:4px 0 14px;text-decoration:underline;text-underline-offset:5px}
+.rw-paper p{margin:8px 0;font-size:15px}
+.rw-paper .rp-body{text-align:justify;margin:14px 0}
+.rw-paper .rp-sig{margin-top:30px;line-height:1.9;font-size:14px}
+.rw-acts2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.rw-acts2 .btn{justify-content:center}
+.rw-acts2 .btn.wide{grid-column:1 / -1}
+.v2-dept{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:6px}
+.v2-dept select{flex:1;min-width:140px}
+.v2-dept .v2-dbadge{font-size:11.5px;font-weight:800;background:#E5F5F1;color:#0A7A59;padding:3px 10px;border-radius:999px}
+[data-theme=dark] .rw-paper{background:#12302A;color:#E6F2EE}
+[data-theme=dark] .rw-paper p,[data-theme=dark] .rw-paper h4{color:#E6F2EE}
 </style>
 </head>
 <body>
@@ -5726,6 +5751,111 @@ document.body.classList.add('v2');
   }
   /* anti-framing */
   try{if(window.top!==window.self)window.top.location=window.location}catch(_){}
+})();
+
+
+/* ===== v3: print / PDF / share for letters, dept, theme ===== */
+(function(){
+  if(!document.getElementById('rwPrintArea')){const pa=document.createElement('div');pa.id='rwPrintArea';document.body.appendChild(pa)}
+  const PA=document.getElementById('rwPrintArea');
+  window.rwPrint=function(html){PA.innerHTML='<div class="rw-paper">'+html+'</div>';
+    try{window.print()}catch(_){}
+    setTimeout(()=>{PA.innerHTML=''},800)};
+  window.rwShareText=async function(title,text){
+    try{if(navigator.share){await navigator.share({title,text});return}}catch(_){ if(String(_).indexOf('AbortError')>-1)return;}
+    try{await navigator.clipboard.writeText(text);toast('اننسخ النص — الصقه بأي مكان ✓')}catch(_){toast('تعذّر — انسخه يدوياً')}};
+  /* render current letter as a printable sheet */
+  function letterSheet(){
+    const t=FT[X.form.t]||FT[0],v=X.form.v,m=X.me,d=dl(today());
+    return `<div class="rp-top"><b>موظف الصحة</b><span>${esc(d)}</span></div>
+      <h4>${esc('م/ '+t.s)}</h4>
+      <p>إلى/ ${esc(v.to)}</p><p>تحية طيبة…</p>
+      <div class="rp-body">${esc(t.b(v))}</div>
+      <p>ولكم فائق الشكر والتقدير.</p>
+      <div class="rp-sig"><p>مقدّم الطلب</p><p>الاسم: ${esc(m.name)||'..............................'}</p><p>العنوان الوظيفي: ${esc(m.title||'')}</p><p>التوقيع: ..............................</p></div>`;
+  }
+  /* rasterize the letter to an image blob (for share-as-file / save to vault) */
+  async function letterImage(){
+    const t=FT[X.form.t]||FT[0],v=X.form.v,m=X.me,d=dl(today());
+    const W=820,P=56;const c=document.createElement('canvas');const dpr=2;c.width=W*dpr;c.height=1160*dpr;const x=c.getContext('2d');x.scale(dpr,dpr);
+    x.fillStyle='#fff';x.fillRect(0,0,W,1160);x.direction='rtl';x.textAlign='right';const R=W-P;
+    x.fillStyle='#0E5B45';x.fillRect(P,70,W-2*P,3);
+    x.font='800 22px Tajawal, sans-serif';x.fillText('موظف الصحة',R,60);
+    x.font='500 14px Tajawal, sans-serif';x.fillStyle='#555';x.textAlign='left';x.fillText(d,P,60);x.textAlign='right';
+    x.fillStyle='#111';x.font='800 19px Tajawal, sans-serif';x.textAlign='center';x.fillText('م/ '+t.s,W/2,120);x.textAlign='right';
+    let y=170;x.font='500 16px Tajawal, sans-serif';
+    const wrap=(txt,yy,lh)=>{const words=txt.split(' ');let line='';for(const w of words){const test=line?line+' '+w:w;if(x.measureText(test).width>W-2*P&&line){x.fillText(line,R,yy);yy+=lh;line=w}else line=test}if(line){x.fillText(line,R,yy);yy+=lh}return yy};
+    y=wrap('إلى/ '+v.to,y,30);y+=6;y=wrap('تحية طيبة…',y,30);y+=6;
+    y=wrap(t.b(v),y,34);y+=10;y=wrap('ولكم فائق الشكر والتقدير.',y,30);y+=40;
+    x.fillText('مقدّم الطلب',R,y);y+=28;x.fillText('الاسم: '+(m.name||'..............'),R,y);y+=28;
+    x.fillText('العنوان الوظيفي: '+(m.title||''),R,y);y+=28;x.fillText('التوقيع: ..............................',R,y);
+    return await new Promise(r=>c.toBlob(b=>r(b),'image/jpeg',.92));
+  }
+  function letterTextOut(){const t=FT[X.form.t]||FT[0],v=X.form.v,m=X.me;return [`التاريخ: ${dl(today())}`,`إلى/ ${v.to}`,`م/ ${t.s}`,'تحية طيبة…',t.b(v),'ولكم فائق الشكر والتقدير.','','مقدّم الطلب',`الاسم: ${m.name||''}`,`العنوان الوظيفي: ${m.title||''}`,'التوقيع:'].join('\n');}
+  /* rebuild the forms action bar */
+  function buildActs(){
+    const acts=document.querySelector('#v-forms .acts');if(!acts||acts.dataset.v3)return;acts.dataset.v3=1;
+    acts.classList.add('rw-acts2');
+    acts.innerHTML=`<button class="btn" id="fPreview">👁 معاينة</button>
+      <button class="btn pri" id="fPrint2"><svg><use href="#i-print"/></svg>طباعة / حفظ PDF</button>
+      <button class="btn" id="fShare"><svg><use href="#i-share"/></svg>مشاركة</button>
+      <button class="btn" id="fSaveV">🗂️ حفظ بالإضبارة</button>
+      <button class="btn wide" id="fCopy2"><svg><use href="#i-copy"/></svg>نسخ النص</button>`;
+    $('fPrint2').onclick=()=>{rwPrint(letterSheet());setTimeout(()=>{$('fMsg').textContent='بنافذة الطباعة اختر «حفظ PDF» إذا تريد ملف.'},300)};
+    $('fPreview').onclick=()=>{const ov=document.createElement('div');ov.className='ov on';ov.style.cssText='padding:14px;overflow:auto';
+      ov.innerHTML=`<div style="max-width:620px;margin:auto"><button class="btn" style="margin-bottom:10px" id="pvX">✕ إغلاق</button><div class="rw-paper">${letterSheet()}</div></div>`;
+      document.body.appendChild(ov);const c=()=>ov.remove();ov.addEventListener('click',e=>{if(e.target===ov||e.target.closest('#pvX'))c()})};
+    $('fShare').onclick=async()=>{const txt=letterTextOut();
+      try{const img=await letterImage();const f=new File([img],(FT[X.form.t].s||'طلب')+'.jpg',{type:'image/jpeg'});
+        if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],title:FT[X.form.t].s,text:txt});return}}catch(_){ if(String(_).indexOf('Abort')>-1)return;}
+      rwShareText(FT[X.form.t].s,txt)};
+    $('fCopy2').onclick=async()=>{try{await navigator.clipboard.writeText(letterTextOut());$('fMsg').textContent='تم نسخ نص الطلب ✓'}catch(_){$('fMsg').textContent='تعذّر النسخ'}};
+    $('fSaveV').onclick=async()=>{try{const img=await letterImage();const t=FT[X.form.t];
+        if(typeof vtx==='function'){const id='L'+Date.now().toString(36);await vtx('readwrite',s=>s.put({id,type:'other',title:t.s,date:iso(today()),exp:'',img}));toast('🗂️ انحفظ الطلب بالإضبارة');}
+        else{dlFile((t.s||'طلب')+'.jpg',img,'image/jpeg')}
+      }catch(_){toast('ما گدرت أحفظ')}};
+  }
+  const _df=drawFT;drawFT=function(){_df.apply(this,arguments);try{buildActs()}catch(_){}};
+  try{buildActs()}catch(_){}
+
+  /* ---- vault viewer: add print ---- */
+  document.addEventListener('click',async e=>{const b=e.target.closest('[data-vp]');if(!b)return;
+    const ov=b.closest('.vl-ov');const img=ov&&ov.querySelector('img');if(img)rwPrint(`<img src="${img.src}" style="max-width:100%;display:block;margin:auto">`)},true);
+  {const _rv=renderVault;if(typeof _rv==='function'){/* add print button into viewer when opened */}}
+  // inject print button into vault sheets as they open
+  new MutationObserver(ms=>{ms.forEach(m=>m.addedNodes.forEach(n=>{if(n.nodeType===1&&n.classList&&n.classList.contains('vl-ov')){const sh=n.querySelector('.isheet');const del=sh&&sh.querySelector('[data-vd]');if(del&&!sh.querySelector('[data-vp]')){del.insertAdjacentHTML('beforebegin','<button class="btn" data-vp="1" style="width:100%;justify-content:center;margin-top:6px">🖨 طباعة الوثيقة</button>')}}}))}).observe(document.body,{childList:true});
+
+  /* ---- department picker (account panel + registration) ---- */
+  const DEPTS=['الهندسة الطبية','الأطباء','التمريض','الصيدلة','المختبر','الأشعة','الإدارة والمالية','الصحة العامة','طب الأسنان','المهن الصحية','الفيزياء الطبية','خدمات ومساندة','أخرى'];
+  function deptSelect(id,cur){return `<select id="${id}"><option value="">— اختر قسمك —</option>${DEPTS.map(d=>`<option ${d===cur?'selected':''}>${d}</option>`).join('')}</select>`}
+  {const _da=drawAcct;drawAcct=function(msg,ok){_da(msg,ok);try{
+    const b=$('acctBox');
+    if(ACC){const o=$('aOut');if(o&&!$('v2DeptB')){o.insertAdjacentHTML('beforebegin','<div class="v2-sec2" id="v2DeptB"><h4>📍 قسمي</h4><div class="v2-dept">'+deptSelect('v2DeptSel',ACC.dept||'')+'<button class="btn" id="v2DeptGo">حفظ</button></div><small style="font-size:11.5px;color:#5E7A71">يساعد الإدارة ترتّب الموظفين حسب أقسامهم.</small></div>');
+      $('v2DeptGo').onclick=async()=>{const d=$('v2DeptSel').value;try{const r=await rpc('rw_set_dept',{p_token:ACC.token,p_dept:d});ACC.dept=r.dept;ls('rw-acc',JSON.stringify(ACC));toast('انحفظ قسمك ✓')}catch(e){toast(em(e))}}}}
+    else if(acctMode==='reg'){const ph=b.querySelector('#aPhone');if(ph&&!$('aDept')){ph.closest('.full').insertAdjacentHTML('afterend','<div class="full"><label for="aDept">القسم (اختياري)</label>'+deptSelect('aDept','')+'</div>')}}
+  }catch(_){}}}
+  /* pass dept on register + capture dept on login */
+  {const _rpc=rpc;window.rpc=async function(fn,a){
+    if(fn==='rw_register'&&$('aDept')&&a&&!a.p_dept)a.p_dept=$('aDept').value||null;
+    const r=await _rpc(fn,a);
+    if((fn==='rw_login'||fn==='rw_register')&&r&&r.token&&ACC)ACC.dept=r.dept;
+    return r};}
+  /* fetch dept once logged in */
+  if(ACC&&!ACC.dept){rpc('rw_my_account',{p_token:ACC.token}).then(r=>{if(r&&r.dept){ACC.dept=r.dept;ls('rw-acc',JSON.stringify(ACC))}}).catch(()=>{})}
+
+  /* ---- theme + font from admin config ---- */
+  const THEMES={green:['#0a7a59','#0d9b70','#dff1ea'],teal:['#0f8e8a','#13b3ad','#ddf2f0'],blue:['#1b63c7','#3f85e8','#e3edfb'],red:['#c0261b','#e24436','#fce4e1'],purple:['#5b45c9','#7a60e8','#ebe6fb'],brown:['#8a5a2b','#b07a3f','#f3e7d9'],navy:['#1d3557','#2a4e7a','#e1e7f0']};
+  function applyTheme(c){c=c||{};const t=c.theme||{};
+    const r=document.documentElement;
+    if(t.color&&THEMES[t.color]){const[a,a2,soft]=THEMES[t.color];r.style.setProperty('--acc',a);r.style.setProperty('--acc2',a2);r.style.setProperty('--soft',soft);
+      r.style.setProperty('--g',a);document.querySelectorAll('.v2-hero,.v2-tabs .home i,.v2-net button').forEach(()=>{});}
+    else{r.style.removeProperty('--acc');r.style.removeProperty('--acc2');r.style.removeProperty('--soft')}
+    if(t.font){r.style.setProperty('--rw-font',t.font);document.body.style.fontFamily=t.font+',Tajawal,sans-serif'}
+    if(t.size){const s={sm:'14px',md:'15.5px',lg:'17px'}[t.size]||'';if(s)document.body.style.fontSize=s}
+  }
+  window.rwApplyTheme=applyTheme;
+  {const _ac=applyCfg;applyCfg=function(c){_ac(c);try{applyTheme(c)}catch(_){}}}
+  try{applyTheme(CFG)}catch(_){}
 })();
 
 }
