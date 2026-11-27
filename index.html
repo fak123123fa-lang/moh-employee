@@ -5404,7 +5404,7 @@ try{if(document.querySelector('#idTool').open)drawIdCard()}catch(_){}
       :`<p>📲 حتى توصلك الإشعارات بالآيفون: ثبّت التطبيق على الشاشة الرئيسية من زر المشاركة ⬆️ ثم «إضافة إلى الشاشة الرئيسية»</p><button class="w-go" id="welGo">📲 شلون أثبّته؟</button><button class="w-skip" id="welSkip">بعدين</button>`;
     $('welGo').onclick=async()=>{close();if(ask){await enablePush()}else{ls('rw-wel-ios','1');setTimeout(()=>{try{$('install').click()}catch(_){}},500)}};
     $('welSkip').onclick=()=>{ls(ask?'rw-wel-skip':'rw-wel-ios',ask?String(Date.now()):'1');close()};
-  }else setTimeout(close,1500);
+  }else setTimeout(close,650);
 })();
 
 /* hide the drag hint after a few seconds */

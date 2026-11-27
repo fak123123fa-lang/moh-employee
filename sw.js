@@ -1,10 +1,24 @@
-const C='rawatib-v62';
+const C='rawatib-v63';
 const FILES=['./','./index.html','./favicon.ico','./manifest.webmanifest','./icon-192.png','./icon-512.png'];
-self.addEventListener('install',e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(FILES)));self.skipWaiting()});
+self.addEventListener('install',e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(FILES)).catch(()=>{}));self.skipWaiting()});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==C).map(x=>caches.delete(x)))));self.clients.claim()});
+self.addEventListener('message',e=>{if(e.data&&e.data.type==='SKIP_WAITING')self.skipWaiting()});
 self.addEventListener('fetch',e=>{
-  if(e.request.method!=='GET'||e.request.headers.has('range')||/\.(mp4|webm)(\?|$)/i.test(e.request.url))return;
-  e.respondWith(fetch(e.request).then(r=>{const cp=r.clone();caches.open(C).then(c=>c.put(e.request,cp)).catch(()=>{});return r}).catch(()=>caches.match(e.request).then(m=>m||caches.match('./index.html'))));
+  const req=e.request;
+  if(req.method!=='GET'||req.headers.has('range')||/\.(mp4|webm)(\?|$)/i.test(req.url))return;
+  let url;try{url=new URL(req.url)}catch(_){return}
+  const sameOrigin=url.origin===self.location.origin;
+  // app shell + same-origin assets: serve from cache instantly, refresh in background (stale-while-revalidate)
+  if(sameOrigin){
+    e.respondWith(caches.open(C).then(c=>c.match(req).then(hit=>{
+      const net=fetch(req).then(r=>{if(r&&r.ok)c.put(req,r.clone());return r}).catch(()=>null);
+      if(hit){net;return hit;}                       // cached → return now, update later
+      return net.then(r=>r||(req.mode==='navigate'?c.match('./index.html'):undefined));
+    })));
+    return;
+  }
+  // cross-origin (Supabase data, fonts): network-first, fall back to cache
+  e.respondWith(fetch(req).then(r=>{const cp=r.clone();caches.open(C).then(c=>c.put(req,cp)).catch(()=>{});return r}).catch(()=>caches.match(req)));
 });
 self.addEventListener('push',e=>{let d={};try{d=e.data?e.data.json():{}}catch(_){d={title:'موظف الصحة',body:e.data?e.data.text():''}}
   e.waitUntil(self.registration.showNotification(d.title||'موظف الصحة',{body:d.body||'',icon:'icon-192.png',badge:'icon-192.png',dir:'rtl',lang:'ar',tag:'rw-'+Date.now(),data:{url:d.url||''},vibrate:[80,40,80]}))});
